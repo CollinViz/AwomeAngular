@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+.ngx-datatable.bootstrap .datatable-header {
+    background: #E95420;
+    color: #FFF; }
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell {
+    text-align: left;
+    padding: .5rem 1.2rem;
+    font-weight: bold; }
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell .datatable-header-cell-label {
+    nline-height: 24px; }
+
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row:hover {
+    background: #772953;
+    transition-property: background;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+    color: #FFF }
+
+
+.ngx-datatable.dark .datatable-body .datatable-body-row:focus {
+    background-color: #772953; 
+    color: #FFF}
+.ngx-datatable.dark .datatable-body .datatable-body-row.active {
+    background-color: #772953;
+    color: #FFF; }
+

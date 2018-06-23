@@ -1,0 +1,21 @@
+<app-search-enterprise></app-search-enterprise>
+<div>
+  <ngx-datatable
+  class="bootstrap"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [selected]="selected"
+    [selectionType]="'single'"
+    (activate)="onActivate($event)"
+     
+    [externalPaging]="true"
+    [count]="page.totalElements"
+    [offset]="page.pageNumber"
+    [limit]="page.size"
+    (page)='setPage($event)'>
+  </ngx-datatable>
+</div>
