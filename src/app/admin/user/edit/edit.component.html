@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-6">
+
+    <div class="control-group">
+      <label class="control-label" for="txtEDF_ID">EDF_ID</label>
+      <div class="controls">
+        <input readonly [(ngModel)]="edf.EDF_ID" id="txtEDF_ID" name="txtEDF_ID" type="text" placeholder="EDF_ID" ngClass="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtTitle_ID">Title </label>
+      <div class="controls">
+        <mat-form-field>
+          <mat-select [(ngModel)]="edf.Title_ID" name="txtTitle_ID">
+            <mat-option *ngFor="let Title_ID of Titles" [value]="Title_ID.Titles_ID">{{Title_ID.Title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtName">Name</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Name" id="txtName" name="txtName" type="text" placeholder="Name" ngClass="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtSurname">Surname</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Surname" id="txtSurname" name="txtSurname" type="text" placeholder="Surname" ngClass="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtPhone">Phone</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Phone" id="txtPhone" name="txtPhone" type="text" placeholder="Phone" ngClass="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtUserName">User Name</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.UserName" id="txtUserName" name="txtUserName" type="text" placeholder="User Name" ngClass="form-control"
+          required>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtPassword">Password</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Password" id="txtPassword" name="txtPassword" type="text" placeholder="Password" ngClass="form-control"
+          required>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtEmail">Email</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Email" id="txtEmail" name="txtEmail" type="text" placeholder="Email" ngClass="form-control" required>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtGender">Gender</label>
+      <div class="controls">
+        <mat-form-field>
+          <mat-select [(ngModel)]="edf.Gender" name="txtGender">
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="F">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+
+    <div class="control-group">
+      <label class="control-label" for="txtReports_To_ID">Reports </label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Reports_To_ID" id="txtReports_To_ID" name="txtReports_To_ID" type="text" placeholder="Reports_To_ID"
+          ngClass="form-control">
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label" for="txtProvince_ID">Province </label>
+      <div class="controls">
+        <mat-form-field>
+          <mat-select [(ngModel)]="edf.Province_ID" name="txtProvince_ID">
+            <mat-option *ngFor="let Province_ID of Province" [value]="Province_ID.Province_ID">{{Province_ID.Province_Name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtProgramme_ID">Programme </label>
+      <div class="controls">
+        <mat-form-field>
+          <mat-select [(ngModel)]="edf.Programme_ID" name="txtProgramme_ID">
+            <mat-option *ngFor="let Programme_ID of Programme" [value]="Programme_ID.Programme_ID">{{Programme_ID.Programme_Name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="txtApprover_Y_N">Approver </label>
+      <div class="controls">
+        <mat-checkbox [(ngModel)]="edf.Approver_Y_N">Approver </mat-checkbox>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="txtSecurity_Level">Security Level {{edf.Security_Level}}</label>
+      <div class="controls">
+        <mat-form-field>
+          <mat-select [(ngModel)]="edf.Security_Level" name="txtSecurity_Level">
+            <mat-option value="View">View</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtOrganization">Organization</label>
+      <div class="controls">
+        <input [(ngModel)]="edf.Organization" id="txtOrganization" name="txtOrganization" type="text" placeholder="Organization"
+          ngClass="form-control">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="txtActive">Active</label>
+      <div class="controls">
+        <mat-checkbox [(ngModel)]="edf.Active">txtActive</mat-checkbox>
+      </div>
+    </div>
+
+  </div>
+</div>
