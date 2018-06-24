@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
-  selector: 'app-edit',
+  selector: 'app-edituser',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements OnInit {
-
+export class EditUserComponent implements OnInit {
+  @Input() edf:any;
+  @Input() Province:any[];
+  @Input() Titles:any[];
+  @Input() Programme:any[];
+  @Input() edfList:any[];
   constructor() { }
 
   ngOnInit() {
+    console.log("In User edit ",this.Titles);
   }
 
 }

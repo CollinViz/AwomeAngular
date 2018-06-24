@@ -8,7 +8,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -26,12 +26,14 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { MenuComponent } from './home/menu/menu.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ListComponent } from './admin/user/list/list.component';
-import { EditComponent } from './admin/user/edit/edit.component';
+import { EditUserComponent } from './admin/user/edit/edit.component';
 import { UserPageComponent } from './admin/user-page/user-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ProgrammePageComponent } from './admin/programme-page/programme-page.component';
 import { ListprogramComponent } from './admin/programme/listprogram/listprogram.component';
-import { EditprogramComponent } from './admin/programme/editprogram/editprogram.component'
+import { EditprogramComponent } from './admin/programme/editprogram/editprogram.component';
+import { FixboolYNPipe } from './fixbool-yn.pipe';
+import { WelcomLoginokComponent } from './home/welcom-loginok/welcom-loginok.component'
 
 @NgModule({
   declarations: [
@@ -49,12 +51,14 @@ import { EditprogramComponent } from './admin/programme/editprogram/editprogram.
     MenuComponent,
     HomePageComponent,
     ListComponent,
-    EditComponent,
+    EditUserComponent,
     UserPageComponent,
     AdminPageComponent,
     ProgrammePageComponent,
     ListprogramComponent,
-    EditprogramComponent 
+    EditprogramComponent,
+    FixboolYNPipe,
+    WelcomLoginokComponent 
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ import { EditprogramComponent } from './admin/programme/editprogram/editprogram.
     FormsModule, 
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,
+    MatProgressBarModule,
     NgxDatatableModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,

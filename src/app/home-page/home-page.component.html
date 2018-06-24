@@ -1,2 +1,3 @@
-<app-welcome *ngIf="!home.login" (loginClick)="showlogin()"></app-welcome>
-<app-login *ngIf="home.login"  ></app-login>
+<app-welcome *ngIf="!home.login && !home.loginOK" (loginClick)="showlogin()"></app-welcome>
+<app-login *ngIf="home.login && !home.loginOK" (loginOK)="loginOK($even)"  ></app-login>
+<app-welcom-loginok *ngIf="home.loginOK" ></app-welcom-loginok>

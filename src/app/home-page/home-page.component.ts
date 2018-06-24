@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  home:any = {login:false}
+  home:any = {login:false,loginOK:false}
   constructor() { }
 
   ngOnInit() {
@@ -15,5 +15,8 @@ export class HomePageComponent implements OnInit {
     console.log("change login");
     this.home.login = this.home.login?false:true;
 
+  }
+  loginOK(){
+    this.home.loginOK= true;
   }
 }

@@ -1,34 +1,20 @@
-<div class="card border-primary mb-3" style="max-width: 80%;">
-  <div class="card-header">Programs Maintenance</div>
-  <div class="card-body">
-    <h4 class="card-title">Edit programmes</h4>
-    <div class="card-body">
-
-      <div class="control-group">
-        <label class="control-label" for="txtProgramme_ID">Programme_ID</label>
-        <div class="controls">
-          <input [(ngModel)]="programme.Programme_ID" id="txtProgramme_ID" name="txtProgramme_ID" type="text" placeholder="Programme_ID"
-            ngClass="form-control">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="txtProgramme_Name">Programme_Name</label>
-        <div class="controls">
-          <input [(ngModel)]="programme.Programme_Name" id="txtProgramme_Name" name="txtProgramme_Name" type="text" placeholder="Programme_Name"
-            ngClass="form-control">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="txtActive">Active</label>
-        <div class="controls">
-          <mat-checkbox [(ngModel)]="programme.Active">txtActive</mat-checkbox>
-        </div>
-      </div>
-      <div class="control-group">
-        <button (click)="saveClicked" ngClass="btn btn-primary">Save</button>
-        <button (click)="closedClicked" ngClass="btn btn-warning">Close</button>
-      </div>
-    </div>
-
+<div class="control-group">
+  <label class="control-label" for="txtProgramme_ID">Programme_ID</label>
+  <div class="controls">
+    <input [(ngModel)]="programme.Programme_ID" readonly id="txtProgramme_ID" name="txtProgramme_ID" type="text" placeholder="Programme_ID"
+      ngClass="form-control">
   </div>
 </div>
+<div class="control-group">
+  <label class="control-label" for="txtProgramme_Name">Name</label>
+  <div class="controls">
+    <input [(ngModel)]="programme.Programme_Name" id="txtProgramme_Name" name="txtProgramme_Name" type="text" placeholder="Programme_Name"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtActive">Active</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="programme.Active">Active</mat-checkbox>
+  </div>
+</div> 

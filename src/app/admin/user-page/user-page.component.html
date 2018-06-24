@@ -1,3 +1,39 @@
-<p>
-  user-page works!
-</p>
+<div *ngIf="!showEdit; else template">
+  <div class="card border-primary mb-3" style="max-width: 80%;">
+    <div class="card-header">Users Maintenance</div>
+    <div class="card-body">
+      <h4 class="card-title">List all Users</h4>
+      <p class="card-body">
+        <button type="button" class="btn btn-default" (click)="Add(template)">Add</button>
+        <ngx-datatable class="bootstrap" [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="'auto'" [selected]="selected" [selectionType]="'single'" (activate)="onActivate($event,template)" [externalPaging]="true"
+          [count]="page.totalElements" [offset]="page.pageNumber" [limit]="page.size" (page)='setPage($event)'>
+
+        </ngx-datatable>
+      </p>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+
+  <div class="card border-primary mb-3" style="max-width: 80%;">
+    <div class="card-header">{{Type}} Maintain User</div>
+    <div class="card-body">
+
+      <app-edituser [edf]="SelectedRowData" [Province]="Province" [Titles]="Titles" [Programme]="Programme" [edfList]="edfList"></app-edituser>
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-primary btn-block" (click)="Save()">Save</button>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-default btn-block" (click)="showEdit=false">Close</button>
+        </div>
+
+        <div class="col-2">
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
+import { Observable ,throwError } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
-
+import { catchError, retry } from 'rxjs/operators';
+import { ASTWithSource } from '@angular/compiler';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,7 +18,9 @@ export class EwepserverService {
   //baseURL = 'http://localhost:81/php-crud-api2/src/index.php/data/'; 
   baseURL = 'http://localhost:81/awome/api.php/data/';
   baseViewURL = 'http://localhost:81/awome/api.php/view/';
+  CoreViewURL = 'http://localhost:81/awome/ajax.php';
   UserLoginObj = new Subject<any>();
+   
   UserLoginObjAnnounced$ = this.UserLoginObj.asObservable();
   Province: any = [];
   Districtmetro: any = [];
@@ -26,15 +29,34 @@ export class EwepserverService {
     //this._getProvinceLoadLocal();
     //this._getdistrictmetroLoadLocal();
     //this._getlocalmunicipalityLoadLocal();
+     
+  }
 
+  getViewData(ViewName:string,Options:string=""){
+    return this.http.get<any>(this.baseViewURL + ViewName + (Options===""?"":"?"+Options), httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
   getTableData(TableName:string,Options:string){
-    return this.http.get<any>(this.baseURL + TableName + (Options===""?"":"?"+Options), httpOptions);
+    return this.http.get<any>(this.baseURL + TableName + (Options===""?"":"?"+Options), httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
   getRowData(TableName:string,KeyID:string){
-    return this.http.get<any>(this.baseURL + TableName + "/"+KeyID, httpOptions);
+    return this.http.get<any>(this.baseURL + TableName + "/"+KeyID, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
-
+  CreateTableData(TableName:string,DataSave:any){
+    return this.http.post<any>(this.baseURL + TableName,DataSave, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  updateTableData(TableName:string,KeyID:string,DataSave:any){
+    return this.http.put<any>(this.baseURL + TableName+ "/"+KeyID,DataSave, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
   getProvince() {
     return this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions);
   }
@@ -81,4 +103,28 @@ export class EwepserverService {
   getEnterprisItem(EnterprisID: number) {
     return this.http.get<any>(this.baseURL + "enterprise/" + EnterprisID, httpOptions);
   }
+  checkLogin(UserName:string,Password:string){
+    let login={__class:'LoginGUI',__call:'checkLogin',UserName:UserName,Password:Password}; 
+    return this.http.post<any>(this.CoreViewURL,login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  setUserLogin(UserOJB:any){
+    this.UserLoginObj.next(UserOJB);
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
 }
