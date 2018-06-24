@@ -97,9 +97,9 @@ export class EwepserverService {
     return this.http.get<any>(this.baseURL + "edf?filter=Active,eq,Y", httpOptions);
 
   }
-  getEnterprisList(PageNumber: number) {
+  getEnterprisList(PageNumber: number,FilterOptions:string) {
 
-    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?enterprise?order=Enterprise_ID&page=" + PageNumber, httpOptions);
+    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?enterprise?order=Enterprise_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions);
   }
   getEnterprisItem(EnterprisID: number) {
     return this.http.get<any>(this.baseURL + "enterprise/" + EnterprisID, httpOptions);

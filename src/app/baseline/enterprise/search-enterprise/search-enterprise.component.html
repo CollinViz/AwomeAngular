@@ -21,7 +21,7 @@
             </div>
       </div>
       <div class="col-xs-4 col-md-4"> 
-          <button type="button" class="btn btn-primary">
+          <button (click)="searchClickint()" type="button" class="btn btn-primary">
               Search
             </button> 
   
@@ -34,6 +34,7 @@
                 <div class="controls">
                 <mat-form-field>
                     <mat-select [(ngModel)]="search.Province" name="txtProvince">
+                      <mat-option value="Select">Select</mat-option>
                       <mat-option *ngFor="let province of Provinces" [value]="province.Province_ID">{{province.Province_Name}}</mat-option> 
                     </mat-select>
                   </mat-form-field>
@@ -46,7 +47,7 @@
                 <div class="controls">
                   <mat-form-field>
                     <mat-select [(ngModel)]="search.Legal_Structure" name="txtLegal_Structure">
-                      <mat-option>Select</mat-option>
+                      <mat-option value="Select">Select</mat-option>
                       <mat-option value="Cooperative">Cooperative</mat-option>
                       <mat-option value="Partnership">Partnership</mat-option>
                       <mat-option value="Private Company">Private Company</mat-option>
@@ -72,6 +73,7 @@
                   <div class="controls">
                   <mat-form-field>
                       <mat-select [(ngModel)]="search.HiHRep" name="txtHiHRep">
+                          <mat-option value="Select">Select</mat-option>
                           <mat-option *ngFor="let edf of ActiveEDFs" [value]="edf.EDF_ID">{{edf.Name}} {{edf.Surname}}</mat-option> 
                       </mat-select>
                     </mat-form-field>
@@ -84,14 +86,14 @@
                   <div class="controls">
                   <mat-form-field>
                       <mat-select [(ngModel)]="search.Sector" name="txtSector">
-                        <mat-option>Select</mat-option> 
-                        <mat-option value="Agriculture">Agriculture</mat-option>
-                        <mat-option value="Manufacturing">Manufacturing</mat-option>
-                        <mat-option value="Retail">Retail</mat-option>
-                        <mat-option value="Minerals">Minerals</mat-option>
-                        <mat-option value="Arts">Arts</mat-option>
-                        <mat-option value="General">General</mat-option>
-                        <mat-option value="Other">Other</mat-option> 
+                        <mat-option value="Select">Select</mat-option> 
+                        <mat-option value="Sec_Agri">Agriculture</mat-option>
+                        <mat-option value="Sec_Manu">Manufacturing</mat-option>
+                        <mat-option value="Sec_Retail">Retail</mat-option>
+                        <mat-option value="Sec_Minerals">Minerals</mat-option>
+                        <mat-option value="Sec_Arts">Arts</mat-option>
+                        <mat-option value="Sec_General">General</mat-option>
+                        <mat-option value="Sec_Other">Other</mat-option> 
                       </mat-select>
                     </mat-form-field>
                   </div>

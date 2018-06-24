@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
-import {EwepserverService} from '../ewepserver.service'
+import {EwepserverService} from '../../../ewepserver.service'
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 
