@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { EwepserverService } from '../ewepserver.service'
+import { EwepserverService } from '../../../ewepserver.service'
 @Component({
   selector: 'app-listenterprise',
   templateUrl: './listenterprise.component.html',
@@ -23,14 +23,15 @@ export class ListenterpriseComponent implements OnInit {
   rows: any[] = [];
   selected = [];
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-
+  SearchFilter:string = "";
 
   constructor(private router: Router, private EwepserverService: EwepserverService) {
     this.getPageofEnterprise();
   }
 
   getPageofEnterprise() {
-    this.EwepserverService.getEnterprisList(this.page.pageNumber).subscribe((customers: any) => {
+    
+    this.EwepserverService.getEnterprisList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
        
       this.rows = [...customers.records];
       this.page.totalElements = customers.results;
@@ -58,6 +59,13 @@ export class ListenterpriseComponent implements OnInit {
       this.router.navigateByUrl('/enterprise/' + this.selected[0].Enterprise_ID);
     }
 
+  }
+  searchClick(SearchString){
+    this.SearchFilter= SearchString;
+    this.page.totalElements=0;
+    this.page.totalPages=0;
+    this.page.pageNumber=0;
+    this.getPageofEnterprise();
   }
 
 
