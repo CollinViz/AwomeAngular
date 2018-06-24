@@ -19,13 +19,13 @@
   <div class="card border-primary mb-3" style="max-width: 80%;">
     <div class="card-header">{{Type}} Maintain User</div>
     <div class="card-body">
-
-      <app-edituser [edf]="SelectedRowData" [Province]="Province" [Titles]="Titles" [Programme]="Programme" [edfList]="edfList"></app-edituser>
+        <form  #userForm="ngForm"    >
+      <app-edituser [edf]="SelectedRowData" [Province]="Province" [Titles]="Titles" [Programme]="Programme" [edfList]="rows"></app-edituser>
       <div class="row">
         <div class="col-2">
         </div>
         <div class="col-2">
-          <button type="button" class="btn btn-primary btn-block" (click)="Save()">Save</button>
+          <button type="button"  [ngClass]="{'btn':true,'btn-primary':userForm.form.valid ,'btn-block': true}" [disabled]="!userForm.form.valid" (click)="Save()">Save</button>
         </div>
         <div class="col-2">
           <button type="button" class="btn btn-default btn-block" (click)="showEdit=false">Close</button>
@@ -34,6 +34,7 @@
         <div class="col-2">
         </div>
       </div>
+    </form>
     </div>
   </div>
 </ng-template>

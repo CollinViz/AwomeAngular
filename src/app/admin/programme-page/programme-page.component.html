@@ -3,7 +3,7 @@
   <div class="card-body">
     <h4 class="card-title">List all programmes</h4>
     <p class="card-body">
-        <button type="button" class="btn btn-default" (click)="Add(template)">Add</button>
+      <button type="button" class="btn btn-default" (click)="Add(template)">Add</button>
       <ngx-datatable class="bootstrap" [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [selected]="selected" [selectionType]="'single'" (activate)="onActivate($event,template)" [externalPaging]="true"
         [count]="page.totalElements" [offset]="page.pageNumber" [limit]="page.size" (page)='setPage($event)'>
@@ -46,20 +46,22 @@
     </button>
   </div>
   <div class="modal-body">
+    <form  #programForm="ngForm"    >
+      <app-editprogram [programme]="SelectedRowData"></app-editprogram>
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-4">
+          <button type="button" [ngClass]="{'btn':true,'btn-primary':programForm.form.valid ,'btn-block': true}" [disabled]="!programForm.form.valid" (click)="Save()">Save</button>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-default btn-block" (click)="modalRef.hide()">Close</button>
+        </div>
 
-    <app-editprogram [programme]="SelectedRowData"></app-editprogram>
-    <div class="row">
-      <div class="col-2">
+        <div class="col-2">
+        </div>
       </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-primary btn-block" (click)="Save()">Save</button>
-      </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-default btn-block" (click)="modalRef.hide()">Close</button>
-      </div>
-
-      <div class="col-2">
-      </div>
-    </div>
+        
+    </form>
   </div>
 </ng-template>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-import { Observable ,throwError } from 'rxjs';
+import { Observable ,throwError,BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { catchError, retry } from 'rxjs/operators';
 import { ASTWithSource } from '@angular/compiler';
@@ -13,12 +13,13 @@ const httpOptions = {
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class EwepserverService {
   //baseURL = 'http://localhost:81/php-crud-api2/src/index.php/data/'; 
   baseURL = 'http://localhost:81/awome/api.php/data/';
   baseViewURL = 'http://localhost:81/awome/api.php/view/';
   CoreViewURL = 'http://localhost:81/awome/ajax.php';
+ 
   UserLoginObj = new Subject<any>();
    
   UserLoginObjAnnounced$ = this.UserLoginObj.asObservable();
@@ -110,7 +111,7 @@ export class EwepserverService {
     );
   }
   setUserLogin(UserOJB:any){
-    this.UserLoginObj.next(UserOJB);
+    this.UserLoginObj.next(UserOJB); 
   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

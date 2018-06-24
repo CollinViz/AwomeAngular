@@ -1,5 +1,6 @@
 import { Component, OnInit,EventEmitter, Output, Input,TemplateRef  } from '@angular/core';
 import { Router } from '@angular/router';  
+import { FormsModule }   from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'; 
 import { EwepserverService } from '../../ewepserver.service'
