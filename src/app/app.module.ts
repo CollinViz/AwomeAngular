@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,Pipe, PipeTransform } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router, ActivatedRoute, Params } from '@angular/router';
 import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
@@ -33,7 +33,8 @@ import { ProgrammePageComponent } from './admin/programme-page/programme-page.co
 import { ListprogramComponent } from './admin/programme/listprogram/listprogram.component';
 import { EditprogramComponent } from './admin/programme/editprogram/editprogram.component';
 import { FixboolYNPipe } from './fixbool-yn.pipe';
-import { WelcomLoginokComponent } from './home/welcom-loginok/welcom-loginok.component'
+import { WelcomLoginokComponent } from './home/welcom-loginok/welcom-loginok.component';
+import { ProvideParentFormDirective } from './provide-parent-form.directive'
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { WelcomLoginokComponent } from './home/welcom-loginok/welcom-loginok.com
     ListprogramComponent,
     EditprogramComponent,
     FixboolYNPipe,
-    WelcomLoginokComponent 
+    WelcomLoginokComponent,
+    ProvideParentFormDirective 
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import { WelcomLoginokComponent } from './home/welcom-loginok/welcom-loginok.com
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     FormsModule, 
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,
     MatProgressBarModule,

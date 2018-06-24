@@ -30,6 +30,7 @@ export class UserPageComponent implements OnInit {
   Programme:any[];
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
   showEdit:boolean = false;
+
   constructor(private modalService: BsModalService,private router: Router, private EwepserverService: EwepserverService) {
     
   }
@@ -79,8 +80,11 @@ export class UserPageComponent implements OnInit {
     console.log("Save Data with",this.SelectedRowData.Active);
     //this.SelectedRowData.Active = this.SelectedRowData.Active===true?"Y":"N";
     if(this.SelectedRowData.EDF_ID===0){
-      this.EwepserverService.CreateTableData(this.BaseTable,this.SelectedRowData).subscribe((data:any)=> {
+      this.EwepserverService.CreateTableData(this.BaseTable,this.SelectedRowData).subscribe((data:string)=> {
+         
         this.getUsers();
+        
+        
       })
     }else{
       this.EwepserverService.updateTableData(this.BaseTable,this.SelectedRowData.EDF_ID,this.SelectedRowData).subscribe((data:any)=> {
@@ -93,7 +97,7 @@ export class UserPageComponent implements OnInit {
   }
   Add(template: TemplateRef<any>){
     this.showEdit = true;
-    this.SelectedRowData = {EDF_ID:0,Name:"",Surname:"",Active:"Y"}; 
+    this.SelectedRowData = {EDF_ID:0,Name:"",Surname:"",Active:"Y",Approver_Y_N:"Y"}; 
     //this.modalRef = this.modalService.show(template);
 
   }

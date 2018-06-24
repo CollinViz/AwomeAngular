@@ -1,20 +1,22 @@
-<div class="control-group">
-  <label class="control-label" for="txtProgramme_ID">Programme_ID</label>
-  <div class="controls">
-    <input [(ngModel)]="programme.Programme_ID" readonly id="txtProgramme_ID" name="txtProgramme_ID" type="text" placeholder="Programme_ID"
-      ngClass="form-control">
+<fieldset appProvideParentForm>
+  <div class="control-group">
+    <label class="control-label" for="txtProgramme_ID">Programme_ID</label>
+    <div class="controls">
+      <input [(ngModel)]="programme.Programme_ID" readonly id="txtProgramme_ID" name="txtProgramme_ID" type="text" placeholder="Programme_ID"
+        ngClass="form-control">
+    </div>
   </div>
-</div>
-<div class="control-group">
-  <label class="control-label" for="txtProgramme_Name">Name</label>
-  <div class="controls">
-    <input [(ngModel)]="programme.Programme_Name" id="txtProgramme_Name" name="txtProgramme_Name" type="text" placeholder="Programme_Name"
-      ngClass="form-control">
+  <div class="control-group">
+    <label class="control-label" for="txtProgramme_Name">Name</label>
+    <div class="controls">
+      <input [(ngModel)]="programme.Programme_Name" id="txtProgramme_Name" name="txtProgramme_Name" type="text" placeholder="Programme_Name"
+        ngClass="form-control" required  >
+    </div>
   </div>
-</div>
-<div class="control-group">
-  <label class="control-label" for="txtActive">Active</label>
-  <div class="controls">
-    <mat-checkbox [(ngModel)]="programme.Active">Active</mat-checkbox>
+  <div class="control-group">
+    <label class="control-label" for="txtActive">Active</label>
+    <div class="controls">
+      <mat-checkbox [(ngModel)]="programme.Active">Active</mat-checkbox>
+    </div>
   </div>
-</div> 
+</fieldset>
