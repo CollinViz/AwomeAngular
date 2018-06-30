@@ -1,0 +1,138 @@
+<div *ngIf="showloading; else editform ">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editform>
+
+
+  <form [formGroup]="user">
+    <div class="card text-white bg-info mb-3">
+      <div class="card-header">Header Information</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <button (click)="falter()">Make it flat</button>
+            <div class="control-group">
+              <label class="control-label" for="txtEnterprise_ID">Enterprise ID</label>
+              <div class="controls">
+                <input readonly formControlName="Enterprise_ID" type="text" placeholder="Enterprise_ID" ngClass="form-control">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="txtEnterprise_Name">Enterprise Name</label>
+              <div class="controls">
+                <input formControlName="Enterprise_Name" type="text" placeholder="Enterprise_Name" ngClass="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <tabset type="pills" class="bg-info">
+      <tab heading="General Information" class="mt-2">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div class="card border-light mb-3" [formGroup]="General">
+              <!--- General Information Start  -->
+
+              <div class="card-header">General Information</div>
+              <div class="card-body" *ngFor="let question of GeneralQuestions">
+
+                <app-gen-boot-ui [question]="question" [form]="General"></app-gen-boot-ui>
+
+              </div>
+              <!--- </app-gen-boot-ui> General Information end  -->
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6" [formGroup]="Employees">
+            <div class="card border-light mb-3">
+              <!--- General Information Start  -->
+
+              <div class="card-header">No of Female Full Time (Employees)</div>
+              <div class="card-body" *ngFor="let question of EmployeesFemaleQuestions">
+
+                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+
+              </div>
+              <!--- </app-gen-boot-ui> General Information end  -->
+            </div>
+            <div class="card border-light mb-3">
+              <!--- General Information Start  -->
+
+              <div class="card-header">No of Male Full Time (Employees)</div>
+              <div class="card-body" *ngFor="let question of EmployeesMaleQuestions">
+
+                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+
+              </div>
+              <!--- </app-gen-boot-ui> General Information end  -->
+            </div>
+            <div class="card border-light mb-3">
+              <!--- General Information Start  -->
+
+              <div class="card-header">No of Female Part Time</div>
+              <div class="card-body" *ngFor="let question of EmployeesFemalePayQuestions">
+
+                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+
+              </div>
+              <!--- </app-gen-boot-ui> General Information end  -->
+            </div>
+            <div class="card border-light mb-3">
+              <!--- General Information Start  -->
+
+              <div class="card-header">No of Male Part Time</div>
+              <div class="card-body" *ngFor="let question of EmployeesMalePayQuestions">
+
+                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+
+              </div>
+              <!--- </app-gen-boot-ui> General Information end  -->
+            </div>
+            <div class="card border-light mb-3">
+              <!--- General Information Start  -->
+
+              <div class="card-header">Number of people in age range</div>
+              <div class="card-body" *ngFor="let question of EmployeesQuestions">
+
+                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+
+              </div>
+              <!--- </app-gen-boot-ui> General Information end  -->
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab heading="Enterprise Development / Finance Information" class="mt-2" [formGroup]="Finance" >
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+              <div class="card border-light mb-3">
+                  <!--- Source of Startup Funds  -->
+    
+                  <div class="card-header">Source of Startup Funds</div>
+                  <div class="card-body" *ngFor="let question of Funds">
+    
+                    <app-gen-boot-ui [question]="question" [form]="Finance"></app-gen-boot-ui>
+    
+                  </div>
+                  <!---  Source of Startup Funds end  -->
+                </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </form>
+</ng-template>

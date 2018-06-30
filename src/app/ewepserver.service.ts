@@ -3,8 +3,8 @@ import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@an
 import { Observable ,throwError,BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { catchError, retry } from 'rxjs/operators';
-import { ASTWithSource } from '@angular/compiler';
-
+import { ASTWithSource } from '@angular/compiler'; 
+import { Options } from './service/question-helper';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -21,14 +21,25 @@ export class EwepserverService {
   CoreViewURL = 'http://localhost:81/awome/ajax.php';
  
   UserLoginObj = new Subject<any>();
-   
+  LegalStructure:Options[] = [new Options("Select","Select"),
+                              new Options("Cooperative","Cooperative"),
+                              new Options("Partnership","Partnership"),
+                              new Options("Private Company","Private Company"),
+                              new Options("Sole Proprietor","Sole Proprietor"),
+                              new Options("Trust","Trust"),
+                              new Options("Close Corporation","Close Corporation"),
+                              new Options("Not Registered","Not Registered"),
+                              new Options("NPO","NPO"),
+                              new Options("Other","Other")]; 
+  MonthDropDown:Options[] = Array([1,2,3,4,5,6,7,8,9,10,11,12]).map((item)=>new Options(item,item));
   UserLoginObjAnnounced$ = this.UserLoginObj.asObservable();
   Province: any = [];
-  Districtmetro: any = [];
+  Districtmetro: any[] = [];
   localmunicipality
   constructor(private http: HttpClient) {
+    console.log("New Instance created");
     //this._getProvinceLoadLocal();
-    //this._getdistrictmetroLoadLocal();
+    this._getdistrictmetroLoadLocal();
     //this._getlocalmunicipalityLoadLocal();
      
   }

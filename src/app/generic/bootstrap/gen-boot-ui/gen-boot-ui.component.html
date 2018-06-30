@@ -1,0 +1,37 @@
+<div class="control-group" [formGroup]="form">
+  <label class="control-label" [attr.for]="question.key">{{question.label}}</label>
+
+  <div class="controls" [ngSwitch]="question.controlType">
+
+    <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">
+    
+    <mat-form-field *ngSwitchCase="'dropdown'" ngClass="form-control">
+      <mat-select [id]="question.key" [formControlName]="question.key">
+        <mat-option *ngFor="let opt of question.options" [value]="opt.Key">{{opt.Value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-slide-toggle *ngSwitchCase="'toggle'" id="question.key" name="question.key" [formControlName]="question.key"> </mat-slide-toggle>
+    
+    
+    <mat-checkbox *ngSwitchCase="'checkbox'" id="question.key" name="question.key" [formControlName]="question.key"> </mat-checkbox>
+    
+    <mat-radio-group *ngSwitchCase="'radio'" id="question.key" name="question.key" [formControlName]="question.key" ngClass="form-control">
+      <mat-radio-button *ngFor="let opt of question.options" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
+    </mat-radio-group>
+
+     
+    <textarea *ngSwitchCase="'memo'"  [formControlName]="question.key" [id]="question.key" ngClass="form-control"></textarea>
+     
+    <input *ngSwitchCase="'numbers'" appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">  
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+</div>
+
+
+<!--  
+  Copyright 2017-2018 Google Inc. All Rights Reserved.
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file at http://angular.io/license
+  -->
