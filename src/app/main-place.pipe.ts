@@ -11,7 +11,7 @@ export class MainPlacePipe implements PipeTransform {
   constructor(private http: HttpClient) { }
 
   transform(value: string, args: string): any {
-    console.log("transform " + value + " : " + args )
+    //console.log("transform " + value + " : " + args )
     if (args !== this.cachedargs) {
       this.cachedData = null;
       this.cachedargs = args;

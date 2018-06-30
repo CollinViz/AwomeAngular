@@ -7,8 +7,9 @@ import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule} from '@angular/material';
+import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -34,7 +35,11 @@ import { ListprogramComponent } from './admin/programme/listprogram/listprogram.
 import { EditprogramComponent } from './admin/programme/editprogram/editprogram.component';
 import { FixboolYNPipe } from './fixbool-yn.pipe';
 import { WelcomLoginokComponent } from './home/welcom-loginok/welcom-loginok.component';
-import { ProvideParentFormDirective } from './provide-parent-form.directive'
+import { ProvideParentFormDirective } from './provide-parent-form.directive';
+import { GenBootUiComponent } from './generic/bootstrap/gen-boot-ui/gen-boot-ui.component';
+import { EditenterpriseEnterpriseComponent } from './baseline/enterprise/editenterprise-enterprise/editenterprise-enterprise.component';
+import { BaselineEnterpriseEditenterprise2Component } from './baseline/enterprise/baseline-enterprise-editenterprise2/baseline-enterprise-editenterprise2.component';
+import { NumberOnlyDirective } from './generic/bootstrap/gen-boot-ui/number-only.directive'
 
 @NgModule({
   declarations: [
@@ -60,7 +65,11 @@ import { ProvideParentFormDirective } from './provide-parent-form.directive'
     EditprogramComponent,
     FixboolYNPipe,
     WelcomLoginokComponent,
-    ProvideParentFormDirective 
+    ProvideParentFormDirective,
+    GenBootUiComponent,
+    EditenterpriseEnterpriseComponent,
+    BaselineEnterpriseEditenterprise2Component,
+    NumberOnlyDirective 
   ],
   imports: [
     BrowserModule,
@@ -72,8 +81,8 @@ import { ProvideParentFormDirective } from './provide-parent-form.directive'
     FormsModule, 
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,
-    MatProgressBarModule,
+    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,    
+    MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,
     NgxDatatableModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
@@ -87,7 +96,7 @@ import { ProvideParentFormDirective } from './provide-parent-form.directive'
     },
     {
       path: 'enterprise/:Enterprise_ID',
-      component: EditenterpriseComponent
+      component: BaselineEnterpriseEditenterprise2Component
     },
     { 
       path:'admin',

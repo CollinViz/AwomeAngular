@@ -1,0 +1,620 @@
+
+ 
+<div class="control-group">
+  <label class="control-label" for="txtAssets_Water">Assets_Water</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Assets_Water">txtAssets_Water</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAssets_Machines">Assets_Machines</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Assets_Machines">txtAssets_Machines</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAssets_Other">Assets_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Assets_Other">txtAssets_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAssets_Specify">Assets_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Assets_Specify" id="txtAssets_Specify" name="txtAssets_Specify" type="text" placeholder="Assets_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Members">Funds_Members</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_Members">txtFunds_Members</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Group">Funds_Group</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_Group">txtFunds_Group</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Family">Funds_Family</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_Family">txtFunds_Family</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Grant">Funds_Grant</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_Grant">txtFunds_Grant</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_External">Funds_External</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_External">txtFunds_External</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Friends">Funds_Friends</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_Friends">txtFunds_Friends</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Other">Funds_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Funds_Other">txtFunds_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFunds_Specify">Funds_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Funds_Specify" id="txtFunds_Specify" name="txtFunds_Specify" type="text" placeholder="Funds_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtYear_Started_HiH">Year_Started_HiH</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Year_Started_HiH" id="txtYear_Started_HiH" name="txtYear_Started_HiH" type="text" placeholder="Year_Started_HiH"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtBank_Account">Bank_Account</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Bank_Account">txtBank_Account</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMonthly_Income">Monthly_Income</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Monthly_Income" id="txtMonthly_Income" name="txtMonthly_Income" type="text" placeholder="Monthly_Income"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSHG_Savings">SHG_Savings</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.SHG_Savings">txtSHG_Savings</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMoney_Source">Money_Source</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Money_Source" name="txtMoney_Source">
+      <mat-option *ngFor="let Money_Source of Money_Sources" [value]="Money_Source.value">{{Money_Source.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtNeed_Finance">Need_Finance</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Need_Finance">txtNeed_Finance</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtApply_Loan">Apply_Loan</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Apply_Loan">txtApply_Loan</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtWhere_Apply">Where_Apply</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Where_Apply" name="txtWhere_Apply">
+      <mat-option *ngFor="let Where_Apply of Where_Applys" [value]="Where_Apply.value">{{Where_Apply.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtApproved">Approved</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Approved">txtApproved</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtReject_Reason">Reject_Reason</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Reject_Reason" name="txtReject_Reason">
+      <mat-option *ngFor="let Reject_Reason of Reject_Reasons" [value]="Reject_Reason.value">{{Reject_Reason.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtReject_Specify">Reject_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Reject_Specify" id="txtReject_Specify" name="txtReject_Specify" type="text" placeholder="Reject_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtHow_Much">How_Much</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.How_Much" id="txtHow_Much" name="txtHow_Much" type="text" placeholder="How_Much" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtStarted_Repay">Started_Repay</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Started_Repay">txtStarted_Repay</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAccess_Markets">Access_Markets</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Access_Markets">txtAccess_Markets</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGrow_Markets">Grow_Markets</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Grow_Markets">txtGrow_Markets</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtCurrent_Market">Current_Market</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Current_Market" name="txtCurrent_Market">
+      <mat-option *ngFor="let Current_Market of Current_Markets" [value]="Current_Market.value">{{Current_Market.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMarketing_Plan">Marketing_Plan</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Marketing_Plan">txtMarketing_Plan</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtHiH_Training">HiH_Training</label>
+  <div class="controls">
+    <mat-checkbox name="txtHiH_Training" [(ngModel)]="enterprise.HiH_Training">txtHiH_Training</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtEnterprise_Size">Enterprise_Size</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Enterprise_Size" name="txtEnterprise_Size">
+      <mat-option *ngFor="let Enterprise_Size of Enterprise_Sizes" [value]="Enterprise_Size.value">{{Enterprise_Size.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFemale_FT">Female_FT</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Female_FT" id="txtFemale_FT" name="txtFemale_FT" type="text" placeholder="Female_FT" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMale_FT">Male_FT</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Male_FT" id="txtMale_FT" name="txtMale_FT" type="text" placeholder="Male_FT" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtFemale_PT">Female_PT</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Female_PT" id="txtFemale_PT" name="txtFemale_PT" type="text" placeholder="Female_PT" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMale_PT">Male_PT</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Male_PT" id="txtMale_PT" name="txtMale_PT" type="text" placeholder="Male_PT" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtJobs">Jobs</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Jobs" id="txtJobs" name="txtJobs" type="text" placeholder="Jobs" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSales">Sales</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Sales" id="txtSales" name="txtSales" type="text" placeholder="Sales" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtIncome">Income</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Income" id="txtIncome" name="txtIncome" type="text" placeholder="Income" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtExpenditure">Expenditure</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Expenditure" id="txtExpenditure" name="txtExpenditure" type="text" placeholder="Expenditure"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMember_Salaries">Member_Salaries</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Member_Salaries" id="txtMember_Salaries" name="txtMember_Salaries" type="text" placeholder="Member_Salaries"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtEmployee_Salaries">Employee_Salaries</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Employee_Salaries" id="txtEmployee_Salaries" name="txtEmployee_Salaries" type="text" placeholder="Employee_Salaries"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtProfit">Profit</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Profit" id="txtProfit" name="txtProfit" type="text" placeholder="Profit" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtProfit_Invest">Profit_Invest</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Profit_Invest" id="txtProfit_Invest" name="txtProfit_Invest" type="text" placeholder="Profit_Invest"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtProfit_Saved">Profit_Saved</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Profit_Saved" id="txtProfit_Saved" name="txtProfit_Saved" type="text" placeholder="Profit_Saved"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtDays_Work">Days_Work</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Days_Work" id="txtDays_Work" name="txtDays_Work" type="text" placeholder="Days_Work" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMain_Customer">Main_Customer</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Main_Customer" id="txtMain_Customer" name="txtMain_Customer" type="text" placeholder="Main_Customer"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Agri">Sec_Agri</label>
+  <div class="controls">
+    <mat-checkbox name="txtSec_Agri" [(ngModel)]="enterprise.Sec_Agri">txtSec_Agri</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Manu">Sec_Manu</label>
+  <div class="controls">
+    <mat-checkbox name="txtSec_Manu" [(ngModel)]="enterprise.Sec_Manu">txtSec_Manu</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Retail">Sec_Retail</label>
+  <div class="controls">
+    <mat-checkbox name="txtSec_Retail" [(ngModel)]="enterprise.Sec_Retail">txtSec_Retail</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Minerals">Sec_Minerals</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Sec_Minerals">txtSec_Minerals</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Arts">Sec_Arts</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Sec_Arts">txtSec_Arts</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_General">Sec_General</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Sec_General">txtSec_General</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Other">Sec_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Sec_Other">txtSec_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtSec_Specify">Sec_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Sec_Specify" id="txtSec_Specify" name="txtSec_Specify" type="text" placeholder="Sec_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAgri_Animal">Agri_Animal</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Agri_Animal">txtAgri_Animal</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAgri_Farming">Agri_Farming</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Agri_Farming">txtAgri_Farming</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAgri_Other">Agri_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Agri_Other">txtAgri_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtAgri_Specify">Agri_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Agri_Specify" id="txtAgri_Specify" name="txtAgri_Specify" type="text" placeholder="Agri_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtManu_Chem">Manu_Chem</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Manu_Chem">txtManu_Chem</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtManu_Cloth">Manu_Cloth</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Manu_Cloth">txtManu_Cloth</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtManu_Other">Manu_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Manu_Other">txtManu_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtManu_Specify">Manu_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Manu_Specify" id="txtManu_Specify" name="txtManu_Specify" type="text" placeholder="Manu_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_Dealer">Retail_Dealer</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Retail_Dealer">txtRetail_Dealer</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_Flea">Retail_Flea</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Retail_Flea">txtRetail_Flea</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_Foods">Retail_Foods</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Retail_Foods">txtRetail_Foods</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_Vendor">Retail_Vendor</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Retail_Vendor">txtRetail_Vendor</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_X_Border">Retail_X_Border</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Retail_X_Border">txtRetail_X_Border</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_Other">Retail_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Retail_Other">txtRetail_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtRetail_Specify">Retail_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Retail_Specify" id="txtRetail_Specify" name="txtRetail_Specify" type="text" placeholder="Retail_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMine_Small">Mine_Small</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Mine_Small">txtMine_Small</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMine_Other">Mine_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Mine_Other">txtMine_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMine_Specify">Mine_Specify</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Mine_Specify">txtMine_Specify</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtArts_Entertain">Arts_Entertain</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Arts_Entertain">txtArts_Entertain</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtArts_Pottery">Arts_Pottery</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Arts_Pottery">txtArts_Pottery</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtArts_Beadwork">Arts_Beadwork</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Arts_Beadwork">txtArts_Beadwork</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtArts_Other">Arts_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Arts_Other">txtArts_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtArts_Specify">Arts_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Arts_Specify" id="txtArts_Specify" name="txtArts_Specify" type="text" placeholder="Arts_Specify"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Spaza">GS_Spaza</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.GS_Spaza">txtGS_Spaza</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Tuck">GS_Tuck</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.GS_Tuck">txtGS_Tuck</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Salon">GS_Salon</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.GS_Salon">txtGS_Salon</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Hawker">GS_Hawker</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.GS_Hawker">txtGS_Hawker</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Informal">GS_Informal</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.GS_Informal">txtGS_Informal</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Other">GS_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.GS_Other">txtGS_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtGS_Specify">GS_Specify</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.GS_Specify" id="txtGS_Specify" name="txtGS_Specify" type="text" placeholder="GS_Specify" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtTraining_Qtr">Training_Qtr</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Training_Qtr" id="txtTraining_Qtr" name="txtTraining_Qtr" type="text" placeholder="Training_Qtr"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtEDF_ID">EDF_ID</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.EDF_ID" id="txtEDF_ID" name="txtEDF_ID" type="text" placeholder="EDF_ID" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMember_Rep">Member_Rep</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Member_Rep" id="txtMember_Rep" name="txtMember_Rep" type="text" placeholder="Member_Rep" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMarket_Other">Market_Other</label>
+  <div class="controls">
+    <mat-checkbox [(ngModel)]="enterprise.Market_Other">txtMarket_Other</mat-checkbox>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtComments">Comments</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Comments" id="txtComments" name="txtComments" type="text" placeholder="Comments" ngClass="form-control">
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label" for="txtDate_Created">Date_Created</label>
+  <div class="controls">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtDate_Approved">Date_Approved</label>
+  <div class="controls">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtDate_Request_Deactivated">Date_Request_Deactivated</label>
+  <div class="controls">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtDate_Deactivated">Date_Deactivated</label>
+  <div class="controls">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtDeactivated_Reason">Deactivated_Reason</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Deactivated_Reason" name="txtDeactivated_Reason">
+      <mat-option *ngFor="let Deactivated_Reason of Deactivated_Reasons" [value]="Deactivated_Reason.value">{{Deactivated_Reason.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+
+
+<div class="control-group">
+  <label class="control-label" for="txtChallenge">Challenge</label>
+  <div class="controls">
+    <mat-select [(ngModel)]="enterprise.Challenge" name="txtChallenge">
+      <mat-option *ngFor="let Challenge of Challenges" [value]="Challenge.value">{{Challenge.display}}</mat-option>
+    </mat-select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtME_Period">ME_Period</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.ME_Period" id="txtME_Period" name="txtME_Period" type="text" placeholder="ME_Period" ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtMonth_Started_HiH">Month_Started_HiH</label>
+  <div class="controls">
+    <input [(ngModel)]="enterprise.Month_Started_HiH" id="txtMonth_Started_HiH" name="txtMonth_Started_HiH" type="text" placeholder="Month_Started_HiH"
+      ngClass="form-control">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="txtCocacola">Cocacola</label>
+  <div class="controls">
+  </div>
+</div>
