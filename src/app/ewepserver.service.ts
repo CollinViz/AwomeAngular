@@ -31,7 +31,7 @@ export class EwepserverService {
                               new Options("Not Registered","Not Registered"),
                               new Options("NPO","NPO"),
                               new Options("Other","Other")]; 
-  MonthDropDown:Options[] = Array([1,2,3,4,5,6,7,8,9,10,11,12]).map((item)=>new Options(item,item));
+  MonthDropDown:Options[] = Array(1,2,3,4,5,6,7,8,9,10,11,12).map((item)=>new Options(item,item));
   UserLoginObjAnnounced$ = this.UserLoginObj.asObservable();
   Province: any = [];
   Districtmetro: any[] = [];

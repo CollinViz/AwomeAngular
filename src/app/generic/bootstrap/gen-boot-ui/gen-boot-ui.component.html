@@ -4,7 +4,22 @@
   <div class="controls" [ngSwitch]="question.controlType">
 
     <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">
-    
+
+    <textarea *ngSwitchCase="'memo'" [formControlName]="question.key" [id]="question.key" ngClass="form-control"></textarea>
+
+    <input *ngSwitchCase="'numbers'" appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type"
+      ngClass="form-control numbersOnly" >
+
+    <div class="form-group" *ngSwitchCase="'currency'">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{question.currencySymbol}}</span>
+        </div>
+        <input appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control numbersOnly">
+
+      </div>
+    </div>
+
     <mat-form-field *ngSwitchCase="'dropdown'" ngClass="form-control">
       <mat-select [id]="question.key" [formControlName]="question.key">
         <mat-option *ngFor="let opt of question.options" [value]="opt.Key">{{opt.Value}}</mat-option>
@@ -12,18 +27,18 @@
     </mat-form-field>
 
     <mat-slide-toggle *ngSwitchCase="'toggle'" id="question.key" name="question.key" [formControlName]="question.key"> </mat-slide-toggle>
-    
-    
+
+
     <mat-checkbox *ngSwitchCase="'checkbox'" id="question.key" name="question.key" [formControlName]="question.key"> </mat-checkbox>
-    
+
+    <div *ngSwitchCase="'checkboxGroup'" class="form-group">
+      <mat-checkbox *ngFor="let opt of question.options" [id]="opt.Key" [name]="opt.Key" [formControlName]="opt.Key" ngClass="checkboxgroup-control">{{opt.Text}} </mat-checkbox>
+    </div>
+
+
     <mat-radio-group *ngSwitchCase="'radio'" id="question.key" name="question.key" [formControlName]="question.key" ngClass="form-control">
       <mat-radio-button *ngFor="let opt of question.options" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
     </mat-radio-group>
-
-     
-    <textarea *ngSwitchCase="'memo'"  [formControlName]="question.key" [id]="question.key" ngClass="form-control"></textarea>
-     
-    <input *ngSwitchCase="'numbers'" appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">  
   </div>
 
   <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>

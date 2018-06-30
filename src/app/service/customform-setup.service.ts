@@ -6,7 +6,7 @@ import { CheckBoxQuestion } from './question-checkBox'
 import { ToggleQuestion } from './question-toggle'
 import { RadioQuestion } from './question-radio'
 import { MemoQuestion } from './question-memo'
-import { Options } from './question-helper'
+import { Options,CheckBoxOptions } from './question-helper'
  
 import { EwepserverService } from '../ewepserver.service'
 
@@ -22,7 +22,7 @@ export class CustomformSetupService {
 
   getEnterpriseGenralForm(enterprise:any){
 	let questions: QuestionBase<any>[] = [
-		new TextboxQuestion({
+		new NumbersQuestion({
 			key: 'Year_Established', required: false,order: 3,
 			label: 'Year Established', value: enterprise.Year_Established,
 		}),
@@ -40,11 +40,11 @@ export class CustomformSetupService {
 			key: 'Registration_Number', required: false,order: 6,
 			label: 'Registration_Number', value: enterprise.Registration_Number,
 		}),
-		new TextboxQuestion({
+		new NumbersQuestion({
 			key: 'Female_Owners', required: false,order: 6,
 			label: 'No of Female Owners', value: enterprise.Female_Owners,
 		}),
-		new TextboxQuestion({
+		new NumbersQuestion({
 			key: 'Male_Owners', required: false,order: 7,
 			label: 'No of Male Owners', value: enterprise.Male_Owners,
 		}),
@@ -71,7 +71,7 @@ export class CustomformSetupService {
 			key: 'Contact_Person', required: false,order: 12,
 			label: 'Contact Person', value: enterprise.Contact_Person,
 		}),
-		new TextboxQuestion({
+		new NumbersQuestion({
 			key: 'Year_Started_AWOME', required: false,order: 13,
 			label: 'Year started with AWOME', value: enterprise.Year_Started_AWOME,
 		}),
@@ -202,12 +202,12 @@ export class CustomformSetupService {
 			key: 'Source_of_Startup_Funds', required: false,order: 31,
 			label: 'Source of Startup Funds', value: enterprise.Funds_Savings,
 			options: [
-				new Options("Funds_Savings","Savings"),
-				new Options("Funds_Group","Group"),
-				new Options("Funds_Family","Family"),
-				new Options("Funds_Grant","Grant"),
-				new Options("Funds_External","External Loans"),
-				new Options("Funds_Friends","Friends"),
+				new CheckBoxOptions("Funds_Savings","Savings",enterprise.Funds_Savings),
+				new CheckBoxOptions("Funds_Group","Group",enterprise.Funds_Group),
+				new CheckBoxOptions("Funds_Family","Family",enterprise.Funds_Family),
+				new CheckBoxOptions("Funds_Grant","Grant",enterprise.Funds_Grant),
+				new CheckBoxOptions("Funds_External","External Loans",enterprise.Funds_External),
+				new CheckBoxOptions("Funds_Friends","Friends",enterprise.Funds_Friends),
 			]
 		}),
 		new TextboxQuestion({
@@ -225,10 +225,10 @@ export class CustomformSetupService {
 			key: 'Other_Available_Assets', required: false,order: 26,
 			label: 'Other Available Assets', value: enterprise.Assets_Buildings,
 			options: [
-				new Options("Assets_Buildings","Buildings"),
-				new Options("Assets_Water","Water"),
-				new Options("Assets_Machines","Machines"),
-				new Options("Assets_Other","Other"),
+				new CheckBoxOptions("Assets_Buildings","Buildings",enterprise.Assets_Buildings),
+				new CheckBoxOptions("Assets_Water","Water",enterprise.Assets_Water),
+				new CheckBoxOptions("Assets_Machines","Machines",enterprise.Assets_Machines),
+				new CheckBoxOptions("Assets_Other","Other",enterprise.Assets_Other),
 			]
 		}), 
 		new TextboxQuestion({
@@ -243,6 +243,7 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Baseline_Monthly_Income', required: false,order: 41,
 			label: 'Baseline monthly Income', value: enterprise.Baseline_Monthly_Income,
+			currency:true
 		}),
 		new DropdownQuestion({
 			key: 'Frequency_Of_Income', required: false,order: 152,
@@ -252,38 +253,47 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Avg_Sales', required: false,order: 63,
 			label: 'Avg monthly Income/ Sales', value: enterprise.Avg_Sales,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Other_Income', required: false,order: 64,
 			label: 'Other Income (e.g. rent)', value: enterprise.Avg_Other_Income,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Expenditure', required: false,order: 65,
 			label: 'Avg monthly Expenses', value: enterprise.Avg_Expenditure,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Indirect_Cost', required: false,order: 153,
 			label: 'Avg monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Member_Salaries', required: false,order: 66,
 			label: 'Owner Salaries', value: enterprise.Member_Salaries,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Employee_Salaries', required: false,order: 67,
 			label: 'Employee Salaries', value: enterprise.Employee_Salaries,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Profit', required: false,order: 68,
 			label: 'Surplus (calculated)', value: enterprise.Avg_Profit,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Profit_Invest', required: false,order: 69,
 			label: 'What Invested last month', value: enterprise.Profit_Invest,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Profit_Saved', required: false,order: 70,
 			label: 'Avg Savings per month', value: enterprise.Avg_Profit_Saved,
+			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Days_Work', required: false,order: 71,
