@@ -15,10 +15,10 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  //baseURL = 'http://localhost:81/php-crud-api2/src/index.php/data/'; 
-  baseURL = 'http://localhost:81/awome/api.php/data/';
-  baseViewURL = 'http://localhost:81/awome/api.php/view/';
-  CoreViewURL = 'http://localhost:81/awome/ajax.php';
+  //baseURL = 'http://localhost:81/AwomePHP/api.php/meta/data/'; 
+  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+  baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
+  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
  
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
