@@ -17,11 +17,19 @@ export class NumbersQuestion extends QuestionBase<string> {
   controlType = 'numbers';
   type: string;
   maxLength:number;
+  currency:boolean=false;
+  currencySymbol:string='R';
+
 
   constructor(options: {} = {}) {
     super(options);
     this.type = options['type'] || '';
     this.maxLength = options['maxLength'] || 50;
+    this.currency = options['currency'] || false;
+    this.currencySymbol = options['symbol'] || 'R';
+    if(this.currency===true){
+      this.controlType = "currency";
+    }
   }
 }
 

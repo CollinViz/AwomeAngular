@@ -1,8 +1,9 @@
 import { QuestionBase } from './question-base';
+import { Options } from './question-helper';
 
 export class DropdownQuestion extends QuestionBase<string> {
   controlType = 'dropdown';
-  options: {key: string, value: string}[] = [];
+  options: Options[] = [];
 
   constructor(options: {} = {}) {
     super(options);

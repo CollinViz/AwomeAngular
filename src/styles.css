@@ -40,3 +40,10 @@ ng-valid[required], .ng-valid.required  {
 .mat-radio-button{
     padding: 1rem;
 }
+.checkboxgroup-control{
+    padding: 1rem;
+}
+
+.numbersOnly {
+    text-align:right;
+}

@@ -13,6 +13,9 @@ export class GenBootUiComponent implements OnInit {
   @Input() form: FormGroup;
 
   get isValid() {
+      if(this.question.controlType=='checkboxGroup'){
+        return true;
+      }
       if(!this.form.controls[this.question.key]) {
         console.log("Question",this.question.key);
         console.log("What is the formGroup",this.form.controls[this.question.key]);

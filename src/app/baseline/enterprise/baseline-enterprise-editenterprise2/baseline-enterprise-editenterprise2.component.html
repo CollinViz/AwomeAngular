@@ -46,9 +46,9 @@
               <!--- General Information Start  -->
 
               <div class="card-header">General Information</div>
-              <div class="card-body" *ngFor="let question of GeneralQuestions">
+              <div class="card-body" >
 
-                <app-gen-boot-ui [question]="question" [form]="General"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of GeneralQuestions" [question]="question" [form]="General"></app-gen-boot-ui>
 
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
@@ -59,9 +59,9 @@
               <!--- General Information Start  -->
 
               <div class="card-header">No of Female Full Time (Employees)</div>
-              <div class="card-body" *ngFor="let question of EmployeesFemaleQuestions">
+              <div class="card-body" >
 
-                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of EmployeesFemaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
@@ -70,9 +70,9 @@
               <!--- General Information Start  -->
 
               <div class="card-header">No of Male Full Time (Employees)</div>
-              <div class="card-body" *ngFor="let question of EmployeesMaleQuestions">
+              <div class="card-body" >
 
-                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of EmployeesMaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
@@ -81,9 +81,9 @@
               <!--- General Information Start  -->
 
               <div class="card-header">No of Female Part Time</div>
-              <div class="card-body" *ngFor="let question of EmployeesFemalePayQuestions">
+              <div class="card-body" >
 
-                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of EmployeesFemalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
@@ -92,9 +92,9 @@
               <!--- General Information Start  -->
 
               <div class="card-header">No of Male Part Time</div>
-              <div class="card-body" *ngFor="let question of EmployeesMalePayQuestions">
+              <div class="card-body" >
 
-                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of EmployeesMalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
@@ -103,9 +103,9 @@
               <!--- General Information Start  -->
 
               <div class="card-header">Number of people in age range</div>
-              <div class="card-body" *ngFor="let question of EmployeesQuestions">
+              <div class="card-body" >
 
-                <app-gen-boot-ui [question]="question" [form]="Employees"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of EmployeesQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
@@ -120,9 +120,9 @@
                   <!--- Source of Startup Funds  -->
     
                   <div class="card-header">Source of Startup Funds</div>
-                  <div class="card-body" *ngFor="let question of Funds">
+                  <div class="card-body" >
     
-                    <app-gen-boot-ui [question]="question" [form]="Finance"></app-gen-boot-ui>
+                    <app-gen-boot-ui *ngFor="let question of Funds" [question]="question" [form]="Finance"></app-gen-boot-ui>
     
                   </div>
                   <!---  Source of Startup Funds end  -->
