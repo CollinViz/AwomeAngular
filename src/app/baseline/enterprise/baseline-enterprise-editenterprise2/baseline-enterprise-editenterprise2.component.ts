@@ -21,7 +21,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   EmployeesMaleQuestions:QuestionBase<any>[]
   EmployeesFemalePayQuestions:QuestionBase<any>[]
   EmployeesMalePayQuestions:QuestionBase<any>[]
-  Funds:QuestionBase<any>[]
+  Funds:QuestionBase<any>[];
+  AccessToMarket:QuestionBase<any>[];
+  AccessToTechnicalSkills:QuestionBase<any>[];
 
   enterprise:any={};
   FlatMe:any={};
@@ -31,7 +33,8 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   localMunicipalityAll =[];
   localMunicipality =[];
   showloading:boolean = true;
-
+  FinanceLoans:any[] =[];
+  newFinanceLoan:any={finance_ID:0,enterprise_ID:0,Where_Apply:""};
   //Form Group stuff
   user: FormGroup;
   General:FormGroup;
@@ -91,13 +94,13 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.EmployeesMalePayQuestions = this.controlsService.getEnterpriseEmploeesFormMalePay(this.enterprise);
     this.EmployeesQuestions = this.controlsService.getEnterpriseEmploeesFormAge(this.enterprise);
     this.Funds = this.controlsService.getStatUpFunds(this.enterprise);
-    
-    
+    this.AccessToMarket =this.controlsService.getAccessToMarket(this.enterprise); 
+    this.AccessToTechnicalSkills = this.controlsService.getAccessToTechnicalSkills(this.enterprise); 
     
     
     
     this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions,this.EmployeesQuestions,this.EmployeesMaleQuestions,this.EmployeesFemalePayQuestions,this.EmployeesMalePayQuestions);
-    this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds);
+    this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds,this.AccessToMarket,this.AccessToTechnicalSkills);
     this.user.addControl("General",this.General);
     this.user.addControl("Employees",this.Employees);
     this.user.addControl("Finance",this.Finance);
@@ -108,5 +111,8 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
   }
 
-
+  addnewFinance(){
+    this.FinanceLoans.push(this.newFinanceLoan);
+    this.newFinanceLoan = {Where_Apply:"new"}
+  }
 }

@@ -128,8 +128,54 @@
                   <!---  Source of Startup Funds end  -->
                 </div>
           </div>
-          <div class="col-xs-6 col-md-6">
+          <div class="col-xs-6 col-md-6">            
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
 
+              <div class="card-header">Access to Markets</div>
+              <div class="card-body" >
+
+                <app-gen-boot-ui *ngFor="let question of AccessToMarket" [question]="question" [form]="Finance"></app-gen-boot-ui>
+
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Access to Technical Skills</div>
+              <div class="card-body" >
+
+                <app-gen-boot-ui *ngFor="let question of AccessToTechnicalSkills" [question]="question" [form]="Finance"></app-gen-boot-ui>
+
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+            
+          </div>
+        </div>
+      </tab>
+      <tab heading="Loans" class="mt-2"   >
+        <div class="row">
+          <div class="col-12">
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Loan  </div>
+              <div class="card-body" >
+                <app-edit-loans-baseline-enterprise 
+                [finance]="newFinanceLoan"
+                ></app-edit-loans-baseline-enterprise>
+                <div class="row">
+                  <button class="btn btn-primary" (click)="addnewFinance()">Add</button>
+                </div>
+                <app-list-loans-baseline-enterprise [rows]="FinanceLoans"></app-list-loans-baseline-enterprise>
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+          </div>
+          <div class="col-6">
+            
           </div>
         </div>
       </tab>

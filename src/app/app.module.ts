@@ -9,7 +9,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule} from '@angular/material';
+import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
 
 import { AppComponent } from './app.component';
@@ -75,7 +75,9 @@ import { EditTrainingEntrepreneursEntrepreneursComponent } from './training/entr
 import { SearchTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/search-training-entrepreneurs-entrepreneurs/search-training-entrepreneurs-entrepreneurs.component';
 import { WorkshopsEntrepreneursPageComponent } from './workshops/entrepreneurs/workshops-entrepreneurs-page/workshops-entrepreneurs-page.component';
 import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs.component';
-import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component'
+import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
+import { EditLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/edit-loans-baseline-enterprise/edit-loans-baseline-enterprise.component';
+import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component'
 
 @NgModule({
   declarations: [
@@ -141,7 +143,9 @@ import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/
     SearchTrainingEntrepreneursEntrepreneursComponent,
     WorkshopsEntrepreneursPageComponent,
     EditWorkshopsEntrepreneursEntrepreneursComponent,
-    SearchWorkshopsEntrepreneursEntrepreneursComponent 
+    SearchWorkshopsEntrepreneursEntrepreneursComponent,
+    EditLoansBaselineEnterpriseComponent,
+    ListLoansBaselineEnterpriseComponent 
   ],
   imports: [
     BrowserModule,
@@ -153,8 +157,8 @@ import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/
     FormsModule, 
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,    
-    MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,
+    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule, MatInputModule,   
+    MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,MatNativeDateModule,MatDatepickerModule,
     NgxDatatableModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
