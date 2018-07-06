@@ -3,7 +3,13 @@
 
   <div class="controls" [ngSwitch]="question.controlType">
 
-    <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">
+    <input *ngSwitchCase="'textbox'"   [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">
+    
+    
+    <!--<mat-form-field *ngSwitchCase="'textbox'" ngClass="w-100 p-3">
+      <input  matInput  [formControlName]="question.key" [id]="question.key" [type]="question.type"  >
+    </mat-form-field>-->
+    
 
     <textarea *ngSwitchCase="'memo'" [formControlName]="question.key" [id]="question.key" ngClass="form-control"></textarea>
 
@@ -39,8 +45,17 @@
     <mat-radio-group *ngSwitchCase="'radio'" id="question.key" name="question.key" [formControlName]="question.key" ngClass="form-control">
       <mat-radio-button *ngFor="let opt of question.options" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
     </mat-radio-group>
+
+    <mat-form-field *ngSwitchCase="'datepicker'">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" id="question.key" [formControlName]="question.key">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
   </div>
 
+  
+  
   <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
 </div>
 

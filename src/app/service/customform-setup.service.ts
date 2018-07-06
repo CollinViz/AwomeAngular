@@ -6,6 +6,7 @@ import { CheckBoxQuestion } from './question-checkBox'
 import { ToggleQuestion } from './question-toggle'
 import { RadioQuestion } from './question-radio'
 import { MemoQuestion } from './question-memo'
+import { DatePickerQuestion } from './question-datepicker'
 import { Options,CheckBoxOptions } from './question-helper'
  
 import { EwepserverService } from '../ewepserver.service'
@@ -306,7 +307,71 @@ export class CustomformSetupService {
 	];
 	return questions.sort((a, b) => a.order - b.order);
   }
-
+  getAccessToMarket(enterprise:any){
+	let questions: QuestionBase<any>[] = [ 
+		new MemoQuestion({
+			key: 'Current_Market', required: false,order: 54,
+			label: 'What is your current Market?', value: enterprise.Current_Market,
+		}),
+		new DropdownQuestion({
+			key: 'Has_Market_Expanded', required: false,order: 155,
+			label: 'Has your market expanded since last Quarter?', value: enterprise.Has_Market_Expanded,
+			options: [new Options("Yes","Yes"),
+						new Options("No","No"),
+						new Options("Declined","Declined") ]
+		}),
+		new MemoQuestion({
+			key: 'Specify_Decline', required: false,order: 156,
+			label: 'If Declined, specify', value: enterprise.Specify_Decline,
+		}),
+		new MemoQuestion({
+			key: 'Steps_Taken_UpMarket', required: false,order: 157,
+			label: 'What steps have you taken to increase market', value: enterprise.Steps_Taken_UpMarket,
+		}),
+		new MemoQuestion({
+			key: 'Marketing_Plan_Specify', required: false,order: 158,
+			label: 'Do you have a marketing plan for Qtr? ', value: enterprise.Marketing_Plan_Specify,
+		}),
+	];
+	return questions.sort((a, b) => a.order - b.order);
+  }
+  getAccessToTechnicalSkills(enterprise:any){
+	let questions: QuestionBase<any>[] = [ 
+		new ToggleQuestion({
+			key: 'Training_Qtr', required: false,order: 111,
+			label: 'Receive any technical training in last Quarter?', value: enterprise.Training_Qtr,
+		}),
+		new TextboxQuestion({
+			key: 'What_Training', required: false,order: 159,
+			label: 'What was the training?', value: enterprise.What_Training,
+		}),
+		new TextboxQuestion({
+			key: 'Who_Traininig', required: false,order: 160,
+			label: 'Who provided training', value: enterprise.Who_Traininig,
+		}),
+		new DatePickerQuestion({
+			key: 'When_Training', required: false,order: 161,
+			label: 'When was it?', value: enterprise.When_Training,
+		}),
+		new ToggleQuestion({
+			key: 'Training_Free', required: false,order: 162,
+			label: 'Was it free?', value: enterprise.Training_Free,
+		}),
+		new TextboxQuestion({
+			key: 'How_Know_Training', required: false,order: 163,
+			label: 'How did you know about training', value: enterprise.How_Know_Training,
+		}),
+		new TextboxQuestion({
+			key: 'Technical_Train_Needs', required: false,order: 164,
+			label: 'Technical Training needs', value: enterprise.Technical_Train_Needs,
+		}),
+		new TextboxQuestion({
+			key: 'Support_Provided', required: false,order: 165,
+			label: 'Support Provided', value: enterprise.Support_Provided,
+		}),
+	];
+	return questions.sort((a, b) => a.order - b.order);
+  }
   ///---------------------------------------------------------------------------------------------------------------
   //
   //----------------------------------------------------------------------------------------------------------------
@@ -420,10 +485,7 @@ export class CustomformSetupService {
 				key: 'Grow_Markets', required: false,order: 53,
 				label: 'Grow_Markets', value: enterprise.Grow_Markets,
 			}),
-			new TextboxQuestion({
-				key: 'Current_Market', required: false,order: 54,
-				label: 'Current_Market', value: enterprise.Current_Market,
-			}),
+			
 			new TextboxQuestion({
 				key: 'Marketing_Plan', required: false,order: 55,
 				label: 'Marketing_Plan', value: enterprise.Marketing_Plan,
@@ -616,10 +678,7 @@ export class CustomformSetupService {
 				key: 'GS_Specify', required: false,order: 110,
 				label: 'GS_Specify', value: enterprise.GS_Specify,
 			}),
-			new TextboxQuestion({
-				key: 'Training_Qtr', required: false,order: 111,
-				label: 'Training_Qtr', value: enterprise.Training_Qtr,
-			}),
+			
 			new TextboxQuestion({
 				key: 'EDF_ID', required: false,order: 112,
 				label: 'EDF_ID', value: enterprise.EDF_ID,
@@ -685,50 +744,8 @@ export class CustomformSetupService {
 			
 			
 			
-			new TextboxQuestion({
-				key: 'Has_Market_Expanded', required: false,order: 155,
-				label: 'Has_Market_Expanded', value: enterprise.Has_Market_Expanded,
-			}),
-			new TextboxQuestion({
-				key: 'Specify_Decline', required: false,order: 156,
-				label: 'Specify_Decline', value: enterprise.Specify_Decline,
-			}),
-			new TextboxQuestion({
-				key: 'Steps_Taken_UpMarket', required: false,order: 157,
-				label: 'Steps_Taken_UpMarket', value: enterprise.Steps_Taken_UpMarket,
-			}),
-			new TextboxQuestion({
-				key: 'Marketing_Plan_Specify', required: false,order: 158,
-				label: 'Marketing_Plan_Specify', value: enterprise.Marketing_Plan_Specify,
-			}),
-			new TextboxQuestion({
-				key: 'What_Training', required: false,order: 159,
-				label: 'What_Training', value: enterprise.What_Training,
-			}),
-			new TextboxQuestion({
-				key: 'Who_Traininig', required: false,order: 160,
-				label: 'Who_Traininig', value: enterprise.Who_Traininig,
-			}),
-			new TextboxQuestion({
-				key: 'When_Training', required: false,order: 161,
-				label: 'When_Training', value: enterprise.When_Training,
-			}),
-			new TextboxQuestion({
-				key: 'Training_Free', required: false,order: 162,
-				label: 'Training_Free', value: enterprise.Training_Free,
-			}),
-			new TextboxQuestion({
-				key: 'How_Know_Training', required: false,order: 163,
-				label: 'How_Know_Training', value: enterprise.How_Know_Training,
-			}),
-			new TextboxQuestion({
-				key: 'Technical_Train_Needs', required: false,order: 164,
-				label: 'Technical_Train_Needs', value: enterprise.Technical_Train_Needs,
-			}),
-			new TextboxQuestion({
-				key: 'Support_Provided', required: false,order: 165,
-				label: 'Support_Provided', value: enterprise.Support_Provided,
-			}),
+			
+			
 			new TextboxQuestion({
 				key: 'Manu_Food', required: false,order: 166,
 				label: 'Manu_Food', value: enterprise.Manu_Food,
