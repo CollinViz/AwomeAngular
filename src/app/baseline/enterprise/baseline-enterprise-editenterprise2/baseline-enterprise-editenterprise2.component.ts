@@ -34,7 +34,10 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   localMunicipality =[];
   showloading:boolean = true;
   FinanceLoans:any[] =[];
-  newFinanceLoan:any={finance_ID:0,enterprise_ID:0,Where_Apply:""};
+  FinanceLoans2:any[] =[];
+  newFinanceLoan:finance={finance_ID:0,enterprise_ID:0,Where_Apply:"new",
+                          Approved:"",Reject_Reason:"",Reject_Specify:"",
+                          How_Much:"",Started_Repay:""};
   //Form Group stuff
   user: FormGroup;
   General:FormGroup;
@@ -110,9 +113,45 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   falter(){
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
   }
+  Save(){
+    console.log("When_Training",this.Finance.get('When_Training').value);
+    this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
+    const myvar = this.Finance.get('When_Training').value;
+    if((myvar instanceof Date)){
+      this.FlatMe.When_Training =(myvar as Date).getFullYear()+"-" + ((myvar as Date).getMonth()+1) + "-" + (myvar as Date).getDate();
+    }
+    
+    
+    console.log(myvar);
+    this.EwepserverService.updateTableData("enterprise",this.enterprise.Enterprise_ID,this.FlatMe ).subscribe((out)=>{
+      console.log(out);
+    }
+  )
 
+  }
   addnewFinance(){
     this.FinanceLoans.push(this.newFinanceLoan);
-    this.newFinanceLoan = {Where_Apply:"new"}
+    //this.FinanceLoans2 = [...this.FinanceLoans];
+    this.newFinanceLoan = {finance_ID:0,enterprise_ID:0,Where_Apply:"new",
+                            Approved:"",Reject_Reason:"",Reject_Specify:"",
+                            How_Much:"",Started_Repay:""};
   }
+  financeRowClick(Index){
+    console.log(Index);
+    console.log(this.FinanceLoans[Index]);
+    this.newFinanceLoan = this.FinanceLoans[Index];
+      this.FinanceLoans.splice(Index,1);
+  }
+  
+}
+
+interface finance {
+  finance_ID:number 
+  enterprise_ID:number 
+  Where_Apply:string  
+  Approved:string  
+  Reject_Reason:string
+  Reject_Specify:string 
+  How_Much:string 
+  Started_Repay:string
 }

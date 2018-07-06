@@ -1,14 +1,24 @@
-<div>
-  <ngx-datatable
-  class="bootstrap"
-    [rows]="rows"
-    [columns]="columns"
-    [columnMode]="'force'"
-    [headerHeight]="50" 
-    [rowHeight]="'auto'"
-    [selected]="selected"
-    [selectionType]="'single'"
-    (activate)="onActivate($event)" 
-     >
-  </ngx-datatable>
-</div>
+<div> 
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Where_Apply</th>
+        <th scope="col">Approved</th>
+        <th scope="col">Reject_Reason</th>
+        <th scope="col">Reject_Specify</th>
+        <th scope="col">How_Much</th>
+        <th scope="col">Started_Repay</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table w-100" *ngFor="let row of rows;let i=index" (click)="onActivate(i)"  >
+        <th scope="row" >{{row.Where_Apply}}</th>
+        <td  >{{row.Approved}}</td>
+        <td  >{{row.Reject_Reason}}</td>
+        <td >{{row.Reject_Specify}}</td>
+        <td  >{{row.How_Much}}</td>
+        <td  >{{row.Started_Repay}}</td>
+      </tr> 
+    </tbody>
+  </table> 
+</div> 

@@ -1,24 +1,24 @@
-<form [formGroup]="loanEdit">
+<form #loanEdit="ngForm" >
   <div class="row">
     <div class="col-6">
       <div class="control-group">
         <label class="control-label" for="txtWhere_Apply">Where_Apply</label>
         <div class="controls">
-          <input [formControlName]="Where_Apply" name="txtWhere_Apply" type="text" placeholder="Where_Apply"
+          <input [(ngModel)]="finance.Where_Apply"   name="txtWhere_Apply" type="text" placeholder="Where_Apply"
             ngClass="form-control">
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="txtReject_Reason">Reject_Reason</label>
         <div class="controls">
-          <input [formControlName]="Reject_Reason" id="txtReject_Reason" name="txtReject_Reason" type="text" placeholder="Reject_Reason"
+          <input [(ngModel)]="finance.Reject_Reason" id="txtReject_Reason" name="txtReject_Reason" type="text" placeholder="Reject_Reason"
             ngClass="form-control">
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="txtHow_Much">How_Much</label>
         <div class="controls">
-          <input [formControlName]="How_Much" id="txtHow_Much" name="txtHow_Much" type="text" placeholder="How_Much" ngClass="form-control">
+          <input [(ngModel)]="finance.How_Much" id="txtHow_Much" name="txtHow_Much" type="text" placeholder="How_Much" ngClass="form-control">
         </div>
       </div>
     </div>
@@ -26,23 +26,16 @@
       <div class="control-group">
         <label class="control-label" for="txtApproved">Approved</label>
         <div class="controls">
-          <input [formControlName]="Approved" id="txtApproved" name="txtApproved" type="text" placeholder="Approved" ngClass="form-control">
+          <input [(ngModel)]="finance.Approved" id="txtApproved" name="txtApproved" type="text" placeholder="Approved" ngClass="form-control">
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="txtStarted_Repay">Started_Repay</label>
         <div class="controls">
-          <input [formControlName]="Started_Repay" id="txtStarted_Repay" name="txtStarted_Repay" type="text" placeholder="Started_Repay"
+          <input [(ngModel)]="finance.Started_Repay" id="txtStarted_Repay" name="txtStarted_Repay" type="text" placeholder="Started_Repay"
             ngClass="form-control">
         </div>
       </div>
     </div>
-  </div>
-
-
-
-
-
-
-
+  </div> 
 </form>

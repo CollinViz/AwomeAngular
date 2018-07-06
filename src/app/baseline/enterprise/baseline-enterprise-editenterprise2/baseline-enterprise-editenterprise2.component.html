@@ -26,13 +26,13 @@
             </div>
           </div>
           <div class="col-xs-6 col-md-6">
-
+            <button (click)="Save()">Save</button>
 
           </div>
         </div>
         <div class="row">
           <div class="col-xs-6 col-md-6">
-
+            {{this.FlatMe | json}}
 
           </div>
         </div>
@@ -164,12 +164,11 @@
               <div class="card-header">Loan  </div>
               <div class="card-body" >
                 <app-edit-loans-baseline-enterprise 
-                [finance]="newFinanceLoan"
-                ></app-edit-loans-baseline-enterprise>
+                [finance]="newFinanceLoan" ></app-edit-loans-baseline-enterprise>
                 <div class="row">
                   <button class="btn btn-primary" (click)="addnewFinance()">Add</button>
                 </div>
-                <app-list-loans-baseline-enterprise [rows]="FinanceLoans"></app-list-loans-baseline-enterprise>
+                <app-list-loans-baseline-enterprise [rows]="FinanceLoans" (ItemClick)="financeRowClick($event)"></app-list-loans-baseline-enterprise>
               </div>
               <!---  Source of Startup Funds end  -->
             </div>

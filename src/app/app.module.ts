@@ -9,7 +9,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule} from '@angular/material';
+import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
 
 import { AppComponent } from './app.component';
@@ -157,7 +157,7 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     FormsModule, 
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule, MatInputModule,   
+    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule, MatInputModule,MatTableModule,   
     MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,MatNativeDateModule,MatDatepickerModule,
     NgxDatatableModule,
     // import HttpClientModule after BrowserModule.

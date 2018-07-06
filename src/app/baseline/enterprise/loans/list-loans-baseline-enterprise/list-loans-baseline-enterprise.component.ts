@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,Output } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-loans-baseline-enterprise',
@@ -7,20 +7,15 @@ import { Component, OnInit,Input,Output } from '@angular/core';
 })
 export class ListLoansBaselineEnterpriseComponent implements OnInit {
   @Input() rows:any;
-  columns = [
-    { name: 'Where_Apply', prop: 'Where_Apply' },
-    { name: 'Approved', prop: 'Approved' },
-    { name: 'Reject_Reason', prop: 'Reject_Reason' },
-    { name: 'Reject_Specify', prop: 'Reject_Specify' },
-    { name: 'How_Much', prop: 'How_Much' },
-    { name: 'Started_Repay', prop: 'Started_Repay' } 
-  ];
+  @Output() ItemClick = new EventEmitter<number>();
+  displayedColumns: string[] = ['Where_Apply', 'Approved', 'Reject_Reason' ];
   constructor() { }
 
   ngOnInit() {
   }
   
   onActivate(event){
-
+    
+    this.ItemClick.emit(event)
   }
 }
