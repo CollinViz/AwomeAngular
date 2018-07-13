@@ -77,7 +77,8 @@ import { WorkshopsEntrepreneursPageComponent } from './workshops/entrepreneurs/w
 import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs.component';
 import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
 import { EditLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/edit-loans-baseline-enterprise/edit-loans-baseline-enterprise.component';
-import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component'
+import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component';
+import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
 
 @NgModule({
   declarations: [
@@ -145,7 +146,8 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     EditWorkshopsEntrepreneursEntrepreneursComponent,
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
     EditLoansBaselineEnterpriseComponent,
-    ListLoansBaselineEnterpriseComponent 
+    ListLoansBaselineEnterpriseComponent,
+    EditfrmVisitsEnterpriseEnterpriseComponent 
   ],
   imports: [
     BrowserModule,
@@ -208,7 +210,11 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     },
     { 
       path:'visits/enterprise',
-      component:VisitsEntrepreneursPageComponent
+      component:VisitsEnterprisePageComponent
+    },
+    { 
+      path:'visits/enterprise/:Enterprise_ID',
+      component:EditVisitsEnterpriseEnterpriseComponent
     },
     { 
       path:'visits/cooperative',
