@@ -1,11 +1,8 @@
 import { ChangeDetectorRef,Component, OnInit,Pipe, PipeTransform,TemplateRef  } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms'; 
-import {EwepserverService} from '../../../ewepserver.service'
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import { QuestionBase } from '../../../service/question-base';
-import { DropdownQuestion } from '../../../service/question-dropdown'
-import { TextboxQuestion } from '../../../service/question-textbox'
+import { FormControl, FormGroup ,Validators} from '@angular/forms'; 
+import {EwepserverService} from '../../../ewepserver.service' 
+import { QuestionBase } from '../../../service/question-base'; 
 import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
 
@@ -64,10 +61,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   }
 
   ngOnInit() {
-    this.user = new FormGroup({
-      Enterprise_ID: new FormControl('1'),
-      Enterprise_Name: new FormControl('BOB') 
-    });
+    
     
     this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
@@ -75,11 +69,18 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
       console.log(params.Enterprise_ID);
       if(params.Enterprise_ID){
         if(params.Enterprise_ID>0){
+          
           this.EwepserverService.getEnterprisItem(params.Enterprise_ID).subscribe((customers:any)=>{
             //console.log(customers);
             this.enterprise = customers; 
             this.OnDataOK();
           });
+        }else{ 
+          //Add New 
+          console.log("Add new");
+          this.enterprise = {Enterprise_ID:-1,Enterprise_Name:""};
+          this.OnDataOK();
+          console.log("Should be done"); 
         }
       }
     });
@@ -88,6 +89,16 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
   }
   OnDataOK(){ 
+
+    this.user = new FormGroup({
+      Enterprise_ID: new FormControl(this.enterprise.Enterprise_ID),
+      Enterprise_Name: new FormControl(this.enterprise.Enterprise_Name,[
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+      ]) 
+    });
+
     this.GeneralQuestions  = this.controlsService.getEnterpriseGenralForm(this.enterprise);
     this.General = this.cutomerFormHlper.toFormGroup(this.GeneralQuestions);
     
@@ -116,18 +127,33 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   Save(){
     console.log("When_Training",this.Finance.get('When_Training').value);
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
-    const myvar = this.Finance.get('When_Training').value;
-    if((myvar instanceof Date)){
-      this.FlatMe.When_Training =(myvar as Date).getFullYear()+"-" + ((myvar as Date).getMonth()+1) + "-" + (myvar as Date).getDate();
-    }
-    
-    
-    console.log(myvar);
-    this.EwepserverService.updateTableData("enterprise",this.enterprise.Enterprise_ID,this.FlatMe ).subscribe((out)=>{
-      console.log(out);
-    }
-  )
-
+    //Fix Date from the Material Control
+    this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
+    if(this.enterprise.Enterprise_ID===-1){
+      delete this.FlatMe.Enterprise_ID
+      this.EwepserverService.CreateTableData("enterprise",this.FlatMe ).subscribe((out)=>{
+        //Show Saving
+        console.log("Create Done",out);
+        this.router.navigateByUrl('/enterprise');
+         
+        //this.showloading = false;
+        //Move back to list screen
+        
+      });
+    } else{
+      this.EwepserverService.updateTableData("enterprise",this.enterprise.Enterprise_ID,this.FlatMe ).subscribe((out)=>{
+        //Show Saving
+        console.log("Save Done",out);
+        //if(out==="1"){
+          this.router.navigateByUrl('/enterprise');
+        //}
+        //this.showloading = false;
+        //Move back to list screen
+        
+      });
+    }   
+    //this.showloading = true;
+   
   }
   addnewFinance(){
     this.FinanceLoans.push(this.newFinanceLoan);

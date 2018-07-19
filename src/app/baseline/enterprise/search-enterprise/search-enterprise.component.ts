@@ -1,4 +1,4 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import {EwepserverService} from '../../../ewepserver.service'
 
@@ -11,8 +11,11 @@ export class SearchEnterpriseComponent implements OnInit {
   search = {Name:"",Year_Established:"",Province:"Select",Legal_Structure:"Select",HiHRep:"Select",Sector:"Select"}
   Provinces =[];
   ActiveEDFs =[];
+  HeadingInfo = "Baseline Info";
+  @Input() Heading:string="";
   @Output() filter:string ="";
   @Output() SearchClick = new EventEmitter<string>();
+  @Output() NewClick = new EventEmitter<string>();
   constructor(private EwepserverService: EwepserverService) {
 
     EwepserverService.getProvince().subscribe((customers:any)=>{
@@ -22,6 +25,8 @@ export class SearchEnterpriseComponent implements OnInit {
     EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
       this.ActiveEDFs = efflist.records;
     });
+    
+
    }
 
   ngOnInit() {
@@ -46,4 +51,8 @@ export class SearchEnterpriseComponent implements OnInit {
     this.filter = aFilter.join("&"); 
     this.SearchClick.emit(this.filter);
   }
+  addClick(){
+    this.NewClick.emit("add");
+  }
+
 }

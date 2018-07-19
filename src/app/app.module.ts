@@ -9,7 +9,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule} from '@angular/material';
+import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule,MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
 
 import { AppComponent } from './app.component';
@@ -77,7 +77,15 @@ import { WorkshopsEntrepreneursPageComponent } from './workshops/entrepreneurs/w
 import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs.component';
 import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
 import { EditLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/edit-loans-baseline-enterprise/edit-loans-baseline-enterprise.component';
-import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component'
+import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component';
+import { ComListActionPlanComponent } from './common/actionplan/com-list-action-plan/com-list-action-plan.component';
+import { ComListActionPlansActivityComponent } from './common/actionplan/com-list-action-plans-activity/com-list-action-plans-activity.component';
+import { ComEditActionPlansActivityComponent } from './common/actionplan/com-edit-action-plans-activity/com-edit-action-plans-activity.component';
+import { EditDialogActionplansEnterprisesEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component';
+import { EditDialogActionplansEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
+import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
+import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
+import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
 
 @NgModule({
   declarations: [
@@ -130,7 +138,7 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     EditVisitsAssociationAssociationComponent,
     SearchVisitsAssociationAssociationComponent,
     ActionplansEnterprisesPageComponent,
-    EditActionplansEnterprisesEnterprisesComponent,
+    EditActionplansEnterprisesEnterprisesComponent,    
     SearchActionplansEnterprisesEnterprisesComponent,
     ActionplansCooperativesPageComponent,
     EditActionplansCooperativesCooperativesComponent,
@@ -145,8 +153,22 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     EditWorkshopsEntrepreneursEntrepreneursComponent,
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
     EditLoansBaselineEnterpriseComponent,
-    ListLoansBaselineEnterpriseComponent 
+    ListLoansBaselineEnterpriseComponent,
+
+    ComListActionPlanComponent,
+    ComListActionPlansActivityComponent,
+    ComEditActionPlansActivityComponent,
+    EditDialogActionplansEnterprisesEnterprisesComponent,
+    EditDialogActionplansEnterprisesComponent,
+    ComEditActionPlansComponent,
+    DeleteCheckComponent,
+
+    EditfrmVisitsEnterpriseEnterpriseComponent 
+
   ],
+  entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
+    EditDialogActionplansEnterprisesComponent,
+    DeleteCheckComponent],
   imports: [
     BrowserModule,
     CollapseModule.forRoot(),
@@ -159,7 +181,7 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule, MatInputModule,MatTableModule,   
     MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,MatNativeDateModule,MatDatepickerModule,
-    NgxDatatableModule,
+    NgxDatatableModule,MatDialogModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     RouterModule.forRoot([{
@@ -208,7 +230,11 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     },
     { 
       path:'visits/enterprise',
-      component:VisitsEntrepreneursPageComponent
+      component:VisitsEnterprisePageComponent
+    },
+    { 
+      path:'visits/enterprise/:Enterprise_ID',
+      component:EditVisitsEnterpriseEnterpriseComponent
     },
     { 
       path:'visits/cooperative',
@@ -221,6 +247,10 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
     { 
       path:'actionplans/enterprises',
       component:ActionplansEnterprisesPageComponent
+    },
+    { 
+      path:'actionplans/enterprises/:Enterprise_ID',
+      component:EditActionplansEnterprisesEnterprisesComponent
     },
     { 
       path:'actionplans/cooperatives',

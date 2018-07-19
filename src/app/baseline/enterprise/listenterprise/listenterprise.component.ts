@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router'; 
 import { EwepserverService } from '../../../ewepserver.service'
 @Component({
   selector: 'app-listenterprise',
@@ -67,6 +64,9 @@ export class ListenterpriseComponent implements OnInit {
     this.page.pageNumber=0;
     this.getPageofEnterprise();
   }
-
+  addNew(AddString){
+    console.log('Activate Event', AddString);
+    this.router.navigateByUrl('/enterprise/-1');
+  }
 
 }

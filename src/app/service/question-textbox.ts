@@ -21,8 +21,15 @@ export class NumbersQuestion extends QuestionBase<string> {
   currencySymbol:string='R';
 
 
-  constructor(options: {} = {}) {
+  constructor(options: {} = {}) { 
     super(options);
+    if(options['required']|| false){
+      this.value = options['value']|| '0';
+      if(this.value===''){
+        this.value='0';
+      } 
+    }
+    
     this.type = options['type'] || '';
     this.maxLength = options['maxLength'] || 50;
     this.currency = options['currency'] || false;

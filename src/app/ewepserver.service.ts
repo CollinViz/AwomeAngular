@@ -15,10 +15,10 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  //baseURL = 'http://localhost:81/AwomePHP/api.php/meta/data/'; 
-  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+  baseURL = 'http://localhost:81/AwomePHP/api.php/data/'; 
+  //baseURL = 'http://localhost:81/php-crud-api2/src/index.php/data/';
   baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+  CoreViewURL = 'http://localhost:81/AwomePHP/  ajax.php';
  
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
@@ -69,6 +69,13 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+  deleteTableData(TableName:string,KeyID:string){
+    return this.http.delete<any>(this.baseURL + TableName+ "/"+KeyID, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
   getProvince() {
     return this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions);
   }
