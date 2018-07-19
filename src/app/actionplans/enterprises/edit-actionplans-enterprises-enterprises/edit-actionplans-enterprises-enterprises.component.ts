@@ -5,8 +5,8 @@ import {EwepserverService} from '../../../ewepserver.service'
 import { QuestionBase } from '../../../service/question-base'; 
 import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {EditDialogActionplansEnterprisesEnterprisesComponent} from './edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component'
-import {EditDialogActionplansEnterprisesComponent} from './edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component'
+import {EditDialogActionplansEnterprisesEnterprisesComponent} from './../../../common/actionplan/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component'
+import {EditDialogActionplansEnterprisesComponent} from './../../../common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component'
 @Component({
   selector: 'app-edit-actionplans-enterprises-enterprises',
   templateUrl: './edit-actionplans-enterprises-enterprises.component.html',
@@ -27,6 +27,7 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
   bShowAdd:boolean=false;
   actionType_select:string ="InProgress";
   Sort_select:string = "CreateDate";
+  showloadingActivity:boolean = false
 
   constructor(private activatedRoute: ActivatedRoute,private router: Router,
     private EwepserverService: EwepserverService, public dialog: MatDialog,
@@ -34,8 +35,10 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
          
     }
     getActivity(ActionID:number){
+      this.showloadingActivity = true;
       this.EwepserverService.getTableData(this.ActivityTable,"filter=ActionPlan_ID,eq,"+ActionID).subscribe((actionlist:any)=>{
         this.activitylist = actionlist.records;
+        this.showloadingActivity = false;
       })  ;
     }
     getActionPlan(){
@@ -74,8 +77,8 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
         b = new Date(b.Date_Created);
         //console.log(a,b);
       }else{
-        a = new Date(a.Target_Date);
-        b = new Date(b.Target_Date);
+        a = new Date(this.getCorrectTargetDate(a));
+        b = new Date(this.getCorrectTargetDate(b));
       }
       
       return a<b ? -1 : a>b ? 1 : 0;
@@ -86,7 +89,13 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
       if(event.value){
         this.actionType_select = event.value;
       }
-    } 
+    }  
+    //Reset selection
+    this.actionplansAll.forEach((Value)=>{
+      Value.active= false;
+    });
+    this.OnDataOK();
+    
     if(this.actionType_select=="All"){
       this.actionplans = this.actionplansAll;
       return;
@@ -177,8 +186,8 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
         //Fix Dates
         const selectitem = Object.assign({},result.data);
         selectitem.ActionPlan_ID = this.activeActionPlan.ActionPlan_ID;
-        delete selectitem.Activity_ID
-        console.log(selectitem);
+        selectitem.Date_Created = this.formHelper.getDateValue(new Date());
+        delete selectitem.Activity_ID 
         //this.activitylist[index] = selectitem;
         this.EwepserverService.CreateTableData(this.ActivityTable,
            selectitem).subscribe((outputinfo:any)=>{
@@ -189,8 +198,7 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
     });
   }
   editItem(index:number){
-    this.selectedActivity = this.activitylist[index];
-    //console.log(index,this.selectedActivity);
+    this.selectedActivity = this.activitylist[index]; 
     //show dialog box 
     const dialogRef = this.dialog.open(EditDialogActionplansEnterprisesEnterprisesComponent, {     
       data: this.selectedActivity
@@ -201,8 +209,7 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
       if(result.Resulet==='Save'){ 
          
         const selectitem = Object.assign({},result.data);
-        
-        console.log(selectitem);
+         
         this.activitylist[index] = selectitem;
         this.EwepserverService.updateTableData(this.ActivityTable,
           this.selectedActivity.Activity_ID,selectitem).subscribe((outputinfo:any)=>{
@@ -217,7 +224,7 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
     this.formHelper.showConfirmDelete(strMessage).subscribe(result=>{
       if(result.Resulet==='Ok'){
         this.EwepserverService.deleteTableData(this.ActivityTable,this.activitylist[index].Activity_ID).subscribe(deleteInfo=>{
-          console.log(deleteInfo);
+           
           this.activitylist.slice(index,1);
         });
       }else{
@@ -225,34 +232,20 @@ export class EditActionplansEnterprisesEnterprisesComponent implements OnInit {
       }
     });
   }
-  isRed(ActivityItem:any){
-    if(ActivityItem.Target_Date2!=""){
-      //Check date
-      let d = new Date(ActivityItem.Target_Date2);
-      if(d>new Date()){
-        //not red
-        return "not Red";
+  //Duplication from common\actionplan\com-list-action-plans-activity\com-list-action-plans-activity.component.ts
+  getCorrectTargetDate(ActivityItem:any) {
+    if(ActivityItem.Target_Date2!=null){
+      if(ActivityItem.Target_Date2.trim()!=""){
+        return ActivityItem.Target_Date2;
       }
     }
-    if(ActivityItem.Target_Date1!=""){
-      //Check date
-      let d = new Date(ActivityItem.Target_Date2);
-      if(d>new Date()){
-        //not red
-        return "not Red";
-      }
+    if(ActivityItem.Target_Date1!=null){
+      if(ActivityItem.Target_Date1.time()!=""){
+        return ActivityItem.Target_Date1;
+      }      
     }
-    if(ActivityItem.Target_Date!=""){
-      //Check date
-      let d = new Date(ActivityItem.Target_Date2);
-      if(d>new Date()){
-        //not red
-        return "not Red";
-      }
-    }
-    return "Red";
+    return ActivityItem.Target_Date;
   }
-   
 }
 
 

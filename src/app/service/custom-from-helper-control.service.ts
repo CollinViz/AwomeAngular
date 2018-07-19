@@ -24,7 +24,7 @@ export class CustomFromHelperControlService {
       return null;
     }
     if((myvar instanceof Date)){
-      return (myvar as Date).getFullYear()+"-" + ((myvar as Date).getMonth()+1) + "-" + (myvar as Date).getDate();
+      return (myvar as Date).getFullYear()+"-" + ('0'+((myvar as Date).getMonth()+1)).slice(-2) + "-" + ('0'+(myvar as Date).getDate()).slice(-2);
     }
     if((typeof myvar === "string")){
       if(myvar.trim()===''){

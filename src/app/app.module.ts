@@ -81,8 +81,8 @@ import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loan
 import { ComListActionPlanComponent } from './common/actionplan/com-list-action-plan/com-list-action-plan.component';
 import { ComListActionPlansActivityComponent } from './common/actionplan/com-list-action-plans-activity/com-list-action-plans-activity.component';
 import { ComEditActionPlansActivityComponent } from './common/actionplan/com-edit-action-plans-activity/com-edit-action-plans-activity.component';
-import { EditDialogActionplansEnterprisesEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component';
-import { EditDialogActionplansEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
+import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component';
+import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
 import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
 import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
