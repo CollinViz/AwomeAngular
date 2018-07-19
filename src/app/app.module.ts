@@ -85,6 +85,7 @@ import { EditDialogActionplansEnterprisesEnterprisesComponent } from './actionpl
 import { EditDialogActionplansEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
 import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
+import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
 
 @NgModule({
   declarations: [
@@ -225,7 +226,11 @@ import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.
     },
     { 
       path:'visits/enterprise',
-      component:VisitsEntrepreneursPageComponent
+      component:VisitsEnterprisePageComponent
+    },
+    { 
+      path:'visits/enterprise/:Enterprise_ID',
+      component:EditVisitsEnterpriseEnterpriseComponent
     },
     { 
       path:'visits/cooperative',
