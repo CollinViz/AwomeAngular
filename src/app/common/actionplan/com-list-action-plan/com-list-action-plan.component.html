@@ -1,0 +1,15 @@
+<ul class="list-group" *ngIf="ActionList">
+  <li *ngFor="let actionplan of ActionList;let i = index"  
+  [ngClass]="{'list-group-item':true ,'d-flex:true':true ,'justify-content-between':true, 'align-items-center':true,'active':actionplan.active,'bg-light':actionplan.mouseOver&&!actionplan.active}"
+  (mouseover)="actionplan.mouseOver=true" (mouseout)="actionplan.mouseOver=false"
+  (click)="Click($event,i)">
+   {{actionplan.Description}} - {{actionplan.Date_Created}}
+   <span class="float-right">
+    <a class="fas fa-trash  btn" (click)="deleteItem($event,i)"></a>
+            <a class="far fa-edit   btn" (click)="editItem($event,i)"></a> &nbsp; &nbsp;
+   </span>
+   
+   <br>
+    <span class="badge badge-primary badge-pill float-right">{{actionplan.Status}}</span>
+  </li>
+</ul>

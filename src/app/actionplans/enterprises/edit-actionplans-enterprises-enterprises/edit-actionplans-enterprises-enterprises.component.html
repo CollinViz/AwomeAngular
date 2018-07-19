@@ -1,3 +1,104 @@
-<p>
-  edit-actionplans-enterprises-enterprises works!
-</p>
+<form>
+  <div class="card text-white bg-info mb-3">
+    <div class="card-header">Enterprise Infomation</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-6 col-md-6">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_Name">Enterprise Name</label>
+            <div class="controls">
+              {{enterprise.Enterprise_Name}}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <!-- List all action plan headers-->
+    <div class="col-6">
+      <div class="row">
+        <div class="col-9">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_Name">Filter</label>
+            <div class="wd-100">
+              <mat-form-field ngClass="form-control">
+                <mat-select (selectionChange)="changeFilter($event)" id="actionTyp_select" name="actionTyp_select" [(value)]="actionType_select">
+                  <mat-option value="InProgress" >In progress</mat-option>
+                  <mat-option value="Open">Open</mat-option>
+                  <mat-option value="Complete">Complete</mat-option>
+                  <mat-option value="All">All</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-3">
+          <button (click)="AddActionPlan()" [ngClass]="{'btn':true,'btn-primary':true  }">Add Action Plan</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-com-list-action-plan 
+            [ActionList]="actionplans" 
+            [ActiveAction]="activeActionPlan" 
+            (ItemClick)="actionClick($event)" 
+            (editItemClick)="actionEditClick($event)" 
+            (deleteItemClick)="actionDeleteClick($event)" 
+            ></app-com-list-action-plan>
+
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-6" *ngIf="activitylist">
+
+      <div class="row">
+        <div class="col-9">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_Name">Sort</label>
+            <div class="controls">
+              <mat-form-field ngClass="form-control">
+                <mat-select (selectionChange)="changeSort($event)" id="Sort_select" name="Sort_select" [(value)]="Sort_select">
+                  <mat-option value="CreateDate">Created Date</mat-option>
+                  <mat-option value="DueDate">Due Date</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-3">
+          <button (click)="AddActivity()" [ngClass]="{'btn':true,'btn-primary':true  }"
+           *ngIf="bShowAdd" >Add Activity</button>
+        </div>
+      </div>
+      <div class="card text-white bg-danger mb-3" *ngFor="let active of activitylist; let i = index">
+        <div class="card-header">{{active.Description}}
+            &nbsp; &nbsp; 
+            <a class="fas fa-trash float-right btn" (click)="deleteItem(i)"></a>
+            <a class="far fa-edit float-right btn" (click)="editItem(i)"></a> &nbsp; &nbsp;
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+              Knowledge Area: {{active.Knowledge_Area}}<br/>
+              Date Created:{{active.Date_Created}} <span class="float-right"> Last Update:{{active.Date_Updated}} </span><br/>
+              <span class="badge badge-primary badge-pill float-right">{{active.Status}}</span>
+              Target Date:{{active.Target_Date}} <br>
+              <span *ngIf="active.Comp_Date" >Complete Date:{{active.Target_Date}}</span> <br>
+              Comments:
+                {{active.Comments}}
+                 
+          </p>
+        </div>
+      </div> 
+    </div>
+  </div>
+</form>
+ 
