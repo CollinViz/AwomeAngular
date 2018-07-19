@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { CustomFromHelperControlService } from '../../../../service/custom-from-helper-control.service'
+import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
 
 @Component({
   selector: 'app-edit-dialog-actionplans-enterprises',

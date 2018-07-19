@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { CustomFromHelperControlService } from '../../../../service/custom-from-helper-control.service'
+import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
 
 
 @Component({
@@ -23,7 +23,7 @@ export class EditDialogActionplansEnterprisesEnterprisesComponent implements OnI
   }
 
   Save(): void{
-    if(this.ActivityEdit.ActionPlan_ID){
+    if(!this.ActivityEdit.ActionPlan_ID){
       this.ActivityEdit.Date_Created = this.formHelper.getDateValue(new Date());
     }
     //Check Dates are OK
