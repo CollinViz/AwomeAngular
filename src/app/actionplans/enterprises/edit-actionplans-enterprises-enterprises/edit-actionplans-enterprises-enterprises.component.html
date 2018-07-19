@@ -79,8 +79,8 @@
            *ngIf="bShowAdd" >Add Activity</button>
         </div>
       </div>
-      <div class="card text-white bg-danger mb-3" *ngFor="let active of activitylist; let i = index">
-        <div class="card-header">{{active.Description}}
+      <div class="card text-white bg-danger mb-3" *ngFor="let active of activitylist; let i = index" >
+        <div class="card-header">{{active.Description}} {{isRed(active)}}
             &nbsp; &nbsp; 
             <a class="fas fa-trash float-right btn" (click)="deleteItem(i)"></a>
             <a class="far fa-edit float-right btn" (click)="editItem(i)"></a> &nbsp; &nbsp;

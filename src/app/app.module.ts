@@ -154,13 +154,17 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
     EditLoansBaselineEnterpriseComponent,
     ListLoansBaselineEnterpriseComponent,
+
     ComListActionPlanComponent,
     ComListActionPlansActivityComponent,
     ComEditActionPlansActivityComponent,
     EditDialogActionplansEnterprisesEnterprisesComponent,
     EditDialogActionplansEnterprisesComponent,
     ComEditActionPlansComponent,
-    DeleteCheckComponent 
+    DeleteCheckComponent,
+
+    EditfrmVisitsEnterpriseEnterpriseComponent 
+
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
     EditDialogActionplansEnterprisesComponent,
