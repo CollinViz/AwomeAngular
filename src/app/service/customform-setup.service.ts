@@ -26,6 +26,7 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Year_Established', required: true,order: 3,
 			label: 'Year Established', value: enterprise.Year_Established,
+			max:(new Date().getFullYear()),min:1988
 		}),
 		new DropdownQuestion({
 			key: 'Legal_Structure',  required: false, order: 4,
@@ -40,6 +41,7 @@ export class CustomformSetupService {
 		new TextboxQuestion({
 			key: 'Registration_Number', required: false,order: 6,
 			label: 'Registration_Number', value: enterprise.Registration_Number,
+			min:1,max:10
 		}),
 		new NumbersQuestion({
 			key: 'Female_Owners', required: true,order: 6,
@@ -339,7 +341,8 @@ export class CustomformSetupService {
 	let questions: QuestionBase<any>[] = [ 
 		new ToggleQuestion({
 			key: 'Training_Qtr', required: false,order: 111,
-			label: 'Receive any technical training in last Quarter?', value: enterprise.Training_Qtr,
+			label: 'Receive any technical training in last Quarter?', value: enterprise.Training_Qtr 
+			
 		}),
 		new TextboxQuestion({
 			key: 'What_Training', required: false,order: 159,
@@ -360,6 +363,7 @@ export class CustomformSetupService {
 		new TextboxQuestion({
 			key: 'How_Know_Training', required: false,order: 163,
 			label: 'How did you know about training', value: enterprise.How_Know_Training,
+			min:0,max:25
 		}),
 		new TextboxQuestion({
 			key: 'Technical_Train_Needs', required: false,order: 164,

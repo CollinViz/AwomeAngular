@@ -3,7 +3,9 @@
 
   <div class="controls" [ngSwitch]="question.controlType">
 
-    <input *ngSwitchCase="'textbox'"   [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control">
+    <input *ngSwitchCase="'textbox'"   [formControlName]="question.key" 
+            [id]="question.key" [type]="question.type" ngClass="form-control"
+            >
     
     
     <!--<mat-form-field *ngSwitchCase="'textbox'" ngClass="w-100 p-3">
@@ -56,7 +58,13 @@
 
   
   
-  <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+  <div class="alert alert-dismissible alert-danger" *ngIf="!isValid">required {{listOfErrors | json}}</div>
+  <div class="alert alert-dismissible alert-danger" *ngIf="listOfErrors">
+    <div class="errorMessage" *ngIf="listOfErrors.maxlength">Max Length</div>
+    <div class="errorMessage" *ngIf="listOfErrors.minlength">Min Length is {{listOfErrors.minlength.requiredLength}}</div> 
+    <div class="errorMessage" *ngIf="listOfErrors.max">Max value allowed is {{listOfErrors.max.max}}</div>
+    <div class="errorMessage" *ngIf="listOfErrors.min">Min value allowed is {{listOfErrors.min.min}}</div>
+  </div>
 </div>
 
 

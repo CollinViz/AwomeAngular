@@ -4,20 +4,20 @@
       <tr>
         <th scope="col">Where_Apply</th>
         <th scope="col">Approved</th>
-        <th scope="col">Reject_Reason</th>
-        <th scope="col">Reject_Specify</th>
-        <th scope="col">How_Much</th>
-        <th scope="col">Started_Repay</th> 
+        <th scope="col">Reject Reason</th> 
+        <th scope="col">Amount</th>        
+        <th scope="col">Started Repay</th> 
+        <th scope="col">Repay Amount</th>
       </tr>
     </thead>
     <tbody>
       <tr class="table w-100" *ngFor="let row of rows;let i=index" (click)="onActivate(i)"  >
         <th scope="row" >{{row.Where_Apply}}</th>
-        <td  >{{row.Approved}}</td>
-        <td  >{{row.Reject_Reason}}</td>
-        <td >{{row.Reject_Specify}}</td>
-        <td  >{{row.How_Much}}</td>
-        <td  >{{row.Started_Repay}}</td>
+        <td  >{{row.Approved | fixboolYN}}</td>
+        <td  >{{row.Reject_Reason}}</td> 
+        <td  >{{row.How_Much}}</td>        
+        <td  >{{row.Started_Repay | fixboolYN}}</td>
+        <td  >{{row.Repay_Amount}}</td>
       </tr> 
     </tbody>
   </table> 

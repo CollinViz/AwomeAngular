@@ -18,7 +18,7 @@ export class EwepserverService {
   baseURL = 'http://localhost:81/AwomePHP/api.php/data/'; 
   //baseURL = 'http://localhost:81/php-crud-api2/src/index.php/data/';
   baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-  CoreViewURL = 'http://localhost:81/AwomePHP/  ajax.php';
+  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
  
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
@@ -131,6 +131,14 @@ export class EwepserverService {
   setUserLogin(UserOJB:any){
     this.UserLoginObj.next(UserOJB); 
   }
+
+  deleteAllFinance(Enterprise_ID:number,Enterprise_Visit_ID:any){
+    let login={__class:'FinanceGUI',__call:'deleteFinance',Enterprise_ID:Enterprise_ID,Enterprise_Visit_ID:Enterprise_Visit_ID};
+    return this.http.post<any>(this.CoreViewURL,login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

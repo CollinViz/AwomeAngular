@@ -189,11 +189,11 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
       component: HomePageComponent
     },
     { 
-      path:'enterprise',
+      path:'baseline/enterprise',
       component:ListenterpriseComponent
     },
     {
-      path: 'enterprise/:Enterprise_ID',
+      path: 'baseline/enterprise/:Enterprise_ID',
       component: BaselineEnterpriseEditenterprise2Component
     },
     { 

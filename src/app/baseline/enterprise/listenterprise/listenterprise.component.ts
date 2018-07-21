@@ -53,7 +53,7 @@ export class ListenterpriseComponent implements OnInit {
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Enterprise_ID);
-      this.router.navigateByUrl('/enterprise/' + this.selected[0].Enterprise_ID);
+      this.router.navigateByUrl('baseline/enterprise/' + this.selected[0].Enterprise_ID);
     }
 
   }
