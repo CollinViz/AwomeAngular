@@ -13,25 +13,29 @@
         <a class="nav-link dropdown-toggle" id="navBaseLine" data-toggle="dropdown" href="#">
                 BaseLine Info</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" [routerLink]="['baseline/entrepreneur']">Entrepreneurs</a>
-                <a class="dropdown-item" href="#">PSG</a>
-                <a class="dropdown-item" [routerLink]="['baseline/enterprise']">Enterprise</a>
+                <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur</a>
+                <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise</a>
+                <a class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
+                <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
             </div>        
       </li>
       <li class="nav-item">
         <a class="nav-link dropdown-toggle" id="navVisits" data-toggle="dropdown" href="#">
             Visits</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Entrepreneurs - Quarterly</a>
-                <a class="dropdown-item" href="#">PSG - Followup2</a>
-                <a class="dropdown-item" href="#">Enterprise - Followup</a>
+                <a class="dropdown-item" [routerLink]="['/visits/entrepreneurs']">Entrepreneurs</a>
+                <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
+                <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
+                <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
             </div>  
       </li>
       <li class="nav-item">
         <a class="nav-link dropdown-toggle" id="navAction" data-toggle="dropdown" href="#">
             Action Plan</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a> 
+                <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
+                <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperatives</a>
+                <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
             </div> 
       </li>
       <li class="nav-item">

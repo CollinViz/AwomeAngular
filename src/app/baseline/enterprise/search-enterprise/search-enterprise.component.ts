@@ -11,8 +11,9 @@ export class SearchEnterpriseComponent implements OnInit {
   search = {Name:"",Year_Established:"",Province:"Select",Legal_Structure:"Select",HiHRep:"Select",Sector:"Select"}
   Provinces =[];
   ActiveEDFs =[];
-  HeadingInfo = "Baseline Info";
-  @Input() Heading:string="";
+  HeadingInfo:string = "Baseline Info";
+  @Input() Heading?:string="";
+  @Input() hidAdd?:boolean=false;
   @Output() filter:string ="";
   @Output() SearchClick = new EventEmitter<string>();
   @Output() NewClick = new EventEmitter<string>();
@@ -30,6 +31,11 @@ export class SearchEnterpriseComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(this.Heading){
+      if(this.Heading==""){
+        this.Heading = this.HeadingInfo;
+      }
+    }
   }
   searchClickint(){
     let aFilter:string[]=[];
