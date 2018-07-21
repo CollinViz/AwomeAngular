@@ -3,20 +3,20 @@ import { QuestionBase } from './question-base';
 export class TextboxQuestion extends QuestionBase<string> {
   controlType = 'textbox';
   type: string;
-  maxLength:number;
-
+  maxLength:number;  
+  minLength:number;
   constructor(options: {} = {}) {
     super(options);
     this.type = options['type'] || '';
-    this.maxLength = options['maxLength'] || 50;
+    this.maxLength = options['maxLength'] || (options['max'] || 50);    
+    this.minLength = options['minLength'] || (options['min'] || 0);    
   }
 }
 
 
 export class NumbersQuestion extends QuestionBase<string> {
   controlType = 'numbers';
-  type: string;
-  maxLength:number;
+  type: string; 
   currency:boolean=false;
   currencySymbol:string='R';
 
@@ -30,8 +30,7 @@ export class NumbersQuestion extends QuestionBase<string> {
       } 
     }
     
-    this.type = options['type'] || '';
-    this.maxLength = options['maxLength'] || 50;
+    this.type = options['type'] || ''; 
     this.currency = options['currency'] || false;
     this.currencySymbol = options['symbol'] || 'R';
     if(this.currency===true){

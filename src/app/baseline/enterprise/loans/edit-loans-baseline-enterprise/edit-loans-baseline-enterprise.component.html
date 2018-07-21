@@ -1,41 +1,70 @@
-<form #loanEdit="ngForm" >
+<form [formGroup]="loanEdit">
   <div class="row">
     <div class="col-6">
       <div class="control-group">
-        <label class="control-label" for="txtWhere_Apply">Where_Apply</label>
+        <label class="control-label" for="txtWhere_Apply">Where did you apply?</label>
         <div class="controls">
-          <input [(ngModel)]="finance.Where_Apply"   name="txtWhere_Apply" type="text" placeholder="Where_Apply"
+          <input  formControlName="Where_Apply" name="Where_Apply" type="text" placeholder="Where_Apply"
+            ngClass="form-control">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="txtReject_Reason">If NO, Rejection reason?</label>
+        <div class="controls">
+          <input formControlName="Reject_Reason" id="txtReject_Reason" name="txtReject_Reason" type="text" placeholder="Reject_Reason"
             ngClass="form-control">
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="txtReject_Reason">Reject_Reason</label>
-        <div class="controls">
-          <input [(ngModel)]="finance.Reject_Reason" id="txtReject_Reason" name="txtReject_Reason" type="text" placeholder="Reject_Reason"
-            ngClass="form-control">
+        <label class="control-label" for="txtHow_Much">Amount you applied for?</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">R</span>
+          </div>
+          <input formControlName="How_Much" appNumberOnly id="txtHow_Much" name="txtHow_Much" type="text" placeholder="0.00"
+          ngClass="form-control numbersOnly">
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="txtHow_Much">How_Much</label>
+        <label class="control-label" for="txtStarted_Repay">Have you started repaying?</label>
         <div class="controls">
-          <input [(ngModel)]="finance.How_Much" id="txtHow_Much" name="txtHow_Much" type="text" placeholder="How_Much" ngClass="form-control">
+          <mat-slide-toggle formControlName="Started_Repay" id="txtStarted_Repay" name="txtStarted_Repay"></mat-slide-toggle>
         </div>
       </div>
     </div>
     <div class="col-6">
       <div class="control-group">
-        <label class="control-label" for="txtApproved">Approved</label>
+        <label class="control-label" for="txtApproved">Application approved?</label>
         <div class="controls">
-          <input [(ngModel)]="finance.Approved" id="txtApproved" name="txtApproved" type="text" placeholder="Approved" ngClass="form-control">
+          <mat-slide-toggle formControlName="Approved" id="txtApproved" name="txtApproved"></mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="txtAmount_Issued">Actual amount issued</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">R</span>
+          </div>
+          <input formControlName="Amount_Issued" appNumberOnly id="txtAmount_Issued" name="txtAmount_Issued" type="text" placeholder="0.00"
+          ngClass="form-control numbersOnly">
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="txtStarted_Repay">Started_Repay</label>
-        <div class="controls">
-          <input [(ngModel)]="finance.Started_Repay" id="txtStarted_Repay" name="txtStarted_Repay" type="text" placeholder="Started_Repay"
-            ngClass="form-control">
+        <label class="control-label" for="txtRepay_Amount">Instalment Amount</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">R</span>
+          </div>
+          <input formControlName="Repay_Amount" appNumberOnly id="txtRepay_Amount" name="txtRepay_Amount" type="text" placeholder="0.00"
+          ngClass="form-control numbersOnly">
         </div>
       </div>
     </div>
-  </div> 
+  </div>
+  <div class="row">
+      <button class="btn btn-primary" (click)="addnewFinance()"
+      [ngClass]="{'btn':true,'btn-primary':loanEdit.valid  }" [disabled]="!loanEdit.valid">Add</button>
+    </div>
 </form>

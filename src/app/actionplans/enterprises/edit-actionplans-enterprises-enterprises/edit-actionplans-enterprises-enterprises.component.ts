@@ -1,10 +1,8 @@
-import { ChangeDetectorRef,Component, OnInit,Inject, PipeTransform,TemplateRef, Output  } from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
-import { FormControl, FormGroup ,Validators,FormBuilder} from '@angular/forms'; 
+import { ChangeDetectorRef,Component, OnInit  } from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router'; 
 import {EwepserverService} from '../../../ewepserver.service' 
-import { QuestionBase } from '../../../service/question-base'; 
 import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog } from '@angular/material';
 import {EditDialogActionplansEnterprisesEnterprisesComponent} from './../../../common/actionplan/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component'
 import {EditDialogActionplansEnterprisesComponent} from './../../../common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component'
 @Component({

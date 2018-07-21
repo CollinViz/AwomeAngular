@@ -63,13 +63,10 @@ import { EditVisitsAssociationAssociationComponent } from './visits/association/
 import { SearchVisitsAssociationAssociationComponent } from './visits/association/search-visits-association-association/search-visits-association-association.component';
 import { ActionplansEnterprisesPageComponent } from './actionplans/enterprises/actionplans-enterprises-page/actionplans-enterprises-page.component';
 import { EditActionplansEnterprisesEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-actionplans-enterprises-enterprises.component';
-import { SearchActionplansEnterprisesEnterprisesComponent } from './actionplans/enterprises/search-actionplans-enterprises-enterprises/search-actionplans-enterprises-enterprises.component';
 import { ActionplansCooperativesPageComponent } from './actionplans/cooperatives/actionplans-cooperatives-page/actionplans-cooperatives-page.component';
 import { EditActionplansCooperativesCooperativesComponent } from './actionplans/cooperatives/edit-actionplans-cooperatives-cooperatives/edit-actionplans-cooperatives-cooperatives.component';
-import { SearchActionplansCooperativesCooperativesComponent } from './actionplans/cooperatives/search-actionplans-cooperatives-cooperatives/search-actionplans-cooperatives-cooperatives.component';
 import { ActionplansAssociationPageComponent } from './actionplans/association/actionplans-association-page/actionplans-association-page.component';
 import { EditActionplansAssociationAssociationComponent } from './actionplans/association/edit-actionplans-association-association/edit-actionplans-association-association.component';
-import { SearchActionplansAssociationAssociationComponent } from './actionplans/association/search-actionplans-association-association/search-actionplans-association-association.component';
 import { TrainingEntrepreneursPageComponent } from './training/entrepreneurs/training-entrepreneurs-page/training-entrepreneurs-page.component';
 import { EditTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/edit-training-entrepreneurs-entrepreneurs/edit-training-entrepreneurs-entrepreneurs.component';
 import { SearchTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/search-training-entrepreneurs-entrepreneurs/search-training-entrepreneurs-entrepreneurs.component';
@@ -139,13 +136,10 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
     SearchVisitsAssociationAssociationComponent,
     ActionplansEnterprisesPageComponent,
     EditActionplansEnterprisesEnterprisesComponent,    
-    SearchActionplansEnterprisesEnterprisesComponent,
     ActionplansCooperativesPageComponent,
-    EditActionplansCooperativesCooperativesComponent,
-    SearchActionplansCooperativesCooperativesComponent,
+    EditActionplansCooperativesCooperativesComponent, 
     ActionplansAssociationPageComponent,
     EditActionplansAssociationAssociationComponent,
-    SearchActionplansAssociationAssociationComponent,
     TrainingEntrepreneursPageComponent,
     EditTrainingEntrepreneursEntrepreneursComponent,
     SearchTrainingEntrepreneursEntrepreneursComponent,
@@ -189,11 +183,11 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
       component: HomePageComponent
     },
     { 
-      path:'enterprise',
+      path:'baseline/enterprise',
       component:ListenterpriseComponent
     },
     {
-      path: 'enterprise/:Enterprise_ID',
+      path: 'baseline/enterprise/:Enterprise_ID',
       component: BaselineEnterpriseEditenterprise2Component
     },
     { 
@@ -257,8 +251,16 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
       component:ActionplansCooperativesPageComponent
     },
     { 
+      path:'actionplans/cooperatives/:Cooperative_ID',
+      component:EditActionplansCooperativesCooperativesComponent
+    },
+    { 
       path:'actionplans/association',
       component:ActionplansAssociationPageComponent
+    },
+    { 
+      path:'actionplans/association/:Association_ID',
+      component:EditActionplansAssociationAssociationComponent
     },
     { 
       path:'training/entrepreneurs',
