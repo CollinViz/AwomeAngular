@@ -78,7 +78,10 @@ import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/en
 import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
 import { EditLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/edit-loans-baseline-enterprise/edit-loans-baseline-enterprise.component';
 import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component';
-import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
+import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component';
+import { EditfrmVisitsCooperativeComponent } from './visits/cooperative/editfrm-visits-cooperative/editfrm-visits-cooperative.component';
+import { EditLoansBaselineCooperativeComponent } from './baseline/cooperative/loans/edit-loans-baseline-cooperative/edit-loans-baseline-cooperative.component';
+import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/loans/list-loans-baseline-cooperative/list-loans-baseline-cooperative.component'
 
 @NgModule({
   declarations: [
@@ -147,7 +150,10 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
     EditLoansBaselineEnterpriseComponent,
     ListLoansBaselineEnterpriseComponent,
-    EditfrmVisitsEnterpriseEnterpriseComponent 
+    EditfrmVisitsEnterpriseEnterpriseComponent,
+    EditfrmVisitsCooperativeComponent,
+    EditLoansBaselineCooperativeComponent,
+    ListLoansBaselineCooperativeComponent 
   ],
   imports: [
     BrowserModule,
@@ -205,6 +211,10 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
       component:BaselineAssociationPageComponent
     },
     { 
+      path:'baseline/enterprise',
+      component:ListenterpriseComponent
+    },
+    { 
       path:'visits/entrepreneurs',
       component:VisitsEntrepreneursPageComponent
     },
@@ -219,6 +229,10 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
     { 
       path:'visits/cooperative',
       component:VisitsCooperativePageComponent
+    },
+    { 
+      path:'visits/cooperative/:Cooperative_ID',
+      component:EditVisitsCooperativeCooperativeComponent
     },
     { 
       path:'visits/association',

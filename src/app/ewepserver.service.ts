@@ -112,8 +112,16 @@ export class EwepserverService {
 
     return this.http.get<any>(this.baseViewURL + "enterprise_base_view?enterprise?order=Enterprise_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions);
   }
+
+  getCooperativeList(PageNumber: number,FilterOptions:string) {
+
+    return this.http.get<any>(this.baseViewURL + "cooperative_base_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions);
+  }
   getEnterprisItem(EnterprisID: number) {
     return this.http.get<any>(this.baseURL + "enterprise/" + EnterprisID, httpOptions);
+  }
+  getCooperativeItem(CooperativeID: number) {
+    return this.http.get<any>(this.baseURL + "cooperative/" + CooperativeID, httpOptions);
   }
   checkLogin(UserName:string,Password:string){
     let login={__class:'LoginGUI',__call:'checkLogin',UserName:UserName,Password:Password}; 
