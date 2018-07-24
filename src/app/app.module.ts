@@ -9,7 +9,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule} from '@angular/material';
+import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule,MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
 
 import { AppComponent } from './app.component';
@@ -63,13 +63,10 @@ import { EditVisitsAssociationAssociationComponent } from './visits/association/
 import { SearchVisitsAssociationAssociationComponent } from './visits/association/search-visits-association-association/search-visits-association-association.component';
 import { ActionplansEnterprisesPageComponent } from './actionplans/enterprises/actionplans-enterprises-page/actionplans-enterprises-page.component';
 import { EditActionplansEnterprisesEnterprisesComponent } from './actionplans/enterprises/edit-actionplans-enterprises-enterprises/edit-actionplans-enterprises-enterprises.component';
-import { SearchActionplansEnterprisesEnterprisesComponent } from './actionplans/enterprises/search-actionplans-enterprises-enterprises/search-actionplans-enterprises-enterprises.component';
 import { ActionplansCooperativesPageComponent } from './actionplans/cooperatives/actionplans-cooperatives-page/actionplans-cooperatives-page.component';
 import { EditActionplansCooperativesCooperativesComponent } from './actionplans/cooperatives/edit-actionplans-cooperatives-cooperatives/edit-actionplans-cooperatives-cooperatives.component';
-import { SearchActionplansCooperativesCooperativesComponent } from './actionplans/cooperatives/search-actionplans-cooperatives-cooperatives/search-actionplans-cooperatives-cooperatives.component';
 import { ActionplansAssociationPageComponent } from './actionplans/association/actionplans-association-page/actionplans-association-page.component';
 import { EditActionplansAssociationAssociationComponent } from './actionplans/association/edit-actionplans-association-association/edit-actionplans-association-association.component';
-import { SearchActionplansAssociationAssociationComponent } from './actionplans/association/search-actionplans-association-association/search-actionplans-association-association.component';
 import { TrainingEntrepreneursPageComponent } from './training/entrepreneurs/training-entrepreneurs-page/training-entrepreneurs-page.component';
 import { EditTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/edit-training-entrepreneurs-entrepreneurs/edit-training-entrepreneurs-entrepreneurs.component';
 import { SearchTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/search-training-entrepreneurs-entrepreneurs/search-training-entrepreneurs-entrepreneurs.component';
@@ -78,10 +75,21 @@ import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/en
 import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
 import { EditLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/edit-loans-baseline-enterprise/edit-loans-baseline-enterprise.component';
 import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component';
+<<<<<<< HEAD
 import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component';
 import { EditfrmVisitsCooperativeComponent } from './visits/cooperative/editfrm-visits-cooperative/editfrm-visits-cooperative.component';
 import { EditLoansBaselineCooperativeComponent } from './baseline/cooperative/loans/edit-loans-baseline-cooperative/edit-loans-baseline-cooperative.component';
 import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/loans/list-loans-baseline-cooperative/list-loans-baseline-cooperative.component'
+=======
+import { ComListActionPlanComponent } from './common/actionplan/com-list-action-plan/com-list-action-plan.component';
+import { ComListActionPlansActivityComponent } from './common/actionplan/com-list-action-plans-activity/com-list-action-plans-activity.component';
+import { ComEditActionPlansActivityComponent } from './common/actionplan/com-edit-action-plans-activity/com-edit-action-plans-activity.component';
+import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component';
+import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
+import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
+import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
+import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
+>>>>>>> 49ecb805b41ccd64ee4c0f184039d94d65192e8e
 
 @NgModule({
   declarations: [
@@ -134,14 +142,11 @@ import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/lo
     EditVisitsAssociationAssociationComponent,
     SearchVisitsAssociationAssociationComponent,
     ActionplansEnterprisesPageComponent,
-    EditActionplansEnterprisesEnterprisesComponent,
-    SearchActionplansEnterprisesEnterprisesComponent,
+    EditActionplansEnterprisesEnterprisesComponent,    
     ActionplansCooperativesPageComponent,
-    EditActionplansCooperativesCooperativesComponent,
-    SearchActionplansCooperativesCooperativesComponent,
+    EditActionplansCooperativesCooperativesComponent, 
     ActionplansAssociationPageComponent,
     EditActionplansAssociationAssociationComponent,
-    SearchActionplansAssociationAssociationComponent,
     TrainingEntrepreneursPageComponent,
     EditTrainingEntrepreneursEntrepreneursComponent,
     SearchTrainingEntrepreneursEntrepreneursComponent,
@@ -150,11 +155,28 @@ import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/lo
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
     EditLoansBaselineEnterpriseComponent,
     ListLoansBaselineEnterpriseComponent,
+<<<<<<< HEAD
     EditfrmVisitsEnterpriseEnterpriseComponent,
     EditfrmVisitsCooperativeComponent,
     EditLoansBaselineCooperativeComponent,
     ListLoansBaselineCooperativeComponent 
+=======
+
+    ComListActionPlanComponent,
+    ComListActionPlansActivityComponent,
+    ComEditActionPlansActivityComponent,
+    EditDialogActionplansEnterprisesEnterprisesComponent,
+    EditDialogActionplansEnterprisesComponent,
+    ComEditActionPlansComponent,
+    DeleteCheckComponent,
+
+    EditfrmVisitsEnterpriseEnterpriseComponent 
+
+>>>>>>> 49ecb805b41ccd64ee4c0f184039d94d65192e8e
   ],
+  entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
+    EditDialogActionplansEnterprisesComponent,
+    DeleteCheckComponent],
   imports: [
     BrowserModule,
     CollapseModule.forRoot(),
@@ -167,7 +189,7 @@ import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/lo
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule, MatInputModule,MatTableModule,   
     MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,MatNativeDateModule,MatDatepickerModule,
-    NgxDatatableModule,
+    NgxDatatableModule,MatDialogModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     RouterModule.forRoot([{
@@ -175,11 +197,11 @@ import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/lo
       component: HomePageComponent
     },
     { 
-      path:'enterprise',
+      path:'baseline/enterprise',
       component:ListenterpriseComponent
     },
     {
-      path: 'enterprise/:Enterprise_ID',
+      path: 'baseline/enterprise/:Enterprise_ID',
       component: BaselineEnterpriseEditenterprise2Component
     },
     { 
@@ -243,12 +265,24 @@ import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/lo
       component:ActionplansEnterprisesPageComponent
     },
     { 
+      path:'actionplans/enterprises/:Enterprise_ID',
+      component:EditActionplansEnterprisesEnterprisesComponent
+    },
+    { 
       path:'actionplans/cooperatives',
       component:ActionplansCooperativesPageComponent
     },
     { 
+      path:'actionplans/cooperatives/:Cooperative_ID',
+      component:EditActionplansCooperativesCooperativesComponent
+    },
+    { 
       path:'actionplans/association',
       component:ActionplansAssociationPageComponent
+    },
+    { 
+      path:'actionplans/association/:Association_ID',
+      component:EditActionplansAssociationAssociationComponent
     },
     { 
       path:'training/entrepreneurs',

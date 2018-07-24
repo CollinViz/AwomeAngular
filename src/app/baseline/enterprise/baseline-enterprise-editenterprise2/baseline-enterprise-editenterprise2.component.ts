@@ -1,13 +1,11 @@
 import { ChangeDetectorRef,Component, OnInit,Pipe, PipeTransform,TemplateRef  } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms'; 
-import {EwepserverService} from '../../../ewepserver.service'
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import { QuestionBase } from '../../../service/question-base';
-import { DropdownQuestion } from '../../../service/question-dropdown'
-import { TextboxQuestion } from '../../../service/question-textbox'
-import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
+import { FormControl, FormGroup ,Validators} from '@angular/forms'; 
+import {EwepserverService} from '../../../ewepserver.service' 
+import { QuestionBase } from '../../../service/question-base'; 
+import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
+import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 
 @Component({
   selector: 'app-baseline-enterprise-editenterprise2',
@@ -35,9 +33,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   showloading:boolean = true;
   FinanceLoans:any[] =[];
   FinanceLoans2:any[] =[];
-  newFinanceLoan:finance={finance_ID:0,enterprise_ID:0,Where_Apply:"new",
-                          Approved:"",Reject_Reason:"",Reject_Specify:"",
-                          How_Much:"",Started_Repay:""};
+  newFinanceLoan:finance={finance_ID:0,enterprise_ID:0,Where_Apply:"",
+                          Approved:false,Reject_Reason:"",Started_Repay:false,
+                          How_Much:0.00,Amount_Issued:0.00,Repay_Amount:0.00};
   //Form Group stuff
   user: FormGroup;
   General:FormGroup;
@@ -64,10 +62,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   }
 
   ngOnInit() {
-    this.user = new FormGroup({
-      Enterprise_ID: new FormControl('1'),
-      Enterprise_Name: new FormControl('BOB') 
-    });
+    
     
     this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
@@ -75,11 +70,22 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
       console.log(params.Enterprise_ID);
       if(params.Enterprise_ID){
         if(params.Enterprise_ID>0){
+          
           this.EwepserverService.getEnterprisItem(params.Enterprise_ID).subscribe((customers:any)=>{
             //console.log(customers);
             this.enterprise = customers; 
-            this.OnDataOK();
+            this.EwepserverService.getTableData("finance","filter=Enterprise_ID,eq,"+params.Enterprise_ID).subscribe((finance:any)=>{
+              this.FinanceLoans = finance.records;
+              this.OnDataOK();
+            });
+            
           });
+        }else{ 
+          //Add New 
+          console.log("Add new");
+          this.enterprise = {Enterprise_ID:-1,Enterprise_Name:""};
+          this.OnDataOK();
+          console.log("Should be done"); 
         }
       }
     });
@@ -88,6 +94,16 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
   }
   OnDataOK(){ 
+
+    this.user = new FormGroup({
+      Enterprise_ID: new FormControl(this.enterprise.Enterprise_ID),
+      Enterprise_Name: new FormControl(this.enterprise.Enterprise_Name,[
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+      ]) 
+    });
+
     this.GeneralQuestions  = this.controlsService.getEnterpriseGenralForm(this.enterprise);
     this.General = this.cutomerFormHlper.toFormGroup(this.GeneralQuestions);
     
@@ -104,6 +120,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     
     this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions,this.EmployeesQuestions,this.EmployeesMaleQuestions,this.EmployeesFemalePayQuestions,this.EmployeesMalePayQuestions);
     this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds,this.AccessToMarket,this.AccessToTechnicalSkills);
+    this.Finance.setValidators([forceValidate("Training_Qtr",[{name:"What_Training"},{name:"Who_Traininig",min:4,max:25},
+                                                             {name:"When_Training",min:4,max:25},
+                                                             {name:"How_Know_Training" }])]);
     this.user.addControl("General",this.General);
     this.user.addControl("Employees",this.Employees);
     this.user.addControl("Finance",this.Finance);
@@ -116,42 +135,93 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   Save(){
     console.log("When_Training",this.Finance.get('When_Training').value);
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
-    const myvar = this.Finance.get('When_Training').value;
-    if((myvar instanceof Date)){
-      this.FlatMe.When_Training =(myvar as Date).getFullYear()+"-" + ((myvar as Date).getMonth()+1) + "-" + (myvar as Date).getDate();
-    }
-    
-    
-    console.log(myvar);
-    this.EwepserverService.updateTableData("enterprise",this.enterprise.Enterprise_ID,this.FlatMe ).subscribe((out)=>{
-      console.log(out);
-    }
-  )
-
+    //Fix Date from the Material Control
+    this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
+    if(this.enterprise.Enterprise_ID===-1){
+      delete this.FlatMe.Enterprise_ID
+      this.EwepserverService.CreateTableData("enterprise",this.FlatMe ).subscribe((out)=>{
+        //Show Saving
+        console.log("Create Done",out);
+        
+        if(out===1){
+          this.FinanceLoans.forEach((value)=>{
+            delete value.finance_ID; 
+            value.Enterprise_ID=this.enterprise.Enterprise_ID;
+          });
+          //delete all finance stuff and create a new one
+          this.EwepserverService.deleteAllFinance(this.enterprise.Enterprise_ID,"").subscribe((out)=>{
+            //Add New suff
+            this.EwepserverService.CreateTableData("finance",this.FinanceLoans).subscribe((outFin)=>{
+              console.log("Save Done to fin ",outFin);
+              console.log(typeof(outFin)); 
+              this.router.navigateByUrl('/enterprise');
+            }); 
+          });
+          //this.router.navigateByUrl('/enterprise');
+        } 
+         
+        //this.showloading = false;
+        //Move back to list screen
+        
+      });
+    } else{
+      this.EwepserverService.updateTableData("enterprise",this.enterprise.Enterprise_ID,this.FlatMe ).subscribe((out)=>{
+        //Show Saving
+        console.log("Save Done",out);
+        console.log(typeof(out));
+        if(out===1){
+           
+          this.FinanceLoans.forEach((value)=>{
+            delete value.finance_ID; 
+            value.Enterprise_ID=this.enterprise.Enterprise_ID;
+          });
+          //delete all finance stuff and create a new one
+          this.EwepserverService.deleteAllFinance(this.enterprise.Enterprise_ID,"").subscribe((out)=>{
+            //Add New suff
+            this.EwepserverService.CreateTableData("finance",this.FinanceLoans).subscribe((outFin)=>{
+              console.log("Save Done to fin ",outFin);
+              console.log(typeof(outFin)); 
+              this.router.navigateByUrl('/enterprise');
+            }); 
+          });
+          //this.router.navigateByUrl('/enterprise');
+        }
+        //this.showloading = false;
+        //Move back to list screen
+        
+      });
+    }   
+    //this.showloading = true;
+   
   }
-  addnewFinance(){
-    this.FinanceLoans.push(this.newFinanceLoan);
+  addnewFinance(NewFinance){
+    delete NewFinance.finance_ID;
+    NewFinance.enterprise_ID = this.enterprise.Enterprise_ID;
+    this.FinanceLoans.push(NewFinance);
     //this.FinanceLoans2 = [...this.FinanceLoans];
-    this.newFinanceLoan = {finance_ID:0,enterprise_ID:0,Where_Apply:"new",
-                            Approved:"",Reject_Reason:"",Reject_Specify:"",
-                            How_Much:"",Started_Repay:""};
+    this.newFinanceLoan = {finance_ID:0,enterprise_ID:this.enterprise.Enterprise_ID,Where_Apply:"",
+                            Approved:false,Reject_Reason:"",Started_Repay:false,
+                            How_Much:0.00,Amount_Issued:0.00,Repay_Amount:0.00};
   }
   financeRowClick(Index){
     console.log(Index);
     console.log(this.FinanceLoans[Index]);
     this.newFinanceLoan = this.FinanceLoans[Index];
-      this.FinanceLoans.splice(Index,1);
+    this.FinanceLoans.splice(Index,1);
   }
   
 }
 
+ 
 interface finance {
-  finance_ID:number 
+  finance_ID:number,
+  Enterprise_ID?:number, 
   enterprise_ID:number 
   Where_Apply:string  
-  Approved:string  
-  Reject_Reason:string
-  Reject_Specify:string 
-  How_Much:string 
-  Started_Repay:string
+  Approved:boolean  
+  Reject_Reason:string 
+  How_Much:number 
+  Started_Repay:boolean,
+  Amount_Issued:number,
+  Repay_Amount:number
 }

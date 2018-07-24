@@ -15,10 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  //baseURL = 'http://localhost:81/AwomePHP/api.php/meta/data/'; 
-  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
-  baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-  CoreViewURL = 'http://localhost:81/AwomePHP/  ajax.php';
+  baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
+  //baseURL = 'http://localhost:81/api.php/data/';
+  baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
+  //baseViewURL = 'http://localhost:81/api.php/';
+  CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
+  //CoreViewURL = 'http://localhost:81/ajax.php';
  
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
@@ -69,6 +71,13 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+  deleteTableData(TableName:string,KeyID:string){
+    return this.http.delete<any>(this.baseURL + TableName+ "/"+KeyID, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
   getProvince() {
     return this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions);
   }
@@ -132,6 +141,14 @@ export class EwepserverService {
   setUserLogin(UserOJB:any){
     this.UserLoginObj.next(UserOJB); 
   }
+
+  deleteAllFinance(Enterprise_ID:number,Enterprise_Visit_ID:any){
+    let login={__class:'FinanceGUI',__call:'deleteFinance',Enterprise_ID:Enterprise_ID,Enterprise_Visit_ID:Enterprise_Visit_ID};
+    return this.http.post<any>(this.CoreViewURL,login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

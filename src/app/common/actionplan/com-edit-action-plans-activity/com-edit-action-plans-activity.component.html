@@ -1,0 +1,77 @@
+<fieldset appProvideParentForm>
+
+  <div class="control-group">
+    <label class="control-label" for="txtProgramme_ID">Description</label>
+    <div class="controls">
+      <input [(ngModel)]="activity.Description" id="txtDescription" name="txtDescription" type="text" placeholder="Description"
+        ngClass="form-control" maxlength="100" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="txtKnowledge Area">Knowledge Area</label>
+    <div class="controls">
+      <input [(ngModel)]="activity.Knowledge_Area" id="txtKnowledge_Area" name="txtKnowledge_Area" type="text" placeholder="Knowledge Area"
+        ngClass="form-control" required maxlength="10">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="control-group">
+        <label class="control-label" for="txtTarget_Date">Target End Date</label>
+        <div class="controls">
+          <mat-form-field>
+            <input matInput [(ngModel)]="activity.Target_Date" name="txtTarget_Date" [matDatepicker]="picker_Target_Date" placeholder="Choose a date"
+              id="txtTarget_Date" required>
+            <mat-datepicker-toggle matSuffix [for]="picker_Target_Date"></mat-datepicker-toggle>
+            <mat-datepicker #picker_Target_Date></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="control-group">
+        <label class="control-label" for="txtTarget_Date1 Area">Revised Target Date 1</label>
+        <div class="controls">
+          <mat-form-field>
+            <input matInput [(ngModel)]="activity.Target_Date1" name="txtTarget_Date1" [matDatepicker]="picker_Target_Date1" placeholder="Choose a date"
+              id="txtTarget_Date1">
+            <mat-datepicker-toggle matSuffix [for]="picker_Target_Date1"></mat-datepicker-toggle>
+            <mat-datepicker #picker_Target_Date1></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="control-group">
+        <label class="control-label" for="txtTarget_Date2">Revised Target Date 2</label>
+        <div class="controls">
+          <mat-form-field>
+            <input matInput [(ngModel)]="activity.Target_Date2" name="txtTarget_Date2" [matDatepicker]="picker_Target_Date2" placeholder="Choose a date"
+              id="txtTarget_Date1">
+            <mat-datepicker-toggle matSuffix [for]="picker_Target_Date2"></mat-datepicker-toggle>
+            <mat-datepicker #picker_Target_Date2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="txtKnowledge Area">Status</label>
+    <div class="controls">
+      <mat-form-field ngClass="form-control">
+        <mat-select id="actionTyp_select" name="actionTyp_select" [(ngModel)]="activity.Status">
+          <mat-option value="InProgress">In progress</mat-option>
+          <mat-option value="Open">Open</mat-option>
+          <mat-option value="Complete">Complete</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="txtProgramme_ID">Comment</label>
+    <div class="controls">
+      <textarea [(ngModel)]="activity.Comment" name="txtComment" id="txtComment" ngClass="form-control" maxlength="250"></textarea>
+    </div>
+  </div>
+</fieldset>

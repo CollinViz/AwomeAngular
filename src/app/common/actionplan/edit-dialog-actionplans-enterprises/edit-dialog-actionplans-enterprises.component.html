@@ -1,0 +1,24 @@
+<div  >
+  <h4 class="modal-title pull-left">Maintain Activity</h4>
+   
+</div>
+<div  >
+  <form  #programForm="ngForm"    >
+    
+     <app-com-edit-action-plans [ActionPlan]="ActionPlanEdit" ></app-com-edit-action-plans>
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-4">
+        <button type="button" [ngClass]="{'btn':true,'btn-primary':programForm.form.valid ,'btn-block': true}" [disabled]="!programForm.form.valid" (click)="Save()">Save</button>
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-default btn-block" (click)="onNoClick()">Close</button>
+      </div>
+
+      <div class="col-2">
+      </div>
+    </div>
+      
+  </form>
+</div>

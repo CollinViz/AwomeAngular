@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import {EwepserverService} from '../../../ewepserver.service'
+=======
+import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import {EwepserverService} from '../../../ewepserver.service'
+
+>>>>>>> 49ecb805b41ccd64ee4c0f184039d94d65192e8e
 
 @Component({
   selector: 'app-search-baseline-cooperative-cooperative',
@@ -8,6 +15,7 @@ import {EwepserverService} from '../../../ewepserver.service'
   styles: []
 })
 export class SearchBaselineCooperativeCooperativeComponent implements OnInit {
+<<<<<<< HEAD
   search = {Name:"",Year_Established:"",Province:"Select",Legal_Structure:"Select",HiHRep:"Select",Sector:"Select"}
   Provinces =[];
   ActiveEDFs =[];
@@ -23,8 +31,39 @@ export class SearchBaselineCooperativeCooperativeComponent implements OnInit {
       this.ActiveEDFs = efflist.records;
     });
    }
+=======
+  search = {Name:"",Year_Established:""}
+   
+  HeadingInfo:string = "Baseline Info";
+  @Input() Heading?:string="";
+  @Input() hidAdd?:boolean=false;
+  @Output() filter:string ="";
+  @Output() SearchClick = new EventEmitter<string>();
+  @Output() NewClick = new EventEmitter<string>();
+  constructor() { }
+>>>>>>> 49ecb805b41ccd64ee4c0f184039d94d65192e8e
 
   ngOnInit() {
+    if(this.Heading){
+      if(this.Heading==""){
+        this.Heading = this.HeadingInfo;
+      }
+    }
+  }
+
+  searchClickint(){
+    let aFilter:string[]=[];
+    if(this.search.Name!=""){
+      aFilter.push("filter=Cooperative_Name,cs," + this.search.Name);
+    }
+    if(this.search.Year_Established!=""){
+      aFilter.push("filter=Year_Established,eq," + this.search.Year_Established);
+    } 
+    this.filter = aFilter.join("&"); 
+    this.SearchClick.emit(this.filter);
+  }
+  addClick(){
+    this.NewClick.emit("add");
   }
   searchClickint(){
     let aFilter:string[]=[];

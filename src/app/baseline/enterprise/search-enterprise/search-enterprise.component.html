@@ -1,5 +1,5 @@
 <div class="card border-primary mb-3">
-  <div class="card bg-primary text-white">List Enterprise - Baseline Info</div>
+  <div class="card bg-primary text-white">List Enterprise - {{Heading}}</div>
   <div class="card-body">
     <div class="row">
       <div class="col-xs-4 col-md-4">
@@ -104,8 +104,8 @@
           </div>
         </div>
   </div>
-  <div class="card-footer">
-      <button type="button" class="btn btn-primary">
+  <div class="card-footer" *ngIf="!hidAdd">
+      <button type="button" class="btn btn-primary" (click)="addClick()">
           Add Enterprise
         </button>
     </div>

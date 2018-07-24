@@ -1,0 +1,22 @@
+<div 
+  [class.bg-danger]="isRed(active)" [class.text-white]="(isRed(active) || isComplete(active)|| isThisMonth(active))" [class.bg-success]="isComplete(active)"
+  [class.bg-info]="isThisMonth(active)" class="card mb-3" >
+  <div class="card-header">{{active.Description}} &nbsp; &nbsp;
+    <a class="fas fa-trash float-right btn" (click)="deleteItem_()"></a>
+    <a class="far fa-edit float-right btn" (click)="editItem_()"></a> &nbsp; &nbsp;
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      Knowledge Area: {{active.Knowledge_Area}}
+      <br/> Date Created : {{active.Date_Created}}
+      <span class="float-right"> Last Update : {{active.Date_Updated}} </span>
+      <br/>
+      <span class="badge badge-primary badge-pill float-right">{{active.Status}}</span>
+      Target Date : {{getCorrectTargetDate(active)}}
+      <br>
+      <span *ngIf="active.Comp_Date">Complete Date : {{active.Target_Date}}</span>
+      <br> Comments: {{active.Comments}}
+
+    </p>
+  </div>
+</div>
