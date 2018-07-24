@@ -21,8 +21,9 @@ export class FormGroupMapVisitsCooperative {
   getCooperativeGeneralForm(cooperative:any){
 	let questions: QuestionBase<any>[] = [
 		new NumbersQuestion({
-			key: 'Year_Established', required: false,order: 3,
+			key: 'Year_Established', required: true,order: 3,
 			label: 'Year Established', value: cooperative.Year_Established,
+			min:1981,max:(new Date()).getFullYear()
 		}),
 		new DropdownQuestion({
 			key: 'Legal_Structure',  required: false, order: 4,
@@ -37,6 +38,7 @@ export class FormGroupMapVisitsCooperative {
 		new TextboxQuestion({
 			key: 'Registration_Number', required: false,order: 6,
 			label: 'Registration_Number', value: cooperative.Registration_Number,
+			max:50
 		}),
 		new NumbersQuestion({
 			key: 'Female_Owners', required: false,order: 6,

@@ -15,12 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
-  //baseURL = 'http://localhost:81/api.php/data/';
-  baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
-  //baseViewURL = 'http://localhost:81/api.php/';
-  CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
-  //CoreViewURL = 'http://localhost:81/ajax.php';
+  //baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
+  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+  //baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
+  baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
+  //CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
+  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
  
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),

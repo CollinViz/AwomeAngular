@@ -93,8 +93,9 @@ export class CustomFromHelperControlService {
               aValidation.push(Validators.min(q.min));
             }
           } 
-          group[q.key] = q.required ? new FormControl(q.value || '', aValidation)
-                                          : new FormControl(q.value || '');
+          //group[q.key] = q.required ? new FormControl(q.value || '', aValidation)
+          group[q.key] =  new FormControl(q.value || '', aValidation)
+                                        //  : new FormControl(q.value || '',aValidation);
           
         }
         
