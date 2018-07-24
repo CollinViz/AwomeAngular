@@ -75,12 +75,10 @@ import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/en
 import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
 import { EditLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/edit-loans-baseline-enterprise/edit-loans-baseline-enterprise.component';
 import { ListLoansBaselineEnterpriseComponent } from './baseline/enterprise/loans/list-loans-baseline-enterprise/list-loans-baseline-enterprise.component';
-<<<<<<< HEAD
 import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component';
 import { EditfrmVisitsCooperativeComponent } from './visits/cooperative/editfrm-visits-cooperative/editfrm-visits-cooperative.component';
 import { EditLoansBaselineCooperativeComponent } from './baseline/cooperative/loans/edit-loans-baseline-cooperative/edit-loans-baseline-cooperative.component';
 import { ListLoansBaselineCooperativeComponent } from './baseline/cooperative/loans/list-loans-baseline-cooperative/list-loans-baseline-cooperative.component'
-=======
 import { ComListActionPlanComponent } from './common/actionplan/com-list-action-plan/com-list-action-plan.component';
 import { ComListActionPlansActivityComponent } from './common/actionplan/com-list-action-plans-activity/com-list-action-plans-activity.component';
 import { ComEditActionPlansActivityComponent } from './common/actionplan/com-edit-action-plans-activity/com-edit-action-plans-activity.component';
@@ -88,8 +86,6 @@ import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/a
 import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
 import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
-import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/editfrm-visits-enterprise-enterprise/editfrm-visits-enterprise-enterprise.component'
->>>>>>> 49ecb805b41ccd64ee4c0f184039d94d65192e8e
 
 @NgModule({
   declarations: [
@@ -155,13 +151,10 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
     EditLoansBaselineEnterpriseComponent,
     ListLoansBaselineEnterpriseComponent,
-<<<<<<< HEAD
     EditfrmVisitsEnterpriseEnterpriseComponent,
     EditfrmVisitsCooperativeComponent,
     EditLoansBaselineCooperativeComponent,
-    ListLoansBaselineCooperativeComponent 
-=======
-
+    ListLoansBaselineCooperativeComponent,
     ComListActionPlanComponent,
     ComListActionPlansActivityComponent,
     ComEditActionPlansActivityComponent,
@@ -172,7 +165,6 @@ import { EditfrmVisitsEnterpriseEnterpriseComponent } from './visits/enterprise/
 
     EditfrmVisitsEnterpriseEnterpriseComponent 
 
->>>>>>> 49ecb805b41ccd64ee4c0f184039d94d65192e8e
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
     EditDialogActionplansEnterprisesComponent,
