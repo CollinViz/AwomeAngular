@@ -12,7 +12,7 @@ import { DeleteCheckComponent } from '../common/dialog/delete-check/delete-check
 export class CustomFromHelperControlService {
 
   constructor( public dialog: MatDialog) { }
-  showConfirmDelete(Message:string):Observable<any>{
+  showConfirmDelete(Message:string):Observable<showConfirmDeleteResult>{
     const dialogRef = this.dialog.open(DeleteCheckComponent, {
       data: Message
     });
@@ -158,3 +158,7 @@ export function forceValidate(ControlName:string,RequirerControls:{name:string,
   };
 }
 
+export interface showConfirmDeleteResult {
+  Result:string;
+  data:any
+}

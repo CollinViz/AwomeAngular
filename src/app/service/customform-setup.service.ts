@@ -376,6 +376,196 @@ export class CustomformSetupService {
 	];
 	return questions.sort((a, b) => a.order - b.order);
   }
+  getGoodsAndService(enterprise:any){
+	let questions: QuestionBase<any>[] = [ 
+		 
+		new CheckBoxQuestion({
+			key: 'Sector_1', required: false,order: 20,
+			label: 'Sector', value: '',
+			options: [
+				new CheckBoxOptions("Sec_Agri","Agriculture",enterprise.Sec_Agri),
+				new CheckBoxOptions("Sec_Manu","Manufacturing",enterprise.Sec_Manu),
+				new CheckBoxOptions("Sec_Minerals","Minerals",enterprise.Sec_Minerals),
+				new CheckBoxOptions("Sec_Arts","Arts & Crafts ",enterprise.Sec_Arts),
+				new CheckBoxOptions("Sec_General","General Services ",enterprise.Sec_General),
+				new CheckBoxOptions("Sec_Retail","Retail",enterprise.Sec_Retail),
+				new CheckBoxOptions("Sec_Other","Other",enterprise.Sec_Other) ,
+			]
+		}),
+		new TextboxQuestion({
+			key: 'Sec_Specify', required: false,order: 30,
+			label: 'Other (specify)', value: enterprise.Sec_Specify,
+		}), 
+		new CheckBoxQuestion({
+			key: 'Sector_1_Agriculture', required: false,order: 40,
+			label: 'Sub Sector: Agriculture', value: '',
+			options: [				
+				new CheckBoxOptions("Agri_Farming","Farming",enterprise.Agri_Farming),
+				new CheckBoxOptions("Agri_Animal"," Animal Husbandry",enterprise.Agri_Animal),
+				new CheckBoxOptions("Agri_Other","Other",enterprise.Agri_Other) 
+			]
+		}),
+		new TextboxQuestion({
+			key: 'Agri_Specify', required: false,order: 50,
+			label: 'Other (specify)', value: enterprise.Agri_Specify,
+		}),
+		new CheckBoxQuestion({
+			key: 'Sector_1_Manufacturing', required: false,order: 60,
+			label: 'Sub Sector: Manufacturing', value: '',
+			options: [				
+				new CheckBoxOptions("Manu_Chem","Chemicals",enterprise.Manu_Chem),
+				new CheckBoxOptions("Manu_Food","Food processing",enterprise.Manu_Food),
+				new CheckBoxOptions("Manu_Cloth","Clothing, Footwear, Textiles",enterprise.Manu_Cloth) ,
+				new CheckBoxOptions("Manu_Other","Other",enterprise.Manu_Other) 
+			]
+		}),
+		new TextboxQuestion({
+			key: 'Manu_Specify', required: false,order: 70,
+			label: 'Other (specify)', value: enterprise.Manu_Specify,
+		}),
+		new CheckBoxQuestion({
+			key: 'Sector_1_Retail', required: false,order: 80,
+			label: 'Sub Sector: Retail', value: '',
+			options: [				
+				new CheckBoxOptions("Retail_Dealer","General Dealer",enterprise.Retail_Dealer),
+				new CheckBoxOptions("Retail_Flea","Flea Market",enterprise.Retail_Flea),
+				new CheckBoxOptions("Retail_Foods","Foods",enterprise.Retail_Foods), 
+				new CheckBoxOptions("Retail_Vendor","Vending",enterprise.Retail_Vendor) ,
+				new CheckBoxOptions("Retail_X_Border","Cross Border Trading",enterprise.Retail_X_Border) ,
+				new CheckBoxOptions("Retail_Other","Other",enterprise.Retail_Other) 
+			]
+		}),
+		new TextboxQuestion({
+			key: 'Retail_Specify', required: false,order: 90,
+			label: 'Other (specify)', value: enterprise.Retail_Specify,
+		}),
+		new CheckBoxQuestion({
+			key: 'Sector_1_Minerals', required: false,order: 100,
+			label: 'Sub Sector: Minerals', value: '',
+			options: [				
+				new CheckBoxOptions("Mine_Small","Small scale mining",enterprise.Mine_Small),
+				new CheckBoxOptions("Mine_Other","Other",enterprise.Mine_Other)  
+			]
+		}),
+		new TextboxQuestion({
+			key: 'Mine_Specify', required: false,order: 110,
+			label: 'Other (specify)', value: enterprise.Mine_Specify,
+		}),
+		new CheckBoxQuestion({
+			key: 'Sector_1_ArtsAndCrafts', required: false,order: 100,
+			label: 'Sub Sector: Arts & Crafts', value: '',
+			options: [				
+				new CheckBoxOptions("Arts_Entertain","Entertainment",enterprise.Arts_Entertain),
+				new CheckBoxOptions("Arts_Pottery","Pottery",enterprise.Arts_Pottery),
+				new CheckBoxOptions("Arts_Beadwork","Beadwork",enterprise.Arts_Beadwork),
+				new CheckBoxOptions("Arts_Other","Other",enterprise.Arts_Other)  
+			]
+		}),
+		new TextboxQuestion({
+			key: 'Arts_Specify', required: false,order: 110,
+			label: 'Other (specify)', value: enterprise.Arts_Specify,
+		}),
+		new CheckBoxQuestion({
+			key: 'Sector_1_General', required: false,order: 120,
+			label: 'Sub Sector: General Services', value: '',
+			options: [				
+				new CheckBoxOptions("GS_Spaza","Spaza Shop ",enterprise.GS_Spaza),
+				new CheckBoxOptions("GS_Transport","Transport",enterprise.GS_Transport),
+				new CheckBoxOptions("GS_Tourism","Tourism",enterprise.GS_Tourism),
+				new CheckBoxOptions("GS_Creche","Creche",enterprise.GS_Creche),
+				new CheckBoxOptions("GS_Salon","Hair Salon / Beauty",enterprise.GS_Salon),
+				new CheckBoxOptions("GS_Other","Other",enterprise.GS_Other)  
+			]
+		}),
+		new TextboxQuestion({
+			key: 'GS_Specify', required: false,order: 130,
+			label: 'Other (specify)', value: enterprise.GS_Specify,
+		}),
+	];
+	return questions.sort((a, b) => a.order - b.order);
+  }
+  getContactInfoNonBinding(enterprise:any){
+	let questions: QuestionBase<any>[] = [ 
+		new TextboxQuestion({
+			key: 'Ward', required: false,order: 10,
+			label: 'Ward (number)', value: enterprise.Ward,
+		}),
+		new TextboxQuestion({
+			key: 'Address1', required: true,order: 20,
+			label: 'Address 1', value: enterprise.Address1,
+			max:50,min:3
+		}),
+		new TextboxQuestion({
+			key: 'Address2', required: false,order: 30,
+			label: 'Address 2', value: enterprise.Address2,
+		}),
+		new TextboxQuestion({
+			key: 'Village_Suburb', required: false,order: 40,
+			label: 'Village / Suburb', value: enterprise.Village_Suburb
+		}),
+		new TextboxQuestion({
+			key: 'City', required: false,order: 40,
+			label: 'City', value: enterprise.City,
+		}),
+		new NumbersQuestion({
+			key: 'PostalCode', required: true,order: 50,
+			label: 'Postal Code', value: enterprise.PostalCode,
+			max:9999,min:1
+		}),
+		new TextboxQuestion({
+			key: 'Phone', required: true,order: 60,
+			label: 'Landline Phone', value: enterprise.Phone,
+			max:10,min:1
+		}), 
+		new TextboxQuestion({
+			key: 'Mobile_Phone', required: true,order: 70,
+			label: 'Mobile', value: enterprise.Mobile_Phone,
+			max:10,min:1
+		}),
+		new NumbersQuestion({
+			key: 'GPS_Latitude', required: false,order: 80,
+			label: 'GPS Latitude', value: enterprise.GPS_Latitude,
+			max:360,min:-360
+		}),
+		new NumbersQuestion({
+			key: 'GPS_Longitude', required: false,order: 90,
+			label: 'GPS Longitude', value: enterprise.GPS_Longitude,
+			max:360,min:-360
+		}) 
+		];
+	return questions.sort((a, b) => a.order - b.order);
+  }
+  getContactInfoBinding(enterprise:any){
+	let questions: QuestionBase<any>[] = [ 
+		new DropdownQuestion({
+			key:"Province_ID",required:true,order:10,
+			label:"Province",value:enterprise.Province_ID,
+			options:this.ewepServer.province.map((value) =>new Options(value.Province_ID,value.Province_Name))
+		}),
+		new DropdownQuestion({
+			key:"District_Metro_ID",required:true,order:10,
+			label:"District / Metro",value:enterprise.District_Metro_ID,
+			options:this.ewepServer.districtMetro.filter((element)=>{
+					return element.Province_ID==enterprise.Province_ID;
+			}).map((value)=> new Options(value.DistrictMetro_ID,value.Name))
+		}),
+		new DropdownQuestion({
+			key:"Municipality_ID",required:true,order:10,
+			label:"Local Municipality",value:enterprise.Municipality_ID,
+			options:this.ewepServer.localMunicipality.filter((element)=>{
+					return element.DistrictMetro_ID==enterprise.District_Metro_ID;
+			}).map((value)=>new Options(value.LocalMunicipality_ID,value.Name))
+		}),
+		new DropdownQuestion({
+			key:"Main_Place_ID",required:true,order:10,
+			label:"Main Place",value:enterprise.Main_Place_ID,
+			options:this.ewepServer.mainPlaces.filter((element)=>{
+				return element.LocalMunicipality_ID == enterprise.Municipality_ID
+			}).map((value)=>new Options(value.MainPlace_ID,value.Name))
+		}),
+	];
+	return questions.sort((a, b) => a.order - b.order);
+  }
   ///---------------------------------------------------------------------------------------------------------------
   //
   //----------------------------------------------------------------------------------------------------------------
@@ -420,8 +610,8 @@ export class CustomformSetupService {
 				label: 'Address2', value: enterprise.Address2,
 			}),
 			new TextboxQuestion({
-				key: 'Village_Suburb_ID', required: false,order: 18,
-				label: 'Village_Suburb_ID', value: enterprise.Village_Suburb_ID,
+				key: 'Village_Suburb', required: false,order: 18,
+				label: 'Village_Suburb', value: enterprise.Village_Suburb_ID,
 			}),
 			new TextboxQuestion({
 				key: 'City', required: false,order: 19,

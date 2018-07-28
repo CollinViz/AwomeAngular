@@ -1,4 +1,4 @@
-import { OnInit,Component, Input } from '@angular/core';
+import { OnInit,Component, Input,Output ,EventEmitter} from '@angular/core';
 import { FormGroup,ValidationErrors }        from '@angular/forms';
 import { QuestionBase } from '../../../service/question-base'; 
 
@@ -11,6 +11,7 @@ import { QuestionBase } from '../../../service/question-base';
 export class GenBootUiComponent implements OnInit {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
+  @Output() selectionChange:EventEmitter<any> = new EventEmitter<any>();
   get listOfErrors()  : ValidationErrors | null{
     if(this.question.controlType=='checkboxGroup'){
       return null;
@@ -37,4 +38,7 @@ export class GenBootUiComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeSelection(event){
+    this.selectionChange.emit(event);
+  }
 }

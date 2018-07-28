@@ -85,7 +85,10 @@ import { ComEditActionPlansActivityComponent } from './common/actionplan/com-edi
 import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component';
 import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
-import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
+import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component';
+import { ListMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/list-member-baseline-enterprise/list-member-baseline-enterprise.component';
+import { EditMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
+import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component'
 
 @NgModule({
   declarations: [
@@ -163,7 +166,13 @@ import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.
     ComEditActionPlansComponent,
     DeleteCheckComponent,
 
-    EditfrmVisitsEnterpriseEnterpriseComponent 
+    EditfrmVisitsEnterpriseEnterpriseComponent,
+
+    ListMemberBaselineEnterpriseComponent,
+
+    EditMemberBaselineEnterpriseComponent,
+
+    ComEditContactComponent 
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,

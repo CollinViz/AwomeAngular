@@ -1,0 +1,23 @@
+<table class="table table-hover">   
+    <thead>            
+   <tr>
+     <th scope="col">Select</th>
+     <th scope="col">Name</th>
+     <th scope="col">Surname</th>
+     <th scope="col">Edit</th>
+     <th scope="col">Remove</th>
+   </tr>
+  </thead>
+  <tbody>
+      <tr class="table w-100" *ngFor="let row of rows;let i=index" (click)="SelectRow(row,i)">
+          <th scope="row" ><mat-checkbox id="row.Entrepreneur_ID" name="row.Entrepreneur_ID" 
+                        (click)="SelectRow(row,i)" 
+                        [checked]="row.selected"> </mat-checkbox></th>
+          <td  >{{row.Name}}</td>
+          <td  >{{row.Surname}}</td>
+          <td  ><button class="btn btn-info" (click)="editItem(row,i)">Edit</button></td>
+          <td  ><button class="btn btn-danger" (click)="deleteItem(row,i)">Remove</button></td>
+      </tr>
+  </tbody>
+ </table>
+

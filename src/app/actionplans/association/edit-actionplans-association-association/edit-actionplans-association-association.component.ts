@@ -159,7 +159,7 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
   actionDeleteClick(index){
     const strMessage = this.actionplans[index].Description;
     this.formHelper.showConfirmDelete(strMessage).subscribe(result=>{
-      if(result.Resulet==='Ok'){
+      if(result.Result==='Ok'){
         let strKey = this.activitylist.map(item=> item.Cooperative_Activity_ID).join(",");
         console.log("Delete key ",strKey);
         this.EwepserverService.deleteTableData(this.ActivityTable,strKey).subscribe(resalt=>{
@@ -229,7 +229,7 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
   deleteItem(index:number){
     const strMessage = this.activitylist[index].Description;
     this.formHelper.showConfirmDelete(strMessage).subscribe(result=>{
-      if(result.Resulet==='Ok'){
+      if(result.Result==='Ok'){
         this.EwepserverService.deleteTableData(this.ActivityTable,this.activitylist[index].Cooperative_Activity_ID).subscribe(deleteInfo=>{
            
           this.activitylist.slice(index,1);

@@ -1,0 +1,5 @@
+<div [formGroup]="form">
+    <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)" [question]="question" [form]="Details"></app-gen-boot-ui>
+                
+    <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Details"></app-gen-boot-ui>
+</div>
