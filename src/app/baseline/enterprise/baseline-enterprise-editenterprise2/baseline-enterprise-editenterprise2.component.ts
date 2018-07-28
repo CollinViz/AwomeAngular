@@ -2,10 +2,12 @@ import { ChangeDetectorRef,Component, OnInit,Pipe, PipeTransform,TemplateRef  } 
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { FormControl, FormGroup ,Validators} from '@angular/forms'; 
 import {EwepserverService} from '../../../ewepserver.service' 
-import { QuestionBase } from '../../../service/question-base'; 
+import { QuestionBase} from '../../../service/question-base'; 
+import { DropdownQuestion } from '../../../service/question-dropdown';
 import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
-import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
+import { Options } from '../../../service/question-helper';
+// /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 
 @Component({
   selector: 'app-baseline-enterprise-editenterprise2',
@@ -22,17 +24,23 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   Funds:QuestionBase<any>[];
   AccessToMarket:QuestionBase<any>[];
   AccessToTechnicalSkills:QuestionBase<any>[];
+  GoodsAndService:QuestionBase<any>[];
+  ContactInfo:QuestionBase<any>[];
+  ContactInfoWithBinding:QuestionBase<any>[];
+  
 
   enterprise:any={};
-  FlatMe:any={};
-  Provinces =[];
-  DistrictMetroAll =[];
-  DistrictMetro =[];
-  localMunicipalityAll =[];
-  localMunicipality =[];
+  EntrepreneursList:any[] = [];
+  EntrepreneurEditItem:any = {}; 
+  Defaultselected:any = {};
+  FlatMe:any={}; 
+  showEntrepreneursList:boolean = true;
+  
   showloading:boolean = true;
+  showloading_Entrepreneurs:boolean = false;
   FinanceLoans:any[] =[];
   FinanceLoans2:any[] =[];
+  
   newFinanceLoan:finance={finance_ID:0,enterprise_ID:0,Where_Apply:"",
                           Approved:false,Reject_Reason:"",Started_Repay:false,
                           How_Much:0.00,Amount_Issued:0.00,Repay_Amount:0.00};
@@ -41,26 +49,16 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   General:FormGroup;
   Employees:FormGroup;
   Finance: FormGroup;
+  Details: FormGroup;
+  
 
   constructor(private activatedRoute: ActivatedRoute,private router: Router,
               private EwepserverService: EwepserverService,private cutomerFormHlper: CustomFromHelperControlService,
               private controlsService:CustomformSetupService,
               private _cdr : ChangeDetectorRef ) { 
-    EwepserverService.getProvince().subscribe((customers:any)=>{
-      console.log(customers.records);
-      this.Provinces = customers.records; 
-    });
-    EwepserverService.getDistrictMetro().subscribe((customers:any)=>{
-      console.log(customers.records);
-      this.DistrictMetroAll = customers.records; 
-    });
-    EwepserverService.getlocalMunicipality().subscribe((customers:any)=>{
-      console.log(customers.records);
-      this.localMunicipalityAll = customers.records; 
-    });
+     
 
-  }
-
+  } 
   ngOnInit() {
     
     
@@ -74,6 +72,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
           this.EwepserverService.getEnterprisItem(params.Enterprise_ID).subscribe((customers:any)=>{
             //console.log(customers);
             this.enterprise = customers; 
+            this.EwepserverService.getViewData("enterprise_member_view","filter=Enterprise_ID,eq,"+params.Enterprise_ID).subscribe((member)=>{
+              this.EntrepreneursList = member.records;
+            });
             this.EwepserverService.getTableData("finance","filter=Enterprise_ID,eq,"+params.Enterprise_ID).subscribe((finance:any)=>{
               this.FinanceLoans = finance.records;
               this.OnDataOK();
@@ -115,17 +116,21 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.Funds = this.controlsService.getStatUpFunds(this.enterprise);
     this.AccessToMarket =this.controlsService.getAccessToMarket(this.enterprise); 
     this.AccessToTechnicalSkills = this.controlsService.getAccessToTechnicalSkills(this.enterprise); 
-    
-    
-    
+    this.GoodsAndService = this.controlsService.getGoodsAndService(this.enterprise);
+    this.ContactInfo = this.controlsService.getContactInfoNonBinding(this.enterprise);
+    this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding(this.enterprise);
+
     this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions,this.EmployeesQuestions,this.EmployeesMaleQuestions,this.EmployeesFemalePayQuestions,this.EmployeesMalePayQuestions);
     this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds,this.AccessToMarket,this.AccessToTechnicalSkills);
     this.Finance.setValidators([forceValidate("Training_Qtr",[{name:"What_Training"},{name:"Who_Traininig",min:4,max:25},
                                                              {name:"When_Training",min:4,max:25},
                                                              {name:"How_Know_Training" }])]);
+    this.Details = this.cutomerFormHlper.toFormGroup(this.GoodsAndService,this.ContactInfo,this.ContactInfoWithBinding);
+
     this.user.addControl("General",this.General);
     this.user.addControl("Employees",this.Employees);
     this.user.addControl("Finance",this.Finance);
+    this.user.addControl("Details",this.Details);
     this.showloading = false;
   }
 
@@ -209,7 +214,76 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.newFinanceLoan = this.FinanceLoans[Index];
     this.FinanceLoans.splice(Index,1);
   }
-  
+  AddNewEntrepreneur(){
+    //show control for add Enter
+    this.showEntrepreneursList = false;
+    this.EntrepreneurEditItem = {Name:"",Surname:""}; 
+  }
+  onSelectEntrepreneur(rowSelected){
+    console.log(rowSelected);
+  }
+  onEditEntrepreneur(RowEdit){
+    //console.log(RowEdit);
+    this.showloading_Entrepreneurs = true;
+    this.EwepserverService.getRowData("entrepreneur",RowEdit.Entrepreneur_ID).subscribe((entrepreneur)=>{
+      this.EntrepreneurEditItem = entrepreneur;
+      this.showEntrepreneursList = false;
+      this.showloading_Entrepreneurs = false;
+    });
+    
+  }
+  onSaveEntrepreneur(NewOrEditEntrepreneur:any){
+    this.showloading_Entrepreneurs= true;
+    //Test if we need to create or edit
+    if(NewOrEditEntrepreneur.Entrepreneur_ID==-1){
+      //create
+      delete NewOrEditEntrepreneur.Entrepreneur_ID;
+      this.EwepserverService.CreateTableData("entrepreneur",NewOrEditEntrepreneur).subscribe((newID)=>{
+        //Add user to Enterprise 
+        let newEntrepreneur = {Entrepreneur_ID:newID,Name:NewOrEditEntrepreneur.Name,Surname:NewOrEditEntrepreneur.Surname,
+                              Enterprise_ID:this.enterprise.Enterprise_ID};
+        this.EntrepreneursList.push(newEntrepreneur);
+        this.showloading_Entrepreneurs= false;
+        this.showEntrepreneursList = true;
+      });
+    }else{
+      //update
+      this.EwepserverService.updateTableData("entrepreneur",NewOrEditEntrepreneur.Entrepreneur_ID,NewOrEditEntrepreneur).subscribe((Data)=>{
+        //Find ID and update 
+        const OldValue = this.EntrepreneursList.find( x=> x.Entrepreneur_ID==NewOrEditEntrepreneur.Entrepreneur_ID); 
+        OldValue.Name=NewOrEditEntrepreneur.Name;
+        OldValue.Surname=NewOrEditEntrepreneur.Surname;
+        this.showloading_Entrepreneurs= false;
+        this.showEntrepreneursList = true;
+      })
+    } 
+  }
+  contaceDetailChange(event, Index) {
+    console.log(event, Index);
+    let d = <DropdownQuestion>this.ContactInfoWithBinding[Index];
+    let d1 = null;
+    switch (d.key) {
+      case "Province_ID":
+        d1 = <DropdownQuestion>this.ContactInfoWithBinding[Index + 1];
+        d1.options = this.EwepserverService.districtMetro.filter((element) => {
+          return element.Province_ID == event.value;
+        }).map((value) => new Options(value.DistrictMetro_ID, value.Name))
+        break;
+      case "District_Metro_ID":
+        d1 = <DropdownQuestion>this.ContactInfoWithBinding[Index + 1];
+        d1.options = this.EwepserverService.localMunicipality.filter((element) => {
+          return element.DistrictMetro_ID == event.value;
+        }).map((value) => new Options(value.LocalMunicipality_ID, value.Name))
+        break;
+      case "Municipality_ID":
+        d1 = <DropdownQuestion>this.ContactInfoWithBinding[Index + 1];
+        d1.options = this.EwepserverService.mainPlaces.filter((element) => {
+          return element.LocalMunicipality_ID == event.value
+        }).map((value) => new Options(value.MainPlace_ID, value.Name))
+        break;
+    }
+
+  }
 }
 
  

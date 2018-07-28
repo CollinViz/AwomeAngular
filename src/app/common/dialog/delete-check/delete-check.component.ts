@@ -16,9 +16,10 @@ export class DeleteCheckComponent implements OnInit {
   ngOnInit() {
   }
   CancelClick(){
-    this.dialogRef.close({Resulet:'Close',data:null});
+    this.dialogRef.close({Result:'Close',data:null});
   }
   OkClick(){
-    this.dialogRef.close({Resulet:'Ok',data:null});
+    this.dialogRef.close({Result:'Ok',data:null});
   }
 }
+//Result

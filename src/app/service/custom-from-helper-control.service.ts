@@ -12,7 +12,7 @@ import { DeleteCheckComponent } from '../common/dialog/delete-check/delete-check
 export class CustomFromHelperControlService {
 
   constructor( public dialog: MatDialog) { }
-  showConfirmDelete(Message:string):Observable<any>{
+  showConfirmDelete(Message:string):Observable<showConfirmDeleteResult>{
     const dialogRef = this.dialog.open(DeleteCheckComponent, {
       data: Message
     });
@@ -93,8 +93,9 @@ export class CustomFromHelperControlService {
               aValidation.push(Validators.min(q.min));
             }
           } 
-          group[q.key] = q.required ? new FormControl(q.value || '', aValidation)
-                                          : new FormControl(q.value || '');
+          //group[q.key] = q.required ? new FormControl(q.value || '', aValidation)
+          group[q.key] =  new FormControl(q.value || '', aValidation)
+                                        //  : new FormControl(q.value || '',aValidation);
           
         }
         
@@ -157,3 +158,7 @@ export function forceValidate(ControlName:string,RequirerControls:{name:string,
   };
 }
 
+export interface showConfirmDeleteResult {
+  Result:string;
+  data:any
+}

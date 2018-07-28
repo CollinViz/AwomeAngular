@@ -19,10 +19,7 @@ export class SearchEnterpriseComponent implements OnInit {
   @Output() NewClick = new EventEmitter<string>();
   constructor(private EwepserverService: EwepserverService) {
 
-    EwepserverService.getProvince().subscribe((customers:any)=>{
-      console.log(customers.records);
-      this.Provinces = customers.records; 
-    });
+    this.Provinces = EwepserverService.province; 
     EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
       this.ActiveEDFs = efflist.records;
     });

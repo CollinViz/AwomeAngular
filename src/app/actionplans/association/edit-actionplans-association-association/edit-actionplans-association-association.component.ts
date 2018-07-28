@@ -58,11 +58,11 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
     this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
     .subscribe((params: Params) => {
-      console.log(params.Cooperative_ID);
-      if(params.Cooperative_ID){
-        if(params.Cooperative_ID>0){
-          this.BaseDataID = params.Cooperative_ID;
-          this.EwepserverService.getRowData(this.BaseTable,params.Cooperative_ID).subscribe((customers:any)=>{
+      console.log(params.Association_ID);
+      if(params.Association_ID){
+        if(params.Association_ID>0){
+          this.BaseDataID = params.Association_ID;
+          this.EwepserverService.getRowData(this.BaseTable,params.Association_ID).subscribe((customers:any)=>{
             //console.log(customers);
             this.enterprise = customers; 
             this.getActionPlan();
@@ -125,7 +125,7 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
       //console.log('The dialog was closed',result);
       if(result.Resulet==='Save'){
         let newActionPlan = Object.assign({},result.data);
-         
+        newActionPlan[this.BaseTableID] = this.BaseDataID; 
         this.EwepserverService.CreateTableData(this.ActionPlanTable,
           newActionPlan).subscribe((outputinfo:any)=>{
             console.log(outputinfo);
@@ -159,7 +159,7 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
   actionDeleteClick(index){
     const strMessage = this.actionplans[index].Description;
     this.formHelper.showConfirmDelete(strMessage).subscribe(result=>{
-      if(result.Resulet==='Ok'){
+      if(result.Result==='Ok'){
         let strKey = this.activitylist.map(item=> item.Cooperative_Activity_ID).join(",");
         console.log("Delete key ",strKey);
         this.EwepserverService.deleteTableData(this.ActivityTable,strKey).subscribe(resalt=>{
@@ -192,7 +192,7 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
       if(result.Resulet==='Save'){
         //Fix Dates
         const selectitem = Object.assign({},result.data);
-        selectitem[this.ActionPlanID] = this.activeActionPlan[this.ActionPlanID];
+        selectitem[this.ActionPlanID] = this.activeActionPlan[this.ActionPlanID]; 
         selectitem.Date_Created = this.formHelper.getDateValue(new Date());
         //delete selectitem[this.ActionPlanID] 
         //this.activitylist[index] = selectitem;
@@ -229,7 +229,7 @@ export class EditActionplansAssociationAssociationComponent implements OnInit {
   deleteItem(index:number){
     const strMessage = this.activitylist[index].Description;
     this.formHelper.showConfirmDelete(strMessage).subscribe(result=>{
-      if(result.Resulet==='Ok'){
+      if(result.Result==='Ok'){
         this.EwepserverService.deleteTableData(this.ActivityTable,this.activitylist[index].Cooperative_Activity_ID).subscribe(deleteInfo=>{
            
           this.activitylist.slice(index,1);

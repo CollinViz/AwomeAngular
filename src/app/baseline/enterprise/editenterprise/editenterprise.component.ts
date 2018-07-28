@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {EwepserverService} from '../../../ewepserver.service'
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
-
 @Component({
   selector: 'app-editenterprise',
   templateUrl: './editenterprise.component.html',
@@ -18,7 +17,7 @@ export class EditenterpriseComponent implements OnInit {
   localMunicipalityAll =[];
   localMunicipality =[];
   constructor(private activatedRoute: ActivatedRoute,private router: Router,private EwepserverService: EwepserverService) { 
-    EwepserverService.getProvince().subscribe((customers:any)=>{
+    /*EwepserverService.getProvince().subscribe((customers:any)=>{
       console.log(customers.records);
       this.Provinces = customers.records; 
     });
@@ -30,7 +29,7 @@ export class EditenterpriseComponent implements OnInit {
       console.log(customers.records);
       this.localMunicipalityAll = customers.records; 
     });
-
+*/
   }
 
   ngOnInit() {
