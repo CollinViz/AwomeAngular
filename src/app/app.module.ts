@@ -86,6 +86,7 @@ import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/a
 import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
 import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component';
+<<<<<<< HEAD
 import { BaselineCoopEditcoop2Component } from './baseline/coop/baseline-coop-editcoop2/baseline-coop-editcoop2.component';
 import { EditcoopComponent } from './baseline/coop/editcoop/editcoop.component';
 import { EditcoopCoopComponent } from './baseline/coop/editcoop-coop/editcoop-coop.component';
@@ -93,6 +94,9 @@ import { ListcoopComponent } from './baseline/coop/listcoop/listcoop.component';
 import { SearchCoopComponent } from './baseline/coop/search-coop/search-coop.component';
 import { EditLoansBaselineCoopComponent } from './baseline/coop/loans/edit-loans-baseline-coop/edit-loans-baseline-coop.component';
 import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans-baseline-coop/list-loans-baseline-coop.component'
+import { EditMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
+import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component'
+>>>>>>> c0a6a322eef8fa8dff4028f465fdbff98642e2fa
 
 @NgModule({
   declarations: [
@@ -172,6 +176,7 @@ import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans
 
     EditfrmVisitsEnterpriseEnterpriseComponent,
 
+<<<<<<< HEAD
     BaselineCoopEditcoop2Component,
 
     EditcoopComponent,
@@ -185,6 +190,13 @@ import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans
     EditLoansBaselineCoopComponent,
 
     ListLoansBaselineCoopComponent 
+=======
+    ListMemberBaselineEnterpriseComponent,
+
+    EditMemberBaselineEnterpriseComponent,
+
+    ComEditContactComponent 
+>>>>>>> c0a6a322eef8fa8dff4028f465fdbff98642e2fa
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,

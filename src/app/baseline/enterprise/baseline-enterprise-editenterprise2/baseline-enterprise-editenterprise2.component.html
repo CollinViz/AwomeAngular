@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-xs-6 col-md-6">
-             
+
             <div class="control-group">
               <label class="control-label" for="txtEnterprise_ID">Enterprise ID</label>
               <div class="controls">
@@ -26,13 +26,13 @@
             </div>
           </div>
           <div class="col-xs-6 col-md-6">
-            
-            <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':user.valid  }" [disabled]="!user.valid" >Save</button>
+
+            <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':user.valid  }" [disabled]="!user.valid">Save</button>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-6 col-md-6">
-            
+
 
           </div>
         </div>
@@ -46,7 +46,7 @@
               <!--- General Information Start  -->
 
               <div class="card-header">General Information</div>
-              <div class="card-body" >
+              <div class="card-body">
 
                 <app-gen-boot-ui *ngFor="let question of GeneralQuestions" [question]="question" [form]="General"></app-gen-boot-ui>
 
@@ -54,86 +54,99 @@
               <!--- </app-gen-boot-ui> General Information end  -->
             </div>
           </div>
-          <div class="col-3" [formGroup]="Employees">
-            <div class="card border-light mb-3">
-              <!--- General Information Start  -->
+          <div class="col-9" [formGroup]="Employees">
+            <div class="row">
+              <div class="col-3">
+                <div class="card border-light mb-3">
+                  <!--- General Information Start  -->
 
-              <div class="card-header">No of Female Full Time (Employees)</div>
-              <div class="card-body" >
+                  <div class="card-header">No of Female Full Time (Employees)</div>
+                  <div class="card-body">
 
-                <app-gen-boot-ui *ngFor="let question of EmployeesFemaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
+                    <app-gen-boot-ui *ngFor="let question of EmployeesFemaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
+                  </div>
+                  <!--- </app-gen-boot-ui> General Information end  -->
+                </div>
               </div>
-              <!--- </app-gen-boot-ui> General Information end  -->
-            </div>
-            <div class="card border-light mb-3">
-              <!--- General Information Start  -->
+              <div class="col-3">
+                <div class="card border-light mb-3">
+                  <!--- General Information Start  -->
 
-              <div class="card-header">No of Male Full Time (Employees)</div>
-              <div class="card-body" >
+                  <div class="card-header">No of Male Full Time (Employees)</div>
+                  <div class="card-body">
 
-                <app-gen-boot-ui *ngFor="let question of EmployeesMaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
+                    <app-gen-boot-ui *ngFor="let question of EmployeesMaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
+                  </div>
+                  <!--- </app-gen-boot-ui> General Information end  -->
+                </div>
               </div>
-              <!--- </app-gen-boot-ui> General Information end  -->
-            </div>
-            <div class="card border-light mb-3">
-              <!--- General Information Start  -->
+              <div class="col-3">
+                <div class="card border-light mb-3">
+                  <!--- General Information Start  -->
 
-              <div class="card-header">No of Female Part Time</div>
-              <div class="card-body" >
+                  <div class="card-header">No of Female Part Time</div>
+                  <div class="card-body">
 
-                <app-gen-boot-ui *ngFor="let question of EmployeesFemalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
+                    <app-gen-boot-ui *ngFor="let question of EmployeesFemalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
+                  </div>
+                  <!--- </app-gen-boot-ui> General Information end  -->
+                </div>
               </div>
-              <!--- </app-gen-boot-ui> General Information end  -->
-            </div>
-            <div class="card border-light mb-3">
-              <!--- General Information Start  -->
+              <div class="col-3">
+                <div class="card border-light mb-3">
+                  <!--- General Information Start  -->
 
-              <div class="card-header">No of Male Part Time</div>
-              <div class="card-body" >
+                  <div class="card-header">No of Male Part Time</div>
+                  <div class="card-body">
 
-                <app-gen-boot-ui *ngFor="let question of EmployeesMalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
+                    <app-gen-boot-ui *ngFor="let question of EmployeesMalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
+                  </div>
+                  <!--- </app-gen-boot-ui> General Information end  -->
+                </div>
               </div>
-              <!--- </app-gen-boot-ui> General Information end  -->
-            </div>
-            <div class="card border-light mb-3">
-              <!--- General Information Start  -->
+              <div class="col-3">
+                <div class="card border-light mb-3">
+                  <!--- General Information Start  -->
 
-              <div class="card-header">Number of people in age range</div>
-              <div class="card-body" >
+                  <div class="card-header">Number of people in age range</div>
+                  <div class="card-body">
 
-                <app-gen-boot-ui *ngFor="let question of EmployeesQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
+                    <app-gen-boot-ui *ngFor="let question of EmployeesQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
 
+                  </div>
+                  <!--- </app-gen-boot-ui> General Information end  -->
+                </div>
               </div>
-              <!--- </app-gen-boot-ui> General Information end  -->
+
             </div>
           </div>
         </div>
       </tab>
-      <tab heading="Enterprise Development / Finance Information" class="mt-2" [formGroup]="Finance" >
+      <tab heading="Enterprise Development / Finance Information" class="mt-2" [formGroup]="Finance">
         <div class="row">
           <div class="col-xs-6 col-md-6">
-              <div class="card border-light mb-3">
-                  <!--- Source of Startup Funds  -->
-    
-                  <div class="card-header">Source of Startup Funds</div>
-                  <div class="card-body" >
-    
-                    <app-gen-boot-ui *ngFor="let question of Funds" [question]="question" [form]="Finance"></app-gen-boot-ui>
-    
-                  </div>
-                  <!---  Source of Startup Funds end  -->
-                </div>
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Source of Startup Funds</div>
+              <div class="card-body">
+
+                <app-gen-boot-ui *ngFor="let question of Funds" [question]="question" [form]="Finance"></app-gen-boot-ui>
+
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
           </div>
-          <div class="col-xs-6 col-md-6">            
+          <div class="col-xs-6 col-md-6">
             <div class="card border-light mb-3">
               <!--- Source of Startup Funds  -->
 
               <div class="card-header">Access to Markets</div>
-              <div class="card-body" >
+              <div class="card-body">
 
                 <app-gen-boot-ui *ngFor="let question of AccessToMarket" [question]="question" [form]="Finance"></app-gen-boot-ui>
 
@@ -144,36 +157,87 @@
               <!--- Source of Startup Funds  -->
 
               <div class="card-header">Access to Technical Skills</div>
-              <div class="card-body" >
+              <div class="card-body">
 
                 <app-gen-boot-ui *ngFor="let question of AccessToTechnicalSkills" [question]="question" [form]="Finance"></app-gen-boot-ui>
 
               </div>
               <!---  Source of Startup Funds end  -->
             </div>
-            
+
           </div>
         </div>
       </tab>
-      <tab heading="Loans" class="mt-2"   >
+      <tab heading="Loans" class="mt-2">
         <div class="row">
           <div class="col-12">
             <div class="card border-light mb-3">
               <!--- Source of Startup Funds  -->
 
-              <div class="card-header">Loan  </div>
-              <div class="card-body" >
-                <app-edit-loans-baseline-enterprise 
-                [finance]="newFinanceLoan" (addFinance)="addnewFinance($event)" ></app-edit-loans-baseline-enterprise>
-                
+              <div class="card-header">Loan </div>
+              <div class="card-body">
+                <app-edit-loans-baseline-enterprise [finance]="newFinanceLoan" (addFinance)="addnewFinance($event)"></app-edit-loans-baseline-enterprise>
+
                 <app-list-loans-baseline-enterprise [rows]="FinanceLoans" (ItemClick)="financeRowClick($event)"></app-list-loans-baseline-enterprise>
               </div>
               <!---  Source of Startup Funds end  -->
             </div>
           </div>
           <div class="col-6">
-            
+
           </div>
+        </div>
+      </tab>
+      <tab heading="Enterprise Details Information" class="mt-2" [formGroup]="Details">
+        <div class="row">
+          <div class="col-3">
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Goods or Services</div>
+              <div class="card-body">
+                <app-gen-boot-ui *ngFor="let question of GoodsAndService" [question]="question" [form]="Details"></app-gen-boot-ui>
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Contact Information</div>
+              <div class="card-body">
+
+                <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)"
+                  [question]="question" [form]="Details"></app-gen-boot-ui>
+
+                <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Details"></app-gen-boot-ui>
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab heading="Entrepreneurs Information" class="mt-2">
+        <div class="row">
+          <button *ngIf="showEntrepreneursList" class="btn btn-primary" (click)="AddNewEntrepreneur()">Add Entrepreneur</button>
+          <button *ngIf="!showEntrepreneursList" (click)="showEntrepreneursList=true" class="btn btn-primary">Back</button>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="showloading_Entrepreneurs">
+              <mat-spinner></mat-spinner>
+            </div>
+            <div *ngIf="showEntrepreneursList; else editCurrentEntrepreneursList">
+              <app-list-member-baseline-enterprise [rows]="EntrepreneursList" [(selected)]="Defaultselected" (rowSelect)="onSelectEntrepreneur($event)"
+                (rowEdit)="onEditEntrepreneur($event)"></app-list-member-baseline-enterprise>
+            </div>
+          </div> 
+          <ng-template #editCurrentEntrepreneursList>
+            <app-edit-member-baseline-enterprise [entrepreneur]="EntrepreneurEditItem" 
+                        (SaveItem)="onSaveEntrepreneur($event)">
+            </app-edit-member-baseline-enterprise>
+          </ng-template>
         </div>
       </tab>
     </tabset>

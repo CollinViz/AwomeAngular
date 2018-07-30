@@ -44,17 +44,13 @@ export class UserPageComponent implements OnInit {
     this.showEdit = false;
   }
   getLookupData(){
-    this.EwepserverService.getProvince().subscribe((provincedb:any)=>{
-      console.log("Province : ",provincedb);
-      this.Province = provincedb.records;
-      console.log("this.Province : ",this.Province);
-      this.EwepserverService.getTableData("titles","").subscribe((TitleDb)=>{
-        this.Titles = TitleDb.records;
-        this.EwepserverService.getTableData("programme","filter=Active,eq,1").subscribe((programdb:any)=>{
-          this.Programme = programdb.records;
-        });
-      });
-    });
+    this.Province = this.EwepserverService.province;
+     
+    this.EwepserverService.getTableData("titles","").subscribe((TitleDb)=>{
+      this.Titles = TitleDb.records;
+      this.EwepserverService.getTableData("programme","filter=Active,eq,1").subscribe((programdb:any)=>{
+        this.Programme = programdb.records;
+      }); });
   }
   setPage(event) {
     console.log('setPage', event);

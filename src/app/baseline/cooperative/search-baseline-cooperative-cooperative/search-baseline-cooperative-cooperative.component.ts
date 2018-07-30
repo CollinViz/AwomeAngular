@@ -23,10 +23,8 @@ export class SearchBaselineCooperativeCooperativeComponent implements OnInit {
   
   constructor(private EwepserverService: EwepserverService) {
 
-    EwepserverService.getProvince().subscribe((customers:any)=>{
-      console.log(customers.records);
-      this.Provinces = customers.records; 
-    });
+    this.Provinces = this.EwepserverService.province; 
+    
     EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
       this.ActiveEDFs = efflist.records;
     });

@@ -47,7 +47,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
               private EwepserverService: EwepserverService,private cutomerFormHlper: CustomFromHelperControlService,
               private controlsService:CustomformSetupService,
               private _cdr : ChangeDetectorRef ) { 
-    EwepserverService.getProvince().subscribe((customers:any)=>{
+    /*EwepserverService.getProvince().subscribe((customers:any)=>{
       console.log(customers.records);
       this.Provinces = customers.records; 
     });
@@ -58,7 +58,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     EwepserverService.getlocalMunicipality().subscribe((customers:any)=>{
       console.log(customers.records);
       this.localMunicipalityAll = customers.records; 
-    });
+    });*/
 
   }
 

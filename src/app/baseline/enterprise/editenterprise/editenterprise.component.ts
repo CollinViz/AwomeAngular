@@ -29,7 +29,7 @@ export class EditenterpriseComponent implements OnInit {
       console.log(customers.records);
       this.localMunicipalityAll = customers.records; 
     });
-
+*/
   }
 
   ngOnInit() {

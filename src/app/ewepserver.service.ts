@@ -34,16 +34,23 @@ export class EwepserverService {
                               new Options("NPO","NPO"),
                               new Options("Other","Other")]; 
   MonthDropDown:Options[] = Array(1,2,3,4,5,6,7,8,9,10,11,12).map((item)=>new Options(item,item));
+  Language:Options[] = ["English","Afrikaans","Ndebele","Sepedi","SeSotho","Swati","Tsonga","Tswana","Venda","Xhosa","Zulu"].map((item)=>new Options(item,item));
+  Race:Options[] = ["Black","White","Coloured","Indian","Asian","Other"].map((item)=>new Options(item,item));
+  Sex:Options[] = ["Female","Male","Other"].map((item)=>new Options(item,item));
+  MaritalStatus:Options[] = ["Single","Married","Divorced","Widowed"].map((item)=>new Options(item,item));
+  EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
+  
   UserLoginObjAnnounced$ = this.UserLoginObj.asObservable();
-  Province: any = [];
-  Districtmetro: any[] = [];
-  localmunicipality
+  province: Province[] = [];
+  districtMetro: DistrictMetro[] = [];
+  localMunicipality:LocalMunicipality[] = [];
+  mainPlaces:MainPlace[] = [];
   constructor(private http: HttpClient) {
     console.log("New Instance created");
-    //this._getProvinceLoadLocal();
+    this._getProvinceLoadLocal();
     this._getdistrictmetroLoadLocal();
-    //this._getlocalmunicipalityLoadLocal();
-     
+    this._getlocalmunicipalityLoadLocal();
+    this._getMainplace(); 
   }
 
   getViewData(ViewName:string,Options:string=""){
@@ -78,7 +85,7 @@ export class EwepserverService {
   }
 
 
-  getProvince() {
+  /*getProvince() {
     return this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions);
   }
   getDistrictMetro() {
@@ -89,12 +96,12 @@ export class EwepserverService {
   }
   getMainplace(LocalMunicipality_ID: number) {
     return this.http.get<any>(this.baseURL + "mainplace?orderby=LocalMunicipality_ID&filter=LocalMunicipality_ID,eq,"+LocalMunicipality_ID, httpOptions);
-  }
+  }*/
   private _getProvinceLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions).subscribe((customers: any) => {
-      console.log(customers.records);
-      this.Province = [...customers.records];
+      //console.log(customers.records);
+      this.province = <Province[]>customers.records;
     });
   }
 
@@ -102,15 +109,22 @@ export class EwepserverService {
   private _getdistrictmetroLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "districtmetro?order=Province_ID", httpOptions).subscribe((customers: any) => {
-      console.log(customers.records);
-      this.Districtmetro = [...customers.records];
+      //console.log(customers.records);
+      this.districtMetro = <DistrictMetro[]>customers.records;
     });
   }
   private _getlocalmunicipalityLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "localmunicipality?order=DistrictMetro_ID", httpOptions).subscribe((customers: any) => {
-      console.log(customers.records);
-      this.localmunicipality = [...customers.records];
+      //console.log(customers.records);
+      this.localMunicipality = <LocalMunicipality[]>customers.records;
+    });
+  }
+  private _getMainplace() {
+    //province
+    this.http.get<any>(this.baseURL + "mainplace?orderby=LocalMunicipality_ID", httpOptions).subscribe((customers: any) => {
+      //console.log(customers.records);
+      this.mainPlaces = <MainPlace[]>customers.records;
     });
   }
   getActiveEDF() {
@@ -119,7 +133,7 @@ export class EwepserverService {
   }
   getEnterprisList(PageNumber: number,FilterOptions:string) {
 
-    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?enterprise?order=Enterprise_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions);
+    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?order=Enterprise_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions);
   }
 
   getCooperativeList(PageNumber: number,FilterOptions:string) {
@@ -164,4 +178,30 @@ export class EwepserverService {
     return throwError(
       'Something bad happened; please try again later.');
   };
+}
+
+export interface Province {
+  Province_ID:number,
+  Province_Name:string,
+  Country_ID:number
+}
+export interface LocalMunicipality{
+  LocalMunicipality_ID:number
+  DistrictMetro_ID:number,
+  Name:string,
+  Code:string,
+  City:string
+}
+
+export interface MainPlace {
+  MainPlace_ID:number,
+  LocalMunicipality_ID:number,
+  Name:string,
+  Code:string
+}
+export interface DistrictMetro{
+  DistrictMetro_ID:number,
+  Province_ID:number,
+  Name:string,
+  Code:string
 }
