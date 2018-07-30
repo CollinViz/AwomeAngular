@@ -85,7 +85,14 @@ import { ComEditActionPlansActivityComponent } from './common/actionplan/com-edi
 import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises-enterprises/edit-dialog-actionplans-enterprises-enterprises.component';
 import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
-import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component'
+import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component';
+import { BaselineCoopEditcoop2Component } from './baseline/coop/baseline-coop-editcoop2/baseline-coop-editcoop2.component';
+import { EditcoopComponent } from './baseline/coop/editcoop/editcoop.component';
+import { EditcoopCoopComponent } from './baseline/coop/editcoop-coop/editcoop-coop.component';
+import { ListcoopComponent } from './baseline/coop/listcoop/listcoop.component';
+import { SearchCoopComponent } from './baseline/coop/search-coop/search-coop.component';
+import { EditLoansBaselineCoopComponent } from './baseline/coop/loans/edit-loans-baseline-coop/edit-loans-baseline-coop.component';
+import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans-baseline-coop/list-loans-baseline-coop.component'
 
 @NgModule({
   declarations: [
@@ -163,7 +170,21 @@ import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.
     ComEditActionPlansComponent,
     DeleteCheckComponent,
 
-    EditfrmVisitsEnterpriseEnterpriseComponent 
+    EditfrmVisitsEnterpriseEnterpriseComponent,
+
+    BaselineCoopEditcoop2Component,
+
+    EditcoopComponent,
+
+    EditcoopCoopComponent,
+
+    ListcoopComponent,
+
+    SearchCoopComponent,
+
+    EditLoansBaselineCoopComponent,
+
+    ListLoansBaselineCoopComponent 
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
@@ -196,6 +217,10 @@ import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.
       path: 'baseline/enterprise/:Enterprise_ID',
       component: BaselineEnterpriseEditenterprise2Component
     },
+    {
+      path: 'baseline/cooperative/:Cooperative_ID',
+      component: BaselineCoopEditcoop2Component 
+    },
     { 
       path:'admin',
       component:AdminPageComponent
@@ -218,7 +243,9 @@ import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.
     },
     { 
       path:'baseline/cooperative',
-      component:BaselineCooperativePageComponent
+      //component:BaselineCooperativePageComponent
+      component:ListcoopComponent
+
     },
     { 
       path:'baseline/association',
