@@ -86,6 +86,13 @@ import { EditDialogActionplansEnterprisesEnterprisesComponent } from './common/a
 import { EditDialogActionplansEnterprisesComponent } from './common/actionplan/edit-dialog-actionplans-enterprises/edit-dialog-actionplans-enterprises.component';
 import { ComEditActionPlansComponent } from './common/actionplan/com-edit-action-plans/com-edit-action-plans.component';
 import { DeleteCheckComponent } from './common/dialog/delete-check/delete-check.component';
+import { BaselineCoopEditcoop2Component } from './baseline/coop/baseline-coop-editcoop2/baseline-coop-editcoop2.component';
+import { EditcoopComponent } from './baseline/coop/editcoop/editcoop.component';
+import { EditcoopCoopComponent } from './baseline/coop/editcoop-coop/editcoop-coop.component';
+import { ListcoopComponent } from './baseline/coop/listcoop/listcoop.component';
+import { SearchCoopComponent } from './baseline/coop/search-coop/search-coop.component';
+import { EditLoansBaselineCoopComponent } from './baseline/coop/loans/edit-loans-baseline-coop/edit-loans-baseline-coop.component';
+import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans-baseline-coop/list-loans-baseline-coop.component'
 import { ListMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/list-member-baseline-enterprise/list-member-baseline-enterprise.component';
 import { EditMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
 import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component'
@@ -168,6 +175,19 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
 
     EditfrmVisitsEnterpriseEnterpriseComponent,
 
+    BaselineCoopEditcoop2Component,
+
+    EditcoopComponent,
+
+    EditcoopCoopComponent,
+
+    ListcoopComponent,
+
+    SearchCoopComponent,
+
+    EditLoansBaselineCoopComponent,
+
+    ListLoansBaselineCoopComponent ,
     ListMemberBaselineEnterpriseComponent,
 
     EditMemberBaselineEnterpriseComponent,
@@ -205,6 +225,10 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
       path: 'baseline/enterprise/:Enterprise_ID',
       component: BaselineEnterpriseEditenterprise2Component
     },
+    {
+      path: 'baseline/cooperative/:Cooperative_ID',
+      component: BaselineCoopEditcoop2Component 
+    },
     { 
       path:'admin',
       component:AdminPageComponent
@@ -227,7 +251,9 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     },
     { 
       path:'baseline/cooperative',
-      component:BaselineCooperativePageComponent
+      //component:BaselineCooperativePageComponent
+      component:ListcoopComponent
+
     },
     { 
       path:'baseline/association',
@@ -256,6 +282,10 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     { 
       path:'visits/cooperative/:Cooperative_ID',
       component:EditVisitsCooperativeCooperativeComponent
+    },
+    {
+      path:'visits/cooperative/:Cooperative_Visit_ID',
+      component:EditfrmVisitsCooperativeComponent
     },
     { 
       path:'visits/association',

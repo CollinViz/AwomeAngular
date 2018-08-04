@@ -1,0 +1,323 @@
+
+<form #programForm="ngForm" >
+  <div class="card text-white bg-info mb-3">
+    <div class="card-header">Header Information</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-6 col-md-6">
+          <div class="control-group">
+            <label class="control-label" for="txtCooperative_ID">Cooperative ID</label>
+            <div class="controls">
+              <input readonly [(ngModel)]="cooperative.Cooperative_ID" id="txtCooperative_ID" name="txtCooperative_ID" type="text" placeholder="Cooperative_ID"
+                ngClass="form-control">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="txtCooperative_Name">Cooperative Name</label>
+            <div class="controls">
+              <input [(ngModel)]="cooperative.Cooperative_Name" id="txtCooperative_Name" name="txtCooperative_Name" type="text" placeholder="Cooperative_Name"
+                ngClass="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <div class="control-group">
+            <label class="control-label" for="txtStatus">Status :</label>
+            <mat-form-field>
+              <mat-select [(ngModel)]="cooperative.Status" name="txtStatus">
+                <mat-option>Select</mat-option>
+                <mat-option value="New">New</mat-option>
+                <mat-option value="Pending Approval">Pending Approval</mat-option>
+                <mat-option value="Active">Active</mat-option>
+                <mat-option value="Pending Deactivation">Pending Deactivation</mat-option>
+                <mat-option value="Deactivated">Deactivated</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="txtApprover_ID">Approver_ID</label>
+            <div class="controls">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="txtIs_Active"> </label>
+  
+            <mat-slide-toggle name="txtIs_Active" [(ngModel)]="cooperative.Is_Active">Active </mat-slide-toggle>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <tabset type="pills" class="bg-info">
+    <tab heading="General Information" class="mt-2">
+      <div class="row">
+        <div class="col-xs-6 col-md-6">
+          <div class="card border-light mb-3">
+            <!--- General Information Start  -->
+            <div class="card-header">General Information</div>
+            <div class="card-body">
+  
+  
+              <div class="control-group">
+                <label class="control-label" for="txtYear_Established">Year Established</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Year_Established" id="txtYear_Established" name="txtYear_Established" type="text" placeholder="Year_Established"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtLegal_Structure">Legal Structure</label>
+                <div class="controls">
+                  <mat-form-field>
+                    <mat-select [(ngModel)]="cooperative.Legal_Structure" name="txtLegal_Structure">
+                      <mat-option>Select</mat-option>
+                      <mat-option value="Cooperative">Cooperative</mat-option>
+                      <mat-option value="Partnership">Partnership</mat-option>
+                      <mat-option value="Private Company">Private Company</mat-option>
+                      <mat-option value="Sole Proprietor">Sole Proprietor</mat-option>
+                      <mat-option value="Trust">Trust</mat-option>
+                      <mat-option value="Close Corporation">Close Corporation</mat-option>
+                      <mat-option value="Not Registered">Not Registered</mat-option>
+                      <mat-option value="NPO">NPO</mat-option>
+                      <mat-option value="Other">Other</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtRegistration_Number">Registration_Number</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Registration_Number" id="txtRegistration_Number" name="txtRegistration_Number" type="text"
+                    placeholder="Registration_Number" ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtFemale_Owners">No of Female Owners</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Female_Owners" id="txtFemale_Owners" name="txtFemale_Owners" type="text" placeholder="Female_Owners"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtMale_Owners">No of Male Owners</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Male_Owners" id="txtMale_Owners" name="txtMale_Owners" type="text" placeholder="Male_Owners"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group row">
+  
+                <label class="control-label col-8" for="txtLocation_Same">Is location same as residence? </label>
+                <div class="col-4">
+                  <mat-slide-toggle name="txtLocation_Same" [(ngModel)]="cooperative.Location_Same"> </mat-slide-toggle>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtPremise_Own">Premise ownership</label>
+                <div class="controls">
+                <mat-form-field>
+                  <mat-select [(ngModel)]="cooperative.Premise_Own" name="txtPremise_Own">
+                    <mat-option value="Owned">Owned</mat-option>
+                    <mat-option value="Rented">Rented</mat-option>
+                    <mat-option value="Co-tenant">Co-tenant</mat-option>
+                    <mat-option value="Other">Other</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              </div>
+              <div class="control-group row">
+                <label class="control-label col-8" for="txtFamily_Owned">Is business family owned?</label>
+                <div class="col-4">
+                  <mat-slide-toggle name="txtFamily_Owned" [(ngModel)]="cooperative.Family_Owned"> </mat-slide-toggle>
+                </div>
+              </div>
+              <div class="control-group ">
+  
+  
+                <mat-slide-toggle name="txtFamily_Owned" [(ngModel)]="cooperative.Group_Owned">Is business Group owned?</mat-slide-toggle>
+  
+              </div>
+              <!--- General Information End  -->
+            </div>
+  
+          </div>
+  
+  
+  
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <div class="card border-light mb-3">
+            <div class="card-header">Contact Information</div>
+            <div class="card-body">
+              <!-- Contact Information  Start -->
+              <div class="control-group">
+                <label class="control-label" for="txtProvince_ID">Province</label>
+                <div class="controls">
+                <mat-form-field>
+                  <mat-select [(ngModel)]="cooperative.Province_ID" name="txtProvince_ID">
+                    <mat-option *ngFor="let Province_ID of Provinces" [value]="Province_ID.Province_ID">{{Province_ID.Province_Name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtDistrict_Metro_ID">District / Metro</label>
+                <div class="controls">
+                    <mat-form-field>
+                  <mat-select [(ngModel)]="cooperative.District_Metro_ID" name="txtDistrict_Metro_ID">
+                    <mat-option *ngFor="let District_Metro of DistrictMetroAll | districtMetro:cooperative.Province_ID" [value]="District_Metro.DistrictMetro_ID">{{District_Metro.Name}}</mat-option>
+                  </mat-select>
+                   </mat-form-field>
+                </div>
+              </div>
+  
+              <div class="control-group">
+                <label class="control-label" for="txtMunicipality_ID">Local Municipality</label>
+                <div class="controls">
+                    <mat-form-field>
+                  <mat-select [(ngModel)]="cooperative.Municipality_ID" name="txtMunicipality_ID">
+                    <mat-option *ngFor="let Municipality_ID of localMunicipalityAll | municipality:cooperative.District_Metro_ID" [value]="Municipality_ID.LocalMunicipality_ID">{{Municipality_ID.City}}</mat-option>
+                  </mat-select>
+                   </mat-form-field>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtMain_Place_ID">Main Place  </label>
+                <div class="controls">
+                    <mat-form-field>
+                  <mat-select [(ngModel)]="cooperative.Main_Place_ID" name="txtMain_Place_ID">
+                    <mat-option *ngFor="let Main_Place_ID of (cooperative.Municipality_ID | mainPlace:cooperative.Municipality_ID) " [value]="Main_Place_ID.MainPlace_ID">{{Main_Place_ID.Name}}</mat-option>
+                  </mat-select>
+                   </mat-form-field>
+                </div>
+                 
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtWard">Ward (number)</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Ward" id="txtWard" name="txtWard" type="text" placeholder="Ward" ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtAddress1">Address 1</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Address1" id="txtAddress1" name="txtAddress1" type="text" placeholder="Address 1" ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtAddress2">Address 2</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Address2" id="txtAddress2" name="txtAddress2" type="text" placeholder="Address 2" ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtVillage_Suburb_ID">Village / Suburb</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Village_Suburb_ID" id="txtVillage_Suburb_ID" name="txtVillage_Suburb_ID" type="text" placeholder="Village / Suburb"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtCity">City</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.City" id="txtCity" name="txtCity" type="text" placeholder="City" ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtPostalCode">Postal Code</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.PostalCode" id="txtPostalCode" name="txtPostalCode" type="text" placeholder="Postal Code"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtPhone">Phone</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Phone" id="txtPhone" name="txtPhone" type="text" placeholder="Phone" ngClass="form-control">
+                </div>
+              </div> 
+              <div class="control-group">
+                <label class="control-label" for="txtGPS_Latitude">GPS Latitude</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.GPS_Latitude" id="txtGPS_Latitude" name="txtGPS_Latitude" type="text" placeholder="GPS_Latitude"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtGPS_Longitude">GPS Longitude</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.GPS_Longitude" id="txtGPS_Longitude" name="txtGPS_Longitude" type="text" placeholder="GPS_Longitude"
+                    ngClass="form-control">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="txtFax">Fax Number</label>
+                <div class="controls">
+                  <input [(ngModel)]="cooperative.Fax" id="txtFax" name="txtFax" type="text" placeholder="Fax" ngClass="form-control">
+                </div>
+              </div>
+              <!-- Contact Information  End -->
+            </div>
+          </div> 
+        </div>
+      </div>
+    </tab>
+    <tab heading="Cooperative Development" class="mt-2">
+      
+      <div class="row">
+        <div class="col-xs-6 col-md-6">
+        <div class="card border-light mb-3">
+            <!--- Cooperative Development Start  -->
+            <div class="card-header">Cooperative Development</div>          
+            <div class="card-body">
+                <app-editcoop-coop></app-editcoop-coop>
+                <fieldset>
+                    <legend>Other available Assets</legend>
+                    <div class="form-group">
+                        <div class="form-control">                            
+                          <mat-checkbox name="cooperative.Assets_Land" [(ngModel)]="cooperative.Assets_Land">Land</mat-checkbox>                            
+                        </div>
+                        <div class="form-control.">
+                          <mat-checkbox name="cooperative.Assets_Buildings" [(ngModel)]="cooperative.Assets_Buildings">Buildings</mat-checkbox>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!--- Cooperative Development  -->
+        </div>
+        </div>
+         <div class="col-xs-6 col-md-6">
+        <div class="card border-light mb-3">
+            <!--- Access to Finance Start  -->
+            <div class="card-header">Access to Finance</div>
+            <div class="card-body">.
+            </div>
+            <!--- Access to Finance Start  -->
+        </div>
+        </div>
+        
+  </div>
+    </tab>
+    <tab heading="Cooperative Details" class="mt-2">
+  
+    </tab>
+    <tab heading="Entrepreneurs" class="mt-2">
+  
+    </tab>
+  </tabset>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </form>

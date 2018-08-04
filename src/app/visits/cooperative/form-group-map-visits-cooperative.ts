@@ -20,7 +20,7 @@ export class FormGroupMapVisitsCooperative {
     
   getCooperativeGeneralForm(cooperative:any){
 	let questions: QuestionBase<any>[] = [
-		new NumbersQuestion({
+		/*new NumbersQuestion({
 			key: 'Year_Established', required: true,order: 3,
 			label: 'Year Established', value: cooperative.Year_Established,
 			min:1981,max:(new Date()).getFullYear()
@@ -30,63 +30,91 @@ export class FormGroupMapVisitsCooperative {
 			options: this.ewepServer.LegalStructure, 
 			label: 'Legal Structure.',
 			value: cooperative.Legal_Structure,
+		}),*/
+		new DatePickerQuestion({
+			key: 'Visit_Date', required: false,order: 3,
+			label: 'Visit Date?', value: cooperative.Visit_Date,
+		}),
+		new NumbersQuestion({
+			key: 'Visit_Year', required: false,order: 4,
+			label: 'Data Collected for Year', value: cooperative.Visit_Year,
+			max:4
+		}),
+		new NumbersQuestion({
+			key: 'Visit_Quarter', required: false,order: 5,
+			label: 'Data Collected for Qtr', value: cooperative.Visit_Quarter,
+			max:1
+		}),
+		new NumbersQuestion({
+			key: 'Visit_Quarter', required: false,order: 6,
+			label: 'Members Present', value: cooperative.Visit_Quarter,
+			max:1
+		}),
+		new ToggleQuestion ({
+			key: 'Is_Active', required: false,order: 7,
+			label: 'Is Cooperative still Active?', value: cooperative.Is_Active,
+		}),
+		new TextboxQuestion({
+			key: 'Deactivated_Reason', required: false,order: 8,
+			label: 'Deactivation Reason', value: cooperative.Deactivated_Reason,
+			max:50
 		}),
 		new ToggleQuestion({
-			key: 'Registered_Y_N', required: false,order: 5,
+			key: 'Registered_Y_N', required: false,order: 9,
 			label: 'Registered', value: cooperative.Registered_Y_N,
 		}),
 		new TextboxQuestion({
-			key: 'Registration_Number', required: false,order: 6,
+			key: 'Registration_Number', required: false,order: 10,
 			label: 'Registration_Number', value: cooperative.Registration_Number,
 			max:50
 		}),
-		new NumbersQuestion({
+		/*new NumbersQuestion({
 			key: 'Female_Owners', required: false,order: 6,
 			label: 'No of Female Owners', value: cooperative.Female_Owners,
 		}),
 		new NumbersQuestion({
 			key: 'Male_Owners', required: false,order: 7,
 			label: 'No of Male Owners', value: cooperative.Male_Owners,
-		}),
+		}),*/
 		new ToggleQuestion ({
-			key: 'Location_Same', required: false,order: 8,
+			key: 'Location_Same', required: false,order: 11,
 			label: 'Is location same as residence?', value: cooperative.Location_Same,
 		}),
 		new RadioQuestion({
-			key: 'Premise_Own', required: false,order: 9,
+			key: 'Premise_Own', required: false,order: 12,
 			label: 'Premise_Own', value: cooperative.Premise_Own,
 			options:[new Options("Owned","Owned"),new Options("Rented","Rented"),
 					 new Options("Co-Tenant","Co-Tenant"),new Options("Government Premises","Government Premises"),
 					 new Options("Home Based","Home Based") ]
 		}),
 		new ToggleQuestion({
-			key: 'Family_Owned',  required: false, order: 10,
+			key: 'Family_Owned',  required: false, order: 13,
 			label: 'Is Business Family owned?', value: cooperative.Family_Owned,
 		}),
 		new ToggleQuestion({
-			key: 'Group_Owned', required: false,order: 11,
+			key: 'Group_Owned', required: false,order: 14,
 			label: 'Is Business Group owned?', value: cooperative.Group_Owned,
 		}),
 		new TextboxQuestion({
-			key: 'Contact_Person', required: false,order: 12,
+			key: 'Contact_Person', required: false,order: 15,
 			label: 'Contact Person', value: cooperative.Contact_Person,
 		}),
-		new NumbersQuestion({
-			key: 'Year_Started_AWOME', required: false,order: 13,
+		/*new NumbersQuestion({
+			key: 'Year_Started_AWOME', required: false,order: 14,
 			label: 'Year started with AWOME', value: cooperative.Year_Started_AWOME,
-		}),
+		}),*/
 		new TextboxQuestion({
-			key: 'Responsible_Trainer', required: false,order: 14,
+			key: 'Responsible_Trainer', required: false,order: 16,
 			label: 'Responsible Trainer', value: cooperative.Responsible_Trainer,
 		}),
-		new MemoQuestion({
-			key: 'Vision', required: false,order: 15,
+		/*new MemoQuestion({
+			key: 'Vision', required: false,order: 16,
 			label: 'Vision', value: cooperative.Vision,
 		}),
 		new MemoQuestion({
-			key: 'Obstacles', required: false,order: 16,
+			key: 'Obstacles', required: false,order: 17,
 			label: 'What are you biggest obstacles', value: cooperative.Obstacles,
-		})
+		})*/
 	];
 	return questions.sort((a, b) => a.order - b.order);
   }

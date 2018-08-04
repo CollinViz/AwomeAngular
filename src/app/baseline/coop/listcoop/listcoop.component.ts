@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router'; 
 import { EwepserverService } from '../../../ewepserver.service'
 
 @Component({
-  selector: 'app-visits-cooperative-page',
-  templateUrl: './visits-cooperative-page.component.html',
-  styles: []
+  selector: 'app-listcoop',
+  templateUrl: './listcoop.component.html',
+  styleUrls: ['./listcoop.component.css']
 })
-export class VisitsCooperativePageComponent implements OnInit {
+export class ListcoopComponent implements OnInit {
   columns = [
-    { name: 'Coop ID', prop: 'Cooperative_ID' },
+    { name: 'ID', prop: 'Cooperative_ID' },
     { name: 'Name', prop: 'Cooperative_Name' },
     { name: 'Year Est', prop: 'Year_Established' },
     { name: 'Structure', prop: 'Legal_Structure' },
@@ -30,8 +27,6 @@ export class VisitsCooperativePageComponent implements OnInit {
     this.getPageofCooperative();
   }
 
-  ngOnInit() {
-  }
   getPageofCooperative() {
     
     this.EwepserverService.getCooperativeList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
@@ -41,7 +36,12 @@ export class VisitsCooperativePageComponent implements OnInit {
       this.page.totalPages = this.page.totalElements / this.page.size;
     });
   }
-  
+  ngOnInit() {
+
+
+
+
+  }
   setPage(event) {
     console.log('setPage', event);
     this.page.pageNumber = event.offset;
@@ -54,7 +54,7 @@ export class VisitsCooperativePageComponent implements OnInit {
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Cooperative_ID);
-      this.router.navigateByUrl('visits/cooperative/' + this.selected[0].Cooperative_ID);
+      this.router.navigateByUrl('baseline/cooperative/' + this.selected[0].Cooperative_ID);
     }
 
   }
@@ -64,6 +64,10 @@ export class VisitsCooperativePageComponent implements OnInit {
     this.page.totalPages=0;
     this.page.pageNumber=0;
     this.getPageofCooperative();
+  }
+  addNew(AddString){
+    console.log('Activate Event', AddString);
+    this.router.navigateByUrl('/cooperative/-1');
   }
 
 }
