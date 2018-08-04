@@ -94,7 +94,7 @@ export class CustomFromHelperControlService {
             }
           } 
           //group[q.key] = q.required ? new FormControl(q.value || '', aValidation)
-          group[q.key] =  new FormControl(q.value || '', aValidation)
+          group[q.key] =  new FormControl(q.value || q.defaultValue, aValidation)
                                         //  : new FormControl(q.value || '',aValidation);
           
         }

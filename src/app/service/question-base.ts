@@ -7,6 +7,7 @@ export class QuestionBase<T> {
     controlType: string;
     min:number;
     max:number;
+    defaultValue:any;
     //forceRequired:string[];
 
     constructor(options: {
@@ -18,6 +19,7 @@ export class QuestionBase<T> {
         controlType?: string,
         min?:number,
         max?:number,
+        defaultValue?:any,
         //forceRequired?:string[],
       } = {}) {
       this.value = options.value;
@@ -28,6 +30,7 @@ export class QuestionBase<T> {
       this.controlType = options.controlType || '';
       this.min = options.min || 0;
       this.max = options.max || 0;
+      this.defaultValue = options.defaultValue || '';
       //this.forceRequired = options.forceRequired || [];
     }
   }

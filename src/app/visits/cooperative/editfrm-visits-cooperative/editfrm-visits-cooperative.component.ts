@@ -49,7 +49,11 @@ export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
     // @Output() SelectClick = new EventEmitter<number>();
     ngOnChanges(changes: any){
       if(changes.cooperative_visit){
-        this.user.updateValueAndValidity(this.cooperative_visit);
+        if(!this.showloading){
+
+          this.user.updateValueAndValidity(this.cooperative_visit);
+          
+        }
       }
     }
   ngOnInit() {
@@ -118,11 +122,12 @@ this.activatedRoute.params
     this.backButton.emit("");
   }
   Save(){
-    console.log("When_Training",this.Finance.get('When_Training').value);
+     
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
+    this.FlatMe.Visit_Date = this.cutomerFormHlper.getDateValue(this.General.get('Visit_Date').value);
     this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
-    
+    //When_Training
     /*console.log("Visit_Date",this.Finance.get('Visit_Date').value);
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
@@ -133,23 +138,30 @@ this.activatedRoute.params
       this.EwepserverService.CreateTableData("cooperative_visits",this.FlatMe ).subscribe((out)=>{
         //Show Saving
         console.log("Create Done",out);
-        
-        if(out===1){
+        this.cooperative_visit.Cooperative_Visit_ID = out;
+         
           this.FinanceLoans.forEach((value)=>{
             delete value.finance_ID; 
             value.Cooperative_Visit_ID=this.cooperative_visit.Cooperative_Visit_ID;
           });
+          //Fix test if Finace as list else 
+          
           //delete all finance stuff and create a new one
           this.EwepserverService.deleteAllFinance(this.cooperative_visit.Cooperative_Visit_ID,"").subscribe((out)=>{
             //Add New suff
-            this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
-              console.log("Save Done to fin ",outFin);
-              console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/visits/cooperative');
-            }); 
+            if(this.FinanceLoans.length>0){
+              this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
+                console.log("Save Done to fin ",outFin);
+                console.log(typeof(outFin)); 
+                this.backButton.emit("refresh");
+              }); 
+            }else{
+              this.backButton.emit("refresh");
+            }
+            
           });
           //this.router.navigateByUrl('/cooperative');
-        } 
+       
          
         //this.showloading = false;
         //Move back to list screen
@@ -172,7 +184,8 @@ this.activatedRoute.params
             this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/visits/cooperative');
+              this.backButton.emit("refresh");
+              //this.router.navigateByUrl('/visits/cooperative/'+this.cooperative_visit.Cooperative_ID);
             }); 
           });
           //this.router.navigateByUrl('/cooperative');

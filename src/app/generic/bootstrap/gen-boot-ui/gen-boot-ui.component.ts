@@ -1,6 +1,7 @@
 import { OnInit,Component, Input,Output ,EventEmitter} from '@angular/core';
 import { FormGroup,ValidationErrors }        from '@angular/forms';
 import { QuestionBase } from '../../../service/question-base'; 
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-gen-boot-ui',
@@ -36,9 +37,17 @@ export class GenBootUiComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
   changeSelection(event){
     this.selectionChange.emit(event);
+  }
+  numberchange(event){
+    //console.log(event);
+    //console.log(this.form.controls[this.question.key].value);
+    //if(this.form.controls[this.question.key].value==''){
+    //  this.form.controls[this.question.key].setValue(this.question.defaultValue);
+    //}
   }
 }

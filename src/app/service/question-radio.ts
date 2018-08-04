@@ -4,9 +4,9 @@ export class RadioQuestion extends QuestionBase<string> {
   controlType = 'radio';
   options: {key: string, value: string}[] = [];
 
-  constructor(options: {} = {}) {
-    super(options);
-    this.options = options['options'] || [];
+  constructor(Options: {} = {}) {
+    super(Options);
+    this.options = Options['options'] || [];
   }
 }
 

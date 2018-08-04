@@ -39,20 +39,20 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
       if(params.Cooperative_ID){ 
         if(params.Cooperative_ID>0){
           this.Cooperative_ID =  params.Cooperative_ID;
-          this.Cooperative_Visit_ID =  params.Cooperative_Visit_ID;
-          //this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
-           // this.EwepserverService.getViewData('cooperative_visits_view', params.Cooperative_ID).subscribe((customers:any)=>{
-            //  this.EwepserverService.getRowData('cooperative_visits', params.Cooperative_Visit_ID).subscribe((customers:any)=>{
-            //console.log(customers);
-            this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
-            this.cooperative = customers; 
-            this.OnDataOK();
-          });
+          //this.Cooperative_Visit_ID =  params.Cooperative_Visit_ID;
+           
+          this.loadCooperateLoad();
+          this.getVisitorList();
         }
       }
     });
     }
-
+    loadCooperateLoad(){
+      this.EwepserverService.getCooperativeItem(this.Cooperative_ID).subscribe((customers:any)=>{
+        this.cooperative = customers; 
+        //this.OnDataOK();
+      });
+    }
   ngOnInit() {
   }
 
@@ -76,7 +76,10 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   onSelect({ selected }) {
     //console.log('Select Event', selected, this.selected);
   }
-  backtoList(){
+  backtoList(event){
+    if(event!=''){
+      this.getVisitorList();
+    }
     this.blistShow=true;
   }
   onActivate(event) {
@@ -90,5 +93,6 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   }
   addVisit(){
     this.blistShow=false;
+    this.selectedVisit = {Cooperative_ID:this.Cooperative_ID,Cooperative_Visit_ID:-1};
   }
 }
