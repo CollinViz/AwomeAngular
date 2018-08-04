@@ -25,6 +25,7 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   SearchFilter:string = "";
 
   cooperative:any={};
+  selectedVisit:any ={};
   Cooperative_Visit_ID:number=1;
   Cooperative_ID:number=-1;
   blistShow:boolean = true;
@@ -82,6 +83,7 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Cooperative_ID);
       this.blistShow=false;
+      this.selectedVisit = this.selected[0];
      // this.router.navigateByUrl('visits/cooperative/' + this.selected[0].Cooperative_ID);
     }
 

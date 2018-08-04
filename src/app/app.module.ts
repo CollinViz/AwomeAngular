@@ -284,7 +284,7 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
       component:EditVisitsCooperativeCooperativeComponent
     },
     {
-      path:'visits/cooperative/:Cooperative_Visit_ID',
+      path:'visits/cooperative/:Cooperative_ID/:Cooperative_Visit_ID',
       component:EditfrmVisitsCooperativeComponent
     },
     { 

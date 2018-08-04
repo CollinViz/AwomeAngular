@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter ,Output } from '@angular/core';
+import { Component, OnInit,EventEmitter ,Output,Input,OnChanges } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms'; 
 import {EwepserverService} from '../../../ewepserver.service'
@@ -15,7 +15,10 @@ import {FormGroupMapVisitsCooperative} from '../form-group-map-visits-cooperativ
   templateUrl: './editfrm-visits-cooperative.component.html',
   styles: []
 })
-export class EditfrmVisitsCooperativeComponent implements OnInit {
+export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
+  @Output() backButton = new EventEmitter<string>();
+    @Input() cooperative_visit:any = {};
+
   GeneralQuestions:QuestionBase<any>[]
   EmployeesQuestions:QuestionBase<any>[]
   EmployeesFemaleQuestions:QuestionBase<any>[]
@@ -32,7 +35,7 @@ export class EditfrmVisitsCooperativeComponent implements OnInit {
   Employees:FormGroup;
   Finance: FormGroup;
 
-  cooperative_visit:any={};
+  //cooperative_visit:any={};
   FlatMe:any={};
   showloading:boolean = true;
   FinanceLoans:any[] =[];
@@ -44,22 +47,25 @@ export class EditfrmVisitsCooperativeComponent implements OnInit {
     private EwepserverService: EwepserverService,private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService:CustomformSetupService  ) { }
     // @Output() SelectClick = new EventEmitter<number>();
-    @Output() backButton = new EventEmitter<string>();
-
+    ngOnChanges(changes: any){
+      if(changes.cooperative_visit){
+        this.user.updateValueAndValidity(this.cooperative_visit);
+      }
+    }
   ngOnInit() {
     this.showloading = true;
 //marshall
-
+/*
 this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
     .subscribe((params: Params) => {
       console.log(params.Cooperative_ID);
       if(params.Cooperative_ID){
         if(params.Cooperative_ID>0){
-          
-          this.EwepserverService.getCooperativeVisitItem(/*params.Cooperative_Visit_ID*/2).subscribe((customers:any)=>{
+          this.EwepserverService.getRowData("")
+          this.EwepserverService.getCooperativeVisitItem(/*params.Cooperative_Visit_ID2).subscribe((customers:any)=>{
           //this.EwepserverService.getCooperativeVisitItem(params.Cooperative_Visit_ID).subscribe((customers:any)=>{  
-            console.log(customers);
+           /* console.log(customers);
             this.cooperative_visit = customers; 
             this.OnDataOK();
             
@@ -74,7 +80,7 @@ this.activatedRoute.params
         }
       }
     });
-
+*/
 //marshall //
 
 
