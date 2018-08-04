@@ -112,7 +112,7 @@
         <a [ngClass]="{'nav-link':true,'active':isAdmin}" [routerLink]="['/admin']">Settings</a>
       </li>
       <li class="nav-item dropdown navbar-right">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 Current country: {{currentCountry}}  </a>
         <div class="dropdown-menu">
             <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index" (click)="changeCountry(co,i)">{{co.Country_Name}}</a> 
