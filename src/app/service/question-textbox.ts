@@ -23,18 +23,20 @@ export class NumbersQuestion extends QuestionBase<string> {
 
   constructor(options: {} = {}) { 
     super(options);
-    if(options['required']|| false){
+    //if(options['required']|| false){
       this.value = options['value']|| '0';
       if(this.value===''){
         this.value='0';
       } 
-    }
+      this.defaultValue=0;
+    //}
     
     this.type = options['type'] || ''; 
     this.currency = options['currency'] || false;
     this.currencySymbol = options['symbol'] || 'R';
     if(this.currency===true){
       this.controlType = "currency";
+      this.defaultValue=0.00;
     }
   }
 }

@@ -7,6 +7,7 @@ export class ToggleQuestion extends QuestionBase<string> {
   constructor(options: {} = {}) {
     super(options);
     this.type = options['type'] || '';
+    this.defaultValue = false;
   }
 }
 

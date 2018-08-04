@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter ,Output } from '@angular/core';
+import { Component, OnInit,EventEmitter ,Output,Input,OnChanges } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms'; 
 import {EwepserverService} from '../../../ewepserver.service'
@@ -15,7 +15,10 @@ import {FormGroupMapVisitsCooperative} from '../form-group-map-visits-cooperativ
   templateUrl: './editfrm-visits-cooperative.component.html',
   styles: []
 })
-export class EditfrmVisitsCooperativeComponent implements OnInit {
+export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
+  @Output() backButton = new EventEmitter<string>();
+    @Input() cooperative_visit:any = {};
+
   GeneralQuestions:QuestionBase<any>[]
   EmployeesQuestions:QuestionBase<any>[]
   EmployeesFemaleQuestions:QuestionBase<any>[]
@@ -32,7 +35,7 @@ export class EditfrmVisitsCooperativeComponent implements OnInit {
   Employees:FormGroup;
   Finance: FormGroup;
 
-  cooperative_visit:any={};
+  //cooperative_visit:any={};
   FlatMe:any={};
   showloading:boolean = true;
   FinanceLoans:any[] =[];
@@ -44,22 +47,29 @@ export class EditfrmVisitsCooperativeComponent implements OnInit {
     private EwepserverService: EwepserverService,private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService:CustomformSetupService  ) { }
     // @Output() SelectClick = new EventEmitter<number>();
-    @Output() backButton = new EventEmitter<string>();
+    ngOnChanges(changes: any){
+      if(changes.cooperative_visit){
+        if(!this.showloading){
 
+          this.user.updateValueAndValidity(this.cooperative_visit);
+          
+        }
+      }
+    }
   ngOnInit() {
     this.showloading = true;
 //marshall
-
+/*
 this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
     .subscribe((params: Params) => {
       console.log(params.Cooperative_ID);
       if(params.Cooperative_ID){
         if(params.Cooperative_ID>0){
-          
-          this.EwepserverService.getCooperativeVisitItem(/*params.Cooperative_Visit_ID*/2).subscribe((customers:any)=>{
+          this.EwepserverService.getRowData("")
+          this.EwepserverService.getCooperativeVisitItem(/*params.Cooperative_Visit_ID2).subscribe((customers:any)=>{
           //this.EwepserverService.getCooperativeVisitItem(params.Cooperative_Visit_ID).subscribe((customers:any)=>{  
-            console.log(customers);
+           /* console.log(customers);
             this.cooperative_visit = customers; 
             this.OnDataOK();
             
@@ -74,7 +84,7 @@ this.activatedRoute.params
         }
       }
     });
-
+*/
 //marshall //
 
 
@@ -112,11 +122,12 @@ this.activatedRoute.params
     this.backButton.emit("");
   }
   Save(){
-    console.log("When_Training",this.Finance.get('When_Training').value);
+     
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
+    this.FlatMe.Visit_Date = this.cutomerFormHlper.getDateValue(this.General.get('Visit_Date').value);
     this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
-    
+    //When_Training
     /*console.log("Visit_Date",this.Finance.get('Visit_Date').value);
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
@@ -127,23 +138,30 @@ this.activatedRoute.params
       this.EwepserverService.CreateTableData("cooperative_visits",this.FlatMe ).subscribe((out)=>{
         //Show Saving
         console.log("Create Done",out);
-        
-        if(out===1){
+        this.cooperative_visit.Cooperative_Visit_ID = out;
+         
           this.FinanceLoans.forEach((value)=>{
             delete value.finance_ID; 
             value.Cooperative_Visit_ID=this.cooperative_visit.Cooperative_Visit_ID;
           });
+          //Fix test if Finace as list else 
+          
           //delete all finance stuff and create a new one
           this.EwepserverService.deleteAllFinance(this.cooperative_visit.Cooperative_Visit_ID,"").subscribe((out)=>{
             //Add New suff
-            this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
-              console.log("Save Done to fin ",outFin);
-              console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/visits/cooperative');
-            }); 
+            if(this.FinanceLoans.length>0){
+              this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
+                console.log("Save Done to fin ",outFin);
+                console.log(typeof(outFin)); 
+                this.backButton.emit("refresh");
+              }); 
+            }else{
+              this.backButton.emit("refresh");
+            }
+            
           });
           //this.router.navigateByUrl('/cooperative');
-        } 
+       
          
         //this.showloading = false;
         //Move back to list screen
@@ -166,7 +184,8 @@ this.activatedRoute.params
             this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/visits/cooperative');
+              this.backButton.emit("refresh");
+              //this.router.navigateByUrl('/visits/cooperative/'+this.cooperative_visit.Cooperative_ID);
             }); 
           });
           //this.router.navigateByUrl('/cooperative');
