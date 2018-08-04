@@ -163,8 +163,7 @@
 
               <div class="card-header">Loan  </div>
               <div class="card-body" >
-                <app-edit-loans-baseline-coop 
-                [finance]="newFinanceLoan" (addFinance)="addnewFinance($event)" ></app-edit-loans-baseline-coop>
+                <app-edit-loans-baseline-coop [finance]="newFinanceLoan" (addFinance)="addnewFinance($event)" ></app-edit-loans-baseline-coop>
                 
                 <app-list-loans-baseline-coop [rows]="FinanceLoans" (ItemClick)="financeRowClick($event)"></app-list-loans-baseline-coop>
               </div>
@@ -174,6 +173,58 @@
           <div class="col-6">
             
           </div>
+        </div>
+      </tab>
+      <tab heading="Cooperative Details Information" class="mt-2" [formGroup]="Details">
+        <div class="row">
+          <div class="col-3">
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Goods or Services</div>
+              <div class="card-body">
+                <app-gen-boot-ui *ngFor="let question of GoodsAndService" [question]="question" [form]="Details"></app-gen-boot-ui>
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card border-light mb-3">
+              <!--- Source of Startup Funds  -->
+
+              <div class="card-header">Contact Information</div>
+              <div class="card-body">
+
+                <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)"
+                  [question]="question" [form]="Details"></app-gen-boot-ui>
+
+                <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Details"></app-gen-boot-ui>
+              </div>
+              <!---  Source of Startup Funds end  -->
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab heading="Entrepreneurs Information" class="mt-2">
+        <div class="row">
+          <button *ngIf="showEntrepreneursList" class="btn btn-primary" (click)="AddNewEntrepreneur()">Add Entrepreneur</button>
+          <button *ngIf="!showEntrepreneursList" (click)="showEntrepreneursList=true" class="btn btn-primary">Back</button>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="showloading_Entrepreneurs">
+              <mat-spinner></mat-spinner>
+            </div>
+            <div *ngIf="showEntrepreneursList; else editCurrentEntrepreneursList">
+              <app-list-member-baseline-enterprise [rows]="EntrepreneursList" [(selected)]="Defaultselected" (rowSelect)="onSelectEntrepreneur($event)"
+                (rowEdit)="onEditEntrepreneur($event)"></app-list-member-baseline-enterprise>
+            </div>
+          </div> 
+          <ng-template #editCurrentEntrepreneursList>
+            <app-edit-member-baseline-enterprise [entrepreneur]="EntrepreneurEditItem" 
+                        (SaveItem)="onSaveEntrepreneur($event)">
+            </app-edit-member-baseline-enterprise>
+          </ng-template>
         </div>
       </tab>
     </tabset>

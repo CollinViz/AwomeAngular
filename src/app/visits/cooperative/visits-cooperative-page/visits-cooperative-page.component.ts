@@ -12,7 +12,7 @@ import { EwepserverService } from '../../../ewepserver.service'
 })
 export class VisitsCooperativePageComponent implements OnInit {
   columns = [
-    { name: 'ID', prop: 'Cooperative_ID' },
+    { name: 'Coop ID', prop: 'Cooperative_ID' },
     { name: 'Name', prop: 'Cooperative_Name' },
     { name: 'Year Est', prop: 'Year_Established' },
     { name: 'Structure', prop: 'Legal_Structure' },
