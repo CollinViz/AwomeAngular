@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-import { Observable ,throwError,BehaviorSubject } from 'rxjs';
+import { Observable ,throwError,BehaviorSubject, Observer } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { catchError, retry } from 'rxjs/operators';
 import { ASTWithSource } from '@angular/compiler'; 
@@ -21,7 +21,7 @@ export class EwepserverService {
   baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
   //CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
   CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
- 
+  SelectedCountryID:number=1;
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
                               new Options("Cooperative","Cooperative"),
@@ -40,19 +40,43 @@ export class EwepserverService {
   MaritalStatus:Options[] = ["Single","Married","Divorced","Widowed"].map((item)=>new Options(item,item));
   EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
   
-  UserLoginObjAnnounced$ = this.UserLoginObj.asObservable();
-  province: Province[] = [];
-  districtMetro: DistrictMetro[] = [];
-  localMunicipality:LocalMunicipality[] = [];
-  mainPlaces:MainPlace[] = [];
+  
+
+  province: Province[] =[];
+  districtMetro:DistrictMetro[] =[];
+  localMunicipality: LocalMunicipality[] =[];
+  mainPlaces:MainPlace[] =[];
+  //country:Country[] = [];
+  private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
+
   constructor(private http: HttpClient) {
     console.log("New Instance created");
     this._getProvinceLoadLocal();
     this._getdistrictmetroLoadLocal();
     this._getlocalmunicipalityLoadLocal();
     this._getMainplace(); 
+    this._getCountry();
   }
-
+  get country():Observable<Country[]> {
+    return this.CountryList.asObservable();
+  }
+  //get province():Observable<Province[]> {
+  //  return this.provinceList.asObservable();
+  //}
+  //get district():Observable<DistrictMetro[]>{
+  //  return this.districtMetroList.asObservable();
+  //}
+  //get localMunicipality():Observable<LocalMunicipality[]>{
+  /// return this.localMunicipalityList.asObservable();
+  //}
+  //get mainPlaces():Observable<MainPlace[]>{
+  //  return this.mainPlacesList.asObservable();
+  //}
+  setCountryInfo(CountryID:number,CountryName:string){
+    this.SelectedCountryID = CountryID;
+    //Reload all the cashed data
+    this._getProvinceLoadLocal(); 
+  }
   getViewData(ViewName:string,Options:string=""){
     return this.http.get<any>(this.baseViewURL + ViewName + (Options===""?"":"?"+Options), httpOptions).pipe(
       catchError(this.handleError)
@@ -83,29 +107,22 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-
-
-  /*getProvince() {
-    return this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions);
-  }
-  getDistrictMetro() {
-    return this.http.get<any>(this.baseURL + "districtmetro?order=Province_ID", httpOptions);
-  }
-  getlocalMunicipality() {
-    return this.http.get<any>(this.baseURL + "localmunicipality?orderby=DistrictMetro_ID", httpOptions);
-  }
-  getMainplace(LocalMunicipality_ID: number) {
-    return this.http.get<any>(this.baseURL + "mainplace?orderby=LocalMunicipality_ID&filter=LocalMunicipality_ID,eq,"+LocalMunicipality_ID, httpOptions);
-  }*/
+ 
   private _getProvinceLoadLocal() {
     //province
-    this.http.get<any>(this.baseURL + "province?order=Province_Name", httpOptions).subscribe((customers: any) => {
+    this.http.get<any>(this.baseURL + "province?order=Province_Name&filter=Country_ID,eq," + this.SelectedCountryID, httpOptions).subscribe((customers: any) => {
       //console.log(customers.records);
       this.province = <Province[]>customers.records;
     });
   }
 
-
+  private _getCountry(){
+    //province
+    this.http.get<any>(this.baseURL + "country?order=Country_ID&filter=Active,eq,Y", httpOptions).subscribe((customers: any) => {
+      //console.log(customers.records);
+      this.CountryList.next(<Country[]>customers.records);
+    });
+  }
   private _getdistrictmetroLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "districtmetro?order=Province_ID", httpOptions).subscribe((customers: any) => {
@@ -212,4 +229,10 @@ export interface DistrictMetro{
   Province_ID:number,
   Name:string,
   Code:string
+}
+export interface Country {
+  Country_ID:number;
+  Country_Code:string;
+  Country_Name:string;
+  Active:string
 }
