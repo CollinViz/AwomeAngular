@@ -58,39 +58,10 @@ export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
     }
   ngOnInit() {
     this.showloading = true;
-//marshall
-/*
-this.activatedRoute.params
-    // NOTE: I do not use switchMap here, but subscribe directly
-    .subscribe((params: Params) => {
-      console.log(params.Cooperative_ID);
-      if(params.Cooperative_ID){
-        if(params.Cooperative_ID>0){
-          this.EwepserverService.getRowData("")
-          this.EwepserverService.getCooperativeVisitItem(/*params.Cooperative_Visit_ID2).subscribe((customers:any)=>{
-          //this.EwepserverService.getCooperativeVisitItem(params.Cooperative_Visit_ID).subscribe((customers:any)=>{  
-           /* console.log(customers);
-            this.cooperative_visit = customers; 
-            this.OnDataOK();
-            
-            
-          });
-        }else{ 
-          //Add New 
-          console.log("Add new");
-          this.cooperative_visit = {Cooperative_Visit_ID:-1,Cooperative_Name:""};
-          this.OnDataOK();
-          console.log("Should be done"); 
-        }
-      }
-    });
-*/
-//marshall //
-
-
-
+    console.log(this.cooperative_visit);
     this.OnDataOK();
   }
+
   OnDataOK(){ 
     this.user = new FormGroup({
       Cooperative_ID: new FormControl('1'),
