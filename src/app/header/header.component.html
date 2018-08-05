@@ -5,8 +5,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
-    
-    
+    <!--
+
+        
     
     
     
@@ -43,19 +44,13 @@
     </ul>
     
     
-    
-    
-    
-    
-    
-    
-    
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+    --> 
+    <ul class="nav nav-pills">
+      <li class="nav-item  ">
+        <a [ngClass]="{'nav-link':true,'active':isHome}" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link dropdown-toggle" id="navBaseLine" data-toggle="dropdown" href="#">
+      <li class="nav-item dropdown">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isBaseLine}"   data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 BaseLine Info</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur</a>
@@ -64,18 +59,18 @@
                 <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
             </div>        
       </li>
-      <li class="nav-item">
-        <a class="nav-link dropdown-toggle" id="navVisits" data-toggle="dropdown" href="#">
+      <li class="nav-item dropdown">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isVisits}" id="navVisits" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             Visits</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" [routerLink]="['/visits/entrepreneurs']">Entrepreneurs</a>
+                
                 <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
                 <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
                 <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
             </div>  
       </li>
-      <li class="nav-item">
-        <a class="nav-link dropdown-toggle" id="navAction" data-toggle="dropdown" href="#">
+      <li class="nav-item dropdown">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan}" id="navAction" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             Action Plan</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
@@ -83,14 +78,14 @@
                 <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
             </div> 
       </li>
-      <li class="nav-item">
-        <a class="nav-link dropdown-toggle" id="navTraining" data-toggle="dropdown" href="#">
+      <li class="nav-item dropdown">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 Training</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Entrepreneurs</a> 
+            <a class="dropdown-item" [routerLink]="['training/entrepreneurs']">Entrepreneurs</a> 
         </div> 
       </li>
-      <li class="nav-item">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navTraining" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">
             Reports</a>
             <div class="dropdown-menu" aria-lableledby="navTraining">
@@ -114,9 +109,16 @@
             </div> 
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/admin']">Settings</a>
+        <a [ngClass]="{'nav-link':true,'active':isAdmin}" [routerLink]="['/admin']">Settings</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item dropdown navbar-right">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Current country: {{currentCountry}}  </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index" (click)="changeCountry(co,i)">{{co.Country_Name}}</a> 
+        </div> 
+      </li>
+      <li class="nav-item navbar-right">
         <a class="nav-link" href="#">Log Out</a>
       </li>
     </ul>
