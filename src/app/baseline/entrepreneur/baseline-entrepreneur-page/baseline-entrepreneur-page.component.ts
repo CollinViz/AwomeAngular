@@ -15,10 +15,11 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
 
   columns = [
     { name: 'ID', prop: 'Entrepreneur_ID' },
-    { name: 'Name', prop: 'Surname' }, 
+    { name: 'Surname', prop: 'Surname' }, 
+    { name: 'Name', prop: 'Name' },
     { name: 'Province', prop: 'Province' },
-    { name: 'EDF', prop: 'EDF' },
-    { name: 'Status', prop: 'Status' }
+    //{ name: 'EDF', prop: 'EDF' },
+    //{ name: 'Status', prop: 'Status' }
   ];
   rows: any[] = [];
   selected = [];
