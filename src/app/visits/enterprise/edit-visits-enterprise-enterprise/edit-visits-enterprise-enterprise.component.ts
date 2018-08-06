@@ -17,7 +17,7 @@ export class EditVisitsEnterpriseEnterpriseComponent implements OnInit {
     { name: 'Visit Date', prop: 'Visit_Date' },
     { name: 'Visit Year', prop: 'Visit_Year' },
     { name: 'Visit Quarter', prop: 'Visit_Quarter' },
-    { name: 'Status', prop: 'Status' }
+    //{ name: 'Status', prop: 'Status' }
   ];
   rows: any[] = [];
   selected = [];

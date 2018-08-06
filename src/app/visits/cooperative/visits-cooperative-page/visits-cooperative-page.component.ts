@@ -13,12 +13,12 @@ import { EwepserverService } from '../../../ewepserver.service'
 export class VisitsCooperativePageComponent implements OnInit {
   columns = [
     { name: 'Coop ID', prop: 'Cooperative_ID' },
-    { name: 'Name', prop: 'Cooperative_Name' },
+    { name: 'Coop Name', prop: 'Cooperative_Name' },
     { name: 'Year Est', prop: 'Year_Established' },
-    { name: 'Structure', prop: 'Legal_Structure' },
-    { name: 'Owners', prop: 'Female_Owners' },
-    { name: 'Province', prop: 'Province' },
-    { name: 'EDF', prop: 'EDF' },
+    //{ name: 'Structure', prop: 'Legal_Structure' },
+    { name: 'Female Owners', prop: 'Female_Owners' },
+    //{ name: 'Province', prop: 'Province' },
+    //{ name: 'EDF', prop: 'EDF' },
     { name: 'Status', prop: 'Status' }
   ];
   rows: any[] = [];
