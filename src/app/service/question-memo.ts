@@ -5,10 +5,10 @@ export class MemoQuestion extends QuestionBase<string> {
   type: string;
   maxLength:number;
 
-  constructor(options: {} = {}) {
-    super(options);
-    this.type = options['type'] || '';
-    this.maxLength = options['maxLength'] || 500;
+  constructor(Options: {} = {}) {
+    super(Options);
+    this.type = Options['type'] || '';
+    this.maxLength = Options['maxLength'] || 500;
   }
 }
 

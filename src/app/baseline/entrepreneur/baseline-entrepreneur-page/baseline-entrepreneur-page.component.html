@@ -1,4 +1,9 @@
-<app-search-baseline-entrepreneur-entrepreneur></app-search-baseline-entrepreneur-entrepreneur>
+
+<div *ngIf="!IsEditing;else editTemplate">
+<app-search-baseline-entrepreneur-entrepreneur
+(SearchClick)="searchClick($event)"
+(NewClick)="NewClick()"
+></app-search-baseline-entrepreneur-entrepreneur>
 <div>
   <ngx-datatable
   class="bootstrap"
@@ -19,3 +24,10 @@
     (page)='setPage($event)'>
   </ngx-datatable>
 </div>
+</div>
+<ng-template #editTemplate>
+  <!-- Put Edit template in -->
+  <app-edit-member-baseline-enterprise [entrepreneur]="EntrepreneurEditItem" 
+  (SaveItem)="onSaveEntrepreneur($event)">
+</app-edit-member-baseline-enterprise>
+</ng-template>

@@ -6,7 +6,7 @@
         <div class="card-body" >
             <div class="row">
               <div class="col-8">
-                {{enterprise.Enterprise_Name}}
+               Enterprise Name: {{enterprise.Enterprise_Name}}
               </div>
             </div>
             <div class="row">
@@ -44,6 +44,6 @@
 </div>
 <ng-template #EditVisit>
 <div>
-    <app-editfrm-visits-enterprise-enterprise (backButton)="backtoList()"></app-editfrm-visits-enterprise-enterprise>
+    <app-editfrm-visits-enterprise-enterprise (backButton)="backtoList($event)" [(enterprise_visit)]="selectedVisit"></app-editfrm-visits-enterprise-enterprise>
 </div>
   </ng-template>

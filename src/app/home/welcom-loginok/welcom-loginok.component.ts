@@ -11,9 +11,9 @@ export class WelcomLoginokComponent implements OnInit {
   constructor(private EwepserverService: EwepserverService) { }
 
   ngOnInit() {
-    this.EwepserverService.UserLoginObjAnnounced$.subscribe((UserInfo:any)=>{
-      this.UserInfo = UserInfo;
-    })
+    //this.EwepserverService.UserLoginObjAnnounced$.subscribe((UserInfo:any)=>{
+    //  this.UserInfo = UserInfo;
+    //})
   }
 
 }

@@ -32,18 +32,18 @@ export class FormGroupMapVisitsCooperative {
 			value: cooperative.Legal_Structure,
 		}),*/
 		new DatePickerQuestion({
-			key: 'Visit_Date', required: false,order: 3,
+			key: 'Visit_Date', required: true,order: 3,
 			label: 'Visit Date?', value: cooperative.Visit_Date,
 		}),
 		new NumbersQuestion({
-			key: 'Visit_Year', required: false,order: 4,
+			key: 'Visit_Year', required: true,order: 4,
 			label: 'Data Collected for Year', value: cooperative.Visit_Year,
-			max:4
+			max:(new Date()).getFullYear,min:2018
 		}),
 		new NumbersQuestion({
-			key: 'Visit_Quarter', required: false,order: 5,
+			key: 'Visit_Quarter', required: true,order: 5,
 			label: 'Data Collected for Qtr', value: cooperative.Visit_Quarter,
-			max:1
+			max:4,min:1
 		}),
 		new NumbersQuestion({
 			key: 'Visit_Quarter', required: false,order: 6,

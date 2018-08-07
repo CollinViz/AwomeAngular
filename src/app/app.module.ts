@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,Pipe, PipeTransform } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router, ActivatedRoute, Params } from '@angular/router';
 import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -11,6 +11,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule,MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
+import {ProgressInterceptor} from './service/ProgressInterceptor';
+import { ProgressComponent } from './common/internet/ProgressComponent';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -41,7 +43,7 @@ import { EditenterpriseEnterpriseComponent } from './baseline/enterprise/editent
 import { BaselineEnterpriseEditenterprise2Component } from './baseline/enterprise/baseline-enterprise-editenterprise2/baseline-enterprise-editenterprise2.component';
 import { NumberOnlyDirective } from './generic/bootstrap/gen-boot-ui/number-only.directive';
 import { BaselineEntrepreneurPageComponent } from './baseline/entrepreneur/baseline-entrepreneur-page/baseline-entrepreneur-page.component';
-import { EditBaselineEntrepreneurEntrepreneurComponent } from './baseline/entrepreneur/edit-baseline-entrepreneur-entrepreneur/edit-baseline-entrepreneur-entrepreneur.component';
+
 import { SearchBaselineEntrepreneurEntrepreneurComponent } from './baseline/entrepreneur/search-baseline-entrepreneur-entrepreneur/search-baseline-entrepreneur-entrepreneur.component';
 import { BaselineCooperativePageComponent } from './baseline/cooperative/baseline-cooperative-page/baseline-cooperative-page.component';
 import { EditBaselineCooperativeCooperativeComponent } from './baseline/cooperative/edit-baseline-cooperative-cooperative/edit-baseline-cooperative-cooperative.component';
@@ -69,7 +71,6 @@ import { ActionplansAssociationPageComponent } from './actionplans/association/a
 import { EditActionplansAssociationAssociationComponent } from './actionplans/association/edit-actionplans-association-association/edit-actionplans-association-association.component';
 import { TrainingEntrepreneursPageComponent } from './training/entrepreneurs/training-entrepreneurs-page/training-entrepreneurs-page.component';
 import { EditTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/edit-training-entrepreneurs-entrepreneurs/edit-training-entrepreneurs-entrepreneurs.component';
-import { SearchTrainingEntrepreneursEntrepreneursComponent } from './training/entrepreneurs/search-training-entrepreneurs-entrepreneurs/search-training-entrepreneurs-entrepreneurs.component';
 import { WorkshopsEntrepreneursPageComponent } from './workshops/entrepreneurs/workshops-entrepreneurs-page/workshops-entrepreneurs-page.component';
 import { EditWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs/edit-workshops-entrepreneurs-entrepreneurs.component';
 import { SearchWorkshopsEntrepreneursEntrepreneursComponent } from './workshops/entrepreneurs/search-workshops-entrepreneurs-entrepreneurs/search-workshops-entrepreneurs-entrepreneurs.component';
@@ -94,8 +95,11 @@ import { SearchCoopComponent } from './baseline/coop/search-coop/search-coop.com
 import { EditLoansBaselineCoopComponent } from './baseline/coop/loans/edit-loans-baseline-coop/edit-loans-baseline-coop.component';
 import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans-baseline-coop/list-loans-baseline-coop.component'
 import { ListMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/list-member-baseline-enterprise/list-member-baseline-enterprise.component';
-import { EditMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
+import { EditMemberBaselineEnterpriseComponent } from './baseline/entrepreneur/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
 import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component'
+
+
+const interceptor = new ProgressInterceptor();
 
 @NgModule({
   declarations: [
@@ -126,8 +130,7 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     EditenterpriseEnterpriseComponent,
     BaselineEnterpriseEditenterprise2Component,
     NumberOnlyDirective,
-    BaselineEntrepreneurPageComponent,
-    EditBaselineEntrepreneurEntrepreneurComponent,
+    BaselineEntrepreneurPageComponent,     
     SearchBaselineEntrepreneurEntrepreneurComponent,
     BaselineCooperativePageComponent,
     EditBaselineCooperativeCooperativeComponent,
@@ -154,8 +157,7 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     ActionplansAssociationPageComponent,
     EditActionplansAssociationAssociationComponent,
     TrainingEntrepreneursPageComponent,
-    EditTrainingEntrepreneursEntrepreneursComponent,
-    SearchTrainingEntrepreneursEntrepreneursComponent,
+    EditTrainingEntrepreneursEntrepreneursComponent, 
     WorkshopsEntrepreneursPageComponent,
     EditWorkshopsEntrepreneursEntrepreneursComponent,
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
@@ -172,7 +174,7 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     EditDialogActionplansEnterprisesComponent,
     ComEditActionPlansComponent,
     DeleteCheckComponent,
-
+    ProgressComponent,
     EditfrmVisitsEnterpriseEnterpriseComponent,
 
     BaselineCoopEditcoop2Component,
@@ -212,7 +214,7 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,MatNativeDateModule,MatDatepickerModule,
     NgxDatatableModule,MatDialogModule,
     // import HttpClientModule after BrowserModule.
-    HttpClientModule,
+    HttpClientModule, 
     RouterModule.forRoot([{
       path: '',
       component: HomePageComponent
@@ -284,7 +286,7 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
       component:EditVisitsCooperativeCooperativeComponent
     },
     {
-      path:'visits/cooperative/:Cooperative_Visit_ID',
+      path:'visits/cooperative/:Cooperative_ID/:Cooperative_Visit_ID',
       component:EditfrmVisitsCooperativeComponent
     },
     { 
@@ -325,7 +327,11 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
     }
   ])
   ],
-  providers: [EwepserverService],
+  providers: [
+    { provide: ProgressInterceptor, useValue: interceptor },
+    { provide: HTTP_INTERCEPTORS, useValue: interceptor, multi: true },
+    EwepserverService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

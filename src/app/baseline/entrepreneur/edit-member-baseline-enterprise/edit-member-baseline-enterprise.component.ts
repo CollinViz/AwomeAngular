@@ -1,16 +1,16 @@
-import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter,OnChanges } from '@angular/core';
 import { FormControl, FormGroup ,Validators} from '@angular/forms'; 
-import {EwepserverService} from '../../../../ewepserver.service' 
-import { Options, QuestionBase,DropdownQuestion} from '../../../../service/question';
-import { CustomFromHelperControlService,forceValidate } from '../../../../service/custom-from-helper-control.service'
-import { CustomformSetupService } from '../../../../service/customform-setup.service'
+import {EwepserverService} from '../../../ewepserver.service' 
+import { Options, QuestionBase,DropdownQuestion} from '../../../service/question';
+import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
+import { CustomformSetupService } from '../../../service/customform-setup.service'
 import { FormGroupEditMemberBaselineEnterprise } from './edit-member-baseline-enterprise'
 @Component({
   selector: 'app-edit-member-baseline-enterprise',
   templateUrl: './edit-member-baseline-enterprise.component.html',
   styles: []
 })
-export class EditMemberBaselineEnterpriseComponent implements OnInit {
+export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   
   @Input() entrepreneur:any = {}
   @Output() SaveItem:EventEmitter<any> = new EventEmitter<any>();
@@ -18,7 +18,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit {
   General:FormGroup;
   training:FormGroup;
   Contact:FormGroup;
-
+  isLoading:boolean = true;
   Language:Options[];
   Race:Options[];
   Sex:Options[];
@@ -37,8 +37,16 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit {
                 this.MaritalStatus = this.EwepserverService.MaritalStatus;
                 this.EducationLevel = this.EwepserverService.EducationLevel;
               }
-
+  ngOnChanges(changes){
+    if(this.isLoading){
+      return;
+    }
+    if(changes.entrepreneur){
+      this.MainForm.patchValue(this.entrepreneur);
+    }
+  }
   ngOnInit() {
+    this.isLoading =true;
     let oFromTemp:FormGroupEditMemberBaselineEnterprise = new FormGroupEditMemberBaselineEnterprise(); 
     this.General = this.cutomerFormHlper.toFormGroup(oFromTemp.getGeneral(this.entrepreneur));
     this.training = this.cutomerFormHlper.toFormGroup(oFromTemp.getTraining(this.entrepreneur));
@@ -54,6 +62,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit {
       training:this.training,
       Contact:this.Contact
     });
+    this.isLoading =false;
   }
   Save(){
     let entrepreneur = this.cutomerFormHlper.flattenObject(this.MainForm.value);
@@ -70,6 +79,10 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit {
     }
     this.SaveItem.emit(entrepreneur);
   }
+  Back(){
+    this.SaveItem.emit(null);
+  }
+
   contaceDetailChange(event, Index) {
     console.log(event, Index);
     let d = <DropdownQuestion>this.ContactInfoWithBinding[Index];

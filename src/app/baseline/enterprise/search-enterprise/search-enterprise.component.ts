@@ -1,6 +1,6 @@
 import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import {EwepserverService} from '../../../ewepserver.service'
+ 
+import {EwepserverService,Province} from '../../../ewepserver.service'
 
 @Component({
   selector: 'app-search-enterprise',
@@ -9,7 +9,7 @@ import {EwepserverService} from '../../../ewepserver.service'
 })
 export class SearchEnterpriseComponent implements OnInit {
   search = {Name:"",Year_Established:"",Province:"Select",Legal_Structure:"Select",HiHRep:"Select",Sector:"Select"}
-  Provinces =[];
+  Provinces:Province[];
   ActiveEDFs =[];
   HeadingInfo:string = "Baseline Info";
   @Input() Heading?:string="";

@@ -17,7 +17,7 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
     { name: 'Visit Date', prop: 'Visit_Date' },
     { name: 'Visit Year', prop: 'Visit_Year' },
     { name: 'Visit Quarter', prop: 'Visit_Quarter' },
-    { name: 'Status', prop: 'Status' }
+    //{ name: 'Status', prop: 'Status' }
   ];
   rows: any[] = [];
   selected = [];
@@ -25,6 +25,7 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   SearchFilter:string = "";
 
   cooperative:any={};
+  selectedVisit:any ={};
   Cooperative_Visit_ID:number=1;
   Cooperative_ID:number=-1;
   blistShow:boolean = true;
@@ -38,20 +39,20 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
       if(params.Cooperative_ID){ 
         if(params.Cooperative_ID>0){
           this.Cooperative_ID =  params.Cooperative_ID;
-          this.Cooperative_Visit_ID =  params.Cooperative_Visit_ID;
-          //this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
-           // this.EwepserverService.getViewData('cooperative_visits_view', params.Cooperative_ID).subscribe((customers:any)=>{
-            //  this.EwepserverService.getRowData('cooperative_visits', params.Cooperative_Visit_ID).subscribe((customers:any)=>{
-            //console.log(customers);
-            this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
-            this.cooperative = customers; 
-            this.OnDataOK();
-          });
+          //this.Cooperative_Visit_ID =  params.Cooperative_Visit_ID;
+           
+          this.loadCooperateLoad();
+          this.getVisitorList();
         }
       }
     });
     }
-
+    loadCooperateLoad(){
+      this.EwepserverService.getCooperativeItem(this.Cooperative_ID).subscribe((customers:any)=>{
+        this.cooperative = customers; 
+        //this.OnDataOK();
+      });
+    }
   ngOnInit() {
   }
 
@@ -75,18 +76,23 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   onSelect({ selected }) {
     //console.log('Select Event', selected, this.selected);
   }
-  backtoList(){
+  backtoList(event){
+    if(event!=''){
+      this.getVisitorList();
+    }
     this.blistShow=true;
   }
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Cooperative_ID);
       this.blistShow=false;
+      this.selectedVisit = this.selected[0];
      // this.router.navigateByUrl('visits/cooperative/' + this.selected[0].Cooperative_ID);
     }
 
   }
   addVisit(){
     this.blistShow=false;
+    this.selectedVisit = {Cooperative_ID:this.Cooperative_ID,Cooperative_Visit_ID:-1};
   }
 }

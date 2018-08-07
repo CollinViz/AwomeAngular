@@ -1,3 +1,122 @@
-<p>
-  edit-training-entrepreneurs-entrepreneurs works!
-</p>
+<div *ngIf="isLoading; else editform ">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #editform>
+  <div class="card text-white bg-info mb-3">
+    <div class="card-header">Header Information</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-6 col-md-6">
+
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_ID">Entrepreneurs</label>
+            <div class="controls">
+              {{entrepreneur.Name}},{{entrepreneur.Surname}}
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <button class="btn btn-"
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card border-light mb-3">
+    <div class="card-header">Add Training</div>
+    <div class="card-body" [formGroup]="addTraining">
+      <div class="row">
+        <div class="col-2">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_ID">Training</label>
+            <div class="controls">
+              <mat-form-field ngClass="form-control">
+                <mat-select [id]="txtTraining_ID" formControlName="Training_ID">
+                  <mat-option *ngFor="let lan of TrainingList" [value]="lan.Training_ID">{{lan.Title}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_ID">Start Date</label>
+            <div class="controls">
+              <mat-form-field>
+                <input matInput [matDatepicker]="StartDatepicker" placeholder="Start Date" id="txtDate_Started" 
+                       formControlName="Date_Started">
+                <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #StartDatepicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_ID">Status</label>
+            <div class="controls">
+              <mat-form-field ngClass="form-control">
+                <mat-select [id]="txtStatus" formControlName="Status">
+                  <mat-option value="In Progress">In Progress</mat-option>
+                  <mat-option value="Complete">Complete</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="control-group">
+            <label class="control-label" for="txtEnterprise_ID">Complete Date</label>
+            <div class="controls">
+              <mat-form-field>
+                <input matInput [matDatepicker]="CompleteDatepicker" placeholder="Start Date" id="txtDate_Completed" 
+                       formControlName="Date_Completed">
+                <mat-datepicker-toggle matSuffix [for]="CompleteDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #CompleteDatepicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+            <div class="control-group">
+              <label class="control-label" for="txtEnterprise_ID">Trainer</label>
+              <div class="controls">
+                <mat-form-field ngClass="form-control">
+                  <mat-select [id]="txtTrainer_ID" formControlName="Trainer_ID">
+                    <mat-option *ngFor="let lan of ActiveEDFs" [value]="lan.EDF_ID">{{lan.Name}} {{lan.Surname}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        <div class="col-2">
+            <button  (click)="Save()" [ngClass]="{'btn':true,'btn-primary':addTraining.valid,'btn-md':true  }" [disabled]="!addTraining.valid">Add</button>
+            <button *ngIf="showEdit" (click)="Edit()" [ngClass]="{'btn':true,'btn-primary':addTraining.valid,'btn-md':true  }" [disabled]="!addTraining.valid">Save</button>
+            <button *ngIf="showEdit" (click)="Delete()" [ngClass]="{'btn':true,'btn-warning':true,'btn-md':true  }"  >Delete</button>
+            <button (click)="Back()" [ngClass]="{'btn':true,'btn-secondary':true,'btn-md':true  }"  >Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+      <ngx-datatable
+      class="bootstrap"
+        [rows]="rows"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [selected]="selected"
+        [selectionType]="'single'"
+        (activate)="onActivate($event)"
+         
+        [externalPaging]="true"
+        [count]="page.totalElements"
+        [offset]="page.pageNumber"
+        [limit]="page.size"
+        (page)='setPage($event)'>
+      </ngx-datatable>
+  </div>
+</ng-template>
