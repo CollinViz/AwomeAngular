@@ -1,4 +1,4 @@
-import { TextboxQuestion, CheckBoxQuestion, QuestionBase } from '../../../../service/question'
+import { TextboxQuestion, CheckBoxQuestion, QuestionBase } from '../../../service/question'
 
 export class FormGroupEditMemberBaselineEnterprise {
     getGeneral(entrepreneur: any) {
@@ -7,11 +7,11 @@ export class FormGroupEditMemberBaselineEnterprise {
             label: 'Form_ID', value: entrepreneur.Form_ID,
         }),
         new TextboxQuestion({
-            key: 'Name', required: false, order: 3,
+            key: 'Name', required: true, order: 3,
             label: 'Name', value: entrepreneur.Name,
         }),
         new TextboxQuestion({
-            key: 'Surname', required: false, order: 4,
+            key: 'Surname', required: true, order: 4,
             label: 'Surname', value: entrepreneur.Surname,
         }),
         new TextboxQuestion({

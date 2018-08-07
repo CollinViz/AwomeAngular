@@ -20,7 +20,13 @@ export class GenBootUiComponent implements OnInit {
     if(!this.form.controls[this.question.key]) {
       return null
     }
-    return this.form.controls[this.question.key].errors;
+    //ng-untouched
+    if(this.form.controls[this.question.key].touched){
+      return this.form.controls[this.question.key].errors;
+    }else{
+      return null;
+    }
+    
   }
   get isValid() {
       if(this.question.controlType=='checkboxGroup'){

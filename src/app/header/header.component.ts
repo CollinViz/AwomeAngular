@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params,NavigationEnd} from '@angular/router'; 
-import {Country,EwepserverService} from '../ewepserver.service'
+import {Country,EwepserverService,InternetConnection,LogInData} from '../ewepserver.service'
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-header',
@@ -17,10 +17,17 @@ export class HeaderComponent implements OnInit {
   isAdmin:boolean = true; 
   currentCountry:string= "";
   currentCountryID:number= 0;
+  
   countryList$: Observable<Country[]>;
+  ErrorInterNet$:Observable<InternetConnection>;
+  LoginData$:Observable<LogInData>;
+  showError:boolean=false;
+  ErrorMessage:string="";
+  ShowAllMenu:boolean = false;
   constructor( private router: Router,
                 private ewepserverService: EwepserverService) { 
-    
+    this.currentCountry="South Africa";
+    this.currentCountryID=1;
 
   }
   clearSelect(){
@@ -34,6 +41,8 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.countryList$ = this.ewepserverService.country;
+    this.ErrorInterNet$ = this.ewepserverService.internetInfo;
+    this.LoginData$ = this.ewepserverService.LoginOK;
     this.clearSelect();
     if(!this.router.events){
       return;
@@ -68,6 +77,16 @@ export class HeaderComponent implements OnInit {
       }
       
     });
+    this.ErrorInterNet$.subscribe((error:InternetConnection)=>{
+      this.showError= true;
+      this.ErrorMessage = error.ErrorMessage;
+    });
+    this.LoginData$.subscribe((User:LogInData)=>{
+      if(User.LoginOK){
+        this.ShowAllMenu = true;
+      }
+      
+    })
   }
   changeCountry(newCountry,Index){
     this.currentCountry = newCountry.Country_Name;

@@ -58,13 +58,16 @@
 
   
   
-  <div class="alert alert-dismissible alert-danger" *ngIf="!isValid">required {{listOfErrors | json}}</div>
-  <div class="alert alert-dismissible alert-danger" *ngIf="listOfErrors">
-    <div class="errorMessage" *ngIf="listOfErrors.maxlength">Max Length</div>
-    <div class="errorMessage" *ngIf="listOfErrors.minlength">Min Length is {{listOfErrors.minlength.requiredLength}}</div> 
-    <div class="errorMessage" *ngIf="listOfErrors.max">Max value allowed is {{listOfErrors.max.max}}</div>
-    <div class="errorMessage" *ngIf="listOfErrors.min">Min value allowed is {{listOfErrors.min.min}}</div>
+  <!-- <div class="alert alert-dismissible alert-danger" *ngIf="!isValid">required {{listOfErrors | json}}</div> -->
+  <div *ngIf="listOfErrors">
+      <div class="" >
+          <div class="alert alert-dismissible alert-danger" *ngIf="listOfErrors.maxlength">Max Length</div>
+          <div class="alert alert-dismissible alert-danger" *ngIf="listOfErrors.minlength">Min Length is {{listOfErrors.minlength.requiredLength}}</div> 
+          <div class="alert alert-dismissible alert-danger" *ngIf="listOfErrors.max">Max value allowed is {{listOfErrors.max.max}}</div>
+          <div class="alert alert-dismissible alert-danger" *ngIf="listOfErrors.min">Min value allowed is {{listOfErrors.min.min}}</div>
+        </div>
   </div>
+  
 </div>
 
 

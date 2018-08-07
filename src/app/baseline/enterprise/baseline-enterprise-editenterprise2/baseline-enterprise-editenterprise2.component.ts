@@ -233,30 +233,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     
   }
   onSaveEntrepreneur(NewOrEditEntrepreneur:any){
-    this.showloading_Entrepreneurs= true;
-    //Test if we need to create or edit
-    if(NewOrEditEntrepreneur.Entrepreneur_ID==-1){
-      //create
-      delete NewOrEditEntrepreneur.Entrepreneur_ID;
-      this.EwepserverService.CreateTableData("entrepreneur",NewOrEditEntrepreneur).subscribe((newID)=>{
-        //Add user to Enterprise 
-        let newEntrepreneur = {Entrepreneur_ID:newID,Name:NewOrEditEntrepreneur.Name,Surname:NewOrEditEntrepreneur.Surname,
-                              Enterprise_ID:this.enterprise.Enterprise_ID};
-        this.EntrepreneursList.push(newEntrepreneur);
-        this.showloading_Entrepreneurs= false;
-        this.showEntrepreneursList = true;
-      });
-    }else{
-      //update
-      this.EwepserverService.updateTableData("entrepreneur",NewOrEditEntrepreneur.Entrepreneur_ID,NewOrEditEntrepreneur).subscribe((Data)=>{
-        //Find ID and update 
-        const OldValue = this.EntrepreneursList.find( x=> x.Entrepreneur_ID==NewOrEditEntrepreneur.Entrepreneur_ID); 
-        OldValue.Name=NewOrEditEntrepreneur.Name;
-        OldValue.Surname=NewOrEditEntrepreneur.Surname;
-        this.showloading_Entrepreneurs= false;
-        this.showEntrepreneursList = true;
-      })
-    } 
+     
   }
   contaceDetailChange(event, Index) {
     console.log(event, Index);

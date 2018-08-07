@@ -1,4 +1,18 @@
-<tabset type="pills" class="bg-info" [formGroup]="MainForm">
+<form [formGroup]="MainForm">
+
+<div class="row">
+  <div class="col-6">
+      
+  </div>
+  <div class="col-6">
+      <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
+      <button (click)="Back()" [ngClass]="{'btn':true,'secondary':true  }"  >Back</button>
+
+  </div>
+</div>
+
+
+<tabset type="pills" class="bg-info" >
   <tab heading="General Information" class="mt-2" [formGroup]="General">
     <div class="row">
       <div class="col-3">
@@ -13,7 +27,7 @@
         </div>
       </div>
       <div class="col-3">
-          <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
+          
         </div>
     </div>
     <div class="row">
@@ -439,3 +453,4 @@
       <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Contact"></app-gen-boot-ui> 
   </tab>
 </tabset>
+</form>

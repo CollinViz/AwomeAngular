@@ -19,7 +19,7 @@ export class CustomFromHelperControlService {
 
     return dialogRef.afterClosed();
   }
-  getDateValue(DateInfo:any){
+  getDateValue(DateInfo:any):string|null{
     const myvar = DateInfo;//this.Finance.get('When_Training').value;
     if(myvar===null){
       return null;
@@ -37,27 +37,29 @@ export class CustomFromHelperControlService {
     if((typeof myvar === "undefined")){
       return null;
     }
-    console.log(typeof myvar);
-    console.log(DateInfo);
-
+     
     if(DateInfo.trim){
       if(DateInfo.trim()==='')
         return null;
     }
     return DateInfo;
   }
-  flattenObject(ob:any){
+  flattenObject(ob:any):any{
     var toReturn = {};
     
     for (var i in ob) {
       if (!ob.hasOwnProperty(i)) continue;
       
       if ((typeof ob[i]) == 'object') {
-        var flatObject = this.flattenObject(ob[i]);
-        for (var x in flatObject) {
-          if (!flatObject.hasOwnProperty(x)) continue;
-          
-          toReturn[ x] = flatObject[x];
+        if(ob[i] instanceof Date){
+          toReturn[i] = this.getDateValue(ob[i]);
+        }else{
+          var flatObject = this.flattenObject(ob[i]);
+          for (var x in flatObject) {
+            if (!flatObject.hasOwnProperty(x)) continue;
+            
+            toReturn[ x] = flatObject[x];
+          }
         }
       } else {
         toReturn[i] = ob[i];

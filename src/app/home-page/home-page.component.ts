@@ -11,7 +11,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     //Must change before go live
-    this.home.loginOK= true;
+    this.home.loginOK= false;
   }
   showlogin(){
     console.log("change login");

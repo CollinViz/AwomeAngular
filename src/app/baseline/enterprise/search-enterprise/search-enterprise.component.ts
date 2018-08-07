@@ -1,5 +1,5 @@
 import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
-import { Observable } from 'rxjs';
+ 
 import {EwepserverService,Province} from '../../../ewepserver.service'
 
 @Component({

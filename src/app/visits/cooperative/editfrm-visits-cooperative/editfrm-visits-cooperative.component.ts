@@ -51,7 +51,7 @@ export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
       if(changes.cooperative_visit){
         if(!this.showloading){
 
-          this.user.updateValueAndValidity(this.cooperative_visit);
+          this.user.patchValue(this.cooperative_visit);
           
         }
       }
