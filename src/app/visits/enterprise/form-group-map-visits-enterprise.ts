@@ -19,72 +19,103 @@ export class FormGroupMapVisitsEnterprise {
     }
     
   getEnterpriseGenralForm(enterprise:any){
+	
 	let questions: QuestionBase<any>[] = [
-		new NumbersQuestion({
-			key: 'Year_Established', required: false,order: 3,
+		/*new NumbersQuestion({
+			key: 'Year_Established', required: true,order: 3,
 			label: 'Year Established', value: enterprise.Year_Established,
+			min:1981,max:(new Date()).getFullYear()
 		}),
 		new DropdownQuestion({
 			key: 'Legal_Structure',  required: false, order: 4,
 			options: this.ewepServer.LegalStructure, 
 			label: 'Legal Structure.',
 			value: enterprise.Legal_Structure,
+		}),*/
+		new DatePickerQuestion({
+			key: 'Visit_Date', required: true,order: 3,
+			label: 'Visit Date?', value: enterprise.Visit_Date,
+		}),
+		new NumbersQuestion({
+			key: 'Visit_Year', required: true,order: 4,
+			label: 'Data Collected for Year', value: enterprise.Visit_Year,
+			max:(new Date()).getFullYear,min:2018
+		}),
+		new NumbersQuestion({
+			key: 'Visit_Quarter', required: true,order: 5,
+			label: 'Data Collected for Qtr', value: enterprise.Visit_Quarter,
+			max:4,min:1
+		}),
+		new NumbersQuestion({
+			key: 'Visit_Quarter', required: false,order: 6,
+			label: 'Members Present', value: enterprise.Visit_Quarter,
+			max:1
+		}),
+		new ToggleQuestion ({
+			key: 'Is_Active', required: false,order: 7,
+			label: 'Is Cooperative still Active?', value: enterprise.Is_Active,
+		}),
+		new TextboxQuestion({
+			key: 'Deactivated_Reason', required: false,order: 8,
+			label: 'Deactivation Reason', value: enterprise.Deactivated_Reason,
+			max:50
 		}),
 		new ToggleQuestion({
-			key: 'Registered_Y_N', required: false,order: 5,
+			key: 'Registered_Y_N', required: false,order: 9,
 			label: 'Registered', value: enterprise.Registered_Y_N,
 		}),
 		new TextboxQuestion({
-			key: 'Registration_Number', required: false,order: 6,
+			key: 'Registration_Number', required: false,order: 10,
 			label: 'Registration_Number', value: enterprise.Registration_Number,
+			max:50
 		}),
-		new NumbersQuestion({
+		/*new NumbersQuestion({
 			key: 'Female_Owners', required: false,order: 6,
 			label: 'No of Female Owners', value: enterprise.Female_Owners,
 		}),
 		new NumbersQuestion({
 			key: 'Male_Owners', required: false,order: 7,
 			label: 'No of Male Owners', value: enterprise.Male_Owners,
-		}),
+		}),*/
 		new ToggleQuestion ({
-			key: 'Location_Same', required: false,order: 8,
+			key: 'Location_Same', required: false,order: 11,
 			label: 'Is location same as residence?', value: enterprise.Location_Same,
 		}),
 		new RadioQuestion({
-			key: 'Premise_Own', required: false,order: 9,
+			key: 'Premise_Own', required: false,order: 12,
 			label: 'Premise_Own', value: enterprise.Premise_Own,
 			options:[new Options("Owned","Owned"),new Options("Rented","Rented"),
 					 new Options("Co-Tenant","Co-Tenant"),new Options("Government Premises","Government Premises"),
 					 new Options("Home Based","Home Based") ]
 		}),
 		new ToggleQuestion({
-			key: 'Family_Owned',  required: false, order: 10,
+			key: 'Family_Owned',  required: false, order: 13,
 			label: 'Is Business Family owned?', value: enterprise.Family_Owned,
 		}),
 		new ToggleQuestion({
-			key: 'Group_Owned', required: false,order: 11,
+			key: 'Group_Owned', required: false,order: 14,
 			label: 'Is Business Group owned?', value: enterprise.Group_Owned,
 		}),
 		new TextboxQuestion({
-			key: 'Contact_Person', required: false,order: 12,
+			key: 'Contact_Person', required: false,order: 15,
 			label: 'Contact Person', value: enterprise.Contact_Person,
 		}),
-		new NumbersQuestion({
-			key: 'Year_Started_AWOME', required: false,order: 13,
+		/*new NumbersQuestion({
+			key: 'Year_Started_AWOME', required: false,order: 14,
 			label: 'Year started with AWOME', value: enterprise.Year_Started_AWOME,
-		}),
+		}),*/
 		new TextboxQuestion({
-			key: 'Responsible_Trainer', required: false,order: 14,
+			key: 'Responsible_Trainer', required: false,order: 16,
 			label: 'Responsible Trainer', value: enterprise.Responsible_Trainer,
 		}),
-		new MemoQuestion({
-			key: 'Vision', required: false,order: 15,
+		/*new MemoQuestion({
+			key: 'Vision', required: false,order: 16,
 			label: 'Vision', value: enterprise.Vision,
 		}),
 		new MemoQuestion({
-			key: 'Obstacles', required: false,order: 16,
+			key: 'Obstacles', required: false,order: 17,
 			label: 'What are you biggest obstacles', value: enterprise.Obstacles,
-		})
+		})*/
 	];
 	return questions.sort((a, b) => a.order - b.order);
   }

@@ -8,13 +8,13 @@ import { EwepserverService } from '../../../ewepserver.service'
 })
 export class ListenterpriseComponent implements OnInit {
   columns = [
-    { name: 'ID', prop: 'Enterprise_ID' },
-    { name: 'Name', prop: 'Enterprise_Name' },
+    { name: 'Enterprise ID', prop: 'Enterprise_ID' },
+    { name: 'Enterprise Name', prop: 'Enterprise_Name' },
     { name: 'Year Est', prop: 'Year_Established' },
-    { name: 'Structure', prop: 'Legal_Structure' },
-    { name: 'Owners', prop: 'Female_Owners' },
-    { name: 'Province', prop: 'Province' },
-    { name: 'EDF', prop: 'EDF' },
+    //{ name: 'Structure', prop: 'Legal_Structure' },
+    { name: 'Female Owners', prop: 'Female_Owners' },
+    //{ name: 'Province', prop: 'Province' },
+    //{ name: 'EDF', prop: 'EDF' },
     { name: 'Status', prop: 'Status' }
   ];
   rows: any[] = [];
