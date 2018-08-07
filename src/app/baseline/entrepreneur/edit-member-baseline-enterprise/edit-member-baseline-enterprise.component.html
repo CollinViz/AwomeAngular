@@ -124,7 +124,7 @@
                   <label class="control-label" for="txtLanguage">Language</label>
                   <div class="controls">
                     <mat-form-field ngClass="form-control">
-                      <mat-select [id]="txtLanguage" formControlName="Language">
+                      <mat-select id="txtLanguage" formControlName="Language">
                         <mat-option *ngFor="let lan of Language" [value]="lan.Key">{{lan.Value}} </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -259,7 +259,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">R</span>
                       </div>
-                      <input appNumberOnly formControlName="Income_Before_Awome" [id]="txtIncome_Before_Awome" [type]="text" ngClass="form-control numbersOnly">
+                      <input appNumberOnly formControlName="Income_Before_Awome" id="txtIncome_Before_Awome" type="text" ngClass="form-control numbersOnly">
                     </div>
                   </div>
                 </div>

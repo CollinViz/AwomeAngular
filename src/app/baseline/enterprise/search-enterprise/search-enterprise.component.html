@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="row">
-       <!-- <div class="col-xs-4 col-md-4">
+      <!-- <div class="col-xs-4 col-md-4">
             <div class="control-group">
                 <label class="control-label" for="txtProvince">Province </label>
                 <div class="controls">
@@ -41,7 +41,7 @@
               </div>
         </div> -->
 
-        <!--<div class="col-xs-4 col-md-4">
+      <!--<div class="col-xs-4 col-md-4">
             <div class="control-group">
                 <label class="control-label" for="txtLegal_Structure">Legal Structure</label>
                 <div class="controls">
@@ -62,51 +62,31 @@
                 </div>
               </div> 
         </div> -->
-        <div class="col-xs-4 col-md-4">
-          
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-4 col-md-4">
-            <div class="control-group">
-                <label class="control-label" for="txtHiHRep"></label>
-            </div>
-        </div>
-      </div>
-
-      <div class="row">
-          <div class="col-xs-4 col-md-4">
-              <div class="control-group">
-                  <label class="control-label" for="txtHiHRep"></label>
-              </div>
-          </div>
-        </div>
-
-      <div class="row">
-          <div class="col-xs-4 col-md-4">
-              <div class="control-group">
-                  <label class="control-label" for="txtHiHRep">Responsible Trainer</label>
-                  <div class="controls">
-                  <mat-form-field>
-                      <mat-select [(ngModel)]="search.HiHRep" name="txtHiHRep">
-                          <mat-option value="Select">Select</mat-option>
-                          <mat-option *ngFor="let edf of ActiveEDFs" [value]="edf.EDF_ID">{{edf.Name}} {{edf.Surname}}</mat-option> 
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-          </div>
-        </div>
-      </div>
       <div class="col-xs-4 col-md-4">
 
       </div>
     </div>
+
     <div class="row">
       <div class="col-xs-4 col-md-4">
         <div class="control-group">
-          <label class="control-label" for="txtHiHRep">HiH Rep</label>
+          <label class="control-label" for="txtHiHRep"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4 col-md-4">
+        <div class="control-group">
+          <label class="control-label" for="txtHiHRep"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4 col-md-4">
+        <div class="control-group">
+          <label class="control-label" for="txtHiHRep">Responsible Trainer</label>
           <div class="controls">
             <mat-form-field>
               <mat-select [(ngModel)]="search.HiHRep" name="txtHiHRep">
@@ -117,33 +97,15 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-4 col-md-4">
-        <div class="control-group">
-          <label class="control-label" for="txtSector">Sector</label>
-          <div class="controls">
-            <mat-form-field>
-              <mat-select [(ngModel)]="search.Sector" name="txtSector">
-                <mat-option value="Select">Select</mat-option>
-                <mat-option value="Sec_Agri">Agriculture</mat-option>
-                <mat-option value="Sec_Manu">Manufacturing</mat-option>
-                <mat-option value="Sec_Retail">Retail</mat-option>
-                <mat-option value="Sec_Minerals">Minerals</mat-option>
-                <mat-option value="Sec_Arts">Arts</mat-option>
-                <mat-option value="Sec_General">General</mat-option>
-                <mat-option value="Sec_Other">Other</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-4 col-md-4">
-
-      </div>
     </div>
   </div>
-  <div class="card-footer" *ngIf="!hidAdd">
-    <button type="button" class="btn btn-primary" (click)="addClick()">
-      Add Enterprise
-    </button>
+  <div class="col-xs-4 col-md-4">
+
   </div>
 </div>
+
+<div class="card-footer" *ngIf="!hidAdd">
+  <button type="button" class="btn btn-primary" (click)="addClick()">
+    Add Enterprise
+  </button>
+</div> 

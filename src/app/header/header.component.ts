@@ -78,8 +78,11 @@ export class HeaderComponent implements OnInit {
       
     });
     this.ErrorInterNet$.subscribe((error:InternetConnection)=>{
-      this.showError= true;
+      this.showError= false;
       this.ErrorMessage = error.ErrorMessage;
+      if(error.ErrorMessage.trim()!=""){
+        this.showError= true;
+      }
     });
     this.LoginData$.subscribe((User:LogInData)=>{
       if(User.LoginOK){

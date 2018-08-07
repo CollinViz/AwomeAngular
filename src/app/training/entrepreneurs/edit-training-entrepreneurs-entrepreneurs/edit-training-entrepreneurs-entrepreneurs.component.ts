@@ -16,7 +16,7 @@ export class EditTrainingEntrepreneursEntrepreneursComponent implements OnInit,O
   @Input() TrainingList:any = {}
   @Input() ActiveEDFs:any = {}
   @Output() SaveItem:EventEmitter<any> = new EventEmitter<any>();
-  isLoading:boolean = true;  
+  isLoading:boolean = false;  
   columns = [
     { name: 'ID', prop: 'EntrepreneurTraining_ID' },
     { name: 'Course Name', prop: 'Title' }, 
@@ -31,19 +31,19 @@ export class EditTrainingEntrepreneursEntrepreneursComponent implements OnInit,O
    
   addTraining:FormGroup;
   showEdit:boolean =false;
+  bControlLoaded:boolean = false;
   constructor(private EwepserverService: EwepserverService,
     private cutomerFormHlper: CustomFromHelperControlService ) { }
 
   ngOnInit() {
-    
-    this.isLoading = false;
     let frmcontrol = new FormGroupEditTrainingEntrepreneur();
     this.addTraining = this.cutomerFormHlper.toFormGroup(frmcontrol.getTraining());
+    this.bControlLoaded = true;
   }
   ngOnChanges(changes){
-    if(this.isLoading){
-      //return;
-    }
+    //if(!this.bControlLoaded){
+    //  return;
+    //}
     if(changes.entrepreneur){
       this.page.pageNumber=1;
       this.isLoading = true;
@@ -56,7 +56,7 @@ export class EditTrainingEntrepreneursEntrepreneursComponent implements OnInit,O
     let strOptions="page="+this.page.pageNumber+"&orderby=surname&filter=Entrepreneur_ID,eq,"+this.entrepreneur.Entrepreneur_ID;
      this.EwepserverService.getViewData("entrepreneur_training_view",strOptions).subscribe(trining=>{
       this.rows = [...trining.records];
-      this.isLoading = true;
+      this.isLoading = false;
      });
   }
   setPage(event) {
