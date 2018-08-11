@@ -1,364 +1,365 @@
 <form [formGroup]="MainForm">
 
-<div class="row">
-  <div class="col-6">
-      
-  </div>
-  <div class="col-6">
-      <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
-      <button (click)="Back()" [ngClass]="{'btn':true,'secondary':true  }"  >Back</button>
+  <div class="row">
+    <div class="col-6">
 
-  </div>
-</div>
-
-
-<tabset type="pills" class="bg-info" >
-  <tab heading="General Information" class="mt-2" [formGroup]="General">
-    <div class="row">
-      <div class="col-3">
-
-      </div>
-      <div class="col-3">
-        <div class="control-group">
-          <label class="control-label" for="txtForm_ID">Form ID</label>
-          <div class="controls">
-            <input formControlName="Form_ID" id="Form_ID" type="text" placeholder="Form_ID" ngClass="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="col-3">
-          
-        </div>
     </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="card border-light mb-3">
-          <!--- General Information Start  -->
-          <div class="card-header">General Information</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtName">Name</label>
-                  <div class="controls">
-                    <input formControlName="Name" id="txtName" type="text" placeholder="Name" ngClass="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtSurname">Surname</label>
-                  <div class="controls">
-                    <input formControlName="Surname" id="txtSurname" type="text" placeholder="Surname" ngClass="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtKnown_As">Known_As</label>
-                  <div class="controls">
-                    <input formControlName="Known_As" id="txtKnown_As" type="text" placeholder="Known_As" ngClass="form-control">
-                  </div>
-                </div>
-              </div>
+    <div class="col-6">
+      <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
+      <button (click)="Back()" [ngClass]="{'btn':true,'secondary':true  }">Back</button>
 
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtID_or_Passport">ID_or_Passport</label>
-                  <div class="controls">
-                    <mat-slide-toggle id="txtID_or_Passport" name="txtID_or_Passport" formControlName="ID_or_Passport"> </mat-slide-toggle>
+    </div>
+  </div>
 
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtID_Passport">ID_Passport</label>
-                  <div class="controls">
-                    <input formControlName="ID_Passport" id="txtID_Passport" type="text" placeholder="ID_Passport" ngClass="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtExpiration_Date">Expiration Date</label>
-                  <div class="controls">
-                    <mat-form-field>
-                      <input matInput [matDatepicker]="Exppicker" placeholder="Expiration Date" id="txtExpiration_Date" formControlName="Expiration_Date">
-                      <mat-datepicker-toggle matSuffix [for]="Exppicker"></mat-datepicker-toggle>
-                      <mat-datepicker #Exppicker></mat-datepicker>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtNationality">Nationality</label>
-                  <div class="controls">
-                    <input formControlName="Nationality" id="txtNationality" type="text" placeholder="Nationality" ngClass="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtBirth_Date">Date of Birth</label>
-                  <div class="controls">
-                    <mat-form-field>
-                      <input matInput [matDatepicker]="BDatepicker" placeholder="Date of Birth" id="txtBirth_Date" formControlName="Birth_Date">
-                      <mat-datepicker-toggle matSuffix [for]="BDatepicker"></mat-datepicker-toggle>
-                      <mat-datepicker #BDatepicker></mat-datepicker>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtLanguage">Language</label>
-                  <div class="controls">
-                    <mat-form-field ngClass="form-control">
-                      <mat-select id="txtLanguage" formControlName="Language">
-                        <mat-option *ngFor="let lan of Language" [value]="lan.Key">{{lan.Value}} </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtRace">Race</label>
-                  <div class="controls">
-                    <mat-radio-group id="txtRace" name="txtRace" formControlName="Race" ngClass="form-control">
-                      <mat-radio-button *ngFor="let opt of Race" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtSex">Sex</label>
-                  <div class="controls">
-                    <mat-radio-group id="txtSex" name="txtSex" formControlName="Sex" ngClass="form-control">
-                      <mat-radio-button *ngFor="let opt of Sex" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              </div>
+
+  <tabset type="pills" class="bg-info">
+    <tab heading="General Information" class="mt-2" [formGroup]="General">
+      <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-3">
+          <div class="control-group">
+            <label class="control-label" for="txtForm_ID">Form ID</label>
+            <div class="controls">
+              <input formControlName="Form_ID" id="Form_ID" type="text" placeholder="Form_ID" ngClass="form-control">
             </div>
           </div>
-          <!--- </app-gen-boot-ui> General Information end  -->
+        </div>
+        <div class="col-3">
+
         </div>
       </div>
-      <div class="col-4">
-        <div class="card border-light mb-3">
-          <!--- Family  start  -->
-          <div class="card-header">Family</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-12">
-                <div class="control-group">
-                  <label class="control-label" for="txtMarital_Status">Marital Status</label>
-                  <div class="controls">
-                    <mat-form-field ngClass="form-control">
-                      <mat-select id="txtMarital_Status" formControlName="Marital_Status">
-                        <mat-option *ngFor="let lan of MaritalStatus" [value]="lan.Key">{{lan.Value}} </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+      <div class="row">
+        <div class="col-4">
+          <div [appCardCssFormGroup]="General.valid" class="card mb-3">
+            <!--- General Information Start  -->
+            <div [appCardHeaderCssFormGroup]="General.valid" class="card-header">General Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtName">Name</label>
+                    <div class="controls">
+                      <input formControlName="Name" id="txtName" type="text" placeholder="Name" ngClass="form-control">
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtChildren">No of Children</label>
-                  <div class="controls">
-                    <input appNumberOnly formControlName="Children" id="txtChildren" type="text" placeholder="Children" class="form-control numbersOnly">
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtChildren_In_School">No of Children in School</label>
-                  <div class="controls">
-                    <input appNumberOnly formControlName="Children_In_School" id="txtChildren_In_School" type="text" placeholder="Children_In_School"
-                      class="form-control numbersOnly">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtPeople_Supported">No of People Supported</label>
-                  <div class="controls">
-                    <input appNumberOnly formControlName="People_Supported" id="txtPeople_Supported" type="text" placeholder="People_Supported"
-                      ngClass="form-control numbersOnly">
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtPeople_Employed_Household">No of People Employed in Household</label>
-                  <div class="controls">
-                    <input appNumberOnly formControlName="People_Employed_Household" id="txtPeople_Employed_Household" type="text" placeholder="People_Employed_Household numbersOnly"
-                      ngClass="form-control">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="control-group">
-                  <label class="control-label" for="txtPeople_In_Household">No of People in Household</label>
-                  <div class="controls">
-                    <input appNumberOnly formControlName="People_In_Household" id="txtPeople_In_Household" type="text" placeholder="People_In_Household"
-                      ngClass="form-control numbersOnly">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="control-group">
-                  <label class="control-label" for="txtEducation_Level">Level of Education (select one)</label>
-                  <div class="controls">
-                    <mat-form-field ngClass="form-control">
-                      <mat-select id="txtEducation_Level" formControlName="Education_Level">
-                        <mat-option *ngFor="let lan of EducationLevel" [value]="lan.Key">{{lan.Value}} </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--- Family  end  -->
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card border-light mb-3">
-          <!--- Finance  start  -->
-          <div class="card-header">Finance</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtIncome_Before_Awome">Monthly Income before AWOME</label>
-                  <div class="controls">
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">R</span>
-                      </div>
-                      <input appNumberOnly formControlName="Income_Before_Awome" id="txtIncome_Before_Awome" type="text" ngClass="form-control numbersOnly">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtSurname">Surname</label>
+                    <div class="controls">
+                      <input formControlName="Surname" id="txtSurname" type="text" placeholder="Surname" ngClass="form-control">
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtBank_Account">Bank Account</label>
-                  <div class="controls">
-                    <mat-slide-toggle id="txtBank_Account" name="txtBank_Account" formControlName="Bank_Account"> </mat-slide-toggle>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtKnown_As">Known_As</label>
+                    <div class="controls">
+                      <input formControlName="Known_As" id="txtKnown_As" type="text" placeholder="Known_As" ngClass="form-control">
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="control-group">
-                  <label class="control-label" for="txtSupport_Grant">Additional Support Received</label>
-                  <div class="controls">
 
-                    <mat-checkbox formControlName="Support_Grant" id="txtSupport_Grant" ngClass="checkboxgroup-control">
-                      Child Grant
-                    </mat-checkbox>
-                    <mat-checkbox formControlName="Support_Family" id="txtSupport_Family" ngClass="checkboxgroup-control">
-                      Income from Family</mat-checkbox>
-                    <mat-checkbox formControlName="Support_Pension" id="txtSupport_Pension" ngClass="checkboxgroup-control">
-                      Pension Income</mat-checkbox>
-                    <mat-checkbox formControlName="Support_Pension" id="txtSupport_Pension" ngClass="checkboxgroup-control">
-                      Pension Income</mat-checkbox>
-                    <mat-checkbox formControlName="Support_Other" id="txtSupport_Other" ngClass="checkboxgroup-control">
-                      Other</mat-checkbox>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtID_or_Passport">ID_or_Passport</label>
+                    <div class="controls">
+                      <mat-slide-toggle id="txtID_or_Passport" name="txtID_or_Passport" formControlName="ID_or_Passport"> </mat-slide-toggle>
+
+                    </div>
                   </div>
                 </div>
-                <div class="control-group">
-                  <label class="control-label" for="txtSupport_Specify">Support Specify</label>
-                  <div class="controls">
-                    <input formControlName="Support_Specify" id="txtSupport_Specify" type="text" placeholder="Support_Specify" ngClass="form-control">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtID_Passport">ID_Passport</label>
+                    <div class="controls">
+                      <input formControlName="ID_Passport" id="txtID_Passport" type="text" placeholder="ID_Passport" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtExpiration_Date">Expiration Date</label>
+                    <div class="controls">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="Exppicker" placeholder="Expiration Date" id="txtExpiration_Date" formControlName="Expiration_Date">
+                        <mat-datepicker-toggle matSuffix [for]="Exppicker"></mat-datepicker-toggle>
+                        <mat-datepicker #Exppicker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtNationality">Nationality</label>
+                    <div class="controls">
+                      <input formControlName="Nationality" id="txtNationality" type="text" placeholder="Nationality" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtBirth_Date">Date of Birth</label>
+                    <div class="controls">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="BDatepicker" placeholder="Date of Birth" id="txtBirth_Date" formControlName="Birth_Date">
+                        <mat-datepicker-toggle matSuffix [for]="BDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #BDatepicker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtLanguage">Language</label>
+                    <div class="controls">
+                      <mat-form-field ngClass="form-control">
+                        <mat-select id="txtLanguage" formControlName="Language">
+                          <mat-option *ngFor="let lan of Language" [value]="lan.Key">{{lan.Value}} </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtRace">Race</label>
+                    <div class="controls">
+                      <mat-radio-group id="txtRace" name="txtRace" formControlName="Race" ngClass="form-control">
+                        <mat-radio-button *ngFor="let opt of Race" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtSex">Sex</label>
+                    <div class="controls">
+                      <mat-radio-group id="txtSex" name="txtSex" formControlName="Sex" ngClass="form-control">
+                        <mat-radio-button *ngFor="let opt of Sex" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="control-group">
-                  <label class="control-label" for="txtChallenge_Education">Biggest Personal Challenge (select one)</label>
-                  <div class="controls">
-                    <mat-radio-group id="txtChallenge" name="txtChallenge" formControlName="Challenge" ngClass="form-control">
-                      <mat-radio-button value="Challenge_Education">No Education</mat-radio-button>
-                      <mat-radio-button value="Challenge_Family">Family Issues</mat-radio-button>
-                      <mat-radio-button value="Challenge_Health">Health</mat-radio-button>
-                      <mat-radio-button value="Challenge_Disability">Disability</mat-radio-button>
-                      <mat-radio-button value="Challenge_GBV">GBV</mat-radio-button>
-                      <mat-radio-button value="Challenge_Other">Other</mat-radio-button>
-                    </mat-radio-group>
+            <!--- </app-gen-boot-ui> General Information end  -->
+          </div>
+        </div>
+        <div class="col-4">
+          <div [appCardCssFormGroup]="General.valid" class="card  mb-3">
+            <!--- Family  start  -->
+            <div [appCardHeaderCssFormGroup]="General.valid" class="card-header">Family</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtMarital_Status">Marital Status</label>
+                    <div class="controls">
+                      <mat-form-field ngClass="form-control">
+                        <mat-select id="txtMarital_Status" formControlName="Marital_Status">
+                          <mat-option *ngFor="let lan of MaritalStatus" [value]="lan.Key">{{lan.Value}} </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
                   </div>
                 </div>
-                <div class="control-group">
-                  <label class="control-label" for="txtChallenge_Specify">Challenge Specify</label>
-                  <div class="controls">
-                    <input formControlName="Challenge_Specify" id="txtChallenge_Specify" type="text" placeholder="Challenge_Specify" ngClass="form-control">
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtChildren">No of Children</label>
+                    <div class="controls">
+                      <input appNumberOnly formControlName="Children" id="txtChildren" type="text" placeholder="Children" class="form-control numbersOnly">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtChildren_In_School">No of Children in School</label>
+                    <div class="controls">
+                      <input appNumberOnly formControlName="Children_In_School" id="txtChildren_In_School" type="text" placeholder="Children_In_School"
+                        class="form-control numbersOnly">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtPeople_Supported">No of People Supported</label>
+                    <div class="controls">
+                      <input appNumberOnly formControlName="People_Supported" id="txtPeople_Supported" type="text" placeholder="People_Supported"
+                        ngClass="form-control numbersOnly">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtPeople_Employed_Household">No of People Employed in Household</label>
+                    <div class="controls">
+                      <input appNumberOnly formControlName="People_Employed_Household" id="txtPeople_Employed_Household" type="text" placeholder="People_Employed_Household numbersOnly"
+                        ngClass="form-control numbersOnly">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtPeople_In_Household">No of People in Household</label>
+                    <div class="controls">
+                      <input appNumberOnly formControlName="People_In_Household" id="txtPeople_In_Household" type="text" placeholder="People_In_Household"
+                        ngClass="form-control numbersOnly">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtEducation_Level">Level of Education (select one)</label>
+                    <div class="controls">
+                      <mat-form-field ngClass="form-control">
+                        <mat-select id="txtEducation_Level" formControlName="Education_Level">
+                          <mat-option *ngFor="let lan of EducationLevel" [value]="lan.Key">{{lan.Value}} </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-4">
-                <div class="control-group">
-                  <label class="control-label" for="txtIs_Disabled">Disabled?</label>
-                  <div class="controls">
-                    <mat-slide-toggle id="question.key" name="txtIs_Disabled" formControlName="Is_Disabled"> </mat-slide-toggle>
+            <!--- Family  end  -->
+          </div>
+        </div>
+        <div class="col-4">
+          <div [appCardCssFormGroup]="General.valid" class="card  mb-3">
+            <!--- Finance  start  -->
+            <div [appCardHeaderCssFormGroup]="General.valid" class="card-header">Finance</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtIncome_Before_Awome">Monthly Income before AWOME</label>
+                    <div class="controls">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">R</span>
+                        </div>
+                        <input appNumberOnly formControlName="Income_Before_Awome" id="txtIncome_Before_Awome" type="text" ngClass="form-control numbersOnly">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtBank_Account">Bank Account</label>
+                    <div class="controls">
+                      <mat-slide-toggle id="txtBank_Account" name="txtBank_Account" formControlName="Bank_Account"> </mat-slide-toggle>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-8">
-                <div class="control-group">
-                  <label class="control-label" for="txtDisabled_Specify">Specify Disability</label>
-                  <div class="controls">
-                    <input formControlName="Disabled_Specify" id="txtDisabled_Specify" type="text" placeholder="Disabled_Specify" ngClass="form-control">
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtSupport_Grant">Additional Support Received</label>
+                    <div class="controls">
+
+                      <mat-checkbox formControlName="Support_Grant" id="txtSupport_Grant" ngClass="checkboxgroup-control">
+                        Child Grant
+                      </mat-checkbox>
+                      <mat-checkbox formControlName="Support_Family" id="txtSupport_Family" ngClass="checkboxgroup-control">
+                        Income from Family</mat-checkbox>
+                      <mat-checkbox formControlName="Support_Pension" id="txtSupport_Pension" ngClass="checkboxgroup-control">
+                        Pension Income</mat-checkbox>
+                      <mat-checkbox formControlName="Support_Pension" id="txtSupport_Pension" ngClass="checkboxgroup-control">
+                        Pension Income</mat-checkbox>
+                      <mat-checkbox formControlName="Support_Other" id="txtSupport_Other" ngClass="checkboxgroup-control">
+                        Other</mat-checkbox>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="txtSupport_Specify">Support Specify</label>
+                    <div class="controls">
+                      <input formControlName="Support_Specify" id="txtSupport_Specify" type="text" placeholder="Support_Specify" ngClass="form-control">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtDate_Join_Awome">Date Joined AWOME</label>
-                  <div class="controls">
-                    <mat-form-field>
-                      <input matInput [matDatepicker]="picker_Date_Join_Awome" placeholder="Choose a date" id="txtDate_Join_Awome" formControlName="Date_Join_Awome">
-                      <mat-datepicker-toggle matSuffix [for]="picker_Date_Join_Awome"></mat-datepicker-toggle>
-                      <mat-datepicker #picker_Date_Join_Awome></mat-datepicker>
-                    </mat-form-field>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtChallenge_Education">Greatest Personal Limitation (select one)</label>
+                    <div class="controls">
+                      <mat-radio-group id="txtChallenge" name="txtChallenge" formControlName="Challenge" ngClass="form-control">
+                        <mat-radio-button value="Challenge_Education">No Education</mat-radio-button>
+                        <mat-radio-button value="Challenge_Family">Family Issues</mat-radio-button>
+                        <mat-radio-button value="Challenge_Health">Health</mat-radio-button>
+                        <mat-radio-button value="Challenge_Disability">Disability</mat-radio-button>
+                        <mat-radio-button value="Challenge_GBV">GBV</mat-radio-button>
+                        <mat-radio-button value="Challenge_Other">Other</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="txtChallenge_Specify">Challenge Specify</label>
+                    <div class="controls">
+                      <input formControlName="Challenge_Specify" id="txtChallenge_Specify" type="text" placeholder="Specify" ngClass="form-control">
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-6">
-                <div class="control-group">
-                  <label class="control-label" for="txtResponsible_Trainer">Responsible Trainer</label>
-                  <div class="controls">
-                    <input formControlName="Responsible_Trainer" id="txtResponsible_Trainer" type="text" placeholder="Responsible_Trainer" ngClass="form-control">
+              <div class="row">
+                <div class="col-4">
+                  <div class="control-group">
+                    <label class="control-label" for="txtIs_Disabled">Persons Living With Disabilities (PLWD)?</label>
+                    <div class="controls">
+                      <mat-slide-toggle id="question.key" name="txtIs_Disabled" formControlName="Is_Disabled"> </mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="control-group">
+                    <label class="control-label" for="txtDisabled_Specify">Specify Disability</label>
+                    <div class="controls">
+                      <input formControlName="Disabled_Specify" id="txtDisabled_Specify" type="text" placeholder="Disabled_Specify" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtDate_Join_Awome">Date Joined AWOME</label>
+                    <div class="controls">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="picker_Date_Join_Awome" placeholder="Choose a date" id="txtDate_Join_Awome" formControlName="Date_Join_Awome">
+                        <mat-datepicker-toggle matSuffix [for]="picker_Date_Join_Awome"></mat-datepicker-toggle>
+                        <mat-datepicker #picker_Date_Join_Awome></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtResponsible_Trainer">Responsible Trainer</label>
+                    <div class="controls">
+                      <input formControlName="Responsible_Trainer" id="txtResponsible_Trainer" type="text" placeholder="Responsible_Trainer" ngClass="form-control">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -366,91 +367,248 @@
           </div>
         </div>
       </div>
-    </div> 
-  </tab>
-  <tab heading="Training and Enterprise Information" class="mt-2" [formGroup]="training">
-    <div class="card border-light mb-3">
-      <!--- Access to Technical  start  -->
-      <div class="card-header">Access to Technical Skills</div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-3">
-            <div class="control-group">
-              <label class="control-label" for="txtTechnical_Training">Receive any RELEVANT technical training to your business?</label>
-              <div class="controls">
-                <mat-slide-toggle formControlName="Technical_Training" id="txtTechnical_Training">
-                </mat-slide-toggle>
+    </tab>
+    <tab heading="Training and Enterprise Information" class="mt-2" [formGroup]="training">
+      <div class="row">
+        <div class="col-4">
+          <div [appCardCssFormGroup]="training.valid" class="card mb-3">
+            <!--- Access to Technical  start  -->
+            <div [appCardHeaderCssFormGroup]="training.valid" class="card-header">Access to Technical Skills</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtTechnical_Training">Have you received prior training on?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="Technical_Training" id="txtTechnical_Training">
+                      </mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtWhat_Training">What was the training?</label>
+                    <div class="controls">
+                      <input formControlName="What_Training" id="txtWhat_Training" type="text" placeholder="What_Training" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row bg-light ">
+                <div class="col-12 p-1 m-1 ">
+                  <span class="text-dark ">List different types of costs to consider when calculating total cost of product</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Cost_Labour" id="txtCost_Labour" ngClass="checkboxgroup-control">
+                    Labour costs </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Cost_Material" id="txtCost_Material" ngClass="checkboxgroup-control">
+                    Material Costs (raw materials) </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Cost_Indireect" id="txtCost_Indireect" ngClass="checkboxgroup-control">
+                    Indirect Costs (or Overhead costs) </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row bg-light ">
+                <div class="col-12 p-1 m-1">
+                  <span class="text-dark">What are the components of a Marketing Plan</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4">
+                  <mat-checkbox formControlName="Market_Product" id="txtMarket_Product" ngClass="checkboxgroup-control">
+                    Product (Product specifications, packaging) </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Market_Price" id="txtMarket_Price" ngClass="checkboxgroup-control">
+                    Price (set price according to ability to pay and competitor’s price) </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Market_Place" id="txtMarket_Place" ngClass="checkboxgroup-control">
+                    Place (Distribution)</mat-checkbox>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Market_Promotion" id="txtMarket_Promotion" ngClass="checkboxgroup-control">
+                    Promotion (Advertising)</mat-checkbox>
+                </div>
+              </div>
+              <div class="row bg-light">
+                <div class="col-12 p-1 m-1">
+                  <span class="text-dark">List as many different types of benefits you can think of for workers in a business</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4">
+                  <mat-checkbox formControlName="Benefits_Salary" id="txtBenefits_Salary" ngClass="checkboxgroup-control">
+                    Salary / Wage </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Benefits_Other" id="txtBenefits_Other" ngClass="checkboxgroup-control">
+                    Other financial compensations (bonus, overtime) </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Benefits_Insurance" id="txtBenefits_Insurance" ngClass="checkboxgroup-control">
+                    Insurance (Medical / Accident insurance) </mat-checkbox>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Benefits_Pension" id="txtBenefits_Pension" ngClass="checkboxgroup-control">
+                    Pension Scheme</mat-checkbox>
+                </div>
+              </div>
+              <div class="row bg-light">
+                <div class="col-12 p-1 m-1">
+                  <span class="text-dark">What constitutes a safe and healthy work environment</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4">
+                  <mat-checkbox formControlName="Safety_Tools" id="txtSafety_Tools" ngClass="checkboxgroup-control">
+                    Safe tools and equipment </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Safety_Clothing" id="txtSafety_Clothing" ngClass="checkboxgroup-control">
+                    Safety Clothing (boots, masks, gloves) </mat-checkbox>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Benefits_Insurance" id="txtBenefits_Insurance" ngClass="checkboxgroup-control">
+                    Insurance (Medical / Accident insurance) </mat-checkbox>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-11">
+                  <mat-checkbox formControlName="Safety_Accident" id="txtSafety_Accident" ngClass="checkboxgroup-control">
+                    Accident prevention procedures</mat-checkbox>
+                </div>
               </div>
             </div>
+            <!-- Access to Technical END-->
           </div>
         </div>
-        <div class="row">
-          <div class="col-3">
-            <div class="control-group">
-              <label class="control-label" for="txtWhat_Training">What was the training?</label>
-              <div class="controls">
-                <input formControlName="What_Training" id="txtWhat_Training" type="text" placeholder="What_Training" ngClass="form-control">
+        <div class="col-4">
+          <!-- What do you expect to learn from the training-->
+          <div [appCardCssFormGroup]="training.valid" class="card mb-3">
+            <!--- Access to Technical  start  -->
+            <div [appCardHeaderCssFormGroup]="training.valid" class="card-header">What do you expect to learn from the training</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8"> Planning for Business:</div>
+                <div class="col-4">
+                  <mat-slide-toggle formControlName="Train_Plan_For_Business" id="txtTrain_Plan_For_Business">
+                  </mat-slide-toggle>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="txtPlanning_For_Business">Have you received Prior Training on</label>
-          <div class="controls">
-            <div class="input-group ">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Planning for business </span>
+              <div class="row">
+                <div class="col-8"> Record Keeping:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Train_Record_Keep" id="txtTrain_Record_Keep">
+                  </mat-slide-toggle>
+                </div>
               </div>
-              <mat-slide-toggle formControlName="Planning_For_Business" id="Planning_For_Business">
-              </mat-slide-toggle>
-            </div>
-          </div>
-          <div class="controls">
-            <div class="input-group  ">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Record Keeping </span>
+              <div class="row">
+                <div class="col-8"> Marketing:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Train_Marketing" id="txtTrain_Marketing">
+                  </mat-slide-toggle>
+                </div>
               </div>
-              <mat-slide-toggle formControlName="Record_Keeping" id="txtRecord_Keeping">
-              </mat-slide-toggle>
-            </div>
-          </div>
-          <div class="controls">
-            <div class="input-group  ">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Marketing </span>
+              <div class="row">
+                <div class="col-8"> Costing:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Train_Costing" id="txtTrain_Costing">
+                  </mat-slide-toggle>
+                </div>
               </div>
-              <mat-slide-toggle formControlName="Marketing" id="txtMarketing">
-              </mat-slide-toggle>
-            </div>
-          </div>
-          <div class="controls">
-            <div class="input-group  ">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Costing </span>
+              <div class="row">
+                <div class="col-8"> People and Productivity:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Train_People_Productivity" id="txtTrain_People_Productivity">
+                  </mat-slide-toggle>
+                </div>
               </div>
-              <mat-slide-toggle formControlName="Costing" id="txtCosting">
-              </mat-slide-toggle>
-            </div>
-          </div>
-          <div class="controls">
-            <div class="input-group  ">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Productivity </span>
+              <div class="row">
+                <div class="col-8">Buying and Stock Control:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Train_Buying_Stock" id="txtTrain_Buying_Stock">
+                  </mat-slide-toggle>
+                </div>
               </div>
-              <mat-slide-toggle formControlName="Productivity" id="txtProductivity">
-              </mat-slide-toggle>
             </div>
           </div>
         </div>
       </div>
-      <!-- Access to Technical END-->
-    </div>
-  </tab>
 
-  <tab heading="Contact Information" class="mt-2" [formGroup]="Contact">
-      <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)" [question]="question" [form]="Contact"></app-gen-boot-ui>
-                
-      <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Contact"></app-gen-boot-ui> 
-  </tab>
-</tabset>
+
+    </tab>
+
+    <tab heading="Contact Information" class="mt-2" [formGroup]="Contact">
+      <div class="row">
+        <div class="col-4">
+          <div [appCardCssFormGroup]="Contact.valid" Class="card mb-3">
+               
+            <!--- Contact  -->
+            <div [appCardHeaderCssFormGroup]="Contact.valid" class="card-header">Address</div>
+                 
+            <div class="card-body">
+              <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)"
+                [question]="question" [form]="Contact"></app-gen-boot-ui>
+
+              <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Contact"></app-gen-boot-ui>
+            </div>
+            <!--- END Contact  -->
+          </div>
+        </div>
+      </div>
+
+    </tab>
+  </tabset>
 </form>

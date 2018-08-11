@@ -31,11 +31,11 @@ export class SearchBaselineCooperativeCooperativeComponent implements OnInit {
    }
 
   ngOnInit() {
-    if(this.Heading){
-      if(this.Heading==""){
-        this.Heading = this.HeadingInfo;
-      }
+     
+    if(this.Heading==""){
+      this.Heading = this.HeadingInfo;
     }
+     
   }
 
    

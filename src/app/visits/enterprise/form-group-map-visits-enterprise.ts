@@ -29,7 +29,7 @@ export class FormGroupMapVisitsEnterprise {
 		new DropdownQuestion({
 			key: 'Legal_Structure',  required: false, order: 4,
 			options: this.ewepServer.LegalStructure, 
-			label: 'Legal Structure.',
+			label: 'Legal Structure',
 			value: enterprise.Legal_Structure,
 		}),*/
 		new DatePickerQuestion({

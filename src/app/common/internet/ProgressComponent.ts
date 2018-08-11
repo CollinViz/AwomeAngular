@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter } from '@angular/core';
-import { Observable,ReplaySubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { ProgressInterceptor } from '../../service/ProgressInterceptor'
-import {MatProgressBarModule,MatProgressBar} from '@angular/material/progress-bar';
+import {MatProgressBar} from '@angular/material/progress-bar';
 
 export type ProgressBarColor = 'primary' | 'accent' | 'warn';
 

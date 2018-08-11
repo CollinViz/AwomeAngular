@@ -28,7 +28,7 @@ export class FormGroupMapVisitsCooperative {
 		new DropdownQuestion({
 			key: 'Legal_Structure',  required: false, order: 4,
 			options: this.ewepServer.LegalStructure, 
-			label: 'Legal Structure.',
+			label: 'Legal Structure',
 			value: cooperative.Legal_Structure,
 		}),*/
 		new DatePickerQuestion({

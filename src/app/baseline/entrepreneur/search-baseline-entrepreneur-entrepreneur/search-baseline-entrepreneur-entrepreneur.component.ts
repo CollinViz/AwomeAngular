@@ -21,11 +21,11 @@ export class SearchBaselineEntrepreneurEntrepreneurComponent implements OnInit {
 
   ngOnInit() {
     this.Provinces = this.EwepserverService.province;
-    if(this.Heading){
-      if(this.Heading==""){
-        this.Heading = this.HeadingInfo;
-      }
+     
+    if(this.Heading==""){
+      this.Heading = this.HeadingInfo;
     }
+     
   }
   addClick(){
     this.NewClick.emit("add");

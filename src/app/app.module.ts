@@ -96,7 +96,9 @@ import { EditLoansBaselineCoopComponent } from './baseline/coop/loans/edit-loans
 import { ListLoansBaselineCoopComponent } from './baseline/coop/loans/list-loans-baseline-coop/list-loans-baseline-coop.component'
 import { ListMemberBaselineEnterpriseComponent } from './baseline/enterprise/member/list-member-baseline-enterprise/list-member-baseline-enterprise.component';
 import { EditMemberBaselineEnterpriseComponent } from './baseline/entrepreneur/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
-import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component'
+import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component';
+import { CardCssFormGroupDirective } from './directive/card-css-form-group.directive';
+import { CardHeaderCssFormGroupDirective } from './directive/card-header-css-form-group.directive'
 
 
 const interceptor = new ProgressInterceptor();
@@ -194,7 +196,11 @@ const interceptor = new ProgressInterceptor();
 
     EditMemberBaselineEnterpriseComponent,
 
-    ComEditContactComponent 
+    ComEditContactComponent,
+
+    CardCssFormGroupDirective,
+
+    CardHeaderCssFormGroupDirective 
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,

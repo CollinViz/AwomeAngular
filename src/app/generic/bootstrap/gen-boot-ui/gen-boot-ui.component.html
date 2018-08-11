@@ -23,7 +23,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text">{{question.currencySymbol}}</span>
         </div>
-        <input appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type" ngClass="form-control numbersOnly">
+        <input appNumberOnly [formControlName]="question.key" 
+               [id]="question.key" [type]="question.type" 
+               ngClass="form-control numbersOnly"
+                >
 
       </div>
     </div>

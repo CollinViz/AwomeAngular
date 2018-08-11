@@ -1,4 +1,4 @@
-import { TextboxQuestion, CheckBoxQuestion, QuestionBase } from '../../../service/question'
+import { TextboxQuestion, CheckBoxQuestion, QuestionBase, RadioQuestion } from '../../../service/question'
 
 export class FormGroupEditMemberBaselineEnterprise {
     getGeneral(entrepreneur: any) {
@@ -120,7 +120,7 @@ export class FormGroupEditMemberBaselineEnterprise {
         }),
         new TextboxQuestion({
             key: 'Challenge', required: false, order: 31,
-            label: 'Challenge', value: entrepreneur.Challenge_Education,
+            label: 'Challenge', value: entrepreneur.Challenge,
         }), 
         new TextboxQuestion({
             key: 'Challenge_Specify', required: false, order: 37,
@@ -153,26 +153,48 @@ export class FormGroupEditMemberBaselineEnterprise {
         new TextboxQuestion({
             key: 'What_Training', required: false, order: 43,
             label: 'What_Training', value: entrepreneur.What_Training,
-        }),
-        new TextboxQuestion({
-            key: 'Planning_For_Business', required: false, order: 44,
-            label: 'Planning_For_Business', value: entrepreneur.Planning_For_Business,
-        }),
-        new TextboxQuestion({
-            key: 'Record_Keeping', required: false, order: 45,
-            label: 'Record_Keeping', value: entrepreneur.Record_Keeping,
-        }),
-        new TextboxQuestion({
-            key: 'Marketing', required: false, order: 46,
-            label: 'Marketing', value: entrepreneur.Marketing,
-        }),	new TextboxQuestion({
-            key: 'Costing', required: false,order: 47,
-            label: 'Costing', value: entrepreneur.Costing,
-        }),
-        new TextboxQuestion({
-            key: 'Productivity', required: false,order: 48,
-            label: 'Productivity', value: entrepreneur.Productivity,
-        })];
+        }),         
+        new RadioQuestion({key: 'Train_Plan_For_Business', required: false,order: 47,
+        label: 'Train_Plan_For_Business', value: entrepreneur.Train_Plan_For_Business}),
+        new RadioQuestion({key: 'Train_Record_Keep', required: false,order: 47,
+        label: 'Train_Record_Keep', value: entrepreneur.Train_Record_Keep}),
+        new RadioQuestion({key: 'Train_Marketing', required: false,order: 47,
+        label: 'Train_Marketing', value: entrepreneur.Train_Marketing}),
+        new RadioQuestion({key: 'Train_Costing', required: false,order: 47,
+        label: 'Train_Costing', value: entrepreneur.Train_Costing}),
+        new RadioQuestion({key: 'Train_People_Productivity', required: false,order: 47,
+        label: 'Train_People_Productivity', value: entrepreneur.Train_People_Productivity}),
+        new RadioQuestion({key: 'Train_Buying_Stock', required: false,order: 47,
+        label: 'Train_Buying_Stock', value: entrepreneur.Train_Buying_Stock}),
+        new RadioQuestion({key: 'Cost_Labour', required: false,order: 47,
+        label: 'Cost_Labour', value: entrepreneur.Cost_Labour}),
+        new RadioQuestion({key: 'Cost_Material', required: false,order: 47,
+        label: 'Cost_Material', value: entrepreneur.Cost_Material}),
+        new RadioQuestion({key: 'Cost_Indireect', required: false,order: 47,
+        label: 'Cost_Indireect', value: entrepreneur.Cost_Indireect}),
+        new RadioQuestion({key: 'Market_Product', required: false,order: 47,
+        label: 'Market_Product', value: entrepreneur.Market_Product}),
+        new RadioQuestion({key: 'Market_Price', required: false,order: 47,
+        label: 'Market_Price', value: entrepreneur.Market_Price}),
+        new RadioQuestion({key: 'Market_Place', required: false,order: 47,
+        label: 'Market_Place', value: entrepreneur.Market_Place}),
+        new RadioQuestion({key: 'Market_Promotion', required: false,order: 47,
+        label: 'Market_Promotion', value: entrepreneur.Market_Promotion}),
+        new RadioQuestion({key: 'Benefits_Salary', required: false,order: 47,
+        label: 'Benefits_Salary', value: entrepreneur.Benefits_Salary}),
+        new RadioQuestion({key: 'Benefits_Other', required: false,order: 47,
+        label: 'Benefits_Other', value: entrepreneur.Benefits_Other}),
+        new RadioQuestion({key: 'Benefits_Insurance', required: false,order: 47,
+        label: 'Benefits_Insurance', value: entrepreneur.Benefits_Insurance}),
+        new RadioQuestion({key: 'Benefits_Pension', required: false,order: 47,
+        label: 'Benefits_Pension', value: entrepreneur.Benefits_Pension}),
+        new RadioQuestion({key: 'Safety_Tools', required: false,order: 47,
+        label: 'Safety_Tools', value: entrepreneur.Safety_Tools}),
+        new RadioQuestion({key: 'Safety_Clothing', required: false,order: 47,
+        label: 'Safety_Clothing', value: entrepreneur.Safety_Clothing}),
+        new RadioQuestion({key: 'Safety_Accident', required: false,order: 47,
+        label: 'Safety_Accident', value: entrepreneur.Safety_Accident}),
+        ];
         return questions;
 
     }

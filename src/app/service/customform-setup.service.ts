@@ -27,11 +27,12 @@ export class CustomformSetupService {
 			key: 'Year_Established', required: true,order: 3,
 			label: 'Year Established', value: enterprise.Year_Established,
 			max:(new Date().getFullYear()),min:1988
-		}),
+		}), 
+		
 		new DropdownQuestion({
 			key: 'Legal_Structure',  required: false, order: 4,
 			options: this.ewepServer.LegalStructure, 
-			label: 'Legal Structure.',
+			label: 'Legal Structure',
 			value: enterprise.Legal_Structure,
 		}),
 		new ToggleQuestion({
@@ -84,12 +85,20 @@ export class CustomformSetupService {
 		}),
 		new MemoQuestion({
 			key: 'Vision', required: false,order: 15,
-			label: 'Vision', value: enterprise.Vision,
+			label: 'What is your Vision for your business', value: enterprise.Vision,
 		}),
 		new MemoQuestion({
-			key: 'Obstacles', required: false,order: 16,
+			key: 'Future_Plans', required: false,order: 16,
+			label: 'What are your plans for the business in the near future', value: enterprise.Future_Plans,
+		}),
+		new MemoQuestion({
+			key: 'Obstacles', required: false,order: 17,
 			label: 'What are you biggest obstacles', value: enterprise.Obstacles,
-		})
+		}),
+		new ToggleQuestion({
+			key: 'Employee_Contracts', required: false,order: 18,
+			label: 'Do you issue Employment Contracts', value: enterprise.Employee_Contracts,
+		}),
 	];
 	return questions.sort((a, b) => a.order - b.order);
   }
@@ -202,7 +211,7 @@ export class CustomformSetupService {
   getStatUpFunds(enterprise:any){
 	let questions: QuestionBase<any>[] = [ 
 		new CheckBoxQuestion({
-			key: 'Source_of_Startup_Funds', required: false,order: 31,
+			key: 'Source_of_Startup_Funds', required: false,order: 10,
 			label: 'Source of Startup Funds', value: enterprise.Funds_Savings,
 			options: [
 				new CheckBoxOptions("Funds_Savings","Savings",enterprise.Funds_Savings),
@@ -211,18 +220,15 @@ export class CustomformSetupService {
 				new CheckBoxOptions("Funds_Grant","Grant",enterprise.Funds_Grant),
 				new CheckBoxOptions("Funds_External","External Loans",enterprise.Funds_External),
 				new CheckBoxOptions("Funds_Friends","Friends",enterprise.Funds_Friends),
+				new CheckBoxOptions("Funds_Other","Friends",enterprise.Funds_Other),
 			]
 		}),
 		new TextboxQuestion({
-			key: 'Funds_Other', required: false,order: 37,
-			label: 'Source of funds Other', value: enterprise.Funds_Other,
-		}),
-		new TextboxQuestion({
-			key: 'Funds_Specify', required: false,order: 38,
+			key: 'Funds_Specify', required: false,order: 20,
 			label: 'Funds_Specify', value: enterprise.Funds_Specify,
-		}),new TextboxQuestion({
+		}),new CheckBoxQuestion({
 			key: 'Assets_Land', required: false,order: 25,
-			label: 'Assets_Land', value: enterprise.Assets_Land,
+			label: 'Land', value: enterprise.Assets_Land,
 		}),
 		new CheckBoxQuestion({
 			key: 'Other_Available_Assets', required: false,order: 26,
@@ -234,47 +240,42 @@ export class CustomformSetupService {
 				new CheckBoxOptions("Assets_Other","Other",enterprise.Assets_Other),
 			]
 		}), 
+		
 		new TextboxQuestion({
 			key: 'Assets_Specify', required: false,order: 30,
-			label: 'Assets_Specify', value: enterprise.Assets_Specify,
+			label: 'Other Available Assets Specify', value: enterprise.Assets_Specify,
 		}),
-		
+		new DropdownQuestion({
+			key: 'Assets_Transport', required: false,order: 35,
+			label: 'Transportation', value: enterprise.Assets_Transport,
+			options:this.ewepServer.Assets_TransportTypes
+		}),
 		new ToggleQuestion({
 			key: 'Bank_Account', required: false,order: 40,
 			label: 'Bank_Account', value: enterprise.Bank_Account,
 		}),
-		new NumbersQuestion({
-			key: 'Baseline_Monthly_Income', required: true,order: 41,
-			label: 'Baseline monthly Income', value: enterprise.Baseline_Monthly_Income,
-			currency:true
-		}),
 		new DropdownQuestion({
-			key: 'Frequency_Of_Income', required: false,order: 152,
-			label: 'Frequency of income per year', value: enterprise.Frequency_Of_Income,
+			key: 'Frequency_Of_Income', required: false,order: 50,
+			label: 'How many months a year does the business earn an income', value: enterprise.Frequency_Of_Income,
 			options:this.ewepServer.MonthDropDown
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Sales', required: true,order: 63,
-			label: 'Avg monthly Income/ Sales', value: enterprise.Avg_Sales,
-			currency:true
-		}),
-		new NumbersQuestion({
-			key: 'Avg_Other_Income', required: true,order: 64,
+			key: 'Avg_Other_Income', required: true,order: 60,
 			label: 'Other Income (e.g. rent)', value: enterprise.Avg_Other_Income,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Expenditure', required: true,order: 65,
+			key: 'Avg_Expenditure', required: true,order: 62,
 			label: 'Avg monthly Expenses', value: enterprise.Avg_Expenditure,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Indirect_Cost', required: true,order: 153,
+			key: 'Avg_Indirect_Cost', required: true,order: 63,
 			label: 'Avg monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Member_Salaries', required: true,order: 66,
+			key: 'Member_Salaries', required: true,order: 64,
 			label: 'Owner Salaries', value: enterprise.Member_Salaries,
 			currency:true
 		}),
@@ -290,7 +291,7 @@ export class CustomformSetupService {
 		}),
 		new NumbersQuestion({
 			key: 'Profit_Invest', required: true,order: 69,
-			label: 'What Invested last month', value: enterprise.Profit_Invest,
+			label: 'What was Invested last month', value: enterprise.Profit_Invest,
 			currency:true
 		}),
 		new NumbersQuestion({
@@ -303,8 +304,8 @@ export class CustomformSetupService {
 			label: 'Working days/week', value: enterprise.Days_Work,
 		}),
 		new NumbersQuestion({
-			key: 'Week_Hours_Worked', required: true,order: 154,
-			label: 'Working hrs/week', value: enterprise.Week_Hours_Worked,
+			key: 'Week_Hours_Worked', required: true,order: 80,
+			label: 'Working hours / day', value: enterprise.Week_Hours_Worked,
 		}),
 	];
 	return questions.sort((a, b) => a.order - b.order);
@@ -313,7 +314,11 @@ export class CustomformSetupService {
 	let questions: QuestionBase<any>[] = [ 
 		new MemoQuestion({
 			key: 'Current_Market', required: false,order: 54,
-			label: 'What is your current Market?', value: enterprise.Current_Market,
+			label: 'Where do you sell your Goods / Services', value: enterprise.Current_Market,
+		}),
+		new NumbersQuestion({
+			key: 'Avg_Daily_Customers', required: false,order: 56,
+			label: 'Avg Daily Customers Served', value: enterprise.Avg_Daily_Customers,
 		}),
 		new DropdownQuestion({
 			key: 'Has_Market_Expanded', required: false,order: 155,
@@ -341,38 +346,13 @@ export class CustomformSetupService {
 	let questions: QuestionBase<any>[] = [ 
 		new ToggleQuestion({
 			key: 'Training_Qtr', required: false,order: 111,
-			label: 'Receive any technical training in last Quarter?', value: enterprise.Training_Qtr 
+			label: 'Do you have access to adequate technical skills', value: enterprise.Training_Qtr 
 			
-		}),
-		new TextboxQuestion({
-			key: 'What_Training', required: false,order: 159,
-			label: 'What was the training?', value: enterprise.What_Training,
-		}),
-		new TextboxQuestion({
-			key: 'Who_Traininig', required: false,order: 160,
-			label: 'Who provided training', value: enterprise.Who_Traininig,
-		}),
-		new DatePickerQuestion({
-			key: 'When_Training', required: false,order: 161,
-			label: 'When was it?', value: enterprise.When_Training,
-		}),
-		new ToggleQuestion({
-			key: 'Training_Free', required: false,order: 162,
-			label: 'Was it free?', value: enterprise.Training_Free,
-		}),
-		new TextboxQuestion({
-			key: 'How_Know_Training', required: false,order: 163,
-			label: 'How did you know about training', value: enterprise.How_Know_Training,
-			min:0,max:25
-		}),
+		}),		 
 		new TextboxQuestion({
 			key: 'Technical_Train_Needs', required: false,order: 164,
 			label: 'Technical Training needs', value: enterprise.Technical_Train_Needs,
-		}),
-		new TextboxQuestion({
-			key: 'Support_Provided', required: false,order: 165,
-			label: 'Support Provided', value: enterprise.Support_Provided,
-		}),
+		}) 
 	];
 	return questions.sort((a, b) => a.order - b.order);
   }

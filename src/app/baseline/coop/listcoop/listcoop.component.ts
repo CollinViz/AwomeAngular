@@ -67,7 +67,7 @@ export class ListcoopComponent implements OnInit {
   }
   addNew(AddString){
     console.log('Activate Event', AddString);
-    this.router.navigateByUrl('/cooperative/-1');
+    this.router.navigateByUrl('baseline/cooperative/-1');
   }
 
 }

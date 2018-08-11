@@ -60,27 +60,31 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
   } 
   ngOnInit() {
-    
+    //get from stash box
+    this.enterprise = this.EwepserverService.getRoutingStashBox();
+    if(this.enterprise==null){
+      this.router.navigateByUrl("baseline/enterprise");
+      return;
+    }else{
+      this.OnDataOK();
+    }
     
     this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
     .subscribe((params: Params) => {
       console.log(params.Enterprise_ID);
       if(params.Enterprise_ID){
+        
         if(params.Enterprise_ID>0){
           
-          this.EwepserverService.getEnterprisItem(params.Enterprise_ID).subscribe((customers:any)=>{
-            //console.log(customers);
-            this.enterprise = customers; 
+          //this.OnDataOK();
+          //side load the other data
             this.EwepserverService.getViewData("enterprise_member_view","filter=Enterprise_ID,eq,"+params.Enterprise_ID).subscribe((member)=>{
               this.EntrepreneursList = member.records;
             });
             this.EwepserverService.getTableData("finance","filter=Enterprise_ID,eq,"+params.Enterprise_ID).subscribe((finance:any)=>{
-              this.FinanceLoans = finance.records;
-              this.OnDataOK();
-            });
-            
-          });
+              this.FinanceLoans = finance.records;              
+            }); 
         }else{ 
           //Add New 
           console.log("Add new");
@@ -122,9 +126,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
     this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions,this.EmployeesQuestions,this.EmployeesMaleQuestions,this.EmployeesFemalePayQuestions,this.EmployeesMalePayQuestions);
     this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds,this.AccessToMarket,this.AccessToTechnicalSkills);
-    this.Finance.setValidators([forceValidate("Training_Qtr",[{name:"What_Training"},{name:"Who_Traininig",min:4,max:25},
-                                                             {name:"When_Training",min:4,max:25},
-                                                             {name:"How_Know_Training" }])]);
+   
     this.Details = this.cutomerFormHlper.toFormGroup(this.GoodsAndService,this.ContactInfo,this.ContactInfoWithBinding);
 
     this.user.addControl("General",this.General);
@@ -138,10 +140,10 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
   }
   Save(){
-    console.log("When_Training",this.Finance.get('When_Training').value);
+     
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
-    this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
+    
     if(this.enterprise.Enterprise_ID===-1){
       delete this.FlatMe.Enterprise_ID
       this.EwepserverService.CreateTableData("enterprise",this.FlatMe ).subscribe((out)=>{
@@ -159,7 +161,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
             this.EwepserverService.CreateTableData("finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/enterprise');
+              this.router.navigateByUrl('baseline/enterprise');
             }); 
           });
           //this.router.navigateByUrl('/enterprise');
@@ -186,7 +188,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
             this.EwepserverService.CreateTableData("finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/enterprise');
+              this.router.navigateByUrl('baseline/enterprise');
             }); 
           });
           //this.router.navigateByUrl('/enterprise');
