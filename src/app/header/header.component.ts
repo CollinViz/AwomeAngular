@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params,NavigationEnd} from '@angular/router'; 
 import {Country,EwepserverService,InternetConnection,LogInData} from '../ewepserver.service'
 import { Observable } from 'rxjs';
+import { ProgressInterceptor } from '../service/ProgressInterceptor'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
   ErrorMessage:string="";
   ShowAllMenu:boolean = false;
   constructor( private router: Router,
-                private ewepserverService: EwepserverService) { 
+                private ewepserverService: EwepserverService,
+                private interceptor: ProgressInterceptor) { 
     this.currentCountry="South Africa";
     this.currentCountryID=1;
 
@@ -41,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.countryList$ = this.ewepserverService.country;
-    this.ErrorInterNet$ = this.ewepserverService.internetInfo;
+    this.ErrorInterNet$ = this.interceptor.ErrorMessage$;
     this.LoginData$ = this.ewepserverService.LoginOK;
     this.clearSelect();
     if(!this.router.events){
@@ -49,7 +51,9 @@ export class HeaderComponent implements OnInit {
     }
     this.router.events.subscribe((info:any)=>{
       if((info instanceof NavigationEnd)){
-        
+        //Hid error box
+        this.showError= false;
+
         const NavInfo = (info as NavigationEnd);
         let baseURL = NavInfo.url.split('/');
         console.log("Nav events",baseURL,info);

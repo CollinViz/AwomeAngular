@@ -73,6 +73,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   onSaveEntrepreneur(NewOrEditEntrepreneur){
     if(NewOrEditEntrepreneur===null){
       this.IsEditing = false;
+      return;
     }
     //Do Stuff to save and reload grid
     //Test if we need to create or edit

@@ -42,10 +42,10 @@
       <tab heading="General Information" class="mt-2">
         <div class="row">
           <div class="col-3">
-            <div class="card border-light mb-3" [formGroup]="General">
+            <div [appCardCssFormGroup]="General.valid" class="card mb-3" [formGroup]="General">
               <!--- General Information Start  -->
 
-              <div class="card-header">General Information</div>
+              <div [appCardHeaderCssFormGroup]="General.valid" class="card-header">General Information</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of GeneralQuestions" [question]="question" [form]="General"></app-gen-boot-ui>
@@ -55,10 +55,10 @@
             </div>
           </div>
           <div class="col-3" [formGroup]="Employees">
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Employees.valid" class="card mb-3">
               <!--- General Information Start  -->
 
-              <div class="card-header">No of Female Full Time (Employees)</div>
+              <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Female Full Time (Employees)</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of EmployeesFemaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -66,10 +66,10 @@
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
             </div>
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Employees.valid" class="card mb-3">
               <!--- General Information Start  -->
 
-              <div class="card-header">No of Male Full Time (Employees)</div>
+              <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Male Full Time (Employees)</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of EmployeesMaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -77,10 +77,10 @@
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
             </div>
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Employees.valid" class="card mb-3">
               <!--- General Information Start  -->
 
-              <div class="card-header">No of Female Part Time</div>
+              <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Female Part Time</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of EmployeesFemalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -88,10 +88,10 @@
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
             </div>
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Employees.valid" class="card mb-3">
               <!--- General Information Start  -->
 
-              <div class="card-header">No of Male Part Time</div>
+              <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Male Part Time</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of EmployeesMalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -99,10 +99,10 @@
               </div>
               <!--- </app-gen-boot-ui> General Information end  -->
             </div>
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Employees.valid" class="card mb-3">
               <!--- General Information Start  -->
 
-              <div class="card-header">Number of people in age range</div>
+              <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">Number of people in age range</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of EmployeesQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -116,10 +116,10 @@
       <tab heading="Cooperative Development / Finance Information" class="mt-2" [formGroup]="Finance" >
         <div class="row">
           <div class="col-xs-6 col-md-6">
-              <div class="card border-light mb-3">
+              <div [appCardCssFormGroup]="Finance.valid" class="card mb-3">
                   <!--- Source of Startup Funds  -->
     
-                  <div class="card-header">Source of Startup Funds</div>
+                  <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Source of Startup Funds</div>
                   <div class="card-body" >
     
                     <app-gen-boot-ui *ngFor="let question of Funds" [question]="question" [form]="Finance"></app-gen-boot-ui>
@@ -129,10 +129,10 @@
                 </div>
           </div>
           <div class="col-xs-6 col-md-6">            
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Finance.valid" class="card mb-3">
               <!--- Source of Startup Funds  -->
 
-              <div class="card-header">Access to Markets</div>
+              <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Access to Markets</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of AccessToMarket" [question]="question" [form]="Finance"></app-gen-boot-ui>
@@ -140,10 +140,10 @@
               </div>
               <!---  Source of Startup Funds end  -->
             </div>
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Finance.valid" class="card border-light mb-3">
               <!--- Source of Startup Funds  -->
 
-              <div class="card-header">Access to Technical Skills</div>
+              <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Access to Technical Skills</div>
               <div class="card-body" >
 
                 <app-gen-boot-ui *ngFor="let question of AccessToTechnicalSkills" [question]="question" [form]="Finance"></app-gen-boot-ui>
@@ -178,10 +178,10 @@
       <tab heading="Cooperative Details Information" class="mt-2" [formGroup]="Details">
         <div class="row">
           <div class="col-3">
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Details.valid" class="card mb-3">
               <!--- Source of Startup Funds  -->
 
-              <div class="card-header">Goods or Services</div>
+              <div [appCardHeaderCssFormGroup]="Details.valid" class="card-header">Goods or Services</div>
               <div class="card-body">
                 <app-gen-boot-ui *ngFor="let question of GoodsAndService" [question]="question" [form]="Details"></app-gen-boot-ui>
               </div>
@@ -189,10 +189,10 @@
             </div>
           </div>
           <div class="col-3">
-            <div class="card border-light mb-3">
+            <div [appCardCssFormGroup]="Details.valid" class="card mb-3">
               <!--- Source of Startup Funds  -->
 
-              <div class="card-header">Contact Information</div>
+              <div [appCardHeaderCssFormGroup]="Details.valid" class="card-header">Contact Information</div>
               <div class="card-body">
 
                 <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)"

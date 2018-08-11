@@ -49,6 +49,9 @@ export class GenBootUiComponent implements OnInit {
   changeSelection(event){
     this.selectionChange.emit(event);
   }
+  selectAllContent($event) {
+    $event.target.select();
+  }
   numberchange(event){
     //console.log(event);
     //console.log(this.form.controls[this.question.key].value);

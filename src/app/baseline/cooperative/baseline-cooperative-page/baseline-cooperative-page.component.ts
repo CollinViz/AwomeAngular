@@ -55,9 +55,12 @@ export class BaselineCooperativePageComponent implements OnInit {
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Cooperative_ID);
-      this.router.navigateByUrl('/cooperative/' + this.selected[0].Cooperative_ID);
+      this.router.navigateByUrl('baseline/cooperative/' + this.selected[0].Cooperative_ID);
     }
 
+  }
+  NewClick(event){
+    this.router.navigateByUrl('baseline/cooperative/-1');
   }
   searchClick(SearchString){
     this.SearchFilter= SearchString;

@@ -74,7 +74,7 @@
             Action Plan</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
-                <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperatives</a>
+                <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
                 <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
             </div> 
       </li>
@@ -127,6 +127,6 @@
 </nav>
 <pgs-progress-bar></pgs-progress-bar> 
 <div *ngIf="showError">
-    <div class="alert alert-dismissible alert-danger">{{ErrorMessage}}</div>
+    <div class="alert alert-dismissible alert-danger" (click)="showError=false">{{ErrorMessage}}</div>
 </div>
 

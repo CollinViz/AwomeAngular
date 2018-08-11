@@ -15,12 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
-  //baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
-  baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
-  //baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-  CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
-  //CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+  //baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
+  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+  //baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
+  baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
+  //CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
+  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
   SelectedCountryID:number=1;
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
@@ -38,8 +38,8 @@ export class EwepserverService {
   Race:Options[] = ["Black","White","Coloured","Indian","Asian","Other"].map((item)=>new Options(item,item));
   Sex:Options[] = ["Female","Male","Other"].map((item)=>new Options(item,item));
   MaritalStatus:Options[] = ["Single","Married","Divorced","Widowed"].map((item)=>new Options(item,item));
-  EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
-  
+  EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Degree","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
+  Assets_TransportTypes:Options[] =["None","Car", "Truck", "Van", "Bicycle", "Trailer", "Motorbike"].map((item)=>new Options(item,item));
   
 
   province: Province[] =[];
@@ -49,7 +49,8 @@ export class EwepserverService {
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""} );
-  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:false,Username:""});
+  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo"});
+  private RoutingStashBox:any = null;
   constructor(private http: HttpClient) {
     console.log("New Instance created");
     this.SelectedCountryID=1;
@@ -210,6 +211,13 @@ export class EwepserverService {
     );
   }
 
+  addToRoutingStashBox(Data:any){
+    this.RoutingStashBox = Data;
+  }
+  getRoutingStashBox(){
+    return this.RoutingStashBox;
+  }
+
   private handleError(error: HttpErrorResponse) {
     let newError:InternetConnection = {UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""};
     if (error.error instanceof ErrorEvent) {
@@ -225,7 +233,7 @@ export class EwepserverService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    this.showInternetError.next(newError);
+    //this.showInternetError.next(newError);
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');

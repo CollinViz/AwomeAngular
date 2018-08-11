@@ -53,6 +53,7 @@ export class ListenterpriseComponent implements OnInit {
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Enterprise_ID);
+      this.EwepserverService.addToRoutingStashBox(this.selected[0]);
       this.router.navigateByUrl('baseline/enterprise/' + this.selected[0].Enterprise_ID);
     }
 
@@ -66,7 +67,7 @@ export class ListenterpriseComponent implements OnInit {
   }
   addNew(AddString){
     console.log('Activate Event', AddString);
-    this.router.navigateByUrl('/enterprise/-1');
+    this.router.navigateByUrl('baseline/enterprise/-1');
   }
 
 }
