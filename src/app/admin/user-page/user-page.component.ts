@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'; 
 import { EwepserverService } from '../../ewepserver.service'
+import { Options } from '../../service/question'
 
 
 @Component({
@@ -26,8 +27,10 @@ export class UserPageComponent implements OnInit {
   selected:any[] = [];
   SelectedRowData:any;
   Province:any[];
+  Countrylist:any[];
   Titles:any[];
   Programme:any[];
+  Theme:Options[];
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
   showEdit:boolean = false;
 
@@ -45,7 +48,8 @@ export class UserPageComponent implements OnInit {
   }
   getLookupData(){
     this.Province = this.EwepserverService.province;
-     
+    this.Countrylist = this.EwepserverService.CountryListStatic;
+    this.Theme = this.EwepserverService.TheamList; 
     this.EwepserverService.getTableData("titles","").subscribe((TitleDb)=>{
       this.Titles = TitleDb.records;
       this.EwepserverService.getTableData("programme","filter=Active,eq,1").subscribe((programdb:any)=>{

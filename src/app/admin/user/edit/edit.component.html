@@ -84,11 +84,21 @@
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="txtProvince_ID">Province </label>
+        <label class="control-label" for="txtProvince_ID">Country</label>
+        <div class="controls">
+          <mat-form-field>
+            <mat-select [(ngModel)]="edf.Country_ID" name="txtCountry_ID" required>
+              <mat-option *ngFor="let co of Countrylist" [value]="co.Country_ID">{{co.Country_Name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="txtProvince_ID">Province</label>
         <div class="controls">
           <mat-form-field>
             <mat-select [(ngModel)]="edf.Province_ID" name="txtProvince_ID" required>
-              <mat-option *ngFor="let Province_ID of Province" [value]="Province_ID.Province_ID">{{Province_ID.Province_Name}}</mat-option>
+              <mat-option *ngFor="let pr of Province" [value]="pr.Province_ID">{{pr.Province_Name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -112,7 +122,7 @@
       </div>
 
       <div class="control-group">
-        <label class="control-label" for="txtSecurity_Level">Security Level {{edf.Security_Level}}</label>
+        <label class="control-label" for="txtSecurity_Level">Security Level</label>
         <div class="controls">
           <mat-form-field>
             <mat-select [(ngModel)]="edf.Security_Level" name="txtSecurity_Level" required>
@@ -136,7 +146,16 @@
           <mat-checkbox [(ngModel)]="edf.Active" name="txtActive">Remove User</mat-checkbox>
         </div>
       </div>
-
+      <div class="control-group">
+        <label class="control-label" for="txtThemeName">Theme  </label>
+        <div class="controls">
+          <mat-form-field>
+            <mat-select [(ngModel)]="edf.ThemeName" name="txtThemeName" required>
+              <mat-option *ngFor="let themeitem of Theme" [value]="themeitem.Key">{{themeitem.Value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
   </div>
 </fieldset>

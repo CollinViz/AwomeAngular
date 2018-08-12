@@ -20,7 +20,9 @@
     <div class="card-header">{{Type}} Maintain User</div>
     <div class="card-body">
         <form  #userForm="ngForm"    >
-      <app-edituser [edf]="SelectedRowData" [Province]="Province" [Titles]="Titles" [Programme]="Programme" [edfList]="rows"></app-edituser>
+      <app-edituser [edf]="SelectedRowData" [Province]="Province" [Titles]="Titles" 
+           [Programme]="Programme" [edfList]="rows"
+           [Countrylist]="Countrylist" [Theme]="Theme"></app-edituser>
       <div class="row">
         <div class="col-2">
         </div>
