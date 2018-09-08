@@ -109,10 +109,14 @@ export class CustomFromHelperControlService {
 }
 export function forceValidate(ControlName:string,RequirerControls:{name:string,
                                                                   min?:number,max?:number,
-                                                                  UseLengthValidation?:boolean}[]): ValidatorFn {
+                                                                  UseLengthValidation?:boolean}[],
+                              ValidateCheckValue:string=""): ValidatorFn {
   return (control: FormGroup): ValidationErrors | null => {
     let fixControl  = ControlName;
     let BoolCheckInverted = false;
+    if(!control.dirty){
+      return null;
+    }
     if(fixControl.substr(0,1)==="!"){
       BoolCheckInverted = true;
       fixControl  = ControlName.substr(1);
@@ -120,11 +124,18 @@ export function forceValidate(ControlName:string,RequirerControls:{name:string,
     const toTestControl = control.get(fixControl);
     if(toTestControl){
       //Only support Toggles for now
+      let canChange:boolean = false;
+      if(ValidateCheckValue!=""){
+        canChange = BoolCheckInverted? toTestControl.value != ValidateCheckValue:toTestControl.value === ValidateCheckValue;
+      }else{
+        canChange = BoolCheckInverted? toTestControl.value === false:toTestControl.value === true;
+      }
       
+
       RequirerControls.forEach((changeControl)=>{
         const alterEgo = control.get(changeControl.name);          
-        if(alterEgo ){  
-          let canChange = BoolCheckInverted? toTestControl.value === false:toTestControl.value === true                 
+        if(alterEgo ){ 
+          
           if(canChange){
             var addValidation:ValidatorFn[] = [];
             let useLengthValidation:boolean = changeControl.UseLengthValidation||true;
@@ -135,27 +146,27 @@ export function forceValidate(ControlName:string,RequirerControls:{name:string,
                 addValidation.push(Validators.maxLength(changeControl.max));
               }else{
                 addValidation.push(Validators.max(changeControl.max));
-              }          
-              
+              }              
             }
             if(changeControl.min||0>0){
               if(useLengthValidation){
                 addValidation.push(Validators.minLength(changeControl.min));
               }else{
                 addValidation.push(Validators.min(changeControl.min));
-              }              
+              }
             }
             alterEgo.setValidators(addValidation);
+            alterEgo.enable({onlySelf: true,emitEvent:false});
             //alterEgo.markAsDirty();
           }else{      
-            alterEgo.clearValidators();            
+            alterEgo.clearValidators(); 
+            alterEgo.setValue("",{emitEvent:false});
+            alterEgo.disable({onlySelf: true,emitEvent:false});
           }
           alterEgo.updateValueAndValidity({onlySelf:true,emitEvent:false});           
         }
-      });
-       
-    }
-    
+      });       
+    }    
     return null;
   };
 }

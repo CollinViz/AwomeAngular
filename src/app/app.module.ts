@@ -268,6 +268,10 @@ const interceptor = new ProgressInterceptor();
       component:BaselineAssociationPageComponent
     },
     { 
+      path:'baseline/association/:Association_ID',
+      component:EditBaselineAssociationAssociationComponent
+    },
+    { 
       path:'baseline/enterprise',
       component:ListenterpriseComponent
     },
