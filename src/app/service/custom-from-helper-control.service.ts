@@ -129,13 +129,22 @@ export function forceValidate(ControlName:string,RequirerControls:{name:string,
         canChange = BoolCheckInverted? toTestControl.value != ValidateCheckValue:toTestControl.value === ValidateCheckValue;
       }else{
         canChange = BoolCheckInverted? toTestControl.value === false:toTestControl.value === true;
+        if(toTestControl.value==="1"){          
+          canChange = BoolCheckInverted?false:true;
+        }
+        if(toTestControl.value==="0"){          
+          canChange = BoolCheckInverted?true:false;
+        }
+        if(toTestControl.value==="Y"){          
+          canChange = BoolCheckInverted?false:true;
+        }
+        if(toTestControl.value==="N"){          
+          canChange = BoolCheckInverted?true:false;
+        }          
       }
-      
-
       RequirerControls.forEach((changeControl)=>{
         const alterEgo = control.get(changeControl.name);          
-        if(alterEgo ){ 
-          
+        if(alterEgo ){           
           if(canChange){
             var addValidation:ValidatorFn[] = [];
             let useLengthValidation:boolean = changeControl.UseLengthValidation||true;
@@ -156,16 +165,20 @@ export function forceValidate(ControlName:string,RequirerControls:{name:string,
               }
             }
             alterEgo.setValidators(addValidation);
-            alterEgo.enable({onlySelf: true,emitEvent:false});
+            alterEgo.enable({onlySelf: true,emitEvent:true});
             //alterEgo.markAsDirty();
           }else{      
             alterEgo.clearValidators(); 
-            alterEgo.setValue("",{emitEvent:false});
-            alterEgo.disable({onlySelf: true,emitEvent:false});
+            //alterEgo.setValue("",{emitEvent:false});
+            alterEgo.disable({onlySelf: true,emitEvent:true});
           }
           alterEgo.updateValueAndValidity({onlySelf:true,emitEvent:false});           
+        }else{
+          console.log("Cannot find control " + changeControl.name);
         }
       });       
+    }else{
+      console.log("Cannot find control " + fixControl);
     }    
     return null;
   };
