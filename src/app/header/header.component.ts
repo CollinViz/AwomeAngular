@@ -3,6 +3,7 @@ import {Router, ActivatedRoute, Params,NavigationEnd} from '@angular/router';
 import {Country,EwepserverService,InternetConnection,LogInData} from '../ewepserver.service'
 import { Observable } from 'rxjs';
 import { ProgressInterceptor } from '../service/ProgressInterceptor'
+import { UrlResolver } from '../../../node_modules/@angular/compiler';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   isAdmin:boolean = true; 
   currentCountry:string= "";
   currentCountryID:number= 0;
-  
+   
   countryList$: Observable<Country[]>;
   ErrorInterNet$:Observable<InternetConnection>;
   LoginData$:Observable<LogInData>;
@@ -90,10 +91,12 @@ export class HeaderComponent implements OnInit {
     });
     this.LoginData$.subscribe((User:LogInData)=>{
       if(User.LoginOK){
+         
         this.ShowAllMenu = true;
+
       }
       
-    })
+    });
   }
   changeCountry(newCountry,Index){
     this.currentCountry = newCountry.Country_Name;

@@ -51,8 +51,8 @@ export class BaselineAssociationPageComponent implements OnInit {
 
   onActivate(event) {
     if (event.type === "click") {
-      console.log('Activate Event', event, this.selected[0].Cooperative_ID);
-      this.router.navigateByUrl('/cooperative/' + this.selected[0].Cooperative_ID);
+      console.log('Activate Event', event, this.selected[0].Association_ID);
+      this.router.navigateByUrl('baseline/association/' + this.selected[0].Association_ID);
     }
 
   }

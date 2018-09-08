@@ -7,6 +7,7 @@ import { DropdownQuestion } from '../../../service/question-dropdown';
 import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
 import { Options } from '../../../service/question-helper';
+import { TextboxQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 
 @Component({
@@ -110,6 +111,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     });
 
     this.GeneralQuestions  = this.controlsService.getEnterpriseGenralForm(this.enterprise);
+     
     this.General = this.cutomerFormHlper.toFormGroup(this.GeneralQuestions);
     
     this.EmployeesFemaleQuestions = this.controlsService.getEnterpriseEmploeesFormFemale(this.enterprise);

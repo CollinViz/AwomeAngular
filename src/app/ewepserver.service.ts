@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,isDevMode } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { Observable ,throwError,BehaviorSubject, Observer } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
@@ -15,12 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  //baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
-  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
-  //baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
-  baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-  //CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
-  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+  baseURL:string = 'http://awome.ewepmis.co.za/api.php/data/'; 
+  
+  baseViewURL:string = 'http://awome.ewepmis.co.za/api.php/view/';
+  
+  CoreViewURL:string = 'http://awome.ewepmis.co.za/ajax.php';
+  
   SelectedCountryID:number=1;
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
@@ -40,18 +40,27 @@ export class EwepserverService {
   MaritalStatus:Options[] = ["Single","Married","Divorced","Widowed"].map((item)=>new Options(item,item));
   EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Degree","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
   Assets_TransportTypes:Options[] =["None","Car", "Truck", "Van", "Bicycle", "Trailer", "Motorbike"].map((item)=>new Options(item,item));
-  
+  TheamList:Options[] = ["Default","Solar", "Slate", "Yeti"].map((item)=>new Options(item,item));
 
   province: Province[] =[];
   districtMetro:DistrictMetro[] =[];
   localMunicipality: LocalMunicipality[] =[];
   mainPlaces:MainPlace[] =[];
+  CountryListStatic:Country[] = [];
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""} );
-  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo"});
+  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo",FullName:"",Theme:"Default"});
   private RoutingStashBox:any = null;
   constructor(private http: HttpClient) {
+    if(isDevMode()){
+      
+      this.baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+      
+      this.baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
+      
+      this.CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+    }
     console.log("New Instance created");
     this.SelectedCountryID=1;
     this._getProvinceLoadLocal();
@@ -129,6 +138,7 @@ export class EwepserverService {
     //province
     this.http.get<any>(this.baseURL + "country?order=Country_ID&filter=Active,eq,Y", httpOptions).subscribe((customers: any) => {
       //console.log(customers.records);
+      this.CountryListStatic = <Country[]>customers.records;
       this.CountryList.next(<Country[]>customers.records);
     });
   }
@@ -201,7 +211,10 @@ export class EwepserverService {
     );
   }
   setUserLogin(UserOJB:any){
-    this.loginInfomation.next({LoginOK:true,Username:UserOJB.Name}); 
+    this.loginInfomation.next({LoginOK:true,
+                           Username:UserOJB.Name,
+                           FullName:UserOJB.Name+"," + UserOJB.Surname,
+                          Theme:UserOJB.ThemeName}); 
   }
 
   deleteAllFinance(Enterprise_ID:number,Enterprise_Visit_ID:any){
@@ -281,5 +294,7 @@ export interface InternetConnection {
 }
 export interface LogInData{
   LoginOK:boolean,
-  Username:string
+  Username:string,
+  FullName:string,
+  Theme:string
 }

@@ -11,6 +11,8 @@ export class EditUserComponent implements OnInit {
   @Input() Titles:any[];
   @Input() Programme:any[];
   @Input() edfList:any[];
+  @Input() Countrylist:any[]
+  @Input() Theme:any[]
   constructor() { }
 
   ngOnInit() {
