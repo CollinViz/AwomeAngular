@@ -42,7 +42,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
   FinanceLoans:any[] =[];
   FinanceLoans2:any[] =[];
   
-  newFinanceLoan:finance={finance_ID:0,cooperative_ID:0,Where_Apply:"",
+  newFinanceLoan:finance={cooperative_finance_ID:0,cooperative_ID:0,Where_Apply:"",
                           Approved:false,Reject_Reason:"",Started_Repay:false,
                           How_Much:0.00,Amount_Issued:0.00,Repay_Amount:0.00};
   //Form Group stuff
@@ -70,7 +70,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
       if(params.Cooperative_ID){
         if(params.Cooperative_ID>0){
           
-          this.EwepserverService.getEnterprisItem(params.Cooperative_ID).subscribe((customers:any)=>{
+          this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
             //console.log(customers);
             this.cooperative = customers; 
             this.EwepserverService.getViewData("cooperative_member_view","filter=Cooperative_ID,eq,"+params.Cooperative_ID).subscribe((member)=>{
@@ -151,13 +151,13 @@ export class BaselineCoopEditcoop2Component implements OnInit {
         
         if(out===1){
           this.FinanceLoans.forEach((value)=>{
-            delete value.finance_ID; 
+            delete value.cooperative_finance_ID; 
             value.Cooperative_ID=this.cooperative.Cooperative_ID;
           });
           //delete all finance stuff and create a new one
           this.EwepserverService.deleteAllFinance(this.cooperative.Cooperative_ID,"").subscribe((out)=>{
             //Add New suff
-            this.EwepserverService.CreateTableData("finance",this.FinanceLoans).subscribe((outFin)=>{
+            this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
               this.router.navigateByUrl('/cooperative');
@@ -178,13 +178,13 @@ export class BaselineCoopEditcoop2Component implements OnInit {
         if(out===1){
            
           this.FinanceLoans.forEach((value)=>{
-            delete value.finance_ID; 
+            delete value.cooperative_finance_ID; 
             value.Cooperative_ID=this.cooperative.Cooperative_ID;
           });
           //delete all finance stuff and create a new one
           this.EwepserverService.deleteAllFinance(this.cooperative.Cooperative_ID,"").subscribe((out)=>{
             //Add New suff
-            this.EwepserverService.CreateTableData("finance",this.FinanceLoans).subscribe((outFin)=>{
+            this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
               this.router.navigateByUrl('/cooperative');
@@ -201,11 +201,11 @@ export class BaselineCoopEditcoop2Component implements OnInit {
    
   }
   addnewFinance(NewFinance){
-    delete NewFinance.finance_ID;
+    delete NewFinance.cooperative_finance_ID;
     NewFinance.cooperative_ID = this.cooperative.Cooperative_ID;
     this.FinanceLoans.push(NewFinance);
     //this.FinanceLoans2 = [...this.FinanceLoans];
-    this.newFinanceLoan = {finance_ID:0,cooperative_ID:this.cooperative.Cooperative_ID,Where_Apply:"",
+    this.newFinanceLoan = {cooperative_finance_ID:0,cooperative_ID:this.cooperative.Cooperative_ID,Where_Apply:"",
                             Approved:false,Reject_Reason:"",Started_Repay:false,
                             How_Much:0.00,Amount_Issued:0.00,Repay_Amount:0.00};
   }
@@ -289,7 +289,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
  
 interface finance {
-  finance_ID:number,
+  cooperative_finance_ID:number,
   Cooperative_ID?:number, 
   cooperative_ID:number 
   Where_Apply:string  
