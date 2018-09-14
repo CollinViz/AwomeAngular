@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,isDevMode } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { Observable ,throwError,BehaviorSubject, Observer } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
@@ -15,12 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  //baseURL = 'http://awome.ewepmis.co.za/api.php/data/'; 
-  baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
-  //baseViewURL = 'http://awome.ewepmis.co.za/api.php/view/';
-  baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-  //CoreViewURL = 'http://awome.ewepmis.co.za/ajax.php';
-  CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+  baseURL:string = 'http://awome.ewepmis.co.za/api.php/data/'; 
+  
+  baseViewURL:string = 'http://awome.ewepmis.co.za/api.php/view/';
+  
+  CoreViewURL:string = 'http://awome.ewepmis.co.za/ajax.php';
+  
   SelectedCountryID:number=1;
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
@@ -53,6 +53,14 @@ export class EwepserverService {
   private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo",FullName:"",Theme:"Default"});
   private RoutingStashBox:any = null;
   constructor(private http: HttpClient) {
+    if(isDevMode()){
+      
+      this.baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+      
+      this.baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
+      
+      this.CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+    }
     console.log("New Instance created");
     this.SelectedCountryID=1;
     this._getProvinceLoadLocal();

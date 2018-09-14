@@ -55,13 +55,16 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding(this.entrepreneur);
 
     this.Contact = this.cutomerFormHlper.toFormGroup(this.ContactInfo,this.ContactInfoWithBinding);
-
+//Bank_Account
     //this.Contact = this.cutomerFormHlper.toFormGroup(oFromTemp.getContact(this.entrepreneur));
     this.MainForm = new FormGroup({
       General:this.General,
       training:this.training,
       Contact:this.Contact
-    });
+    },[forceValidate("General.Support_Other",[{name:"General.Support_Specify",UseLengthValidation:true,min:1,max:50}]),
+       forceValidate("General.Challenge",[{name:"General.Challenge_Specify",UseLengthValidation:true,min:1,max:50}],"Challenge_Other"),
+       forceValidate("General.Is_Disabled",[{name:"General.Disabled_Specify",UseLengthValidation:true,min:1,max:50}]) 
+        ]);
     this.isLoading =false;
   }
   Save(){

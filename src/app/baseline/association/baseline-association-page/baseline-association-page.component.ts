@@ -50,6 +50,7 @@ export class BaselineAssociationPageComponent implements OnInit {
       //this.router.navigateByUrl('/enterprise/' + this.selected[0].Enterprise_ID);
       this.IsEditing = true;
       this.AssociationEditItem = this.selected[0];
+      this.router.navigateByUrl('baseline/association/' + this.selected[0].Association_ID);
     }
 
   }

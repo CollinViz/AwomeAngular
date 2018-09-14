@@ -127,7 +127,7 @@ export class FormGroupEditMemberBaselineEnterprise {
             label: 'Challenge_Specify', value: entrepreneur.Challenge_Specify,
         }),
         new TextboxQuestion({
-            key: 'Is_Disabled', required: true, order: 38,
+            key: 'Is_Disabled', required: false, order: 38,
             label: 'Is_Disabled', value: entrepreneur.Is_Disabled,
         }),
         new TextboxQuestion({
