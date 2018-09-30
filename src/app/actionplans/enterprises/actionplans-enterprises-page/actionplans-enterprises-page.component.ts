@@ -11,12 +11,12 @@ export class ActionplansEnterprisesPageComponent implements OnInit {
   columns = [
     { name: 'ID', prop: 'Enterprise_ID' },
     { name: 'Name', prop: 'Enterprise_Name' },
-    { name: 'Year Est', prop: 'Year_Established' },
-    { name: 'Structure', prop: 'Legal_Structure' },
-    { name: 'Owners', prop: 'Female_Owners' },
-    { name: 'Province', prop: 'Province' },
+    { name: 'Number of Action Plans', prop: 'Actionplans_Count' },
+    { name: 'Completed', prop: 'Completed' },
+    { name: 'In Progress', prop: 'In_Progress' },
+    { name: 'Overdue', prop: 'Overdue' }/*,
     { name: 'EDF', prop: 'EDF' },
-    { name: 'Status', prop: 'Status' }
+    { name: 'Status', prop: 'Status' }*/
   ];
   rows: any[] = [];
   selected = [];
@@ -31,11 +31,11 @@ export class ActionplansEnterprisesPageComponent implements OnInit {
   ngOnInit() {
   }
   getPageofEnterprise() {
-    
-    this.EwepserverService.getEnterprisList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
-       
-      this.rows = [...customers.records];
-      this.page.totalElements = customers.results;
+    let strOptions="page="+this.page.pageNumber+"&orderby=enterprise_name" + (this.SearchFilter===""?"":"&"+this.SearchFilter);
+    //this.EwepserverService.getEnterprisList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
+      this.EwepserverService.getViewData("enterprise_actionplans_count_view", strOptions).subscribe((myjsondata_ent: any) => {   
+      this.rows = [...myjsondata_ent.records];
+      this.page.totalElements = myjsondata_ent.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
     });
   }

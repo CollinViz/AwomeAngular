@@ -24,7 +24,11 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   Sex:Options[];
   MaritalStatus:Options[];
   EducationLevel:Options[] = [];
+<<<<<<< HEAD
   CurrencyValue:string = "R";
+=======
+  IDorPassport:Options[];
+>>>>>>> 660016d5bcb2a948bb7e6a0490f260aa1f3c6c06
 
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
@@ -37,6 +41,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
                 this.Sex = this.EwepserverService.Sex;
                 this.MaritalStatus = this.EwepserverService.MaritalStatus;
                 this.EducationLevel = this.EwepserverService.EducationLevel;
+                this.IDorPassport = this.EwepserverService.IDorPassport;
               }
   ngOnChanges(changes){
     if(this.isLoading){

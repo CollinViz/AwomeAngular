@@ -42,7 +42,7 @@ export class EwepserverService {
   EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Degree","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
   Assets_TransportTypes:Options[] =["None","Car", "Truck", "Van", "Bicycle", "Trailer", "Motorbike"].map((item)=>new Options(item,item));
   TheamList:Options[] = ["Default","Solar", "Slate", "Yeti"].map((item)=>new Options(item,item));
-
+  IDorPassport:Options[] = ["ID","Passport"].map((item)=>new Options(item,item));
   province: Province[] =[];
   districtMetro:DistrictMetro[] =[];
   localMunicipality: LocalMunicipality[] =[];

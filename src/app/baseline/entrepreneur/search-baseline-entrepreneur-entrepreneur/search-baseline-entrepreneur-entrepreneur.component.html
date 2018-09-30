@@ -1,61 +1,130 @@
 <div class="card border-primary mb-3">
-    <div class="card bg-primary text-white">List Entrepreneur - {{Heading}}</div>
+    <div class="card bg-primary text-white">List Entrepreneur - Baseline Info</div>
     <div class="card-body">
       <div class="row">
         <div class="col-xs-4 col-md-4">
-          <div class="control-group">
-            <label class="control-label" for="txtYear_Established">Entrepreneur Name or Surname</label>
-            <div class="controls">
-              <input [(ngModel)]="search.Name" id="txtName" name="txtName" type="text" placeholder="Name" ngClass="form-control">
-            </div>
-          </div>
+            <div class="control-group">
+                <label class="control-label" for="txtSurname">Entrepreneur Name</label>
+                <div class="controls">
+                  <input [(ngModel)]="search.Surname" id="txtSurname" name="txtSurname" type="text" placeholder=""
+                    ngClass="form-control">
+                </div>
+              </div>
         </div>
         <div class="col-xs-4 col-md-4">
-          
+            <div class="control-group">
+                <label class="control-label" for="txtYear_Established">Name</label>
+                <div class="controls">
+                  <input [(ngModel)]="search.Name" id="txtName" name="txtName" type="text" placeholder=""
+                    ngClass="form-control">
+                </div>
+              </div>
         </div>
-        <div class="col-xs-4 col-md-4">
-          <button (click)="searchClickint()" type="button" class="btn btn-primary">
-            Search
-          </button>
-  
+        <div class="col-xs-4 col-md-4"> 
+            <button (click)="searchClickint()" type="button" class="btn btn-primary">
+                Search
+              </button> 
+    
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-4 col-md-4">
-          <div class="control-group">
-            <label class="control-label" for="txtProvince">Province </label>
-            <div class="controls">
-              <mat-form-field>
-                <mat-select [(ngModel)]="search.Province" name="txtProvince">
-                  <mat-option value="Select">Select</mat-option>
-                  <mat-option *ngFor="let province of Provinces" [value]="province.Province_ID">{{province.Province_Name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+         <!-- <div class="col-xs-4 col-md-4">
+              <div class="control-group">
+                  <label class="control-label" for="txtProvince">Province </label>
+                  <div class="controls">
+                  <mat-form-field>
+                      <mat-select [(ngModel)]="search.Province" name="txtProvince">
+                        <mat-option value="Select">Select</mat-option>
+                        <mat-option *ngFor="let province of Provinces" [value]="province.Province_ID">{{province.Province_Name}}</mat-option> 
+                      </mat-select>
+                    </mat-form-field>
+                  </div>   
+                </div>
+          </div> -->
+  
+          <!--<div class="col-xs-4 col-md-4">
+              <div class="control-group">
+                  <label class="control-label" for="txtLegal_Structure">Legal Structure</label>
+                  <div class="controls">
+                    <mat-form-field>
+                      <mat-select [(ngModel)]="search.Legal_Structure" name="txtLegal_Structure">
+                        <mat-option value="Select">Select</mat-option>
+                        <mat-option value="Cooperative">Cooperative</mat-option>
+                        <mat-option value="Partnership">Partnership</mat-option>
+                        <mat-option value="Private Company">Private Company</mat-option>
+                        <mat-option value="Sole Proprietor">Sole Proprietor</mat-option>
+                        <mat-option value="Trust">Trust</mat-option>
+                        <mat-option value="Close Corporation">Close Corporation</mat-option>
+                        <mat-option value="Not Registered">Not Registered</mat-option>
+                        <mat-option value="NPO">NPO</mat-option>
+                        <mat-option value="Other">Other</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div> 
+          </div> -->
+          <div class="col-xs-4 col-md-4">
+            
           </div>
         </div>
-        <div class="col-xs-4 col-md-4">
-           
-        </div>
-        <div class="col-xs-4 col-md-4">
   
+        <div class="row">
+          <div class="col-xs-4 col-md-4">
+              <div class="control-group">
+                  <label class="control-label" for="txtHiHRep"></label>
+              </div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 col-md-4">
-           
-        </div>
-        <div class="col-xs-4 col-md-4">
-          
-        </div>
-        <div class="col-xs-4 col-md-4">
   
-        </div>
-      </div>
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <div class="control-group">
+                    <label class="control-label" for="txtHiHRep"></label>
+                </div>
+            </div>
+          </div>
+  
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <div class="control-group">
+                    <label class="control-label" for="txtHiHRep">Responsible Trainer</label>
+                    <div class="controls">
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="search.HiHRep" name="txtHiHRep">
+                            <mat-option value="Select">Select</mat-option>
+                            <mat-option *ngFor="let edf of ActiveEDFs" [value]="edf.EDF_ID">{{edf.Name}} {{edf.Surname}}</mat-option> 
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="control-group">
+                    <label class="control-label" for="txtSector">Sector</label>
+                    <div class="controls">
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="search.Sector" name="txtSector">
+                          <mat-option value="Select">Select</mat-option> 
+                          <mat-option value="Sec_Agri">Agriculture</mat-option>
+                          <mat-option value="Sec_Manu">Manufacturing</mat-option>
+                          <mat-option value="Sec_Retail">Retail</mat-option>
+                          <mat-option value="Sec_Minerals">Minerals</mat-option>
+                          <mat-option value="Sec_Arts">Arts</mat-option>
+                          <mat-option value="Sec_General">General</mat-option>
+                          <mat-option value="Sec_Other">Other</mat-option> 
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+              
+            </div>
+          </div>
     </div>
     <div class="card-footer" *ngIf="!hidAdd">
-      <button type="button" class="btn btn-primary" (click)="addClick()">
-          Add Entrepreneur
-        </button>
-    </div>
-</div>
+        <button type="button" class="btn btn-primary" (click)="addClick()">
+            Add Entrepreneur
+          </button>
+      </div>
+  </div>

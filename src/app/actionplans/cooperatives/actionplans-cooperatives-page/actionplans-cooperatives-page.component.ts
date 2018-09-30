@@ -13,12 +13,12 @@ export class ActionplansCooperativesPageComponent implements OnInit {
   columns = [
     { name: 'ID', prop: 'Cooperative_ID' },
     { name: 'Name', prop: 'Cooperative_Name' },
-    { name: 'Year Est', prop: 'Year_Established' },
-    { name: 'Structure', prop: 'Legal_Structure' },
-    { name: 'Owners', prop: 'Female_Owners' },
-    { name: 'Province', prop: 'Province' },
+    { name: 'Number of Action Plans', prop: 'Actionplans_Count' },
+    { name: 'Completed', prop: 'Completed' },
+    { name: 'In Progress', prop: 'In_Progress' },
+    { name: 'Overdue', prop: 'Overdue' }/*,
     { name: 'EDF', prop: 'EDF' },
-    { name: 'Status', prop: 'Status' }
+    { name: 'Status', prop: 'Status' }*/
   ];
   rows: any[] = [];
   selected = [];
@@ -32,7 +32,8 @@ export class ActionplansCooperativesPageComponent implements OnInit {
   getPageofCooperative() {
     
     let strOptions="page="+this.page.pageNumber+"&orderby=cooperative_name" + (this.SearchFilter===""?"":"&"+this.SearchFilter);
-     this.EwepserverService.getViewData("cooperative_base_view", strOptions).subscribe((myjsondata_coop: any) => {
+     //this.EwepserverService.getViewData("cooperative_base_view", strOptions).subscribe((myjsondata_coop: any) => {
+      this.EwepserverService.getViewData("cooperative_actionplans_count_view", strOptions).subscribe((myjsondata_coop: any) => {
       this.rows = [...myjsondata_coop.records];
       this.page.totalElements = myjsondata_coop.results;
       this.page.totalPages = this.page.totalElements / this.page.size;

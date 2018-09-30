@@ -1,4 +1,8 @@
-<app-search-baseline-association-association></app-search-baseline-association-association>
+<div *ngIf="!IsEditing;else editTemplate">
+<app-search-baseline-association-association>
+  (SearchClick)="searchClick($event)"
+  (NewClick)="NewClick()"
+</app-search-baseline-association-association>
 <div>
     <ngx-datatable
     class="bootstrap"
@@ -19,3 +23,10 @@
       (page)='setPage($event)'>
     </ngx-datatable>
     </div>
+  </div>
+  <ng-template #editTemplate>
+    <!-- Put Edit template in -->
+    <app-edit-baseline-association-association [association]="AssociationEditItem" 
+    (SaveItem)="onSaveAssociation($event)">
+  </app-edit-baseline-association-association>
+  </ng-template>

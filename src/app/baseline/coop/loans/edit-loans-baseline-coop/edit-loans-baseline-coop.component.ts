@@ -27,14 +27,17 @@ export class EditLoansBaselineCoopComponent implements OnInit {
     this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.loanEdit = new FormGroup({
       Where_Apply: new FormControl('1',Validators.required),
-      Reject_Reason: new FormControl(''), 
-      How_Much: new FormControl('0.00',Validators.required), 
+      //Reject_Reason: new FormControl(''), 
+      //How_Much: new FormControl('0.00',Validators.required), 
       Approved: new FormControl('0') ,
-      Started_Repay: new FormControl(''),
+      //Started_Repay: new FormControl(''),
       Amount_Issued: new FormControl(''),
-      Repay_Amount: new FormControl('',Validators.required) 
-    },[forceValidate("!Approved",[{name:"Reject_Reason",min:1,max:50}]),
-    forceValidate("Started_Repay",[{name:"Repay_Amount"}])]);
+      Repay_Amount: new FormControl('',Validators.required), 
+      Amount_Outstanding:  new FormControl('',Validators.required)
+    }
+    //,[forceValidate("!Approved",[{name:"Reject_Reason",min:1,max:50}]),
+    //forceValidate("Started_Repay",[{name:"Repay_Amount"}])]
+  );
     this.loanEdit.patchValue(this.finance);
     console.log(this.finance);
     this.binload = true;
