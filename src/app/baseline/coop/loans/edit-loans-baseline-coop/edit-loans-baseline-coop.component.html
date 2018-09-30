@@ -20,7 +20,7 @@
         <label class="control-label" for="txtHow_Much">Amount you applied for?</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">R</span>
+            <span class="input-group-text">{{CurrencyValue}}</span>
           </div>
           <input formControlName="How_Much" appNumberOnly id="txtHow_Much" name="txtHow_Much" type="text" placeholder="0.00"
           ngClass="form-control numbersOnly">
@@ -45,7 +45,7 @@
         <label class="control-label" for="txtAmount_Issued">Actual amount issued</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">R</span>
+            <span class="input-group-text">{{CurrencyValue}}</span>
           </div>
           <input formControlName="Amount_Issued" appNumberOnly id="txtAmount_Issued" name="txtAmount_Issued" type="text" placeholder="0.00"
           ngClass="form-control numbersOnly">
@@ -55,7 +55,7 @@
         <label class="control-label" for="txtRepay_Amount">Instalment Amount</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">R</span>
+            <span class="input-group-text">{{CurrencyValue}}</span>
           </div>
           <input formControlName="Repay_Amount" appNumberOnly id="txtRepay_Amount" name="txtRepay_Amount" type="text" placeholder="0.00"
           ngClass="form-control numbersOnly">

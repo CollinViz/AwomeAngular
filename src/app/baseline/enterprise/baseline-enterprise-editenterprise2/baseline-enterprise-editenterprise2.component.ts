@@ -108,7 +108,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(50),
       ]) 
-    });
+    },[forceValidate("General.Support_Other",[{name:"General.Support_Specify",UseLengthValidation:true,min:1,max:50}])]);
 
     this.GeneralQuestions  = this.controlsService.getEnterpriseGenralForm(this.enterprise);
      

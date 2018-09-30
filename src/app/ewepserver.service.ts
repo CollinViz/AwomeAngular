@@ -22,6 +22,7 @@ export class EwepserverService {
   CoreViewURL:string = 'http://awome.ewepmis.co.za/ajax.php';
   
   SelectedCountryID:number=1;
+  SelectedCurrency:string ="DDDD";
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
                               new Options("Cooperative","Cooperative"),
@@ -50,7 +51,7 @@ export class EwepserverService {
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""} );
-  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo",FullName:"",Theme:"Default"});
+  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo",FullName:"",Theme:"Default",Country_ID:1,Country_Name:"",Curency:"R"});
   private RoutingStashBox:any = null;
   constructor(private http: HttpClient) {
     if(isDevMode()){
@@ -63,11 +64,12 @@ export class EwepserverService {
     }
     console.log("New Instance created");
     this.SelectedCountryID=1;
-    this._getProvinceLoadLocal();
+    this._getCountry();
+    //this._getProvinceLoadLocal();
     this._getdistrictmetroLoadLocal();
     this._getlocalmunicipalityLoadLocal();
     this._getMainplace(); 
-    this._getCountry();
+    
   }
   get country():Observable<Country[]> {
     return this.CountryList.asObservable();
@@ -140,6 +142,7 @@ export class EwepserverService {
       //console.log(customers.records);
       this.CountryListStatic = <Country[]>customers.records;
       this.CountryList.next(<Country[]>customers.records);
+      this._getProvinceLoadLocal();
     });
   }
   private _getdistrictmetroLoadLocal() {
@@ -210,11 +213,16 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-  setUserLogin(UserOJB:any){
+  setUserLogin(UserOJB:any,SelectCounter:Country){
     this.loginInfomation.next({LoginOK:true,
                            Username:UserOJB.Name,
                            FullName:UserOJB.Name+"," + UserOJB.Surname,
-                          Theme:UserOJB.ThemeName}); 
+                          Theme:UserOJB.ThemeName,
+                        Country_ID:SelectCounter.Country_ID,
+                      Country_Name:SelectCounter.Country_Name,
+                    Curency:SelectCounter.Curency}); 
+    this.SelectedCurrency = SelectCounter.Curency;
+    console.log("Change Currency " + this.SelectedCurrency);
   }
 
   deleteAllFinance(Enterprise_ID:number,Enterprise_Visit_ID:any){
@@ -283,6 +291,7 @@ export interface Country {
   Country_Code:string;
   Country_Name:string;
   Active:string
+  Curency:string;
 }
 export interface InternetConnection {
   UsingInternet:boolean;
@@ -296,5 +305,8 @@ export interface LogInData{
   LoginOK:boolean,
   Username:string,
   FullName:string,
-  Theme:string
+  Theme:string,
+  Country_ID:number,
+  Country_Name:string,
+  Curency:string
 }

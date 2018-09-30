@@ -21,7 +21,7 @@
     <div class="form-group" *ngSwitchCase="'currency'">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">{{question.currencySymbol}}</span>
+          <span class="input-group-text">{{CurrencyValue}}</span>
         </div>
         <input appNumberOnly [formControlName]="question.key" 
                [id]="question.key" [type]="question.type" 

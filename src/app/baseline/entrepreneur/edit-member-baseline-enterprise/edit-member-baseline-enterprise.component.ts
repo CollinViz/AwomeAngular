@@ -24,6 +24,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   Sex:Options[];
   MaritalStatus:Options[];
   EducationLevel:Options[] = [];
+  CurrencyValue:string = "R";
 
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
@@ -46,6 +47,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     }
   }
   ngOnInit() {
+    this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.isLoading =true;
     let oFromTemp:FormGroupEditMemberBaselineEnterprise = new FormGroupEditMemberBaselineEnterprise(); 
     this.General = this.cutomerFormHlper.toFormGroup(oFromTemp.getGeneral(this.entrepreneur));
