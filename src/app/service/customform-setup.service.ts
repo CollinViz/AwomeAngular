@@ -41,16 +41,18 @@ export class CustomformSetupService {
 		}),
 		new TextboxQuestion({
 			key: 'Registration_Number', required: false,order: 6,
-			label: 'Registration_Number', value: enterprise.Registration_Number,
+			label: 'Registration Number', value: enterprise.Registration_Number,
 			min:1,max:10
 		}),
 		new NumbersQuestion({
 			key: 'Female_Owners', required: true,order: 6,
 			label: 'No of Female Owners', value: enterprise.Female_Owners,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Male_Owners', required: true,order: 7,
 			label: 'No of Male Owners', value: enterprise.Male_Owners,
+			min:0,max:20
 		}),
 		new ToggleQuestion ({
 			key: 'Location_Same', required: false,order: 8,
@@ -58,7 +60,7 @@ export class CustomformSetupService {
 		}),
 		new RadioQuestion({
 			key: 'Premise_Own', required: false,order: 9,
-			label: 'Premise_Own', value: enterprise.Premise_Own,
+			label: 'Premise Own', value: enterprise.Premise_Own,
 			options:[new Options("Owned","Owned"),new Options("Rented","Rented"),
 					 new Options("Co-Tenant","Co-Tenant"),new Options("Government Premises","Government Premises"),
 					 new Options("Home Based","Home Based") ]
@@ -78,6 +80,7 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Year_Started_AWOME', required: true,order: 13,
 			label: 'Year started with AWOME', value: enterprise.Year_Started_AWOME,
+			max:(new Date().getFullYear()),min:2018
 		}),
 		new TextboxQuestion({
 			key: 'Responsible_Trainer', required: false,order: 14,
@@ -107,18 +110,22 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Female_FT_2500', required: true,order: 133,
 			label: 'Below R2,500/month', value: enterprise.Female_FT_2500,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Female_FT_3000', required: true,order: 134,
 			label: 'R2,501-R3,000/month', value: enterprise.Female_FT_3000,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Female_FT_3500', required: true,order: 135,
 			label: 'R3,001-R3,500/month', value: enterprise.Female_FT_3500,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Female_FT_3500_Plus', required: true,order: 136,
 			label: 'Above R3,500/month', value: enterprise.Female_FT_3500_Plus,
+			min:0,max:20
 		})
 	];
 
@@ -131,18 +138,22 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Male_FT_2500', required: true,order: 137,
 			label: 'Below R2,500/month', value: enterprise.Male_FT_2500,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Male_FT_3000', required: true,order: 138,
 			label: 'R2,501-R3,000/month', value: enterprise.Male_FT_3000,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Male_FT_3500', required: true,order: 139,
 			label: 'R3,001-R3,500/month', value: enterprise.Male_FT_3500,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Male_FT_3500_Plus', required: true,order: 140,
 			label: 'Above R3,500/month', value: enterprise.Male_FT_3500_Plus,
+			min:0,max:20
 		})
 	];
 	return questions.sort((a, b) => a.order - b.order);
@@ -152,10 +163,12 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Female_PT_160', required: true,order: 141,
 			label: 'Below R160/day', value: enterprise.Female_PT_160,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Female_PT_160_Plus', required: true,order: 142,
 			label: 'Above R160/day', value: enterprise.Female_PT_160_Plus,
+			min:0,max:20
 		})
 	];
 	return questions.sort((a, b) => a.order - b.order);
@@ -165,10 +178,12 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Male_PT_160', required: true,order: 143,
 			label: 'Below R160/day', value: enterprise.Male_PT_160,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Male_PT_160_Plus', required: true,order: 144,
 			label: 'Above R160/day', value: enterprise.Male_PT_160_Plus,
+			min:0,max:20
 		})
 	];
 	return questions.sort((a, b) => a.order - b.order);
@@ -178,30 +193,37 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Age_20', required: true,order: 145,
 			label: '< 20 Years', value: enterprise.Age_20,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Age_29', required: true,order: 146,
 			label: '20-29 Years ', value: enterprise.Age_29,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Age_39', required: true,order: 147,
 			label: '30-39 Years ', value: enterprise.Age_39,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Age_49', required: true,order: 148,
 			label: '40-49 Years', value: enterprise.Age_49,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Age_59', required: true,order: 149,
 			label: '50-59 Years', value: enterprise.Age_59,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Age_69', required: true,order: 150,
 			label: '60-69 Years ', value: enterprise.Age_69,
+			min:0,max:20
 		}),
 		new NumbersQuestion({
 			key: 'Age_69_Plus', required: true,order: 151,
 			label: '> 69 Years', value: enterprise.Age_69_Plus,
+			min:0,max:20
 		}) 
 	];
 	return questions.sort((a, b) => a.order - b.order);
@@ -226,14 +248,16 @@ export class CustomformSetupService {
 		new TextboxQuestion({
 			key: 'Funds_Specify', required: false,order: 20,
 			label: 'Funds_Specify', value: enterprise.Funds_Specify,
-		}),new CheckBoxQuestion({
-			key: 'Assets_Land', required: false,order: 25,
-			label: 'Land', value: enterprise.Assets_Land,
 		}),
+		//new CheckBoxQuestion({
+		//	key: 'Assets_Land', required: false,order: 25,
+	//		label: 'Land', value: enterprise.Assets_Land,
+	//	}),
 		new CheckBoxQuestion({
 			key: 'Other_Available_Assets', required: false,order: 26,
 			label: 'Other Available Assets', value: enterprise.Assets_Buildings,
-			options: [
+			options:[
+				new CheckBoxOptions("Assets_Land","Land",enterprise.Assets_Land),
 				new CheckBoxOptions("Assets_Buildings","Buildings",enterprise.Assets_Buildings),
 				new CheckBoxOptions("Assets_Water","Water",enterprise.Assets_Water),
 				new CheckBoxOptions("Assets_Machines","Machines",enterprise.Assets_Machines),
@@ -252,7 +276,7 @@ export class CustomformSetupService {
 		}),
 		new ToggleQuestion({
 			key: 'Bank_Account', required: false,order: 40,
-			label: 'Bank_Account', value: enterprise.Bank_Account,
+			label: 'Bank Account', value: enterprise.Bank_Account,
 		}),
 		new DropdownQuestion({
 			key: 'Frequency_Of_Income', required: false,order: 50,
@@ -358,7 +382,13 @@ export class CustomformSetupService {
   }
   getGoodsAndService(enterprise:any){
 	let questions: QuestionBase<any>[] = [ 
-		 
+		new RadioQuestion({
+			key: 'Goods_services', required: false,order: 9,
+			label: 'Goods or Services', value: enterprise.Goods_services,
+			options:[
+				new Options("Goods","Goods"),new Options("Services","Services")
+			]
+		}), 
 		new CheckBoxQuestion({
 			key: 'Sector_1', required: false,order: 20,
 			label: 'Sector', value: '',
@@ -428,11 +458,11 @@ export class CustomformSetupService {
 			]
 		}),
 		new TextboxQuestion({
-			key: 'Mine_Specify', required: false,order: 110,
+			key: 'Mine_Specify', required: false,order: 100,
 			label: 'Other (specify)', value: enterprise.Mine_Specify,
 		}),
 		new CheckBoxQuestion({
-			key: 'Sector_1_ArtsAndCrafts', required: false,order: 100,
+			key: 'Sector_1_ArtsAndCrafts', required: false,order: 110,
 			label: 'Sub Sector: Arts & Crafts', value: '',
 			options: [				
 				new CheckBoxOptions("Arts_Entertain","Entertainment",enterprise.Arts_Entertain),

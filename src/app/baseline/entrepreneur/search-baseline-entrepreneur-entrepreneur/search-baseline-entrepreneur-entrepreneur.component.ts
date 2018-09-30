@@ -7,7 +7,7 @@ import {EwepserverService,Province} from '../../../ewepserver.service'
   styles: []
 })
 export class SearchBaselineEntrepreneurEntrepreneurComponent implements OnInit {
-  search = {Name:"",Year_Established:"",Province:"Select",Legal_Structure:"Select",HiHRep:"Select",Sector:"Select"}
+  search = {Name:"",Surname:"",Province:"Select",HiHRep:"Select",Sector:"Select"}
   HeadingInfo:string = "Baseline Info";
   Provinces:Province[] = [];
   @Input() Heading?:string="";
@@ -34,7 +34,12 @@ export class SearchBaselineEntrepreneurEntrepreneurComponent implements OnInit {
     let aFilter:string[]=[];
     if(this.search.Name!=""){
       aFilter.push("filter1=Name,cs," + this.search.Name);
-      aFilter.push("filter2=Surname,cs," + this.search.Name);
+      //aFilter.push("filter2=Surname,cs," + this.search.Name);
+    }
+
+    if(this.search.Surname!=""){
+      //aFilter.push("filter1=Name,cs," + this.search.Name);
+      aFilter.push("filter2=Surname,cs," + this.search.Surname);
     }
      
     if(this.search.Province!="" && this.search.Province!="Select"){
