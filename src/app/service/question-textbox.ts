@@ -1,9 +1,9 @@
 import { QuestionBase } from './question-base';
 import { Inject,Injectable, Injector, ElementRef } from '@angular/core';
 import { GlobalService } from './Global'
-@Injectable({
-  providedIn: 'root'
-})
+//@Injectable({
+//  providedIn: 'root'
+//})
 export class TextboxQuestion extends QuestionBase<string> {
   controlType = 'textbox';
   type: string;

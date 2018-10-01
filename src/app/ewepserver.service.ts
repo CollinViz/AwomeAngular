@@ -51,7 +51,7 @@ export class EwepserverService {
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""} );
-  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:true,Username:"Bobo",FullName:"",Theme:"Default",Country_ID:1,Country_Name:"",Curency:"R"});
+  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:false,Username:"Bobo",FullName:"",Theme:"Default",Country_ID:1,Country_Name:"",Currency:"R"});
   private RoutingStashBox:any = null;
   constructor(private http: HttpClient) {
     if(isDevMode()){
@@ -220,8 +220,8 @@ export class EwepserverService {
                           Theme:UserOJB.ThemeName,
                         Country_ID:SelectCounter.Country_ID,
                       Country_Name:SelectCounter.Country_Name,
-                    Curency:SelectCounter.Curency}); 
-    this.SelectedCurrency = SelectCounter.Curency;
+                    Currency:SelectCounter.Currency}); 
+    this.SelectedCurrency = SelectCounter.Currency;
     console.log("Change Currency " + this.SelectedCurrency);
   }
 
@@ -291,7 +291,7 @@ export interface Country {
   Country_Code:string;
   Country_Name:string;
   Active:string
-  Curency:string;
+  Currency:string;
 }
 export interface InternetConnection {
   UsingInternet:boolean;
@@ -308,5 +308,5 @@ export interface LogInData{
   Theme:string,
   Country_ID:number,
   Country_Name:string,
-  Curency:string
+  Currency:string
 }

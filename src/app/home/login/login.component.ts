@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
   constructor(private EwepserverService: EwepserverService) { }
 
   onClick(){
+    if(this.user.countrylogin==null){
+      alert("Please select a Country");
+      return;
+    }
     this.EwepserverService.checkLogin(this.user.Username,this.user.Password).subscribe((Message:any)=>{
       if(Message.OK){
         //We have a error

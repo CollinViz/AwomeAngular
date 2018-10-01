@@ -12,7 +12,7 @@
 			   
 				<mat-form-field ngClass="form-control">
 				  <mat-select id="txtLanguage" [(value)]="user.countrylogin">
-					<mat-option *ngFor="let lan of countryList$ | async as Country;let i=index" [value]="lan">{{lan.Country_Name}} </mat-option>
+					<mat-option *ngFor="let lan of countryList$ | async as Country;let i=index" [value]="lan" >{{lan.Country_Name}} </mat-option>
 				  </mat-select>
 				</mat-form-field>
 			   

@@ -90,6 +90,7 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.LoginData$.subscribe((User:LogInData)=>{
+      console.log("this.LoginData$",User);
       if(User.LoginOK){         
         this.ShowAllMenu = true;
         this.currentCountryID = User.Country_ID;
