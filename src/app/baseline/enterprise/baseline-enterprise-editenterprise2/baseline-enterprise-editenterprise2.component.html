@@ -135,7 +135,9 @@
               <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Source of Startup Funds</div>
               <div class="card-body">
 
-                <app-gen-boot-ui *ngFor="let question of Funds" [question]="question" [form]="Finance"></app-gen-boot-ui>
+                <app-gen-boot-ui *ngFor="let question of Funds;let i=index" 
+                                [question]="question" [form]="Finance"
+                                (NumberChange)="FundsNumberChange($event,i)"></app-gen-boot-ui>
 
               </div>
               <!---  Source of Startup Funds end  -->

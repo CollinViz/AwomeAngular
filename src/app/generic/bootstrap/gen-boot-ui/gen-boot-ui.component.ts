@@ -14,6 +14,7 @@ export class GenBootUiComponent implements OnInit {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
   @Output() selectionChange:EventEmitter<any> = new EventEmitter<any>();
+  //@Output() NumberChange:EventEmitter<any> = new EventEmitter<any>();
   CurrencyValue:string = "R";
 
   get listOfErrors()  : ValidationErrors | null{
@@ -56,7 +57,8 @@ export class GenBootUiComponent implements OnInit {
   selectAllContent($event) {
     $event.target.select();
   }
-  numberchange(event){
+  changenumber(event){
+    //this.NumberChange.emit(event);
     //console.log(event);
     //console.log(this.form.controls[this.question.key].value);
     //if(this.form.controls[this.question.key].value==''){
