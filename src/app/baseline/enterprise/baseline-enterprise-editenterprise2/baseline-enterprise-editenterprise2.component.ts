@@ -7,7 +7,7 @@ import { DropdownQuestion } from '../../../service/question-dropdown';
 import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
 import { Options } from '../../../service/question-helper';
-import { TextboxQuestion } from '../../../service/question';
+import { TextboxQuestion, NumbersQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 
 @Component({
@@ -159,8 +159,27 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.user.addControl("Finance",this.Finance);
     this.user.addControl("Details",this.Details);
     this.showloading = false;
+
+    this.SetOnChangeForFunds();
   }
 
+  SetOnChangeForFunds(){
+    this.Finance.get('Avg_Other_Income').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Avg_Expenditure').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Avg_Indirect_Cost').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Member_Salaries').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Employee_Salaries').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+  }
   falter(){
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
   }
@@ -260,6 +279,15 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     
   }
   onSaveEntrepreneur(NewOrEditEntrepreneur:any){
+     
+  }
+  FundsNumberChange(Value){
+      console.log("Input Value",Value);
+      let Calc = (Number(this.Finance.get("Avg_Other_Income").value) )-
+                 (Number(this.Finance.get("Avg_Expenditure").value) + Number(this.Finance.get("Avg_Indirect_Cost").value) +
+                 Number(this.Finance.get("Member_Salaries").value) + Number(this.Finance.get("Employee_Salaries").value));
+      this.Finance.get("Avg_Profit").setValue(Number(Calc));
+       
      
   }
   contaceDetailChange(event, Index) {
