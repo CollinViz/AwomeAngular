@@ -242,7 +242,7 @@ export class CustomformSetupService {
 				new CheckBoxOptions("Funds_Grant","Grant",enterprise.Funds_Grant),
 				new CheckBoxOptions("Funds_External","External Loans",enterprise.Funds_External),
 				new CheckBoxOptions("Funds_Friends","Friends",enterprise.Funds_Friends),
-				new CheckBoxOptions("Funds_Other","Friends",enterprise.Funds_Other),
+				new CheckBoxOptions("Funds_Other","Other",enterprise.Funds_Other),
 			]
 		}),
 		new TextboxQuestion({
@@ -284,18 +284,23 @@ export class CustomformSetupService {
 			options:this.ewepServer.MonthDropDown
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Other_Income', required: true,order: 60,
+			key: 'Avg_Sales', required: true,order: 60,
+			label: 'Avg Monthly sales', value: enterprise.Avg_Sales,
+			currency:true
+		}),
+		new NumbersQuestion({
+			key: 'Avg_Other_Income', required: true,order: 61,
 			label: 'Other Income (e.g. rent)', value: enterprise.Avg_Other_Income,
 			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Expenditure', required: true,order: 62,
-			label: 'Avg monthly Expenses', value: enterprise.Avg_Expenditure,
+			label: 'Avg Monthly Expenses', value: enterprise.Avg_Expenditure,
 			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Indirect_Cost', required: true,order: 63,
-			label: 'Avg monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
+			label: 'Avg Monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
 			currency:true
 		}),
 		new NumbersQuestion({
@@ -310,7 +315,7 @@ export class CustomformSetupService {
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Profit', required: true,order: 68,
-			label: 'Surplus (calculated)', value: enterprise.Avg_Profit,
+			label: 'Surplus (calculated)', value: (enterprise.Avg_Profit.value+enterprise.Employee_Salaries.value),
 			currency:true
 		}),
 		new NumbersQuestion({

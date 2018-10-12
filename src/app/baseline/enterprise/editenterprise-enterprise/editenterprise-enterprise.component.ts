@@ -1,4 +1,4 @@
-import { Component, Input, OnInit }  from '@angular/core';
+import { Component, Input, OnInit, OnChanges }  from '@angular/core';
 import { FormGroup }                 from '@angular/forms';
 import { CustomformSetupService } from '../../../service/customform-setup.service';
 import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
@@ -18,6 +18,10 @@ export class EditenterpriseEnterpriseComponent implements OnInit {
     this.Qustions = customComp.getEnterpriseDevelopmentForm(this.enterprise);
   }
 
+  ngOnChanges() {
+
+  }
+  
   ngOnInit() {
 
   }

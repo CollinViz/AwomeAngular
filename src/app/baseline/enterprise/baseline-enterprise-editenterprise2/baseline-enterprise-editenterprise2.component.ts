@@ -1,4 +1,4 @@
-import { ChangeDetectorRef,Component, OnInit,Pipe, PipeTransform,TemplateRef  } from '@angular/core';
+import { ChangeDetectorRef,Component, OnInit, OnChanges,Pipe, PipeTransform,TemplateRef  } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { FormControl, FormGroup ,Validators} from '@angular/forms'; 
 import {EwepserverService} from '../../../ewepserver.service' 
@@ -59,6 +59,11 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
               private _cdr : ChangeDetectorRef ) { 
      
 
+  }
+  ngOnChanges(changes: any) {
+    //this.enterprise = this.EwepserverService.getRoutingStashBox();
+    //this.enterprise.Avg_Profit.value = 1000;  
+    this.enterprise.Avg_Profit = this.enterprise.Avg_Sales + this.enterprise.Avg_Other_Income - (this.enterprise.Avg_Expenditure + this.enterprise.Avg_Indirect_Cost + this.enterprise.Member_Salaries + this.enterprise.Employee_Salaries);
   } 
   ngOnInit() {
     //get from stash box
@@ -102,15 +107,32 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   OnDataOK(){ 
 
     this.user = new FormGroup({
+      //General:this.General,
+      //Details:this.Details,
+      
       Enterprise_ID: new FormControl(this.enterprise.Enterprise_ID),
       Enterprise_Name: new FormControl(this.enterprise.Enterprise_Name,[
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(50),
       ]) 
-    },[forceValidate("General.Support_Other",[{name:"General.Support_Specify",UseLengthValidation:true,min:1,max:50}])]);
-
-    this.GeneralQuestions  = this.controlsService.getEnterpriseGenralForm(this.enterprise);
+    },
+    
+    [forceValidate("Finance.Funds_Other",[{name:"Finance.Funds_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Finance.Assets_Other",[{name:"Finance.Assets_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Finance.Avg_Sales > 0",[{name:"Finance.Avg_Profit_Saved",UseLengthValidation:true,min:1,max:50,}]),
+    forceValidate("Details.Sec_Other",[{name:"Details.Sec_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Details.Agri_Other",[{name:"Details.Agri_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Details.Manu_Other",[{name:"Details.Manu_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Details.Retail_Other",[{name:"Details.Retail_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Details.Mine_Other",[{name:"Details.Mine_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Details.Arts_Other",[{name:"Details.Arts_Specify",UseLengthValidation:true,min:1,max:50}]),
+    forceValidate("Details.GS_Other",[{name:"Details.GS_Specify",UseLengthValidation:true,min:1,max:50}])
+  ]);
+      
+  //this.enterprise.Avg_Profit = this.enterprise.Avg_Sales + this.enterprise.Avg_Other_Income - (this.enterprise.Avg_Expenditure + this.enterprise.Avg_Indirect_Cost + this.enterprise.Member_Salaries + this.enterprise.Employee_Salaries);
+    
+  this.GeneralQuestions  = this.controlsService.getEnterpriseGenralForm(this.enterprise);
      
     this.General = this.cutomerFormHlper.toFormGroup(this.GeneralQuestions);
     
@@ -120,6 +142,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.EmployeesMalePayQuestions = this.controlsService.getEnterpriseEmploeesFormMalePay(this.enterprise);
     this.EmployeesQuestions = this.controlsService.getEnterpriseEmploeesFormAge(this.enterprise);
     this.Funds = this.controlsService.getStatUpFunds(this.enterprise);
+    
     this.AccessToMarket =this.controlsService.getAccessToMarket(this.enterprise); 
     this.AccessToTechnicalSkills = this.controlsService.getAccessToTechnicalSkills(this.enterprise); 
     this.GoodsAndService = this.controlsService.getGoodsAndService(this.enterprise);
