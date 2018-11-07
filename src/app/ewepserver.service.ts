@@ -25,7 +25,7 @@ export class EwepserverService {
   SelectedCurrency:string ="DDDD";
   UserLoginObj = new Subject<any>();
   LegalStructure:Options[] = [new Options("Select","Select"),
-                              new Options("Cooperative","Cooperative"),
+                              //new Options("Cooperative","Cooperative"),
                               new Options("Partnership","Partnership"),
                               new Options("Private Company","Private Company"),
                               new Options("Sole Proprietor","Sole Proprietor"),

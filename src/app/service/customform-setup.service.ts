@@ -331,10 +331,12 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Days_Work', required: true,order: 71,
 			label: 'Working days/week', value: enterprise.Days_Work,
+			min:1,max:7
 		}),
 		new NumbersQuestion({
 			key: 'Week_Hours_Worked', required: true,order: 80,
 			label: 'Working hours / day', value: enterprise.Week_Hours_Worked,
+			min:1,max:168
 		}),
 	];
 	return questions.sort((a, b) => a.order - b.order);

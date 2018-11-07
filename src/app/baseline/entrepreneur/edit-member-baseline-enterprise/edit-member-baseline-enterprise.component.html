@@ -105,7 +105,7 @@
                     <label class="control-label" for="txtExpiration_Date">Expiration Date</label>
                     <div class="controls">
                       <mat-form-field>
-                        <input matInput [matDatepicker]="Exppicker" placeholder="" id="txtExpiration_Date" formControlName="Expiration_Date">
+                        <input matInput [min]="passportMinDate" [max]="passportMaxDate" [matDatepicker]="Exppicker" placeholder="" id="txtExpiration_Date" formControlName="Expiration_Date">
                         <mat-datepicker-toggle matSuffix [for]="Exppicker"></mat-datepicker-toggle>
                         <mat-datepicker #Exppicker></mat-datepicker>
                       </mat-form-field>
@@ -128,7 +128,7 @@
                     <label class="control-label" for="txtBirth_Date">Date of Birth</label>
                     <div class="controls">
                       <mat-form-field>
-                        <input matInput [matDatepicker]="BDatepicker" placeholder="" id="" formControlName="Birth_Date">
+                        <input matInput [min]="birthMinDate" [max]="birthMaxDate" [matDatepicker]="BDatepicker" placeholder="" id="" formControlName="Birth_Date">
                         <mat-datepicker-toggle matSuffix [for]="BDatepicker"></mat-datepicker-toggle>
                         <mat-datepicker #BDatepicker></mat-datepicker>
                       </mat-form-field>
@@ -370,7 +370,7 @@
                     <label class="control-label" for="txtDate_Join_Awome">Date Joined AWOME</label>
                     <div class="controls">
                       <mat-form-field>
-                        <input matInput [matDatepicker]="picker_Date_Join_Awome" placeholder="" id="txtDate_Join_Awome" formControlName="Date_Join_Awome">
+                        <input matInput [min]="awomeMinDate" [max]="awomeMaxDate" [matDatepicker]="picker_Date_Join_Awome" placeholder="" id="txtDate_Join_Awome" formControlName="Date_Join_Awome">
                         <mat-datepicker-toggle matSuffix [for]="picker_Date_Join_Awome"></mat-datepicker-toggle>
                         <mat-datepicker #picker_Date_Join_Awome></mat-datepicker>
                       </mat-form-field>
