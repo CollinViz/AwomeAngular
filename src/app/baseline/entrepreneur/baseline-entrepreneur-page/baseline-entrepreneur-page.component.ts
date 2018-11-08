@@ -17,7 +17,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
     { name: 'ID', prop: 'Entrepreneur_ID' },
     { name: 'Surname', prop: 'Surname' }, 
     { name: 'Name', prop: 'Name' },
-    { name: 'Province', prop: 'Province' },
+    { name: 'Municipality', prop: 'Municipality' },
     //{ name: 'EDF', prop: 'EDF' },
     //{ name: 'Status', prop: 'Status' }
   ];

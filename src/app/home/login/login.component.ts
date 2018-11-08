@@ -1,5 +1,6 @@
 import { Component, OnInit,EventEmitter,Output,Input } from '@angular/core';
-import { EwepserverService } from '../../ewepserver.service'
+import {Country,EwepserverService} from '../../ewepserver.service'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,15 @@ import { EwepserverService } from '../../ewepserver.service'
 })
 export class LoginComponent implements OnInit {
   @Output() loginOK = new EventEmitter<any>();
-  user:UserLogin =  {Username:"",Password:"",showError:false,Error:""};
-
+  user:UserLogin =  {Username:"",Password:"",showError:false,Error:"",countrylogin:null};
+  countryList$: Observable<Country[]>;
   constructor(private EwepserverService: EwepserverService) { }
 
   onClick(){
+    if(this.user.countrylogin==null){
+      alert("Please select a Country");
+      return;
+    }
     this.EwepserverService.checkLogin(this.user.Username,this.user.Password).subscribe((Message:any)=>{
       if(Message.OK){
         //We have a error
@@ -20,12 +25,14 @@ export class LoginComponent implements OnInit {
         this.user.showError = true;
         this.user.Error = Message.message;
       }else{
-        this.EwepserverService.setUserLogin(Message);
+        this.EwepserverService.setUserLogin(Message,this.user.countrylogin);
+        this.EwepserverService.setCountryInfo(this.user.countrylogin.Country_ID,this.user.countrylogin.Country_Name);
         this.loginOK.emit(Message);
       } 
     });
   }
   ngOnInit() {
+    this.countryList$ = this.EwepserverService.country;
   }
 
 }
@@ -35,5 +42,6 @@ class UserLogin{
   public Password:string="";
   public showError:boolean=false;
   public Error:string ="";
+  public countrylogin?;
 }
  

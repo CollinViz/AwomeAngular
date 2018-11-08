@@ -90,13 +90,14 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.LoginData$.subscribe((User:LogInData)=>{
-      if(User.LoginOK){
-         
+      console.log("this.LoginData$",User);
+      if(User.LoginOK){         
         this.ShowAllMenu = true;
-
-      }
-      
+        this.currentCountryID = User.Country_ID;
+        this.currentCountry = User.Country_Name;
+      }      
     });
+     
   }
   changeCountry(newCountry,Index){
     this.currentCountry = newCountry.Country_Name;

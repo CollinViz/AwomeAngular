@@ -246,14 +246,16 @@ export class FormGroupMapVisitsEnterprise {
 		new TextboxQuestion({
 			key: 'Funds_Specify', required: false,order: 38,
 			label: 'Funds_Specify', value: enterprise.Funds_Specify,
-		}),new TextboxQuestion({
-			key: 'Assets_Land', required: false,order: 25,
-			label: 'Assets_Land', value: enterprise.Assets_Land,
 		}),
+		//new TextboxQuestion({
+		//	key: 'Assets_Land', required: false,order: 25,
+		//	label: 'Assets_Land', value: enterprise.Assets_Land,
+		//}),
 		new CheckBoxQuestion({
 			key: 'Other_Available_Assets', required: false,order: 26,
 			label: 'Other Available Assets', value: enterprise.Assets_Buildings,
 			options: [
+				new CheckBoxOptions("Assets_Land","Land",enterprise.Assets_Land),
 				new CheckBoxOptions("Assets_Buildings","Buildings",enterprise.Assets_Buildings),
 				new CheckBoxOptions("Assets_Water","Water",enterprise.Assets_Water),
 				new CheckBoxOptions("Assets_Machines","Machines",enterprise.Assets_Machines),

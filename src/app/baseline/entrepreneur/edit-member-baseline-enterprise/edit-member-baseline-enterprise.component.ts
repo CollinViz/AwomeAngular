@@ -5,6 +5,7 @@ import { Options, QuestionBase,DropdownQuestion} from '../../../service/question
 import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
 import { FormGroupEditMemberBaselineEnterprise } from './edit-member-baseline-enterprise'
+import { max } from '../../../../../node_modules/rxjs/operators';
 @Component({
   selector: 'app-edit-member-baseline-enterprise',
   templateUrl: './edit-member-baseline-enterprise.component.html',
@@ -12,6 +13,14 @@ import { FormGroupEditMemberBaselineEnterprise } from './edit-member-baseline-en
 })
 export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   
+  birthMinDate = new Date(1938, 0, 1);
+  birthMaxDate = new Date(2000,12,31);
+  passportMinDate = new Date(2018, 0, 1);
+  passportMaxDate = new Date(2030,12,31);
+  awomeMinDate = new Date(2018, 0, 1);
+  awomeMaxDate = new Date();
+  //maxDate1 = new Date(maxDate().getDateValue - 1);
+  //maxDate = new Date(2020, 0, 1);
   @Input() entrepreneur:any = {}
   @Output() SaveItem:EventEmitter<any> = new EventEmitter<any>();
   MainForm:FormGroup;
@@ -24,6 +33,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   Sex:Options[];
   MaritalStatus:Options[];
   EducationLevel:Options[] = [];
+  CurrencyValue:string = "R";
+  IDorPassport:Options[];
 
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
@@ -36,6 +47,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
                 this.Sex = this.EwepserverService.Sex;
                 this.MaritalStatus = this.EwepserverService.MaritalStatus;
                 this.EducationLevel = this.EwepserverService.EducationLevel;
+                this.IDorPassport = this.EwepserverService.IDorPassport;
               }
   ngOnChanges(changes){
     if(this.isLoading){
@@ -46,6 +58,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     }
   }
   ngOnInit() {
+    this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.isLoading =true;
     let oFromTemp:FormGroupEditMemberBaselineEnterprise = new FormGroupEditMemberBaselineEnterprise(); 
     this.General = this.cutomerFormHlper.toFormGroup(oFromTemp.getGeneral(this.entrepreneur));

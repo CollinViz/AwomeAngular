@@ -1,3 +1,393 @@
-<p>
-  edit-baseline-association-association works!
-</p>
+<form [formGroup]="MainForm">
+
+  <div class="row">
+    <div class="col-6">
+
+    </div>
+    <div class="col-6">
+      <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
+      <button (click)="Back()" [ngClass]="{'btn':true,'secondary':true  }">Back</button>
+
+    </div>
+  </div>
+
+
+  <tabset type="pills" class="bg-info">
+    <tab heading="General Information" class="mt-2" [formGroup]="Details">
+      <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-3">
+          <div class="control-group">
+            <label class="control-label" for="txtForm_ID">Form ID</label>
+            <div class="controls">
+              <input formControlName="Form_ID" id="Form_ID" type="text" placeholder="Form_ID" ngClass="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div [appCardCssFormGroup]="Details.valid" class="card mb-3">
+            <!--- Details Information Start  -->
+            <div [appCardHeaderCssFormGroup]="Details.valid" class="card-header">Association Details</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtAssociationName">Association Name</label>
+                    <div class="controls">
+                      <input formControlName="Association_Name" id="txtAssociationName" type="text" placeholder="Association Name" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtDate_Established">Date Established</label>
+                    <div class="controls">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="BDatepicker" id="txtDate_Established" formControlName="Date_Established">
+                        <mat-datepicker-toggle matSuffix [for]="BDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #BDatepicker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtFemale_Members">No. of Female Members</label>
+                    <div class="controls">
+                      <input formControlName="Female_Members" id="txtFemale_Members" type="text" placeholder="Female_Members" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+               <!-- <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtMale_Members">No. of Male Members</label>
+                    <div class="controls">
+                      <mat-slide-toggle id="txtMale_Members" name="txtID_or_Passport" formControlName="ID_or_Passport"> </mat-slide-toggle>
+
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-6">
+                  <div class="control-group">
+                    <label class="control-label" for="txtMale_Members">No. of Male Members</label>
+                    <div class="controls">
+                      <input formControlName="Male_Members" id="txtMale_Members" type="text" placeholder="Male_Members" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtSec_Agri">Sectors your Members operate in</label>
+                    <div class="controls">
+
+                      <mat-checkbox formControlName="Sec_Agri" id="txtSec_Agri" ngClass="checkboxgroup-control">Agriculture</mat-checkbox>
+                      <mat-checkbox formControlName="Sec_Manu" id="txtSec_Manu" ngClass="checkboxgroup-control">Manufacturing</mat-checkbox>
+                      <mat-checkbox formControlName="Sec_Minerals" id="txtSec_Minerals" ngClass="checkboxgroup-control">Minerals</mat-checkbox>
+                      <mat-checkbox formControlName="Sec_Arts" id="txtSec_Arts" ngClass="checkboxgroup-control">Arts n Crafts</mat-checkbox>
+                      <mat-checkbox formControlName="Sec_General" id="txtSec_General" ngClass="checkboxgroup-control">General Services</mat-checkbox>
+                      <mat-checkbox formControlName="Sec_Retail" id="txtSec_Retail" ngClass="checkboxgroup-control">Retail</mat-checkbox>
+                      <mat-checkbox formControlName="Sec_Other" id="txtSec_Other" ngClass="checkboxgroup-control">Other</mat-checkbox>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="txtSec_Specify">Specify</label>
+                    <div class="controls">
+                      <input formControlName="Sec_Specify" id="txtSec_Specify" type="text" placeholder="Sec_Specify" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <!--- </app-gen-boot-ui> Details Information end  -->
+          </div>
+        </div>
+        <div class="col-4">
+          <div [appCardCssFormGroup]="Details.valid" class="card  mb-3">
+            <!--- Family  start  -->
+            <div [appCardHeaderCssFormGroup]="Details.valid" class="card-header">Mission Vision etc</div>
+            <div class="card-body">
+              <!-- <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtMarital_Status">Marital Status</label>
+                    <div class="controls">
+                      <mat-form-field ngClass="form-control">
+                        <mat-select id="txtMarital_Status" formControlName="Marital_Status">
+                          <mat-option *ngFor="let lan of MaritalStatus" [value]="lan.Key">{{lan.Value}} </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtMission">Mission of Association</label>
+                    <div class="controls">
+                      <input formControlName="Mission" id="txtMission" type="text" placeholder="Mission" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtVision">Vision of Association</label>
+                    <div class="controls">
+                      <input formControlName="Vision" id="txtVision" type="text" placeholder="Vision" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtChallenge">Biggest Challenges</label>
+                    <div class="controls">
+                      <input formControlName="Challenge" id="txtChallenge" type="text" placeholder="Challenge" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtOpportunities">Opportunities</label>
+                    <div class="controls">
+                      <input formControlName="Opportunities" id="txtOpportunities" type="text" placeholder="Opportunities" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--- Family  end  -->
+          </div>
+        </div>
+        <div class="col-4">
+          <div [appCardCssFormGroup]="Details.valid" class="card  mb-3">
+            <!--- Finance  start  -->
+            <div [appCardHeaderCssFormGroup]="Details.valid" class="card-header">Contact Members</div>
+            <div class="card-body">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Leadership" class="mt-2" [formGroup]="Leadership">
+      <div class="row">
+        <div class="col-4">
+          <div [appCardCssFormGroup]="Leadership.valid" class="card mb-3">
+            <!--- Access to Technical  start  -->
+            <div [appCardHeaderCssFormGroup]="Leadership.valid" class="card-header">Compliance</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtLeadership_Structure">Do you have a Leadership Strucutre?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="Leadership_Structure" id="txtLeadership_Structure"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtFemale_Leaders">No. of Female Leaders</label>
+                    <div class="controls">
+                      <input formControlName="Female_Leaders" id="txtFemale_Leaders" type="text" placeholder="No of Female Leaders" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtMale_Leaders">No. of Male Leaders</label>
+                    <div class="controls">
+                      <input formControlName="Male_Leaders" id="txtMale_Leaders" type="text" placeholder="No of Male Leaders" ngClass="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtConstitution">Do you have a constitution?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="Constitution" id="txtConstitution"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtLeadership_Meet">Do you hold Leadership Meetings as per your Constituition?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="Leadership_Meet" id="txtLeadership_Meet"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtLeadership_Meet_Records">If Yes, do you keep a record of your meeting minutes?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="Leadership_Meet_Records" id="txtLeadership_Meet_Records"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtGeneral_Meet">Do you hold general meetings as per your Constitution?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="General_Meet" id="txtGeneral_Meet"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtGeneral_Meet_Records">If Yes, do you keep a record of your meeting minutes?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="General_Meet_Records" id="txtGeneral_Meet_Records"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="control-group">
+                    <label class="control-label" for="txtAccount_Records">Do you keep accounting records?</label>
+                    <div class="controls">
+                      <mat-slide-toggle formControlName="Account_Records" id="txtAccount_Records"></mat-slide-toggle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Access to Technical END-->
+          </div>
+        </div>
+        <div class="col-4">
+          <!-- Are you experiencing Challenges in the following areas?-->
+          <div [appCardCssFormGroup]="Leadership.valid" class="card mb-3">
+            <!--- Access to Technical  start  -->
+            <div [appCardHeaderCssFormGroup]="Leadership.valid" class="card-header">Are you experiencing Challenges in the following areas?</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8"> Decision making:</div>
+                <div class="col-4">
+                  <mat-slide-toggle formControlName="Decision_Making" id="txtDecision_Making"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Meetings Procedures:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Meeting_Procedures" id="txtMeeting_Procedures"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Administrative Capacity:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Admin_Capacity" id="txtAdmin_Capacity"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Compliance to Constitution :</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Constitution_Comply" id="txtConstitution_Comply"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Membership turnover or retention:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Retention" id="txtRetention"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Accessing services for members:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Access_Services" id="txtAccess_Services"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Offering Services to members:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Offer_Services" id="txtOffer_Services"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Capacity Gaps:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Capacity_Gaps" id="txtCapacity_Gaps"></mat-slide-toggle>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-8"> Networking:</div>
+                <div class="col-4 ">
+                  <mat-slide-toggle formControlName="Networking" id="txtNetworking"></mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </tab>
+
+    <tab heading="Contact Information" class="mt-2" [formGroup]="Contact">
+      <div class="row">
+        <div class="col-4">
+          <div [appCardCssFormGroup]="Contact.valid" Class="card mb-3">
+               
+            <!--- Contact  -->
+            <div [appCardHeaderCssFormGroup]="Contact.valid" class="card-header">Address</div>
+                 
+            <div class="card-body">
+              <app-gen-boot-ui *ngFor="let question of ContactInfoWithBinding;let i=index" (selectionChange)="contaceDetailChange($event,i)"
+                [question]="question" [form]="Contact"></app-gen-boot-ui>
+
+              <app-gen-boot-ui *ngFor="let question of ContactInfo" [question]="question" [form]="Contact"></app-gen-boot-ui>
+            </div>
+            <!--- END Contact  -->
+          </div>
+        </div>
+      </div>
+
+    </tab>
+  </tabset>
+</form>

@@ -11,7 +11,7 @@
         <label class="control-label" for="txtAmount_Issued"> Actual Amount Received</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">R</span>
+            <span class="input-group-text">{{CurrencyValue}}</span>
           </div>
           <input formControlName="Amount_Issued" appNumberOnly id="txtAmount_Issued" name="txtAmount_Issued" type="text" placeholder="0.00"
             ngClass="form-control numbersOnly">
@@ -21,7 +21,7 @@
         <label class="control-label" for="txtRepay_Amount">Loan Amount Outstanding</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">R</span>
+            <span class="input-group-text">{{CurrencyValue}}</span>
           </div>
           <input formControlName="Amount_Outstanding" appNumberOnly id="txtAmount_Outstanding" name="txtAmount_Outstanding" type="text"
             placeholder="0.00" ngClass="form-control numbersOnly">
@@ -43,7 +43,7 @@
         <label class="control-label" for="txtRepay_Amount">Instalment Amount</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">R</span>
+            <span class="input-group-text">{{CurrencyValue}}</span>
           </div>
           <input formControlName="Repay_Amount" appNumberOnly id="txtRepay_Amount" name="txtRepay_Amount" type="text" placeholder="0.00"
             ngClass="form-control numbersOnly">
@@ -53,6 +53,7 @@
     </div>
   </div>
   <div class="row">
-    <button class="btn btn-primary" (click)="addnewFinance()" [ngClass]="{'btn':true,'btn-primary':loanEdit.valid  }" [disabled]="!loanEdit.valid">Add</button>
+    <button class="btn btn-primary" (click)="addnewFinance()" 
+    [ngClass]="{'btn':true,'btn-primary':loanEdit.valid  }" [disabled]="!loanEdit.valid">Add</button>
   </div>
 </form>

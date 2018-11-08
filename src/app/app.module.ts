@@ -20,7 +20,8 @@ import { LoginComponent } from './home/login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListenterpriseComponent } from './baseline/enterprise/listenterprise/listenterprise.component';
 import { EditenterpriseComponent } from './baseline/enterprise/editenterprise/editenterprise.component';
-import {EwepserverService} from './ewepserver.service';
+import { EwepserverService } from './ewepserver.service';
+import { GlobalService } from './service/Global'
 import { SearchEnterpriseComponent } from './baseline/enterprise/search-enterprise/search-enterprise.component';
 import { DistrictMetroPipe } from './district-metro.pipe';
 import { MunicipalityPipe } from './municipality.pipe';
@@ -340,7 +341,7 @@ const interceptor = new ProgressInterceptor();
   providers: [
     { provide: ProgressInterceptor, useValue: interceptor },
     { provide: HTTP_INTERCEPTORS, useValue: interceptor, multi: true },
-    EwepserverService
+    EwepserverService,GlobalService
   ],
   bootstrap: [AppComponent]
 })

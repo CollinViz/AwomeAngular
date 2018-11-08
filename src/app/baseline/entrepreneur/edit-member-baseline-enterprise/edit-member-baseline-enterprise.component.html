@@ -15,21 +15,23 @@
   <tabset type="pills" class="bg-info">
     <tab heading="General Information" class="mt-2" [formGroup]="General">
       <div class="row">
-        <div class="col-3">
-
+        <div class="col-4">
+            
         </div>
-        <div class="col-3">
+        <div class="col-4">
+
+          </div>
+        <div class="col-4">
           <div class="control-group">
             <label class="control-label" for="txtForm_ID">Form ID</label>
             <div class="controls">
-              <input formControlName="Form_ID" id="Form_ID" type="text" placeholder="Form_ID" ngClass="form-control">
+              <input formControlName="Form_ID" id="Form_ID" type="text" placeholder="" ngClass="form-control">
             </div>
           </div>
         </div>
-        <div class="col-3">
-
-        </div>
+        
       </div>
+      <br>
       <div class="row">
         <div class="col-4">
           <div [appCardCssFormGroup]="General.valid" class="card mb-3">
@@ -37,60 +39,73 @@
             <div [appCardHeaderCssFormGroup]="General.valid" class="card-header">General Information</div>
             <div class="card-body">
               <div class="row">
-                <div class="col-6">
-                  <div class="control-group">
-                    <label class="control-label" for="txtName">Name</label>
-                    <div class="controls">
-                      <input formControlName="Name" id="txtName" type="text" placeholder="Name" ngClass="form-control">
+                  <div class="col-6">
+                      <div class="control-group">
+                        <label class="control-label" for="txtName">Name</label>
+                        <div class="controls">
+                          <input formControlName="Name" id="txtName" type="text" placeholder="" ngClass="form-control">
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="control-group">
-                    <label class="control-label" for="txtSurname">Surname</label>
-                    <div class="controls">
-                      <input formControlName="Surname" id="txtSurname" type="text" placeholder="Surname" ngClass="form-control">
-                    </div>
-                  </div>
-                </div>
+                    <div class="col-6">
+                      <div class="control-group">
+                        <label class="control-label" for="txtSurname">Surname</label>
+                        <div class="controls">
+                          <input formControlName="Surname" id="txtSurname" type="text" placeholder="" ngClass="form-control">
+                        </div>
+                      </div>
+                    </div> 
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtKnown_As">Nickname</label>
                     <div class="controls">
-                      <input formControlName="Known_As" id="txtKnown_As" type="text" placeholder="Nickname" ngClass="form-control">
+                      <input formControlName="Known_As" id="txtKnown_As" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
-
+                
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
-                    <label class="control-label" for="txtID_or_Passport">ID  Passport</label>
+                    
+                    <!-- <label class="control-label" for="txtID_or_Passport">ID  Passport</label>
                     <div class="controls">
                       <mat-slide-toggle id="txtID_or_Passport" name="txtID_or_Passport" formControlName="ID_or_Passport"> </mat-slide-toggle>
+                    </div> -->
 
+                    <label class="control-label" for="txtID_or_Passport">ID or Passport?</label>
+                    <div class="controls">
+                      <mat-radio-group id="txtID_or_Passport" name="txtID_or_Passport" formControlName="ID_or_Passport" ngClass="form-control">
+                        <mat-radio-button *ngFor="let opt of IDorPassport" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
+                      </mat-radio-group>
                     </div>
+
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="control-group">
-                    <label class="control-label" for="txtID_Passport">ID Passport</label>
+                    
+                    <label class="control-label" for="txtID_Passport">ID or Passport Number</label>
                     <div class="controls">
-                      <input formControlName="ID_Passport" id="txtID_Passport" type="text" placeholder="ID Passport" ngClass="form-control">
-                    </div>
+                      <input formControlName="ID_Passport" id="txtID_Passport" type="text" placeholder="" ngClass="form-control">
+                    </div> 
+                    
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtExpiration_Date">Expiration Date</label>
                     <div class="controls">
                       <mat-form-field>
-                        <input matInput [matDatepicker]="Exppicker" placeholder="Expiration Date" id="txtExpiration_Date" formControlName="Expiration_Date">
+                        <input matInput [min]="passportMinDate" [max]="passportMaxDate" [matDatepicker]="Exppicker" placeholder="" id="txtExpiration_Date" formControlName="Expiration_Date">
                         <mat-datepicker-toggle matSuffix [for]="Exppicker"></mat-datepicker-toggle>
                         <mat-datepicker #Exppicker></mat-datepicker>
                       </mat-form-field>
@@ -101,18 +116,19 @@
                   <div class="control-group">
                     <label class="control-label" for="txtNationality">Nationality</label>
                     <div class="controls">
-                      <input formControlName="Nationality" id="txtNationality" type="text" placeholder="Nationality" ngClass="form-control">
+                      <input formControlName="Nationality" id="txtNationality" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtBirth_Date">Date of Birth</label>
                     <div class="controls">
                       <mat-form-field>
-                        <input matInput [matDatepicker]="BDatepicker" placeholder="Date of Birth" id="txtBirth_Date" formControlName="Birth_Date">
+                        <input matInput [min]="birthMinDate" [max]="birthMaxDate" [matDatepicker]="BDatepicker" placeholder="" id="" formControlName="Birth_Date">
                         <mat-datepicker-toggle matSuffix [for]="BDatepicker"></mat-datepicker-toggle>
                         <mat-datepicker #BDatepicker></mat-datepicker>
                       </mat-form-field>
@@ -132,6 +148,7 @@
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
@@ -177,12 +194,13 @@
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtChildren">No of Children</label>
                     <div class="controls">
-                      <input appNumberOnly formControlName="Children" id="txtChildren" type="text" placeholder="Children" class="form-control numbersOnly">
+                      <input appNumberOnly formControlName="Children" id="txtChildren" type="text" placeholder="" class="form-control numbersOnly">
                     </div>
                   </div>
                 </div>
@@ -190,18 +208,19 @@
                   <div class="control-group">
                     <label class="control-label" for="txtChildren_In_School">No of Children in School</label>
                     <div class="controls">
-                      <input appNumberOnly formControlName="Children_In_School" id="txtChildren_In_School" type="text" placeholder="Children_In_School"
+                      <input appNumberOnly formControlName="Children_In_School" id="txtChildren_In_School" type="text" placeholder=""
                         class="form-control numbersOnly">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtPeople_Supported">No of People Supported</label>
                     <div class="controls">
-                      <input appNumberOnly formControlName="People_Supported" id="txtPeople_Supported" type="text" placeholder="People_Supported"
+                      <input appNumberOnly formControlName="People_Supported" id="txtPeople_Supported" type="text" placeholder=""
                         ngClass="form-control numbersOnly">
                     </div>
                   </div>
@@ -210,23 +229,25 @@
                   <div class="control-group">
                     <label class="control-label" for="txtPeople_Employed_Household">No of People Employed in Household</label>
                     <div class="controls">
-                      <input appNumberOnly formControlName="People_Employed_Household" id="txtPeople_Employed_Household" type="text" placeholder="People_Employed_Household numbersOnly"
+                      <input appNumberOnly formControlName="People_Employed_Household" id="txtPeople_Employed_Household" type="text" placeholder="" 
                         ngClass="form-control numbersOnly">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-12">
                   <div class="control-group">
                     <label class="control-label" for="txtPeople_In_Household">No of People in Household</label>
                     <div class="controls">
-                      <input appNumberOnly formControlName="People_In_Household" id="txtPeople_In_Household" type="text" placeholder="People_In_Household"
+                      <input appNumberOnly formControlName="People_In_Household" id="txtPeople_In_Household" type="text" placeholder=""
                         ngClass="form-control numbersOnly">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-12">
                   <div class="control-group">
@@ -257,7 +278,7 @@
                     <div class="controls">
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text">R</span>
+                          <span class="input-group-text">{{CurrencyValue}}</span>
                         </div>
                         <input appNumberOnly formControlName="Income_Before_Awome" id="txtIncome_Before_Awome" type="text" ngClass="form-control numbersOnly">
                       </div>
@@ -273,6 +294,7 @@
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-12">
                   <div class="control-group">
@@ -291,13 +313,14 @@
                     </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label" for="txtSupport_Specify">Support Specify</label>
+                    <label class="control-label" for="txtSupport_Specify">Specify (if Other)</label>
                     <div class="controls">
-                      <input formControlName="Support_Specify" id="txtSupport_Specify" type="text" placeholder="Support Specify" ngClass="form-control">
+                      <input formControlName="Support_Specify" id="txtSupport_Specify" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-12">
                   <div class="control-group">
@@ -314,13 +337,14 @@
                     </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label" for="txtChallenge_Specify">Challenge Specify</label>
+                    <label class="control-label" for="txtChallenge_Specify">Specify (if Other)</label>
                     <div class="controls">
-                      <input formControlName="Challenge_Specify" id="txtChallenge_Specify" type="text" placeholder="Specify" ngClass="form-control">
+                      <input formControlName="Challenge_Specify" id="txtChallenge_Specify" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-4">
                   <div class="control-group">
@@ -334,18 +358,19 @@
                   <div class="control-group">
                     <label class="control-label" for="txtDisabled_Specify">Specify Disability</label>
                     <div class="controls">
-                      <input formControlName="Disabled_Specify" id="txtDisabled_Specify" type="text" placeholder="Disabled_Specify" ngClass="form-control">
+                      <input formControlName="Disabled_Specify" id="txtDisabled_Specify" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtDate_Join_Awome">Date Joined AWOME</label>
                     <div class="controls">
                       <mat-form-field>
-                        <input matInput [matDatepicker]="picker_Date_Join_Awome" placeholder="Choose a date" id="txtDate_Join_Awome" formControlName="Date_Join_Awome">
+                        <input matInput [min]="awomeMinDate" [max]="awomeMaxDate" [matDatepicker]="picker_Date_Join_Awome" placeholder="" id="txtDate_Join_Awome" formControlName="Date_Join_Awome">
                         <mat-datepicker-toggle matSuffix [for]="picker_Date_Join_Awome"></mat-datepicker-toggle>
                         <mat-datepicker #picker_Date_Join_Awome></mat-datepicker>
                       </mat-form-field>
@@ -356,7 +381,7 @@
                   <div class="control-group">
                     <label class="control-label" for="txtResponsible_Trainer">Responsible Trainer</label>
                     <div class="controls">
-                      <input formControlName="Responsible_Trainer" id="txtResponsible_Trainer" type="text" placeholder="Responsible_Trainer" ngClass="form-control">
+                      <input formControlName="Responsible_Trainer" id="txtResponsible_Trainer" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
@@ -367,33 +392,65 @@
       </div>
     </tab>
     <tab heading="Training and Enterprise Information" class="mt-2" [formGroup]="training">
+        <div class="row">
+            <div class="col-4">
+    
+              </div>
+              <div class="col-4">
+    
+                </div>
+            
+              <div class="col-4">
+                  <div class="control-group">
+                    <label class="control-label" for="txtForm_ID1">Entrepreneur Name</label>
+                    <div class="controls">
+                        <input id="Entrepreneur_Name1" type="text" placeholder="" ngClass="form-control">
+                      </div>
+                  </div>
+                </div>
+                
+            
+          </div>
+          <br> 
+          
       <div class="row">
         <div class="col-4">
           <div [appCardCssFormGroup]="training.valid" class="card mb-3">
             <!--- Access to Technical  start  -->
             <div [appCardHeaderCssFormGroup]="training.valid" class="card-header">Access to Technical Skills</div>
             <div class="card-body">
-              <div class="row">
-                <div class="col-6">
-                  <div class="control-group">
+              <div class="row"> 
+                <!--<div class="col-6"> -->
+                <!--  <div class="control-group">
                     <label class="control-label" for="txtTechnical_Training">Have you received prior training on?</label>
                     <div class="controls">
                       <mat-slide-toggle formControlName="Technical_Training" id="txtTechnical_Training">
                       </mat-slide-toggle>
                     </div>
-                  </div>
-                </div>
+                  </div> -->
+                    
+                        <div class="col-8">Received any RELEVANT technical training to your business?</div>
+                        <div class="col-4 ">
+                          <mat-slide-toggle formControlName="Technical_Training" id="txtTechnical_Training">
+                          </mat-slide-toggle>
+                        </div>
+                      
+
+                  
+                <!-- </div> -->
               </div>
+              <br>
               <div class="row">
                 <div class="col-6">
                   <div class="control-group">
                     <label class="control-label" for="txtWhat_Training">What was the training?</label>
                     <div class="controls">
-                      <input formControlName="What_Training" id="txtWhat_Training" type="text" placeholder="What_Training" ngClass="form-control">
+                      <input formControlName="What_Training" id="txtWhat_Training" type="text" placeholder="" ngClass="form-control">
                     </div>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row bg-light ">
                 <div class="col-12 p-1 m-1 ">
                   <span class="text-dark ">List different types of costs to consider when calculating total cost of product</span>
@@ -514,13 +571,7 @@
                 </div>
 
               </div>
-              <div class="row">
-                <div class="col-1"></div>
-                <div class="col-11">
-                  <mat-checkbox formControlName="Benefits_Insurance" id="txtBenefits_Insurance" ngClass="checkboxgroup-control">
-                    Insurance (Medical / Accident insurance) </mat-checkbox>
-                </div>
-              </div>
+              
               <div class="row">
                 <div class="col-1"></div>
                 <div class="col-11">
@@ -545,6 +596,7 @@
                   </mat-slide-toggle>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-8"> Record Keeping:</div>
                 <div class="col-4 ">
@@ -552,6 +604,7 @@
                   </mat-slide-toggle>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-8"> Marketing:</div>
                 <div class="col-4 ">
@@ -559,6 +612,7 @@
                   </mat-slide-toggle>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-8"> Costing:</div>
                 <div class="col-4 ">
@@ -566,6 +620,7 @@
                   </mat-slide-toggle>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-8"> People and Productivity:</div>
                 <div class="col-4 ">
@@ -573,6 +628,7 @@
                   </mat-slide-toggle>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-8">Buying and Stock Control:</div>
                 <div class="col-4 ">
@@ -589,6 +645,28 @@
     </tab>
 
     <tab heading="Contact Information" class="mt-2" [formGroup]="Contact">
+        
+        <div class="row">
+            <div class="col-4">
+    
+              </div>
+              <div class="col-4">
+    
+                </div>
+            
+              <div class="col-4">
+                  <div class="control-group">
+                    <label class="control-label" for="txtForm_ID2">Entrepreneur Name</label>
+                    <div class="controls">
+                        <input id="Entrepreneur_Name2" type="text" placeholder="" ngClass="form-control">
+                      </div>
+                  </div>
+                </div>
+                
+            
+          </div>
+          <br>
+
       <div class="row">
         <div class="col-4">
           <div [appCardCssFormGroup]="Contact.valid" Class="card mb-3">

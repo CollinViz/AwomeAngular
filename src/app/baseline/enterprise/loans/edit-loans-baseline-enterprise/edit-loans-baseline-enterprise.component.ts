@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input,Output,EventEmitter,OnChanges} from '@angular/core';
 import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms'; 
 import {forceValidate} from '../../../../service/custom-from-helper-control.service'
+import { EwepserverService } from '../../../../ewepserver.service'
 
 @Component({
   selector: 'app-edit-loans-baseline-enterprise',
@@ -12,7 +13,8 @@ export class EditLoansBaselineEnterpriseComponent implements OnInit,OnChanges {
   @Output() addFinance:EventEmitter<any> = new EventEmitter<any>();
   loanEdit:FormGroup;
   binload:boolean = false;
-  constructor() { }
+  CurrencyValue:string="R";
+  constructor(private EwepserverService:EwepserverService) { }
   ngOnChanges(changes: any){
     console.log(changes);
     if(changes.finance){
@@ -23,6 +25,7 @@ export class EditLoansBaselineEnterpriseComponent implements OnInit,OnChanges {
     }
   }
   ngOnInit() {
+    this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.loanEdit = new FormGroup({
       Where_Apply: new FormControl('1',Validators.required),       
       Approved: new FormControl('0') , 

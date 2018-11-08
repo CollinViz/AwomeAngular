@@ -1,7 +1,8 @@
 import { OnInit,Component, Input,Output ,EventEmitter} from '@angular/core';
 import { FormGroup,ValidationErrors }        from '@angular/forms';
 import { QuestionBase } from '../../../service/question-base'; 
-import { isNumber } from 'util';
+ 
+import { EwepserverService } from '../../../ewepserver.service'
 
 @Component({
   selector: 'app-gen-boot-ui',
@@ -13,6 +14,9 @@ export class GenBootUiComponent implements OnInit {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
   @Output() selectionChange:EventEmitter<any> = new EventEmitter<any>();
+  //@Output() NumberChange:EventEmitter<any> = new EventEmitter<any>();
+  CurrencyValue:string = "R";
+
   get listOfErrors()  : ValidationErrors | null{
     if(this.question.controlType=='checkboxGroup'){
       return null;
@@ -40,10 +44,11 @@ export class GenBootUiComponent implements OnInit {
       }
       
     return this.form.controls[this.question.key].valid; }//this.form.controls[this.question.key].valid; }
-  constructor() { }
+  constructor(private EwepserverService:EwepserverService) { }
 
   ngOnInit() {
-    
+    this.CurrencyValue = this.EwepserverService.SelectedCurrency;
+     
   }
 
   changeSelection(event){
@@ -52,7 +57,8 @@ export class GenBootUiComponent implements OnInit {
   selectAllContent($event) {
     $event.target.select();
   }
-  numberchange(event){
+  changenumber(event){
+    //this.NumberChange.emit(event);
     //console.log(event);
     //console.log(this.form.controls[this.question.key].value);
     //if(this.form.controls[this.question.key].value==''){

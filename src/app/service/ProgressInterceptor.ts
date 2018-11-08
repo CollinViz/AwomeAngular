@@ -43,18 +43,21 @@ export class ProgressInterceptor implements HttpInterceptor {
         
       }
     },(error: any) => {
-      let newError:InternetConnection = {UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""};
+       
+        let newError:InternetConnection = {UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""};
 
-      if(error instanceof ErrorEvent){
-        newError.ErrorMessage = 'An error occurred:', error.error.message;
-        this.ErrorMessageSubject.next(newError);
-      }
-      if(error instanceof HttpErrorResponse){
-        newError.ErrorMessage =`Backend returned code ${error.status}, ` +
-                                `body was: ${error.error}`;
-        this.ErrorMessageSubject.next(newError);
-      }
-      console.log("HTTP Error ",error);
+        if(error instanceof ErrorEvent){
+          newError.ErrorMessage = 'An error occurred:', error.error.message;
+          this.ErrorMessageSubject.next(newError);
+        }
+        if(error instanceof HttpErrorResponse){
+          newError.ErrorMessage =`Backend returned code ${error.status}, ` +
+                                  `body was: ${error.error.error}`;
+          this.ErrorMessageSubject.next(newError);
+        }
+        console.log("HTTP Error ",error.error);
+       
+      
     });
   }
 }
