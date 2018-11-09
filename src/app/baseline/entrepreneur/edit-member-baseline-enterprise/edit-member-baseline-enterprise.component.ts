@@ -19,6 +19,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   passportMaxDate = new Date(2030,12,31);
   awomeMinDate = new Date(2018, 0, 1);
   awomeMaxDate = new Date();
+  ID_Passport_text="IDaaa";
   //maxDate1 = new Date(maxDate().getDateValue - 1);
   //maxDate = new Date(2020, 0, 1);
   @Input() entrepreneur:any = {}
@@ -54,6 +55,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
       return;
     }
     if(changes.entrepreneur){
+      //Fix ID
+      
       this.MainForm.patchValue(this.entrepreneur);
     }
   }
@@ -78,6 +81,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
        forceValidate("General.Challenge",[{name:"General.Challenge_Specify",UseLengthValidation:true,min:1,max:50}],"Challenge_Other"),
        forceValidate("General.Is_Disabled",[{name:"General.Disabled_Specify",UseLengthValidation:true,min:1,max:50}]) 
         ]);
+
+      this.ID_Passport_text = this.entrepreneur.ID_or_Passport;
     this.isLoading =false;
   }
   Save(){

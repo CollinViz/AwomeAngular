@@ -15,11 +15,11 @@ const httpOptions = {
   providedIn: 'root'
 }) 
 export class EwepserverService {
-  baseURL:string = 'http://awome.ewepmis.co.za/api.php/data/'; 
+  baseURL:string = 'http://awomemis.org/api.php/data/'; 
   
-  baseViewURL:string = 'http://awome.ewepmis.co.za/api.php/view/';
+  baseViewURL:string = 'http://awomemis.org/api.php/view/';
   
-  CoreViewURL:string = 'http://awome.ewepmis.co.za/ajax.php';
+  CoreViewURL:string = 'http://awomemis.org/ajax.php';
   
   SelectedCountryID:number=1;
   SelectedCurrency:string ="DDDD";
