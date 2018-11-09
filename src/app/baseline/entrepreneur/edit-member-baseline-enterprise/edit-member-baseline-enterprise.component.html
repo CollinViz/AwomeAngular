@@ -81,7 +81,7 @@
                     <label class="control-label" for="txtID_or_Passport">ID or Passport?</label>
                     <div class="controls">
                       <mat-radio-group id="txtID_or_Passport" name="txtID_or_Passport" formControlName="ID_or_Passport" ngClass="form-control">
-                        <mat-radio-button *ngFor="let opt of IDorPassport" [value]="opt.Key">{{opt.Value}}</mat-radio-button>
+                        <mat-radio-button *ngFor="let opt of IDorPassport" [value]="opt.Key" (click)="ID_Passport_text=opt.Value">{{opt.Value}}</mat-radio-button>
                       </mat-radio-group>
                     </div>
 
@@ -90,7 +90,7 @@
                 <div class="col-6">
                   <div class="control-group">
                     
-                    <label class="control-label" for="txtID_Passport">ID or Passport Number</label>
+                    <label class="control-label" for="txtID_Passport">{{ID_Passport_text}}</label>
                     <div class="controls">
                       <input formControlName="ID_Passport" id="txtID_Passport" type="text" placeholder="" ngClass="form-control">
                     </div> 

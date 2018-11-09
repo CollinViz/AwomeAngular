@@ -226,6 +226,10 @@ const interceptor = new ProgressInterceptor();
       path: '',
       component: HomePageComponent
     },
+    {
+      path:'loginok',
+      component:WelcomLoginokComponent
+    },
     { 
       path:'baseline/enterprise',
       component:ListenterpriseComponent
