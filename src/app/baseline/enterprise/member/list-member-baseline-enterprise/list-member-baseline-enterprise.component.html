@@ -4,7 +4,7 @@
      <th scope="col">Select</th>
      <th scope="col">Name</th>
      <th scope="col">Surname</th>
-     <th scope="col">Edit</th>
+     <th scope="col">Entrepreneur Baseline</th>
      <th scope="col">Remove</th>
    </tr>
   </thead>
@@ -15,7 +15,7 @@
                         [checked]="row.selected"> </mat-checkbox></th>
           <td  >{{row.Name}}</td>
           <td  >{{row.Surname}}</td>
-          <td  ><button class="btn btn-info" (click)="editItem(row,i)">Edit</button></td>
+          <td  ><button class="btn btn-info" (click)="editItem(row,i)">Go to</button></td>
           <td  ><button class="btn btn-danger" (click)="deleteItem(row,i)">Remove</button></td>
       </tr>
   </tbody>

@@ -68,7 +68,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   }
   NewClick(){
     this.IsEditing = true;
-    this.EntrepreneurEditItem = {Entrepreneur_ID:-1};
+    this.EntrepreneurEditItem = {Entrepreneur_ID: -1,ID_or_Passport: 'ID'};
   }
   onSaveEntrepreneur(NewOrEditEntrepreneur){
     if(NewOrEditEntrepreneur===null){

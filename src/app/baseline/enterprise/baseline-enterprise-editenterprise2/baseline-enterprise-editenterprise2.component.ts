@@ -269,14 +269,16 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     console.log(rowSelected);
   }
   onEditEntrepreneur(RowEdit){
-    //console.log(RowEdit);
-    this.showloading_Entrepreneurs = true;
-    this.EwepserverService.getRowData("entrepreneur",RowEdit.Entrepreneur_ID).subscribe((entrepreneur)=>{
-      this.EntrepreneurEditItem = entrepreneur;
-      this.showEntrepreneursList = false;
-      this.showloading_Entrepreneurs = false;
-    });
-    
+
+    // console.log(RowEdit);
+    // this.showloading_Entrepreneurs = true;
+    // this.EwepserverService.getRowData("entrepreneur",RowEdit.Entrepreneur_ID).subscribe((entrepreneur)=>{
+    //  this.EntrepreneurEditItem = entrepreneur;
+    //  this.showEntrepreneursList = false;
+    //  this.showloading_Entrepreneurs = false;
+    // });
+    this.router.navigateByUrl("baseline/entrepreneur/" + RowEdit.Entrepreneur_ID);
+      return;
   }
   onSaveEntrepreneur(NewOrEditEntrepreneur:any){
      

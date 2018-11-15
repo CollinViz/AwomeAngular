@@ -315,7 +315,7 @@ export class CustomformSetupService {
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Profit', required: true,order: 68,
-			label: 'Surplus (calculated)', value: (enterprise.Avg_Profit.value+enterprise.Employee_Salaries.value),
+			label: 'Surplus (calculated)', value: enterprise.Avg_Profit,
 			currency:true
 		}),
 		new NumbersQuestion({

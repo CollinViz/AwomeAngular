@@ -54,6 +54,7 @@ export class ListcoopComponent implements OnInit {
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Cooperative_ID);
+      this.EwepserverService.addToRoutingStashBox(this.selected[0]); 
       this.router.navigateByUrl('baseline/cooperative/' + this.selected[0].Cooperative_ID);
     }
 

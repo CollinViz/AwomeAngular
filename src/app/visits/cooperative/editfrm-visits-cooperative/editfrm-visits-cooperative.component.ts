@@ -112,13 +112,13 @@ export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
         this.cooperative_visit.Cooperative_Visit_ID = out;
          
           this.FinanceLoans.forEach((value)=>{
-            delete value.finance_ID; 
+            delete value.Cooperative_finance_ID; 
             value.Cooperative_Visit_ID=this.cooperative_visit.Cooperative_Visit_ID;
           });
           //Fix test if Finace as list else 
           
           //delete all finance stuff and create a new one
-          this.EwepserverService.deleteAllFinance(this.cooperative_visit.Cooperative_Visit_ID,"").subscribe((out)=>{
+          this.EwepserverService.deleteAllFinanceCooperative(this.cooperative_visit.Cooperative_Visit_ID,"").subscribe((out)=>{
             //Add New suff
             if(this.FinanceLoans.length>0){
               this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
@@ -146,11 +146,11 @@ export class EditfrmVisitsCooperativeComponent implements OnInit,OnChanges {
         if(out===1){
            
           this.FinanceLoans.forEach((value)=>{
-            delete value.finance_ID; 
+            delete value.Cooperative_finance_ID; 
             value.Cooperative_Visit_ID=this.cooperative_visit.Cooperative_Visit_ID;
           });
           //delete all finance stuff and create a new one
-          this.EwepserverService.deleteAllFinance(this.cooperative_visit.Cooperative_Visit_ID,"").subscribe((out)=>{
+          this.EwepserverService.deleteAllFinanceCooperative(this.cooperative_visit.Cooperative_Visit_ID,"").subscribe((out)=>{
             //Add New suff
             this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);

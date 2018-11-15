@@ -231,6 +231,12 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+  deleteAllFinanceCooperative(Cooperative_ID:number,Cooperative_Visit_ID:any){
+    let login={__class:'FinanceGUI',__call:'deleteFinanceCooperative',Cooperative_ID:Cooperative_ID,Cooperative_Visit_ID:Cooperative_Visit_ID};
+    return this.http.post<any>(this.CoreViewURL,login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   addToRoutingStashBox(Data:any){
     this.RoutingStashBox = Data;

@@ -61,18 +61,23 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
   } 
   ngOnInit() {
-    
+    this.cooperative = this.EwepserverService.getRoutingStashBox();
+    if(this.cooperative==null){
+      this.router.navigateByUrl("baseline/cooperative");
+      return;
+    }else{
+      this.OnDataOK(); 
+    }
     
     this.activatedRoute.params
     // NOTE: I do not use switchMap here, but subscribe directly
     .subscribe((params: Params) => {
       console.log(params.Cooperative_ID);
       if(params.Cooperative_ID){
-        if(params.Cooperative_ID>0){
-          
-          this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
+        if(params.Cooperative_ID>0){          
+         // this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
             //console.log(customers);
-            this.cooperative = customers; 
+            //this.cooperative = customers; 
             this.EwepserverService.getViewData("cooperative_member_view","filter=Cooperative_ID,eq,"+params.Cooperative_ID).subscribe((member)=>{
               this.EntrepreneursList = member.records;
             });
@@ -81,7 +86,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
               this.OnDataOK();
             });
             
-          });
+          //});
         }else{ 
           //Add New 
           console.log("Add new");
@@ -123,9 +128,9 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
     this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions,this.EmployeesQuestions,this.EmployeesMaleQuestions,this.EmployeesFemalePayQuestions,this.EmployeesMalePayQuestions);
     this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds,this.AccessToMarket,this.AccessToTechnicalSkills);
-    this.Finance.setValidators([forceValidate("Training_Qtr",[{name:"What_Training"},{name:"Who_Traininig",min:4,max:25},
-                                                             {name:"When_Training",min:4,max:25},
-                                                             {name:"How_Know_Training" }])]);
+    //this.Finance.setValidators([forceValidate("Training_Qtr",[{name:"What_Training"},{name:"Who_Traininig",min:4,max:25},
+                                                            // //  {name:"When_Training",min:4,max:25},
+                                                            // //  {name:"How_Know_Training" }])]);
     this.Details = this.cutomerFormHlper.toFormGroup(this.GoodsAndService,this.ContactInfo,this.ContactInfoWithBinding);
 
     this.user.addControl("General",this.General);
@@ -139,10 +144,10 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
   }
   Save(){
-    console.log("When_Training",this.Finance.get('When_Training').value);
+    //console.log("When_Training",this.Finance.get('When_Training').value);
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
-    this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
+    //this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
     if(this.cooperative.Cooperative_ID===-1){
       delete this.FlatMe.Cooperative_ID
       this.EwepserverService.CreateTableData("cooperative",this.FlatMe ).subscribe((out)=>{
@@ -151,16 +156,16 @@ export class BaselineCoopEditcoop2Component implements OnInit {
         
         if(out===1){
           this.FinanceLoans.forEach((value)=>{
-            delete value.cooperative_finance_ID; 
+            delete value.Cooperative_finance_ID; 
             value.Cooperative_ID=this.cooperative.Cooperative_ID;
           });
           //delete all finance stuff and create a new one
-          this.EwepserverService.deleteAllFinance(this.cooperative.Cooperative_ID,"").subscribe((out)=>{
+          this.EwepserverService.deleteAllFinanceCooperative(this.cooperative.Cooperative_ID,"").subscribe((out)=>{
             //Add New suff
             this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/cooperative');
+              this.router.navigateByUrl('baseline/cooperative');
             }); 
           });
           //this.router.navigateByUrl('/cooperative');
@@ -178,16 +183,16 @@ export class BaselineCoopEditcoop2Component implements OnInit {
         if(out===1){
            
           this.FinanceLoans.forEach((value)=>{
-            delete value.cooperative_finance_ID; 
+            delete value.Cooperative_finance_ID; 
             value.Cooperative_ID=this.cooperative.Cooperative_ID;
           });
           //delete all finance stuff and create a new one
-          this.EwepserverService.deleteAllFinance(this.cooperative.Cooperative_ID,"").subscribe((out)=>{
+          this.EwepserverService.deleteAllFinanceCooperative(this.cooperative.Cooperative_ID,"").subscribe((out)=>{
             //Add New suff
             this.EwepserverService.CreateTableData("cooperative_finance",this.FinanceLoans).subscribe((outFin)=>{
               console.log("Save Done to fin ",outFin);
               console.log(typeof(outFin)); 
-              this.router.navigateByUrl('/cooperative');
+              this.router.navigateByUrl('baseline/cooperative');
             }); 
           });
           //this.router.navigateByUrl('/cooperative');
