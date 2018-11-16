@@ -9,6 +9,8 @@ import { CustomformSetupService } from '../../../service/customform-setup.servic
 import { Options } from '../../../service/question-helper';
 import { TextboxQuestion, NumbersQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
+import {MatDialog } from '@angular/material';
+import {ListEntrepreneurComponent} from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
 
 @Component({
   selector: 'app-baseline-enterprise-editenterprise2',
@@ -58,7 +60,8 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
     private EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService: CustomformSetupService,
-    private _cdr: ChangeDetectorRef) {
+    private _cdr: ChangeDetectorRef,
+    public dialog: MatDialog) {
 
 
   }
@@ -266,26 +269,60 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   }
   AddNewEntrepreneur() {
     //show control for add Enter
-    this.showEntrepreneursList = false;
-    this.EntrepreneurEditItem = { Name: "", Surname: "" };
+    //this.showEntrepreneursList = false;
+    //this.EntrepreneurEditItem = { Name: "", Surname: "" };
+    const dialogRef = this.dialog.open(ListEntrepreneurComponent, {
+     
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed',result);
+      if(result.Resulet==='Save'){
+        this.showloading_Entrepreneurs = true;
+         let n = {Enterprise_ID:this.enterprise.Enterprise_ID,
+                Entrepreneur_ID:result.data.Entrepreneur_ID,
+                Contact_Person:'1'};
+
+          this.EwepserverService.CreateTableData("enterprise_member",n).subscribe((outFin) => {
+            //Load members again
+            this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
+              this.EntrepreneursList = member.records;
+              this.showloading_Entrepreneurs = false;
+            });
+          });
+      }
+    });
   }
   onSelectEntrepreneur(rowSelected) {
     console.log(rowSelected);
   }
   onEditEntrepreneur(RowEdit) {
+    console.log(RowEdit);
+    //console.log(RowEdit);
+    //Go to Entropanure edit Show in view
 
-    // console.log(RowEdit);
-    // this.showloading_Entrepreneurs = true;
-    // this.EwepserverService.getRowData("entrepreneur",RowEdit.Entrepreneur_ID).subscribe((entrepreneur)=>{
-    //  this.EntrepreneurEditItem = entrepreneur;
-    //  this.showEntrepreneursList = false;
-    //  this.showloading_Entrepreneurs = false;
-    // });
-    this.router.navigateByUrl("baseline/entrepreneur/" + RowEdit.Entrepreneur_ID);
-    return;
   }
-  onSaveEntrepreneur(NewOrEditEntrepreneur: any) {
+  onDeleteEntrepreneur(RowDelete){
+    this.showloading_Entrepreneurs = true;
+    //Find Entopuner ID and remove from 
+    console.log("Delete Click",RowDelete.Enterprise_ID,RowDelete);
+    if(RowDelete.Enterprise_Member_ID==-1){
+      let index = this.EntrepreneursList.findIndex(x => x.Entrepreneur_ID == RowDelete.Entrepreneur_ID);
+      console.log("Next found",index);
+      this.EntrepreneursList.slice(index,1);
+      this.showloading_Entrepreneurs = false;
+    }else{
+      let OldValue = this.EntrepreneursList.find(x => x.Enterprise_Member_ID == RowDelete.Enterprise_Member_ID);
+      this.EwepserverService.deleteTableData("enterprise_member",OldValue.Enterprise_Member_ID).subscribe((outFin) => {
+        //Load members again
+        this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
+          this.EntrepreneursList = member.records;
+          this.showloading_Entrepreneurs = false;
+        });
+      });
 
+    }
+    
   }
   FundsNumberChange(Value) {
     console.log("Input Value", Value);

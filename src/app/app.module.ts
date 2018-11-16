@@ -99,7 +99,8 @@ import { ListMemberBaselineEnterpriseComponent } from './baseline/enterprise/mem
 import { EditMemberBaselineEnterpriseComponent } from './baseline/entrepreneur/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
 import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component';
 import { CardCssFormGroupDirective } from './directive/card-css-form-group.directive';
-import { CardHeaderCssFormGroupDirective } from './directive/card-header-css-form-group.directive'
+import { CardHeaderCssFormGroupDirective } from './directive/card-header-css-form-group.directive';
+import { ListEntrepreneurComponent } from './common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -201,12 +202,14 @@ const interceptor = new ProgressInterceptor();
 
     CardCssFormGroupDirective,
 
-    CardHeaderCssFormGroupDirective 
+    CardHeaderCssFormGroupDirective,
+
+    ListEntrepreneurComponent 
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
     EditDialogActionplansEnterprisesComponent,
-    DeleteCheckComponent],
+    DeleteCheckComponent,ListEntrepreneurComponent],
   imports: [
     BrowserModule,
     CollapseModule.forRoot(),
