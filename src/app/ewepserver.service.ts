@@ -24,7 +24,7 @@ export class EwepserverService {
   SelectedCountryID:number=1;
   SelectedCurrency:string ="DDDD";
   UserLoginObj = new Subject<any>();
-  LegalStructure:Options[] = [new Options("Select","Select"),
+  LegalStructure: Options[] = [new Options("Select","Select"),
                               //new Options("Cooperative","Cooperative"),
                               new Options("Partnership","Partnership"),
                               new Options("Private Company","Private Company"),
@@ -33,7 +33,11 @@ export class EwepserverService {
                               new Options("Close Corporation","Close Corporation"),
                               new Options("Not Registered","Not Registered"),
                               new Options("NPO","NPO"),
-                              new Options("Other","Other")]; 
+                              new Options("Other","Other")];
+  CooperativeType: Options[] = [new Options('Select', 'Select'),
+                              new Options('Primary', 'Primary'),
+                              new Options('Secondary', 'Secondary'),
+                              new Options('Tertiary', 'Tertiary') ];
   MonthDropDown:Options[] = Array(1,2,3,4,5,6,7,8,9,10,11,12).map((item)=>new Options(item,item));
   Language:Options[] = ["English","Afrikaans","Ndebele","Sepedi","SeSotho","Swati","Tsonga","Tswana","Venda","Xhosa","Zulu"].map((item)=>new Options(item,item));
   Race:Options[] = ["Black","White","Coloured","Indian","Asian","Other"].map((item)=>new Options(item,item));
@@ -54,7 +58,7 @@ export class EwepserverService {
   private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:false,Username:"Bobo",FullName:"",Theme:"Default",Country_ID:1,Country_Name:"",Currency:"R"});
   private RoutingStashBox:any = null;
   constructor(private http: HttpClient) {
-    if(isDevMode()){
+    if (isDevMode()) {
       
       this.baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
       
@@ -65,7 +69,7 @@ export class EwepserverService {
     console.log("New Instance created");
     this.SelectedCountryID=1;
     this._getCountry();
-    //this._getProvinceLoadLocal();
+    // this._getProvinceLoadLocal();
     this._getdistrictmetroLoadLocal();
     this._getlocalmunicipalityLoadLocal();
     this._getMainplace(); 

@@ -67,6 +67,7 @@ export class ListenterpriseComponent implements OnInit {
   }
   addNew(AddString){
     console.log('Activate Event', AddString);
+    this.EwepserverService.addToRoutingStashBox({Enterprise_ID:-1});
     this.router.navigateByUrl('baseline/enterprise/-1');
   }
 

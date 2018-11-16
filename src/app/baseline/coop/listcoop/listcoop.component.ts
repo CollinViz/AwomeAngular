@@ -12,7 +12,7 @@ export class ListcoopComponent implements OnInit {
     { name: 'ID', prop: 'Cooperative_ID' },
     { name: 'Name', prop: 'Cooperative_Name' },
     { name: 'Year Est', prop: 'Year_Established' },
-    { name: 'Structure', prop: 'Legal_Structure' },
+    { name: 'Cooperative Type', prop: 'Legal_Structure' },
     { name: 'Owners', prop: 'Female_Owners' },
     { name: 'Province', prop: 'Province' },
     { name: 'EDF', prop: 'EDF' },
@@ -68,6 +68,7 @@ export class ListcoopComponent implements OnInit {
   }
   addNew(AddString){
     console.log('Activate Event', AddString);
+    this.EwepserverService.addToRoutingStashBox({Cooperative_ID:-1}); 
     this.router.navigateByUrl('baseline/cooperative/-1');
   }
 
