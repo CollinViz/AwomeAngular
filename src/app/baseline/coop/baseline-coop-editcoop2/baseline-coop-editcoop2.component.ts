@@ -1,16 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit, Pipe, PipeTransform, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EwepserverService } from '../../../ewepserver.service'
+import { EwepserverService } from '../../../ewepserver.service';
 import { QuestionBase } from '../../../service/question-base';
 import { DropdownQuestion } from '../../../service/question-dropdown';
-import { CustomFromHelperControlService, forceValidate } from '../../../service/custom-from-helper-control.service'
-import { CustomformSetupService } from '../../../service/customform-setup.service'
+import { CustomFromHelperControlService, forceValidate } from '../../../service/custom-from-helper-control.service';
+import { CustomformSetupService } from '../../../service/customform-setup.service';
 import { Options } from '../../../service/question-helper';
-import {FormGroupBaselineCoopEditcoop2} from './baseline-coop-editcoop2'
+import { FormGroupBaselineCoopEditcoop2 } from './baseline-coop-editcoop2';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
-import {MatDialog } from '@angular/material';
-import {ListEntrepreneurComponent} from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
+import { MatDialog } from '@angular/material';
+import { ListEntrepreneurComponent } from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component';
 
 @Component({
   selector: 'app-baseline-coop-editcoop2',
@@ -18,12 +18,12 @@ import {ListEntrepreneurComponent} from '../../../common/entrepreneur/list-entre
   styleUrls: ['./baseline-coop-editcoop2.component.css']
 })
 export class BaselineCoopEditcoop2Component implements OnInit {
-  GeneralQuestions: QuestionBase<any>[]
-  EmployeesQuestions: QuestionBase<any>[]
-  EmployeesFemaleQuestions: QuestionBase<any>[]
-  EmployeesMaleQuestions: QuestionBase<any>[]
-  EmployeesFemalePayQuestions: QuestionBase<any>[]
-  EmployeesMalePayQuestions: QuestionBase<any>[]
+  GeneralQuestions: QuestionBase<any>[];
+  EmployeesQuestions: QuestionBase<any>[];
+  EmployeesFemaleQuestions: QuestionBase<any>[];
+  EmployeesMaleQuestions: QuestionBase<any>[];
+  EmployeesFemalePayQuestions: QuestionBase<any>[];
+  EmployeesMalePayQuestions: QuestionBase<any>[];
   Funds: QuestionBase<any>[];
   AccessToMarket: QuestionBase<any>[];
   AccessToTechnicalSkills: QuestionBase<any>[];
@@ -62,7 +62,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     private controlsService: CustomformSetupService,
     private _cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private formHelper :CustomFromHelperControlService) {
+    private formHelper: CustomFromHelperControlService) {
 
 
   }
@@ -84,13 +84,17 @@ export class BaselineCoopEditcoop2Component implements OnInit {
             // this.EwepserverService.getCooperativeItem(params.Cooperative_ID).subscribe((customers:any)=>{
             //console.log(customers);
             //this.cooperative = customers; 
-            this.EwepserverService.getViewData("cooperative_member_view", "filter=Cooperative_ID,eq," + params.Cooperative_ID).subscribe((member) => {
-              this.EntrepreneursList = member.records;
-            });
-            this.EwepserverService.getTableData("cooperative_finance", "filter=Cooperative_ID,eq," + params.Cooperative_ID).subscribe((finance: any) => {
-              this.FinanceLoans = finance.records;
-              this.OnDataOK();
-            });
+            this.EwepserverService.getViewData("cooperative_member_view",
+              "filter=Cooperative_ID,eq," + params.Cooperative_ID)
+              .subscribe((member) => {
+                this.EntrepreneursList = member.records;
+              });
+            this.EwepserverService.getTableData("cooperative_finance",
+              "filter=Cooperative_ID,eq," + params.Cooperative_ID)
+              .subscribe((finance: any) => {
+                this.FinanceLoans = finance.records;
+                this.OnDataOK();
+              });
 
             //});
           } else {
@@ -116,7 +120,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
         Validators.maxLength(50),
       ])
     });
-    let oFromTemp:FormGroupBaselineCoopEditcoop2 = new FormGroupBaselineCoopEditcoop2(this.EwepserverService); 
+    let oFromTemp: FormGroupBaselineCoopEditcoop2 = new FormGroupBaselineCoopEditcoop2(this.EwepserverService);
     this.GeneralQuestions = oFromTemp.getEnterpriseGenralForm(this.cooperative);//this.controlsService.getEnterpriseGenralForm(this.cooperative);
     this.General = this.cutomerFormHlper.toFormGroup(this.GeneralQuestions);
 
@@ -159,36 +163,8 @@ export class BaselineCoopEditcoop2Component implements OnInit {
       this.EwepserverService.CreateTableData("cooperative", this.FlatMe).subscribe((out) => {
         //Show Saving
         console.log("Create Done", out);
-        this.cooperative.Cooperative_ID= out;
+        this.cooperative.Cooperative_ID = out;
         //if (out === 1) {
-          this.FinanceLoans.forEach((value) => {
-            delete value.Cooperative_finance_ID;
-            value.Cooperative_ID = this.cooperative.Cooperative_ID;
-          });
-          //delete all finance stuff and create a new one
-          this.EwepserverService.deleteAllFinanceCooperative(this.cooperative.Cooperative_ID, "").subscribe((out) => {
-            //Add New suff
-            this.EwepserverService.CreateTableData("cooperative_finance", this.FinanceLoans).subscribe((outFin) => {
-              console.log("Save Done to fin ", outFin);
-              console.log(typeof (outFin));
-              this.saveMembers();
-            });
-          });
-          //this.router.navigateByUrl('/cooperative');
-        //}
-
-        //this.showloading = false;
-        //Move back to list screen
-
-      });
-    } else {
-      this.EwepserverService.updateTableData("cooperative", this.cooperative.Cooperative_ID, this.FlatMe).subscribe((out) => {
-        //Show Saving
-        console.log("Save Done", out);
-        console.log(typeof (out));
-        //this.cooperative.Cooperative_ID = out;
-        if(out===1){
-
         this.FinanceLoans.forEach((value) => {
           delete value.Cooperative_finance_ID;
           value.Cooperative_ID = this.cooperative.Cooperative_ID;
@@ -203,6 +179,34 @@ export class BaselineCoopEditcoop2Component implements OnInit {
           });
         });
         //this.router.navigateByUrl('/cooperative');
+        //}
+
+        //this.showloading = false;
+        //Move back to list screen
+
+      });
+    } else {
+      this.EwepserverService.updateTableData("cooperative", this.cooperative.Cooperative_ID, this.FlatMe).subscribe((out) => {
+        //Show Saving
+        console.log("Save Done", out);
+        console.log(typeof (out));
+        //this.cooperative.Cooperative_ID = out;
+        if (out === 1) {
+
+          this.FinanceLoans.forEach((value) => {
+            delete value.Cooperative_finance_ID;
+            value.Cooperative_ID = this.cooperative.Cooperative_ID;
+          });
+          //delete all finance stuff and create a new one
+          this.EwepserverService.deleteAllFinanceCooperative(this.cooperative.Cooperative_ID, "").subscribe((out) => {
+            //Add New suff
+            this.EwepserverService.CreateTableData("cooperative_finance", this.FinanceLoans).subscribe((outFin) => {
+              console.log("Save Done to fin ", outFin);
+              console.log(typeof (outFin));
+              this.saveMembers();
+            });
+          });
+          //this.router.navigateByUrl('/cooperative');
         }
         //this.showloading = false;
         //Move back to list screen
@@ -212,23 +216,25 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     //this.showloading = true;
 
   }
-  saveMembers(){
+  saveMembers() {
     //Find all new one
     let OldValue = this.EntrepreneursList.filter(x => x.Cooperative_ID == -1);
     let newItems = [];
-    OldValue.forEach(value=>{
-      value.Cooperative_ID=this.cooperative.Cooperative_ID
+    OldValue.forEach(value => {
+      value.Cooperative_ID = this.cooperative.Cooperative_ID
 
-      newItems.push({Cooperative_ID:this.cooperative.Cooperative_ID,
-                      Entrepreneur_ID:value.Entrepreneur_ID,
-                      Contact_Person:'1'});
+      newItems.push({
+        Cooperative_ID: this.cooperative.Cooperative_ID,
+        Entrepreneur_ID: value.Entrepreneur_ID,
+        Contact_Person: '1'
+      });
     });
-    
-    if(OldValue.length>0){
+
+    if (OldValue.length > 0) {
       this.EwepserverService.CreateTableData("cooperative_member", newItems).subscribe((outFin) => {
         this.router.navigateByUrl('baseline/cooperative');
       });
-    }else{
+    } else {
       this.router.navigateByUrl('baseline/cooperative');
     }
   }
@@ -254,24 +260,26 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     //this.showEntrepreneursList = false;
     //this.EntrepreneurEditItem = { Name: "", Surname: "" };
     const dialogRef = this.dialog.open(ListEntrepreneurComponent, {
-     
+
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed',result);
-      if(result.Resulet==='Save'){
+      console.log('The dialog was closed', result);
+      if (result.Resulet === 'Save') {
         this.showloading_Entrepreneurs = true;
-         let n = {Cooperative_ID:this.cooperative.Cooperative_ID,
-                Entrepreneur_ID:result.data.Entrepreneur_ID,
-                Contact_Person:'1'};
+        let n = {
+          Cooperative_ID: this.cooperative.Cooperative_ID,
+          Entrepreneur_ID: result.data.Entrepreneur_ID,
+          Contact_Person: '1'
+        };
 
-          this.EwepserverService.CreateTableData("cooperative_member",n).subscribe((outFin) => {
-            //Load members again
-            this.EwepserverService.getViewData("cooperative_member_view", "filter=Cooperative_ID,eq," + this.cooperative.Cooperative_ID).subscribe((member) => {
-              this.EntrepreneursList = member.records;
-              this.showloading_Entrepreneurs = false;
-            });
+        this.EwepserverService.CreateTableData("cooperative_member", n).subscribe((outFin) => {
+          //Load members again
+          this.EwepserverService.getViewData("cooperative_member_view", "filter=Cooperative_ID,eq," + this.cooperative.Cooperative_ID).subscribe((member) => {
+            this.EntrepreneursList = member.records;
+            this.showloading_Entrepreneurs = false;
           });
+        });
       }
     });
   }
@@ -282,20 +290,20 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     console.log(RowEdit);
     //console.log(RowEdit);
     //Go to Entropanure edit Show in view
-
+    this.router.navigateByUrl("baseline/entrepreneur/" + RowEdit.Entrepreneur_ID);
   }
-  onDeleteEntrepreneur(RowDelete){
+  onDeleteEntrepreneur(RowDelete) {
     this.showloading_Entrepreneurs = true;
     //Find Entopuner ID and remove from 
-    console.log("Delete Click",RowDelete.Cooperative_ID,RowDelete);
-    if(RowDelete.Cooperative_ID==-1){
+    console.log("Delete Click", RowDelete.Cooperative_ID, RowDelete);
+    if (RowDelete.Cooperative_ID == -1) {
       let index = this.EntrepreneursList.findIndex(x => x.Entrepreneur_ID == RowDelete.Entrepreneur_ID);
-      console.log("Next found",index);
-      this.EntrepreneursList.slice(index,1);
+      console.log("Next found", index);
+      this.EntrepreneursList.slice(index, 1);
       this.showloading_Entrepreneurs = false;
-    }else{
+    } else {
       let OldValue = this.EntrepreneursList.find(x => x.Cooperative_Member_ID == RowDelete.Cooperative_Member_ID);
-      this.EwepserverService.deleteTableData("cooperative_member",OldValue.Cooperative_Member_ID).subscribe((outFin) => {
+      this.EwepserverService.deleteTableData("cooperative_member", OldValue.Cooperative_Member_ID).subscribe((outFin) => {
         //Load members again
         this.EwepserverService.getViewData("cooperative_member_view", "filter=Cooperative_ID,eq," + this.cooperative.Cooperative_ID).subscribe((member) => {
           this.EntrepreneursList = member.records;
@@ -304,7 +312,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
       });
 
     }
-    
+
   }
   contaceDetailChange(event, Index) {
     console.log(event, Index);
@@ -337,7 +345,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
 interface finance {
   cooperative_finance_ID: number,
-  Cooperative_ID?: number 
+  Cooperative_ID?: number
   Where_Apply: string
   Approved: boolean
   Reject_Reason: string

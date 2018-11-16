@@ -234,7 +234,7 @@
             <div *ngIf="showEntrepreneursList; else editCurrentEntrepreneursList">
               <app-list-member-baseline-enterprise [rows]="EntrepreneursList" [(selected)]="Defaultselected" (rowSelect)="onSelectEntrepreneur($event)"
                 (rowEdit)="onEditEntrepreneur($event)"
-                (rowDelete)="onDeleteEntrepreneur($event)"></app-list-member-baseline-enterprise>
+                (rowDelete)="onDeleteEntrepreneur($event)" ngDefaultControl></app-list-member-baseline-enterprise>
             </div>
           </div>
           </div> 

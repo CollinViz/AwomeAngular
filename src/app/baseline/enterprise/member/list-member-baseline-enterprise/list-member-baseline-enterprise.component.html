@@ -1,23 +1,29 @@
-<table class="table table-hover">   
-    <thead>            
-   <tr>
-     <th scope="col">Select</th>
-     <th scope="col">Name</th>
-     <th scope="col">Surname</th>
-     <th scope="col">Entrepreneur Baseline</th>
-     <th scope="col">Remove</th>
-   </tr>
-  </thead>
-  <tbody>
-      <tr class="table w-100" *ngFor="let row of rows;let i=index" (click)="SelectRow(row,i)">
-          <th scope="row" ><mat-checkbox id="row.Entrepreneur_ID" name="row.Entrepreneur_ID" 
-                        (click)="SelectRow(row,i)" 
-                        [checked]="row.selected"> </mat-checkbox></th>
-          <td  >{{row.Name}}</td>
-          <td  >{{row.Surname}}</td>
-          <td  ><button class="btn btn-info" (click)="editItem(row,i)">Go to</button></td>
-          <td  ><button class="btn btn-danger" (click)="deleteItem(row,i)">Remove</button></td>
-      </tr>
-  </tbody>
- </table>
-
+<form >
+<mat-radio-group   id="question.key" name="question.key" ngDefaultControl  [(ngModel)]="Contact"  >
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Contact Person {{Contact}}</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Entrepreneur Baseline</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table w-100" *ngFor="let row of rows;let i=index">
+                <td scope="row">
+                    <mat-radio-button id="row.Entrepreneur_ID" name="row.Entrepreneur_ID"  cli_ck ="SelectRow(row,i)"
+                         ngDefaultControl 
+                        [(ngModel)]="row.selected">
+                        </mat-radio-button>
+                </td>
+                <td>{{row.Name}}</td>
+                <td>{{row.Surname}}</td>
+                <td><button class="btn btn-info" (click)="editItem(row,i)">Go to</button></td>
+                <td><button class="btn btn-danger" (click)="deleteItem(row,i)">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+</mat-radio-group> 
+</form>

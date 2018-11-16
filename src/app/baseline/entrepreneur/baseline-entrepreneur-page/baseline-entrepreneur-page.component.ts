@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
-import { ModalDirective } from 'ngx-bootstrap/modal';
-import { EwepserverService } from '../../../ewepserver.service'
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { EwepserverService } from '../../../ewepserver.service';
 
 
 @Component({
@@ -15,7 +13,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
 
   columns = [
     { name: 'ID', prop: 'Entrepreneur_ID' },
-    { name: 'Surname', prop: 'Surname' }, 
+    { name: 'Surname', prop: 'Surname' },
     { name: 'Name', prop: 'Name' },
     { name: 'Municipality', prop: 'Municipality' },
     //{ name: 'EDF', prop: 'EDF' },
@@ -23,23 +21,40 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
-  IsEditing:boolean = false;
-  EntrepreneurEditItem:any = {};
-  constructor(private router: Router, private EwepserverService: EwepserverService) {
-    this.getPageOfEntrepreneurs();
-   }
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 };
+  SearchFilter = "";
+  // tslint:disable-next-line:no-inferrable-types
+  IsEditing: boolean = false;
+  EntrepreneurEditItem: any = {};
+  constructor(private activatedRoute: ActivatedRoute, private EwepserverService: EwepserverService) { }
 
-   getPageOfEntrepreneurs() {
-     let strOptions="page="+this.page.pageNumber+"&orderby=surname&"+ this.SearchFilter;
-     this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
+  getPageOfEntrepreneurs() {
+    let strOptions = "page=" + this.page.pageNumber + "&orderby=surname&" + this.SearchFilter;
+    this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
       this.rows = [...myjsondata.records];
       this.page.totalElements = myjsondata.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
-     });
-   }
+    });
+  }
   ngOnInit() {
+
+    //check the routing fisrt
+    this.activatedRoute.params
+      // NOTE: I do not use switchMap here, but subscribe directly
+      .subscribe((params: Params) => {
+        if (params.Entrepreneur_ID) {
+          console.log(params.Entrepreneur_ID);
+          this.EwepserverService.getRowData("entrepreneur", params.Entrepreneur_ID).subscribe((en) => {
+            this.IsEditing = true;
+            this.EntrepreneurEditItem = en;
+          });
+
+        } else {
+          console.log("No Data", params);
+          this.getPageOfEntrepreneurs();
+        }
+      });
+
   }
   setPage(event) {
     console.log('setPage', event);
@@ -59,35 +74,41 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
     }
 
   }
-  searchClick(SearchString){
-    this.SearchFilter= SearchString;
-    this.page.totalElements=0;
-    this.page.totalPages=0;
-    this.page.pageNumber=0;
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
     this.getPageOfEntrepreneurs();
   }
-  NewClick(){
+  NewClick() {
     this.IsEditing = true;
-    this.EntrepreneurEditItem = {Entrepreneur_ID: -1,ID_or_Passport: 'ID'};
+    this.EntrepreneurEditItem = { Entrepreneur_ID: -1, ID_or_Passport: 'ID' };
   }
-  onSaveEntrepreneur(NewOrEditEntrepreneur){
-    if(NewOrEditEntrepreneur===null){
-      this.IsEditing = false;
+  onSaveEntrepreneur(NewOrEditEntrepreneur) {
+    if (NewOrEditEntrepreneur === null) {
+      if (this.rows.length > 0) {
+        this.IsEditing = false;
+      } else {
+        this.IsEditing = false;
+        this.getPageOfEntrepreneurs();
+      }
+
       return;
     }
     //Do Stuff to save and reload grid
     //Test if we need to create or edit
-    if(NewOrEditEntrepreneur.Entrepreneur_ID==-1){
+    if (NewOrEditEntrepreneur.Entrepreneur_ID == -1) {
       //create
       delete NewOrEditEntrepreneur.Entrepreneur_ID;
-      this.EwepserverService.CreateTableData("entrepreneur",NewOrEditEntrepreneur).subscribe((newID)=>{
+      this.EwepserverService.CreateTableData("entrepreneur", NewOrEditEntrepreneur).subscribe((newID) => {
         //Add user to Enterprise 
         this.getPageOfEntrepreneurs();
         this.IsEditing = false;
       });
-    }else{
+    } else {
       //update
-      this.EwepserverService.updateTableData("entrepreneur",NewOrEditEntrepreneur.Entrepreneur_ID,NewOrEditEntrepreneur).subscribe((Data)=>{
+      this.EwepserverService.updateTableData("entrepreneur", NewOrEditEntrepreneur.Entrepreneur_ID, NewOrEditEntrepreneur).subscribe((Data) => {
         //Find ID and update 
         this.getPageOfEntrepreneurs();
         this.IsEditing = false;

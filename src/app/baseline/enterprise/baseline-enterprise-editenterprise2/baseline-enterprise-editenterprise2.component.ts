@@ -9,8 +9,8 @@ import { CustomformSetupService } from '../../../service/customform-setup.servic
 import { Options } from '../../../service/question-helper';
 import { TextboxQuestion, NumbersQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
-import {MatDialog } from '@angular/material';
-import {ListEntrepreneurComponent} from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
+import { MatDialog } from '@angular/material';
+import { ListEntrepreneurComponent } from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
 
 @Component({
   selector: 'app-baseline-enterprise-editenterprise2',
@@ -90,7 +90,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
             //this.OnDataOK();
             //side load the other data
-            this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + params.Enterprise_ID).subscribe((member) => {
+            this.EwepserverService.getViewData("enterprise_member_view", 
+                                              "filter=Enterprise_ID,eq," + params.Enterprise_ID)
+                                              .subscribe((member) => {
               this.EntrepreneursList = member.records;
             });
             this.EwepserverService.getTableData("finance", "filter=Enterprise_ID,eq," + params.Enterprise_ID).subscribe((finance: any) => {
@@ -154,7 +156,11 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.ContactInfo = this.controlsService.getContactInfoNonBinding(this.enterprise);
     this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding(this.enterprise);
 
-    this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions, this.EmployeesQuestions, this.EmployeesMaleQuestions, this.EmployeesFemalePayQuestions, this.EmployeesMalePayQuestions);
+    this.Employees = this.cutomerFormHlper.toFormGroup(this.EmployeesFemaleQuestions,
+                                                      this.EmployeesQuestions,
+                                                      this.EmployeesMaleQuestions,
+                                                      this.EmployeesFemalePayQuestions,
+                                                      this.EmployeesMalePayQuestions);
     this.Finance = this.cutomerFormHlper.toFormGroup(this.Funds, this.AccessToMarket, this.AccessToTechnicalSkills);
 
     this.Details = this.cutomerFormHlper.toFormGroup(this.GoodsAndService, this.ContactInfo, this.ContactInfoWithBinding);
@@ -200,20 +206,20 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
         console.log("Create Done", out);
         this.enterprise.Enterprise_ID = out;
         //if (out === 1) {
-          this.FinanceLoans.forEach((value) => {
-            delete value.finance_ID;
-            value.Enterprise_ID = this.enterprise.Enterprise_ID;
+        this.FinanceLoans.forEach((value) => {
+          delete value.finance_ID;
+          value.Enterprise_ID = this.enterprise.Enterprise_ID;
+        });
+        //delete all finance stuff and create a new one
+        this.EwepserverService.deleteAllFinance(this.enterprise.Enterprise_ID, "").subscribe((out) => {
+          //Add New suff
+          this.EwepserverService.CreateTableData("finance", this.FinanceLoans).subscribe((outFin) => {
+            console.log("Save Done to fin ", outFin);
+            console.log(typeof (outFin));
+            this.router.navigateByUrl('baseline/enterprise');
           });
-          //delete all finance stuff and create a new one
-          this.EwepserverService.deleteAllFinance(this.enterprise.Enterprise_ID, "").subscribe((out) => {
-            //Add New suff
-            this.EwepserverService.CreateTableData("finance", this.FinanceLoans).subscribe((outFin) => {
-              console.log("Save Done to fin ", outFin);
-              console.log(typeof (outFin));
-              this.router.navigateByUrl('baseline/enterprise');
-            });
-          });
-          //this.router.navigateByUrl('/enterprise');
+        });
+        //this.router.navigateByUrl('/enterprise');
         //}
 
         //this.showloading = false;
@@ -272,24 +278,26 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     //this.showEntrepreneursList = false;
     //this.EntrepreneurEditItem = { Name: "", Surname: "" };
     const dialogRef = this.dialog.open(ListEntrepreneurComponent, {
-     
+
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed',result);
-      if(result.Resulet==='Save'){
+      console.log('The dialog was closed', result);
+      if (result.Resulet === 'Save') {
         this.showloading_Entrepreneurs = true;
-         let n = {Enterprise_ID:this.enterprise.Enterprise_ID,
-                Entrepreneur_ID:result.data.Entrepreneur_ID,
-                Contact_Person:'1'};
+        let n = {
+          Enterprise_ID: this.enterprise.Enterprise_ID,
+          Entrepreneur_ID: result.data.Entrepreneur_ID,
+          Contact_Person: '1'
+        };
 
-          this.EwepserverService.CreateTableData("enterprise_member",n).subscribe((outFin) => {
-            //Load members again
-            this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
-              this.EntrepreneursList = member.records;
-              this.showloading_Entrepreneurs = false;
-            });
+        this.EwepserverService.CreateTableData("enterprise_member", n).subscribe((outFin) => {
+          //Load members again
+          this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
+            this.EntrepreneursList = member.records;
+            this.showloading_Entrepreneurs = false;
           });
+        });
       }
     });
   }
@@ -300,20 +308,20 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     console.log(RowEdit);
     //console.log(RowEdit);
     //Go to Entropanure edit Show in view
-
+    this.router.navigateByUrl("baseline/entrepreneur/" + RowEdit.Entrepreneur_ID);
   }
-  onDeleteEntrepreneur(RowDelete){
+  onDeleteEntrepreneur(RowDelete) {
     this.showloading_Entrepreneurs = true;
     //Find Entopuner ID and remove from 
-    console.log("Delete Click",RowDelete.Enterprise_ID,RowDelete);
-    if(RowDelete.Enterprise_Member_ID==-1){
+    console.log("Delete Click", RowDelete.Enterprise_ID, RowDelete);
+    if (RowDelete.Enterprise_Member_ID == -1) {
       let index = this.EntrepreneursList.findIndex(x => x.Entrepreneur_ID == RowDelete.Entrepreneur_ID);
-      console.log("Next found",index);
-      this.EntrepreneursList.slice(index,1);
+      console.log("Next found", index);
+      this.EntrepreneursList.slice(index, 1);
       this.showloading_Entrepreneurs = false;
-    }else{
+    } else {
       let OldValue = this.EntrepreneursList.find(x => x.Enterprise_Member_ID == RowDelete.Enterprise_Member_ID);
-      this.EwepserverService.deleteTableData("enterprise_member",OldValue.Enterprise_Member_ID).subscribe((outFin) => {
+      this.EwepserverService.deleteTableData("enterprise_member", OldValue.Enterprise_Member_ID).subscribe((outFin) => {
         //Load members again
         this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
           this.EntrepreneursList = member.records;
@@ -322,7 +330,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
       });
 
     }
-    
+
   }
   FundsNumberChange(Value) {
     console.log("Input Value", Value);

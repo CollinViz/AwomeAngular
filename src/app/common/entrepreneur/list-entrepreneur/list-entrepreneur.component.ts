@@ -11,14 +11,13 @@ export class ListEntrepreneurComponent implements OnInit {
   columns = [
     { name: 'ID', prop: 'Entrepreneur_ID' },
     { name: 'Surname', prop: 'Surname' },
-    { name: 'Name', prop: 'Name' },
-    { name: 'Municipality', prop: 'Municipality' },
+    { name: 'Name', prop: 'Name' } 
     //{ name: 'EDF', prop: 'EDF' },
     //{ name: 'Status', prop: 'Status' }
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
+  page: any = { size: 10, totalElements: 500, totalPages: 25, pageNumber: 1 }
   SearchFilter: string = "";
 
   constructor(private EwepserverService: EwepserverService,
@@ -28,7 +27,7 @@ export class ListEntrepreneurComponent implements OnInit {
   }
 
   getPageOfEntrepreneurs() {
-    let strOptions = "page=" + this.page.pageNumber + "&orderby=surname&" + this.SearchFilter;
+    let strOptions = "page=" + this.page.pageNumber + ","+ this.page.size + "&orderby=surname&" + this.SearchFilter;
     this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
       this.rows = [...myjsondata.records];
       this.page.totalElements = myjsondata.results;
