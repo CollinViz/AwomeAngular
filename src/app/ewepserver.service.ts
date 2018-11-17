@@ -15,11 +15,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class EwepserverService {
-  baseURL: string = 'http://awomemis.org/api.php/data/';
+  // baseURL: string = 'http://awomemis.org/api.php/data/';
+  // baseViewURL: string = 'http://awomemis.org/api.php/view/';
+  // CoreViewURL: string = 'http://awomemis.org/ajax.php';
 
-  baseViewURL: string = 'http://awomemis.org/api.php/view/';
-
-  CoreViewURL: string = 'http://awomemis.org/ajax.php';
+  baseURL: string = 'api.php/data/';
+  baseViewURL: string = 'api.php/view/';
+  CoreViewURL: string = 'ajax.php';
 
   SelectedCountryID: number = 1;
   SelectedCurrency: string = "DDDD";
