@@ -113,8 +113,7 @@
       "check-branch",
       "check-decl",
       "check-operator",
-      "check-separator",
-      "check-type"
+      "check-separator" 
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,

@@ -244,6 +244,34 @@ export class EwepserverService {
     );
   }
 
+  listCountOFentrepreneurAndenterprise() {
+    let login = {
+      __class: 'ReportsGUI', __call: 'listCountOFentrepreneurAndenterprise',
+      Country_ID: this.SelectedCountryID
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getSexCount() {
+    let login = {
+      __class: 'ReportsGUI', __call: 'getSexCount',
+      Country_ID: this.SelectedCountryID
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getAgeByGroup(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'getAgeByGroup',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
   addToRoutingStashBox(Data: any) {
     this.RoutingStashBox = Data;
   }
@@ -287,31 +315,31 @@ export interface LocalMunicipality {
 }
 
 export interface MainPlace {
-  MainPlace_ID: number,
-  LocalMunicipality_ID: number,
-  Name: string,
-  Code: string
+  MainPlace_ID: number;
+  LocalMunicipality_ID: number;
+  Name: string;
+  Code: string;
 }
 export interface DistrictMetro {
-  DistrictMetro_ID: number,
-  Province_ID: number,
-  Name: string,
-  Code: string
+  DistrictMetro_ID: number;
+  Province_ID: number;
+  Name: string;
+  Code: string;
 }
 export interface Country {
   Country_ID: number;
   Country_Code: string;
   Country_Name: string;
-  Active: string
+  Active: string;
   Currency: string;
 }
 export interface InternetConnection {
   UsingInternet: boolean;
-  progress: number,
-  StopInternet: boolean,
+  progress: number;
+  StopInternet: boolean;
   ErrorMessage: string;
   DebugErrorMessage: string;
-  HTTPStatus: string
+  HTTPStatus: string;
 }
 export interface LogInData {
   LoginOK: boolean,

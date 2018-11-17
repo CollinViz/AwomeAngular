@@ -8,6 +8,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+import { ChartModule } from 'angular-highcharts';
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatRadioModule, MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatProgressBarModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatTableModule, MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -101,7 +103,20 @@ import { ComEditContactComponent } from './common/contact/com-edit-contact/com-e
 import { CardCssFormGroupDirective } from './directive/card-css-form-group.directive';
 import { CardHeaderCssFormGroupDirective } from './directive/card-header-css-form-group.directive';
 import { ListEntrepreneurComponent } from './common/entrepreneur/list-entrepreneur/list-entrepreneur.component';
-import { SearchEntrepreneurComponent } from './common/entrepreneur/search-entrepreneur/search-entrepreneur.component'
+import { SearchEntrepreneurComponent } from './common/entrepreneur/search-entrepreneur/search-entrepreneur.component';
+import { JobsCreatedComponent } from './report/jobs-created/jobs-created.component';
+import { JobsSustainedComponent } from './report/jobs-sustained/jobs-sustained.component';
+import { AgeGroupComponent } from './report/age-group/age-group.component';
+import { CreatingmorejobsComponent } from './report/creatingmorejobs/creatingmorejobs.component';
+import { CompletingTrainingsComponent } from './report/completing-trainings/completing-trainings.component';
+import { AgevsRevenueComponent } from './report/agevs-revenue/agevs-revenue.component';
+import { EducationvsRevenueComponent } from './report/educationvs-revenue/educationvs-revenue.component';
+import { LevelofEducationComponent } from './report/levelof-education/levelof-education.component';
+import { HousingComponent } from './report/housing/housing.component';
+import { OutstandingTrainingsComponent } from './report/outstanding-trainings/outstanding-trainings.component';
+import { MostPopularTrainingComponent } from './report/most-popular-training/most-popular-training.component';
+import { OwnerNumberVsEmployeeNumbersComponent } from './report/owner-number-vs-employee-numbers/owner-number-vs-employee-numbers.component';
+import { SearchByProvinceComponent } from './report/search-by-province/search-by-province.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -207,7 +222,33 @@ const interceptor = new ProgressInterceptor();
 
     ListEntrepreneurComponent,
 
-    SearchEntrepreneurComponent
+    SearchEntrepreneurComponent,
+
+    JobsCreatedComponent,
+
+    JobsSustainedComponent,
+
+    AgeGroupComponent,
+
+    CreatingmorejobsComponent,
+
+    CompletingTrainingsComponent,
+
+    AgevsRevenueComponent,
+
+    EducationvsRevenueComponent,
+
+    LevelofEducationComponent,
+
+    HousingComponent,
+
+    OutstandingTrainingsComponent,
+
+    MostPopularTrainingComponent,
+
+    OwnerNumberVsEmployeeNumbersComponent,
+
+    SearchByProvinceComponent
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
@@ -220,6 +261,7 @@ const interceptor = new ProgressInterceptor();
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
+    ChartModule ,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -349,6 +391,10 @@ const interceptor = new ProgressInterceptor();
     {
       path: 'workshops/entrepreneurs',
       component: WorkshopsEntrepreneursPageComponent
+    },
+    {
+      path: 'report/AgeGroup',
+      component: AgeGroupComponent
     }
     ])
   ],
