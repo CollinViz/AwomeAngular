@@ -395,6 +395,50 @@ const interceptor = new ProgressInterceptor();
     {
       path: 'report/AgeGroup',
       component: AgeGroupComponent
+    },
+    {
+      path: 'report/JobsCreated',
+      component: JobsCreatedComponent
+    },
+    {
+      path: 'report/JobsSustained',
+      component: JobsSustainedComponent
+    },
+    {
+      path: 'report/Creatingmorejobs',
+      component: CreatingmorejobsComponent
+    },
+    {
+      path: 'report/CompletingTrainings',
+      component: CompletingTrainingsComponent
+    },
+    {
+      path: 'report/AgevsRevenue',
+      component: AgevsRevenueComponent
+    },
+    {
+      path: 'report/EducationvsRevenue',
+      component: EducationvsRevenueComponent
+    },
+    {
+      path: 'report/LevelofEducation',
+      component: LevelofEducationComponent
+    },
+    {
+      path: 'report/Housing',
+      component: HousingComponent
+    },
+    {
+      path: 'report/OutstandingTrainings',
+      component: OutstandingTrainingsComponent
+    },
+    {
+      path: 'report/MostPopularTraining',
+      component: MostPopularTrainingComponent
+    },
+    {
+      path: 'report/OwnerNumberVsEmployeeNumbers',
+      component: OwnerNumberVsEmployeeNumbersComponent
     }
     ])
   ],
