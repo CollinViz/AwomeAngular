@@ -1,9 +1,9 @@
-import { Injectable,isDevMode } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-import { Observable ,throwError,BehaviorSubject, Observer } from 'rxjs';
+import { Injectable, isDevMode } from '@angular/core';
+import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, BehaviorSubject, Observer } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { catchError, retry } from 'rxjs/operators';
-import { ASTWithSource } from '@angular/compiler'; 
+import { ASTWithSource } from '@angular/compiler';
 import { Options } from './service/question-helper';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,71 +13,77 @@ const httpOptions = {
 
 @Injectable({
   providedIn: 'root'
-}) 
+})
 export class EwepserverService {
-  baseURL:string = 'http://awomemis.org/api.php/data/'; 
-  
-  baseViewURL:string = 'http://awomemis.org/api.php/view/';
-  
-  CoreViewURL:string = 'http://awomemis.org/ajax.php';
-  
-  SelectedCountryID:number=1;
-  SelectedCurrency:string ="DDDD";
+  // baseURL: string = 'http://awomemis.org/api.php/data/';
+  // baseViewURL: string = 'http://awomemis.org/api.php/view/';
+  // CoreViewURL: string = 'http://awomemis.org/ajax.php';
+
+  baseURL: string = 'api.php/data/';
+  baseViewURL: string = 'api.php/view/';
+  CoreViewURL: string = 'ajax.php';
+
+  SelectedCountryID: number = 1;
+  SelectedCurrency: string = "DDDD";
   UserLoginObj = new Subject<any>();
-  LegalStructure:Options[] = [new Options("Select","Select"),
-                              //new Options("Cooperative","Cooperative"),
-                              new Options("Partnership","Partnership"),
-                              new Options("Private Company","Private Company"),
-                              new Options("Sole Proprietor","Sole Proprietor"),
-                              new Options("Trust","Trust"),
-                              new Options("Close Corporation","Close Corporation"),
-                              new Options("Not Registered","Not Registered"),
-                              new Options("NPO","NPO"),
-                              new Options("Other","Other")]; 
-  MonthDropDown:Options[] = Array(1,2,3,4,5,6,7,8,9,10,11,12).map((item)=>new Options(item,item));
-  Language:Options[] = ["English","Afrikaans","Ndebele","Sepedi","SeSotho","Swati","Tsonga","Tswana","Venda","Xhosa","Zulu"].map((item)=>new Options(item,item));
-  Race:Options[] = ["Black","White","Coloured","Indian","Asian","Other"].map((item)=>new Options(item,item));
-  Sex:Options[] = ["Female","Male","Other"].map((item)=>new Options(item,item));
-  MaritalStatus:Options[] = ["Single","Married","Divorced","Widowed"].map((item)=>new Options(item,item));
-  EducationLevel:Options[] = ["No Education","Primary (Gr 1-7)","Secondary (Gr 8-12)","Tertiary (Post Matric Certificate, Diploma)","Degree","Post Graduate (Honours Degree)"].map((item)=>new Options(item,item));
-  Assets_TransportTypes:Options[] =["None","Car", "Truck", "Van", "Bicycle", "Trailer", "Motorbike"].map((item)=>new Options(item,item));
-  TheamList:Options[] = ["Default","Solar", "Slate", "Yeti"].map((item)=>new Options(item,item));
-  IDorPassport:Options[] = ["ID","Passport"].map((item)=>new Options(item,item));
-  province: Province[] =[];
-  districtMetro:DistrictMetro[] =[];
-  localMunicipality: LocalMunicipality[] =[];
-  mainPlaces:MainPlace[] =[];
-  CountryListStatic:Country[] = [];
+  LegalStructure: Options[] = [new Options("Select", "Select"),
+  //new Options("Cooperative","Cooperative"),
+  new Options("Partnership", "Partnership"),
+  new Options("Private Company", "Private Company"),
+  new Options("Sole Proprietor", "Sole Proprietor"),
+  new Options("Trust", "Trust"),
+  new Options("Close Corporation", "Close Corporation"),
+  new Options("Not Registered", "Not Registered"),
+  new Options("NPO", "NPO"),
+  new Options("Other", "Other")];
+  CooperativeType: Options[] = [new Options('Select', 'Select'),
+  new Options('Primary', 'Primary'),
+  new Options('Secondary', 'Secondary'),
+  new Options('Tertiary', 'Tertiary')];
+  MonthDropDown: Options[] = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).map((item) => new Options(item, item));
+  Language: Options[] = ["English", "Afrikaans", "Ndebele", "Sepedi", "SeSotho", "Swati", "Tsonga", "Tswana", "Venda", "Xhosa", "Zulu"].map((item) => new Options(item, item));
+  Race: Options[] = ["Black", "White", "Coloured", "Indian", "Asian", "Other"].map((item) => new Options(item, item));
+  Sex: Options[] = ["Female", "Male", "Other"].map((item) => new Options(item, item));
+  MaritalStatus: Options[] = ["Single", "Married", "Divorced", "Widowed"].map((item) => new Options(item, item));
+  EducationLevel: Options[] = ["No Education", "Primary (Gr 1-7)", "Secondary (Gr 8-12)", "Tertiary (Post Matric Certificate, Diploma)", "Degree", "Post Graduate (Honours Degree)"].map((item) => new Options(item, item));
+  Assets_TransportTypes: Options[] = ["None", "Car", "Truck", "Van", "Bicycle", "Trailer", "Motorbike"].map((item) => new Options(item, item));
+  TheamList: Options[] = ["Default", "Solar", "Slate", "Yeti"].map((item) => new Options(item, item));
+  IDorPassport: Options[] = ["ID", "Passport"].map((item) => new Options(item, item));
+  province: Province[] = [];
+  districtMetro: DistrictMetro[] = [];
+  localMunicipality: LocalMunicipality[] = [];
+  mainPlaces: MainPlace[] = [];
+  CountryListStatic: Country[] = [];
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
-  private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""} );
-  private loginInfomation:BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({LoginOK:false,Username:"Bobo",FullName:"",Theme:"Default",Country_ID:1,Country_Name:"",Currency:"R"});
-  private RoutingStashBox:any = null;
+  private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({ UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" });
+  private loginInfomation: BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({ LoginOK: false, Username: "Bobo", FullName: "", Theme: "Default", Country_ID: 1, Country_Name: "", Currency: "R" });
+  private RoutingStashBox: any = null;
   constructor(private http: HttpClient) {
-    if(isDevMode()){
-      
+    if (isDevMode()) {
+
       this.baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
-      
+
       this.baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
-      
+
       this.CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
     }
     console.log("New Instance created");
-    this.SelectedCountryID=1;
+    this.SelectedCountryID = 1;
     this._getCountry();
-    //this._getProvinceLoadLocal();
+    // this._getProvinceLoadLocal();
     this._getdistrictmetroLoadLocal();
     this._getlocalmunicipalityLoadLocal();
-    this._getMainplace(); 
-    
+    this._getMainplace();
+
   }
-  get country():Observable<Country[]> {
+  get country(): Observable<Country[]> {
     return this.CountryList.asObservable();
   }
-  get internetInfo():Observable<InternetConnection>{
+  get internetInfo(): Observable<InternetConnection> {
     return this.showInternetError.asObservable();
   }
-  get LoginOK():Observable<LogInData>{
+  get LoginOK(): Observable<LogInData> {
     return this.loginInfomation.asObservable();
   }
   //get province():Observable<Province[]> {
@@ -92,42 +98,42 @@ export class EwepserverService {
   //get mainPlaces():Observable<MainPlace[]>{
   //  return this.mainPlacesList.asObservable();
   //}
-  setCountryInfo(CountryID:number,CountryName:string){
+  setCountryInfo(CountryID: number, CountryName: string) {
     this.SelectedCountryID = CountryID;
     //Reload all the cashed data
-    this._getProvinceLoadLocal(); 
+    this._getProvinceLoadLocal();
   }
-  getViewData(ViewName:string,Options:string=""){
-    return this.http.get<any>(this.baseViewURL + ViewName + (Options===""?"":"?"+Options), httpOptions).pipe(
+  getViewData(ViewName: string, Options: string = "") {
+    return this.http.get<any>(this.baseViewURL + ViewName + (Options === "" ? "" : "?" + Options), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  getTableData(TableName:string,Options:string){
-    return this.http.get<any>(this.baseURL + TableName + (Options===""?"":"?"+Options), httpOptions).pipe(
+  getTableData(TableName: string, Options: string) {
+    return this.http.get<any>(this.baseURL + TableName + (Options === "" ? "" : "?" + Options), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  getRowData(TableName:string,KeyID:string){
-    return this.http.get<any>(this.baseURL + TableName + "/"+KeyID, httpOptions).pipe(
+  getRowData(TableName: string, KeyID: string) {
+    return this.http.get<any>(this.baseURL + TableName + "/" + KeyID, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  CreateTableData(TableName:string,DataSave:any){
-    return this.http.post<any>(this.baseURL + TableName,DataSave, httpOptions).pipe(
+  CreateTableData(TableName: string, DataSave: any) {
+    return this.http.post<any>(this.baseURL + TableName, DataSave, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  updateTableData(TableName:string,KeyID:string,DataSave:any){
-    return this.http.put<any>(this.baseURL + TableName+ "/"+KeyID,DataSave, httpOptions).pipe(
+  updateTableData(TableName: string, KeyID: string, DataSave: any) {
+    return this.http.put<any>(this.baseURL + TableName + "/" + KeyID, DataSave, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  deleteTableData(TableName:string,KeyID:string){
-    return this.http.delete<any>(this.baseURL + TableName+ "/"+KeyID, httpOptions).pipe(
+  deleteTableData(TableName: string, KeyID: string) {
+    return this.http.delete<any>(this.baseURL + TableName + "/" + KeyID, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
- 
+
   private _getProvinceLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "province?order=Province_Name&filter=Country_ID,eq," + this.SelectedCountryID, httpOptions).subscribe((customers: any) => {
@@ -136,7 +142,7 @@ export class EwepserverService {
     });
   }
 
-  private _getCountry(){
+  private _getCountry() {
     //province
     this.http.get<any>(this.baseURL + "country?order=Country_ID&filter=Active,eq,Y", httpOptions).subscribe((customers: any) => {
       //console.log(customers.records);
@@ -172,23 +178,23 @@ export class EwepserverService {
     );
 
   }
-  getEnterprisList(PageNumber: number,FilterOptions:string) {
+  getEnterprisList(PageNumber: number, FilterOptions: string) {
 
-    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?order=Enterprise_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions).pipe(
+    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?order=Enterprise_ID&page=" + PageNumber + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
-  getCooperativeList(PageNumber: number,FilterOptions:string) {
+  getCooperativeList(PageNumber: number, FilterOptions: string) {
 
-    return this.http.get<any>(this.baseViewURL + "cooperative_base_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions).pipe(
+    return this.http.get<any>(this.baseViewURL + "cooperative_base_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
-  getCooperativeVisitList(PageNumber: number,FilterOptions:string) {
+  getCooperativeVisitList(PageNumber: number, FilterOptions: string) {
 
-    return this.http.get<any>(this.baseViewURL + "cooperative_visits_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions===""?"":"&" + FilterOptions), httpOptions).pipe(
+    return this.http.get<any>(this.baseViewURL + "cooperative_visits_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -207,40 +213,76 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-  checkLogin(UserName:string,Password:string){
-    let login={__class:'LoginGUI',__call:'checkLogin',UserName:UserName,Password:Password}; 
-    return this.http.post<any>(this.CoreViewURL,login, httpOptions).pipe(
+  checkLogin(UserName: string, Password: string) {
+    let login = { __class: 'LoginGUI', __call: 'checkLogin', UserName: UserName, Password: Password };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  setUserLogin(UserOJB:any,SelectCounter:Country){
-    this.loginInfomation.next({LoginOK:true,
-                           Username:UserOJB.Name,
-                           FullName:UserOJB.Name+"," + UserOJB.Surname,
-                          Theme:UserOJB.ThemeName,
-                        Country_ID:SelectCounter.Country_ID,
-                      Country_Name:SelectCounter.Country_Name,
-                    Currency:SelectCounter.Currency}); 
+  setUserLogin(UserOJB: any, SelectCounter: Country) {
+    this.loginInfomation.next({
+      LoginOK: true,
+      Username: UserOJB.Name,
+      FullName: UserOJB.Name + "," + UserOJB.Surname,
+      Theme: UserOJB.ThemeName,
+      Country_ID: SelectCounter.Country_ID,
+      Country_Name: SelectCounter.Country_Name,
+      Currency: SelectCounter.Currency
+    });
     this.SelectedCurrency = SelectCounter.Currency;
     console.log("Change Currency " + this.SelectedCurrency);
   }
 
-  deleteAllFinance(Enterprise_ID:number,Enterprise_Visit_ID:any){
-    let login={__class:'FinanceGUI',__call:'deleteFinance',Enterprise_ID:Enterprise_ID,Enterprise_Visit_ID:Enterprise_Visit_ID};
-    return this.http.post<any>(this.CoreViewURL,login, httpOptions).pipe(
+  deleteAllFinance(Enterprise_ID: number, Enterprise_Visit_ID: any) {
+    let login = { __class: 'FinanceGUI', __call: 'deleteFinance', Enterprise_ID: Enterprise_ID, Enterprise_Visit_ID: Enterprise_Visit_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteAllFinanceCooperative(Cooperative_ID: number, Cooperative_Visit_ID: any) {
+    let login = { __class: 'FinanceGUI', __call: 'deleteFinanceCooperative', Cooperative_ID: Cooperative_ID, Cooperative_Visit_ID: Cooperative_Visit_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
-  addToRoutingStashBox(Data:any){
+  listCountOFentrepreneurAndenterprise() {
+    let login = {
+      __class: 'ReportsGUI', __call: 'listCountOFentrepreneurAndenterprise',
+      Country_ID: this.SelectedCountryID
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getSexCount() {
+    let login = {
+      __class: 'ReportsGUI', __call: 'getSexCount',
+      Country_ID: this.SelectedCountryID
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getAgeByGroup(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'getAgeByGroup',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  addToRoutingStashBox(Data: any) {
     this.RoutingStashBox = Data;
   }
-  getRoutingStashBox(){
+  getRoutingStashBox() {
     return this.RoutingStashBox;
   }
 
   private handleError(error: HttpErrorResponse) {
-    let newError:InternetConnection = {UsingInternet:false,progress:0,StopInternet:false,ErrorMessage:"",DebugErrorMessage:"",HTTPStatus:""};
+    let newError: InternetConnection = { UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" };
     if (error.error instanceof ErrorEvent) {
       newError.ErrorMessage = 'An error occurred:', error.error.message;
       // A client-side or network error occurred. Handle it accordingly.
@@ -248,8 +290,8 @@ export class EwepserverService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      newError.ErrorMessage =`Backend returned code ${error.status}, ` +
-      `body was: ${error.error}`;
+      newError.ErrorMessage = `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`;
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
@@ -262,51 +304,51 @@ export class EwepserverService {
 }
 
 export interface Province {
-  Province_ID:number,
-  Province_Name:string,
-  Country_ID:number
+  Province_ID: number,
+  Province_Name: string,
+  Country_ID: number
 }
-export interface LocalMunicipality{
-  LocalMunicipality_ID:number
-  DistrictMetro_ID:number,
-  Name:string,
-  Code:string,
-  City:string
+export interface LocalMunicipality {
+  LocalMunicipality_ID: number
+  DistrictMetro_ID: number,
+  Name: string,
+  Code: string,
+  City: string
 }
 
 export interface MainPlace {
-  MainPlace_ID:number,
-  LocalMunicipality_ID:number,
-  Name:string,
-  Code:string
+  MainPlace_ID: number;
+  LocalMunicipality_ID: number;
+  Name: string;
+  Code: string;
 }
-export interface DistrictMetro{
-  DistrictMetro_ID:number,
-  Province_ID:number,
-  Name:string,
-  Code:string
+export interface DistrictMetro {
+  DistrictMetro_ID: number;
+  Province_ID: number;
+  Name: string;
+  Code: string;
 }
 export interface Country {
-  Country_ID:number;
-  Country_Code:string;
-  Country_Name:string;
-  Active:string
-  Currency:string;
+  Country_ID: number;
+  Country_Code: string;
+  Country_Name: string;
+  Active: string;
+  Currency: string;
 }
 export interface InternetConnection {
-  UsingInternet:boolean;
-  progress:number,
-  StopInternet:boolean,
-  ErrorMessage:string;
-  DebugErrorMessage:string;
-  HTTPStatus:string
+  UsingInternet: boolean;
+  progress: number;
+  StopInternet: boolean;
+  ErrorMessage: string;
+  DebugErrorMessage: string;
+  HTTPStatus: string;
 }
-export interface LogInData{
-  LoginOK:boolean,
-  Username:string,
-  FullName:string,
-  Theme:string,
-  Country_ID:number,
-  Country_Name:string,
-  Currency:string
+export interface LogInData {
+  LoginOK: boolean,
+  Username: string,
+  FullName: string,
+  Theme: string,
+  Country_ID: number,
+  Country_Name: string,
+  Currency: string
 }

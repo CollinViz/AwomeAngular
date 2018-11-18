@@ -141,6 +141,22 @@ export class FormGroupEditMemberBaselineEnterprise {
         new TextboxQuestion({
             key: 'Responsible_Trainer', required: false, order: 41,
             label: 'Responsible_Trainer', value: entrepreneur.Responsible_Trainer,
+        }),
+        new TextboxQuestion({
+            key: 'Access_Regular_Phone', required: false, order: 40,
+            label: 'Access_Regular_Phone', value: entrepreneur.Access_Regular_Phone,
+        }),
+        new TextboxQuestion({
+            key: 'Access_Smart_Phone', required: false, order: 40,
+            label: 'Access_Smart_Phone', value: entrepreneur.Access_Smart_Phone,
+        }),
+        new TextboxQuestion({
+            key: 'Access_Computer', required: false, order: 40,
+            label: 'Access_Computer', value: entrepreneur.Access_Computer,
+        }),
+        new TextboxQuestion({
+            key: 'Access_Internet', required: false, order: 40,
+            label: 'Access_Internet', value: entrepreneur.Access_Internet,
         })];
         return question;
 

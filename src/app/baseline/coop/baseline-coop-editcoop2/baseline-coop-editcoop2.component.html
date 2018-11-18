@@ -226,10 +226,13 @@
             <div *ngIf="showloading_Entrepreneurs">
               <mat-spinner></mat-spinner>
             </div>
+            <div *ngIf="!showloading_Entrepreneurs">
             <div *ngIf="showEntrepreneursList; else editCurrentEntrepreneursList">
               <app-list-member-baseline-enterprise [rows]="EntrepreneursList" [(selected)]="Defaultselected" (rowSelect)="onSelectEntrepreneur($event)"
-                (rowEdit)="onEditEntrepreneur($event)"></app-list-member-baseline-enterprise>
+                (rowEdit)="onEditEntrepreneur($event)"
+                (rowDelete)="onDeleteEntrepreneur($event)"></app-list-member-baseline-enterprise>
             </div>
+          </div>
           </div> 
           <ng-template #editCurrentEntrepreneursList>
            <!-- need to show Dialog bog to find Enterpeneur-->

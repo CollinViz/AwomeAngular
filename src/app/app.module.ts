@@ -1,17 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,Pipe, PipeTransform } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router, ActivatedRoute, Params } from '@angular/router';
 import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ModalModule } from 'ngx-bootstrap/modal'; 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { ChartModule } from 'angular-highcharts';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {MatRadioModule,MatButtonModule,MatProgressSpinnerModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule,MatProgressBarModule,MatDatepickerModule,MatNativeDateModule,MatInputModule,MatTableModule,MatDialogModule} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
-import {ProgressInterceptor} from './service/ProgressInterceptor';
+import { MatRadioModule, MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatProgressBarModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatTableModule, MatDialogModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProgressInterceptor } from './service/ProgressInterceptor';
 import { ProgressComponent } from './common/internet/ProgressComponent';
 
 import { AppComponent } from './app.component';
@@ -21,7 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ListenterpriseComponent } from './baseline/enterprise/listenterprise/listenterprise.component';
 import { EditenterpriseComponent } from './baseline/enterprise/editenterprise/editenterprise.component';
 import { EwepserverService } from './ewepserver.service';
-import { GlobalService } from './service/Global'
+import { GlobalService } from './service/Global';
 import { SearchEnterpriseComponent } from './baseline/enterprise/search-enterprise/search-enterprise.component';
 import { DistrictMetroPipe } from './district-metro.pipe';
 import { MunicipalityPipe } from './municipality.pipe';
@@ -99,7 +101,22 @@ import { ListMemberBaselineEnterpriseComponent } from './baseline/enterprise/mem
 import { EditMemberBaselineEnterpriseComponent } from './baseline/entrepreneur/edit-member-baseline-enterprise/edit-member-baseline-enterprise.component';
 import { ComEditContactComponent } from './common/contact/com-edit-contact/com-edit-contact.component';
 import { CardCssFormGroupDirective } from './directive/card-css-form-group.directive';
-import { CardHeaderCssFormGroupDirective } from './directive/card-header-css-form-group.directive'
+import { CardHeaderCssFormGroupDirective } from './directive/card-header-css-form-group.directive';
+import { ListEntrepreneurComponent } from './common/entrepreneur/list-entrepreneur/list-entrepreneur.component';
+import { SearchEntrepreneurComponent } from './common/entrepreneur/search-entrepreneur/search-entrepreneur.component';
+import { JobsCreatedComponent } from './report/jobs-created/jobs-created.component';
+import { JobsSustainedComponent } from './report/jobs-sustained/jobs-sustained.component';
+import { AgeGroupComponent } from './report/age-group/age-group.component';
+import { CreatingmorejobsComponent } from './report/creatingmorejobs/creatingmorejobs.component';
+import { CompletingTrainingsComponent } from './report/completing-trainings/completing-trainings.component';
+import { AgevsRevenueComponent } from './report/agevs-revenue/agevs-revenue.component';
+import { EducationvsRevenueComponent } from './report/educationvs-revenue/educationvs-revenue.component';
+import { LevelofEducationComponent } from './report/levelof-education/levelof-education.component';
+import { HousingComponent } from './report/housing/housing.component';
+import { OutstandingTrainingsComponent } from './report/outstanding-trainings/outstanding-trainings.component';
+import { MostPopularTrainingComponent } from './report/most-popular-training/most-popular-training.component';
+import { OwnerNumberVsEmployeeNumbersComponent } from './report/owner-number-vs-employee-numbers/owner-number-vs-employee-numbers.component';
+import { SearchByProvinceComponent } from './report/search-by-province/search-by-province.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -133,7 +150,7 @@ const interceptor = new ProgressInterceptor();
     EditenterpriseEnterpriseComponent,
     BaselineEnterpriseEditenterprise2Component,
     NumberOnlyDirective,
-    BaselineEntrepreneurPageComponent,     
+    BaselineEntrepreneurPageComponent,
     SearchBaselineEntrepreneurEntrepreneurComponent,
     BaselineCooperativePageComponent,
     EditBaselineCooperativeCooperativeComponent,
@@ -154,13 +171,13 @@ const interceptor = new ProgressInterceptor();
     EditVisitsAssociationAssociationComponent,
     SearchVisitsAssociationAssociationComponent,
     ActionplansEnterprisesPageComponent,
-    EditActionplansEnterprisesEnterprisesComponent,    
+    EditActionplansEnterprisesEnterprisesComponent,
     ActionplansCooperativesPageComponent,
-    EditActionplansCooperativesCooperativesComponent, 
+    EditActionplansCooperativesCooperativesComponent,
     ActionplansAssociationPageComponent,
     EditActionplansAssociationAssociationComponent,
     TrainingEntrepreneursPageComponent,
-    EditTrainingEntrepreneursEntrepreneursComponent, 
+    EditTrainingEntrepreneursEntrepreneursComponent,
     WorkshopsEntrepreneursPageComponent,
     EditWorkshopsEntrepreneursEntrepreneursComponent,
     SearchWorkshopsEntrepreneursEntrepreneursComponent,
@@ -192,7 +209,7 @@ const interceptor = new ProgressInterceptor();
 
     EditLoansBaselineCoopComponent,
 
-    ListLoansBaselineCoopComponent ,
+    ListLoansBaselineCoopComponent,
     ListMemberBaselineEnterpriseComponent,
 
     EditMemberBaselineEnterpriseComponent,
@@ -201,12 +218,42 @@ const interceptor = new ProgressInterceptor();
 
     CardCssFormGroupDirective,
 
-    CardHeaderCssFormGroupDirective 
+    CardHeaderCssFormGroupDirective,
+
+    ListEntrepreneurComponent,
+
+    SearchEntrepreneurComponent,
+
+    JobsCreatedComponent,
+
+    JobsSustainedComponent,
+
+    AgeGroupComponent,
+
+    CreatingmorejobsComponent,
+
+    CompletingTrainingsComponent,
+
+    AgevsRevenueComponent,
+
+    EducationvsRevenueComponent,
+
+    LevelofEducationComponent,
+
+    HousingComponent,
+
+    OutstandingTrainingsComponent,
+
+    MostPopularTrainingComponent,
+
+    OwnerNumberVsEmployeeNumbersComponent,
+
+    SearchByProvinceComponent
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
     EditDialogActionplansEnterprisesComponent,
-    DeleteCheckComponent],
+    DeleteCheckComponent, ListEntrepreneurComponent],
   imports: [
     BrowserModule,
     CollapseModule.forRoot(),
@@ -214,25 +261,26 @@ const interceptor = new ProgressInterceptor();
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
-    FormsModule, 
+    ChartModule ,
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatSelectModule,MatSlideToggleModule, MatInputModule,MatTableModule,   
-    MatProgressBarModule,MatProgressSpinnerModule,MatRadioModule,MatNativeDateModule,MatDatepickerModule,
-    NgxDatatableModule,MatDialogModule,
+    MatButtonModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatInputModule, MatTableModule,
+    MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatNativeDateModule, MatDatepickerModule,
+    NgxDatatableModule, MatDialogModule,
     // import HttpClientModule after BrowserModule.
-    HttpClientModule, 
+    HttpClientModule,
     RouterModule.forRoot([{
       path: '',
       component: HomePageComponent
     },
     {
-      path:'loginok',
-      component:WelcomLoginokComponent
+      path: 'loginok',
+      component: WelcomLoginokComponent
     },
-    { 
-      path:'baseline/enterprise',
-      component:ListenterpriseComponent
+    {
+      path: 'baseline/enterprise',
+      component: ListenterpriseComponent
     },
     {
       path: 'baseline/enterprise/:Enterprise_ID',
@@ -240,112 +288,164 @@ const interceptor = new ProgressInterceptor();
     },
     {
       path: 'baseline/cooperative/:Cooperative_ID',
-      component: BaselineCoopEditcoop2Component 
-    },
-    { 
-      path:'admin',
-      component:AdminPageComponent
-    },
-    { 
-      path:'admin/user',
-      component:UserPageComponent
-    },
-    { 
-      path:'admin/programme',
-      component:ProgrammePageComponent
-    },
-    { 
-      path:'admin/programme/:programmeID',
-      component:EditprogramComponent
-    },
-    { 
-      path:'baseline/entrepreneur',
-      component:BaselineEntrepreneurPageComponent
-    },
-    { 
-      path:'baseline/cooperative',
-      //component:BaselineCooperativePageComponent
-      component:ListcoopComponent
-
-    },
-    { 
-      path:'baseline/association',
-      component:BaselineAssociationPageComponent
-    },
-    { 
-      path:'baseline/association/:Association_ID',
-      component:EditBaselineAssociationAssociationComponent
-    },
-    { 
-      path:'baseline/enterprise',
-      component:ListenterpriseComponent
-    },
-    { 
-      path:'visits/entrepreneurs',
-      component:VisitsEntrepreneursPageComponent
-    },
-    { 
-      path:'visits/enterprise',
-      component:VisitsEnterprisePageComponent
-    },
-    { 
-      path:'visits/enterprise/:Enterprise_ID',
-      component:EditVisitsEnterpriseEnterpriseComponent
-    },
-    { 
-      path:'visits/cooperative',
-      component:VisitsCooperativePageComponent
-    },
-    { 
-      path:'visits/cooperative/:Cooperative_ID',
-      component:EditVisitsCooperativeCooperativeComponent
+      component: BaselineCoopEditcoop2Component
     },
     {
-      path:'visits/cooperative/:Cooperative_ID/:Cooperative_Visit_ID',
-      component:EditfrmVisitsCooperativeComponent
+      path: 'admin',
+      component: AdminPageComponent
     },
-    { 
-      path:'visits/association',
-      component:VisitsAssociationPageComponent
+    {
+      path: 'admin/user',
+      component: UserPageComponent
     },
-    { 
-      path:'actionplans/enterprises',
-      component:ActionplansEnterprisesPageComponent
+    {
+      path: 'admin/programme',
+      component: ProgrammePageComponent
     },
-    { 
-      path:'actionplans/enterprises/:Enterprise_ID',
-      component:EditActionplansEnterprisesEnterprisesComponent
+    {
+      path: 'admin/programme/:programmeID',
+      component: EditprogramComponent
     },
-    { 
-      path:'actionplans/cooperatives',
-      component:ActionplansCooperativesPageComponent
+    {
+      path: 'baseline/entrepreneur',
+      component: BaselineEntrepreneurPageComponent
     },
-    { 
-      path:'actionplans/cooperatives/:Cooperative_ID',
-      component:EditActionplansCooperativesCooperativesComponent
+    {
+      path: 'baseline/entrepreneur/:Entrepreneur_ID',
+      component: BaselineEntrepreneurPageComponent
     },
-    { 
-      path:'actionplans/association',
-      component:ActionplansAssociationPageComponent
+    {
+      path: 'baseline/cooperative',
+      //component:BaselineCooperativePageComponent
+      component: ListcoopComponent
+
     },
-    { 
-      path:'actionplans/association/:Association_ID',
-      component:EditActionplansAssociationAssociationComponent
+    {
+      path: 'baseline/association',
+      component: BaselineAssociationPageComponent
     },
-    { 
-      path:'training/entrepreneurs',
-      component:TrainingEntrepreneursPageComponent
+    {
+      path: 'baseline/association/:Association_ID',
+      component: EditBaselineAssociationAssociationComponent
     },
-    { 
-      path:'workshops/entrepreneurs',
-      component:WorkshopsEntrepreneursPageComponent
+    {
+      path: 'baseline/enterprise',
+      component: ListenterpriseComponent
+    },
+    {
+      path: 'visits/entrepreneurs',
+      component: VisitsEntrepreneursPageComponent
+    },
+    {
+      path: 'visits/enterprise',
+      component: VisitsEnterprisePageComponent
+    },
+    {
+      path: 'visits/enterprise/:Enterprise_ID',
+      component: EditVisitsEnterpriseEnterpriseComponent
+    },
+    {
+      path: 'visits/cooperative',
+      component: VisitsCooperativePageComponent
+    },
+    {
+      path: 'visits/cooperative/:Cooperative_ID',
+      component: EditVisitsCooperativeCooperativeComponent
+    },
+    {
+      path: 'visits/cooperative/:Cooperative_ID/:Cooperative_Visit_ID',
+      component: EditfrmVisitsCooperativeComponent
+    },
+    {
+      path: 'visits/association',
+      component: VisitsAssociationPageComponent
+    },
+    {
+      path: 'actionplans/enterprises',
+      component: ActionplansEnterprisesPageComponent
+    },
+    {
+      path: 'actionplans/enterprises/:Enterprise_ID',
+      component: EditActionplansEnterprisesEnterprisesComponent
+    },
+    {
+      path: 'actionplans/cooperatives',
+      component: ActionplansCooperativesPageComponent
+    },
+    {
+      path: 'actionplans/cooperatives/:Cooperative_ID',
+      component: EditActionplansCooperativesCooperativesComponent
+    },
+    {
+      path: 'actionplans/association',
+      component: ActionplansAssociationPageComponent
+    },
+    {
+      path: 'actionplans/association/:Association_ID',
+      component: EditActionplansAssociationAssociationComponent
+    },
+    {
+      path: 'training/entrepreneurs',
+      component: TrainingEntrepreneursPageComponent
+    },
+    {
+      path: 'workshops/entrepreneurs',
+      component: WorkshopsEntrepreneursPageComponent
+    },
+    {
+      path: 'report/AgeGroup',
+      component: AgeGroupComponent
+    },
+    {
+      path: 'report/JobsCreated',
+      component: JobsCreatedComponent
+    },
+    {
+      path: 'report/JobsSustained',
+      component: JobsSustainedComponent
+    },
+    {
+      path: 'report/Creatingmorejobs',
+      component: CreatingmorejobsComponent
+    },
+    {
+      path: 'report/CompletingTrainings',
+      component: CompletingTrainingsComponent
+    },
+    {
+      path: 'report/AgevsRevenue',
+      component: AgevsRevenueComponent
+    },
+    {
+      path: 'report/EducationvsRevenue',
+      component: EducationvsRevenueComponent
+    },
+    {
+      path: 'report/LevelofEducation',
+      component: LevelofEducationComponent
+    },
+    {
+      path: 'report/Housing',
+      component: HousingComponent
+    },
+    {
+      path: 'report/OutstandingTrainings',
+      component: OutstandingTrainingsComponent
+    },
+    {
+      path: 'report/MostPopularTraining',
+      component: MostPopularTrainingComponent
+    },
+    {
+      path: 'report/OwnerNumberVsEmployeeNumbers',
+      component: OwnerNumberVsEmployeeNumbersComponent
     }
-  ])
+    ])
   ],
   providers: [
     { provide: ProgressInterceptor, useValue: interceptor },
     { provide: HTTP_INTERCEPTORS, useValue: interceptor, multi: true },
-    EwepserverService,GlobalService
+    EwepserverService, GlobalService
   ],
   bootstrap: [AppComponent]
 })

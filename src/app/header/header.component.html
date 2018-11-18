@@ -1,11 +1,7 @@
-
-
-
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">AWOME</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -49,89 +45,92 @@
     </ul>
     
     
-    --> 
+    -->
     <ul class="nav nav-pills">
       <li class="nav-item  ">
-        <a [ngClass]="{'nav-link':true,'active':isHome}" [routerLink]="['/loginok']">Home <span class="sr-only">(current)</span></a>
+        <a [ngClass]="{'nav-link':true,'active':isHome}" [routerLink]="['/loginok/']">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isBaseLine}"   data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                BaseLine Info</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur</a>
-                <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise</a>
-                <a class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
-                <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
-            </div>        
-      </li>
-      <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isVisits}" id="navVisits" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            Visits</a>
-            <div class="dropdown-menu">
-                
-                <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
-                <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
-                <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
-            </div>  
-      </li>
-      <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan}" id="navAction" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            Action Plan</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
-                <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
-                <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
-            </div> 
-      </li>
-      <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Training</a>
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isBaseLine}" data-toggle="dropdown" href="#"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          BaseLine Info</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['training/entrepreneurs']">Entrepreneurs</a> 
-        </div> 
+          <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur</a>
+          <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise</a>
+          <a class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
+          <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navTraining" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">
-            Reports</a>
-            <div class="dropdown-menu" aria-lableledby="navTraining">
-                <a class="dropdown-item" href="#">Capture Rate</a>
-                <a class="dropdown-item" href="#">Counts by Phase</a>
-                <div class="dropdown-header">ENTREPRENEURS</div> 
-                <a class="dropdown-item" href="#">Age Profile</a>
-                <a class="dropdown-item" href="#">Income-Marital-Education</a>
-                <a class="dropdown-item" href="#">Education Levels</a>
-                <a class="dropdown-item" href="#">People Supported</a>
-                <a class="dropdown-item" href="#">Bank Account</a>
-                <a class="dropdown-item" href="#">Challenges</a>
-                <div class="dropdown-header">ENTERPRISES</div> 
-                <a class="dropdown-item" href="#">Sector Gender</a>
-                <a class="dropdown-item" href="#">Coca-Cola</a>
-                <a class="dropdown-item" href="#">Legal Structures</a>
-                <a class="dropdown-item" href="#">Income &#x26; Expenditure</a>
-                <a class="dropdown-item" href="#">Jobs Created</a>
-                <a class="dropdown-item" href="#">Premise Ownership</a>
-                
-            </div> 
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isVisits}" id="navVisits" data-toggle="dropdown"
+          href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Visits</a>
+        <div class="dropdown-menu">
+
+          <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
+          <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
+          <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan}" id="navAction" data-toggle="dropdown"
+          href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Action Plan</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
+          <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
+          <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining" data-toggle="dropdown"
+          href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Training</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" [routerLink]="['training/entrepreneurs']">Entrepreneurs</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navTraining" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false" href="#">
+          Reports</a>
+        <div class="dropdown-menu" aria-lableledby="navTraining">
+            <div class="dropdown-header">Enterprises</div>
+          <a class="dropdown-item" [routerLink]="['/report/JobsCreated']">Jobs Created</a>
+          <a class="dropdown-item" [routerLink]="['/report/JobsSustained']">Jobs Sustained</a>
+          <a class="dropdown-item" [routerLink]="['/report/AgeGroup']">Age Group </a>
+          <a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Creating more jobs</a>
+          <a class="dropdown-item" [routerLink]="['/report/CompletingTrainings']">Completing Trainings</a>
+          <a class="dropdown-item" [routerLink]="['/report/AgevsRevenue']">Age vs Revenue</a>
+          <a class="dropdown-item" [routerLink]="['/report/EducationvsRevenue']">Education vs Revenue</a>
+          <a class="dropdown-item" [routerLink]="['/report/LevelofEducation']">Level of Education</a>
+          <a class="dropdown-item" [routerLink]="['/report/Housing']">No of people Housing against surplus</a>
+          <div class="dropdown-header">Trainings</div>
+          <a class="dropdown-item" [routerLink]="['/report/OutstandingTrainings']">Outstanding Trainings</a>
+          <a class="dropdown-item" [routerLink]="['/report/MostPopularTraining']">Most Popular Training</a>
+          <a class="dropdown-item" [routerLink]="['/report/OwnerNumberVsEmployeeNumbers']">Owner Number Vs Employee Numbers</a>
+
+        </div>
       </li>
       <li class="nav-item">
         <a [ngClass]="{'nav-link':true,'active':isAdmin}" [routerLink]="['/admin']">Settings</a>
       </li>
       <li class="nav-item dropdown navbar-right">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Current country: {{currentCountry}}  </a>
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#" role="button"
+          aria-haspopup="true" aria-expanded="false">
+          Current country: {{currentCountry}} </a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index" (click)="changeCountry(co,i)">{{co.Country_Name}}</a> 
-        </div> 
+          <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index" (click)="changeCountry(co,i)">{{co.Country_Name}}</a>
+        </div>
       </li>
       <li class="nav-item navbar-right">
         <a class="nav-link" href="#">Log Out</a>
       </li>
     </ul>
-     
+
   </div>
 </nav>
-<pgs-progress-bar></pgs-progress-bar> 
+<pgs-progress-bar></pgs-progress-bar>
 <div *ngIf="showError">
-    <div class="alert alert-dismissible alert-danger" (click)="showError=false">{{ErrorMessage}}</div>
+  <div class="alert alert-dismissible alert-danger" (click)="showError=false">{{ErrorMessage}}</div>
 </div>
-
