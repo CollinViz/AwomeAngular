@@ -15,28 +15,26 @@ export class JobsCreatedComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.intChart();
+    this.jobs_created_view();
   }
-  getAgeByGroup() {
-    this.Ewep.getAgeByGroup(this.SelectedProvince).subscribe(report => {
-      this.intChart();
-      report.DataSeries.forEach(element => {
-        this.chart.addSerie(element);
-      });
+  jobs_created_view() {
+    this.Ewep.jobs_created_view(this.SelectedProvince).subscribe(report => {
+      this.intChart(report);
+       
     });
   }
-  intChart() {
+  intChart(report:any) {
     this.chart = new Chart({
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Enterprise age group'
+        text: 'Jobs Created'
       },
       xAxis: {
-        categories: ["< 20 Years", "20-29 Years", "30-39 Years", "40-49 Years", "50-59 Years", "60-69 Years", "> 69 Years"]
+        categories: report.NameXrow
       },
-      series: [],
+      series: report.DataSeries,
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -47,7 +45,7 @@ export class JobsCreatedComponent implements OnInit {
   }
   SearchClick(Province: string) {
     this.SelectedProvince = Province;
-    this.getAgeByGroup();
+    this.jobs_created_view();
   }
 
 }

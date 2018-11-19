@@ -274,6 +274,86 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+  getTraining(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'training',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  jobs_created_view(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'jobs_created_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  education_level_view(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'education_level_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  popular_training_view(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'popular_training_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  owners_employees_view(ProvinceSearch: string){
+    let login = {
+      __class: 'ReportsGUI', __call: 'owners_employees_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  female_male_view(ProvinceSearch: string){
+    let login = {
+      __class: 'ReportsGUI', __call: 'female_male_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getincome_expense_view(ProvinceSearch: string){
+    let login = {
+      __class: 'ReportsGUI', __call: 'income_expense_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getpremise_ownership_view(ProvinceSearch: string){
+    let login = {
+      __class: 'ReportsGUI', __call: 'premise_ownership_view',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
   addToRoutingStashBox(Data: any) {
     this.RoutingStashBox = Data;
   }

@@ -499,7 +499,7 @@ DROP TABLE IF EXISTS `cooperative_action_plan_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_action_plan_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_action_plan_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_action_plan_view` AS SELECT
  1 AS `cooperative_id`,
  1 AS `cooperative_name`,
  1 AS `Cooperative_actionplan_id`,
@@ -594,7 +594,7 @@ DROP TABLE IF EXISTS `cooperative_actionplans_count_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_actionplans_count_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_actionplans_count_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_actionplans_count_view` AS SELECT
  1 AS `Cooperative_ID`,
  1 AS `Cooperative_Name`,
  1 AS `Actionplans_Count`,
@@ -611,7 +611,7 @@ DROP TABLE IF EXISTS `cooperative_base_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_base_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_base_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_base_view` AS SELECT
  1 AS `Cooperative_ID`,
  1 AS `Cooperative_Name`,
  1 AS `Cooperative_Type`,
@@ -843,7 +843,7 @@ DROP TABLE IF EXISTS `cooperative_finance_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_finance_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_finance_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_finance_view` AS SELECT
  1 AS `cooperative_id`,
  1 AS `cooperative_name`,
  1 AS `cooperative_finance_ID`,
@@ -896,7 +896,7 @@ DROP TABLE IF EXISTS `cooperative_member_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_member_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_member_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_member_view` AS SELECT
  1 AS `Entrepreneur_ID`,
  1 AS `Name`,
  1 AS `Surname`,
@@ -917,7 +917,7 @@ DROP TABLE IF EXISTS `cooperative_visit_finance_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_visit_finance_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_visit_finance_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_visit_finance_view` AS SELECT
  1 AS `cooperative_id`,
  1 AS `cooperative_name`,
  1 AS `cooperative_finance_ID`,
@@ -1073,7 +1073,7 @@ DROP TABLE IF EXISTS `cooperative_visits_count_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_visits_count_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_visits_count_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_visits_count_view` AS SELECT
  1 AS `Cooperative_ID`,
  1 AS `Cooperative_Name`,
  1 AS `Visit_Count`*/;
@@ -1087,7 +1087,7 @@ DROP TABLE IF EXISTS `cooperative_visits_view`;
 /*!50001 DROP VIEW IF EXISTS `cooperative_visits_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `cooperative_visits_view` AS SELECT 
+/*!50001 CREATE VIEW `cooperative_visits_view` AS SELECT
  1 AS `Cooperative_Visit_ID`,
  1 AS `Cooperative_ID`,
  1 AS `Cooperative_Name`,
@@ -1684,7 +1684,7 @@ DROP TABLE IF EXISTS `edf_county_view`;
 /*!50001 DROP VIEW IF EXISTS `edf_county_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `edf_county_view` AS SELECT 
+/*!50001 CREATE VIEW `edf_county_view` AS SELECT
  1 AS `edf_id`,
  1 AS `country_id`,
  1 AS `Surname`,
@@ -1700,7 +1700,7 @@ DROP TABLE IF EXISTS `edf_view`;
 /*!50001 DROP VIEW IF EXISTS `edf_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `edf_view` AS SELECT 
+/*!50001 CREATE VIEW `edf_view` AS SELECT
  1 AS `EDF_ID`,
  1 AS `Name`,
  1 AS `Surname`,
@@ -1945,7 +1945,7 @@ DROP TABLE IF EXISTS `enterprise_action_plan_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_action_plan_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_action_plan_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_action_plan_view` AS SELECT
  1 AS `enterprise_id`,
  1 AS `enterprise_name`,
  1 AS `actionplan_id`,
@@ -2052,7 +2052,7 @@ DROP TABLE IF EXISTS `enterprise_actionplans_count_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_actionplans_count_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_actionplans_count_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_actionplans_count_view` AS SELECT
  1 AS `Enterprise_ID`,
  1 AS `Enterprise_Name`,
  1 AS `Actionplans_Count`,
@@ -2069,7 +2069,7 @@ DROP TABLE IF EXISTS `enterprise_actionplans_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_actionplans_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_actionplans_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_actionplans_view` AS SELECT
  1 AS `ActionPlan_ID`,
  1 AS `Enterprise_ID`,
  1 AS `Date_Created`,
@@ -2427,7 +2427,7 @@ DROP TABLE IF EXISTS `enterprise_base_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_base_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_base_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_base_view` AS SELECT
  1 AS `Enterprise_ID`,
  1 AS `Enterprise_Name`,
  1 AS `Year_Established`,
@@ -2629,7 +2629,7 @@ DROP TABLE IF EXISTS `enterprise_finance_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_finance_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_finance_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_finance_view` AS SELECT
  1 AS `enterprise_id`,
  1 AS `enterprise_name`,
  1 AS `finance_ID`,
@@ -2681,7 +2681,7 @@ DROP TABLE IF EXISTS `enterprise_member_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_member_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_member_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_member_view` AS SELECT
  1 AS `Entrepreneur_ID`,
  1 AS `Name`,
  1 AS `Surname`,
@@ -2702,7 +2702,7 @@ DROP TABLE IF EXISTS `enterprise_training_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_training_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_training_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_training_view` AS SELECT
  1 AS `EnterpriseTraining_ID`,
  1 AS `Status`,
  1 AS `Date_Started`,
@@ -2723,7 +2723,7 @@ DROP TABLE IF EXISTS `enterprise_visit_finance_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_visit_finance_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_visit_finance_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_visit_finance_view` AS SELECT
  1 AS `enterprise_id`,
  1 AS `enterprise_name`,
  1 AS `finance_ID`,
@@ -2880,7 +2880,7 @@ DROP TABLE IF EXISTS `enterprise_visits_count_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_visits_count_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_visits_count_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_visits_count_view` AS SELECT
  1 AS `Enterprise_ID`,
  1 AS `Enterprise_Name`,
  1 AS `Visit_Count`*/;
@@ -2894,7 +2894,7 @@ DROP TABLE IF EXISTS `enterprise_visits_view`;
 /*!50001 DROP VIEW IF EXISTS `enterprise_visits_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `enterprise_visits_view` AS SELECT 
+/*!50001 CREATE VIEW `enterprise_visits_view` AS SELECT
  1 AS `Enterprise_Visit_ID`,
  1 AS `Enterprise_ID`,
  1 AS `Enterprise_Name`,
@@ -3359,7 +3359,7 @@ DROP TABLE IF EXISTS `entrepreneur_training_view`;
 /*!50001 DROP VIEW IF EXISTS `entrepreneur_training_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `entrepreneur_training_view` AS SELECT 
+/*!50001 CREATE VIEW `entrepreneur_training_view` AS SELECT
  1 AS `EntrepreneurTraining_ID`,
  1 AS `Status`,
  1 AS `Date_Started`,
@@ -3380,7 +3380,7 @@ DROP TABLE IF EXISTS `entrepreneur_view`;
 /*!50001 DROP VIEW IF EXISTS `entrepreneur_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `entrepreneur_view` AS SELECT 
+/*!50001 CREATE VIEW `entrepreneur_view` AS SELECT
  1 AS `Entrepreneur_ID`,
  1 AS `Form_ID`,
  1 AS `Name`,
@@ -3699,7 +3699,7 @@ DROP TABLE IF EXISTS `member_enterprise_view`;
 /*!50001 DROP VIEW IF EXISTS `member_enterprise_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `member_enterprise_view` AS SELECT 
+/*!50001 CREATE VIEW `member_enterprise_view` AS SELECT
  1 AS `Member_ID`,
  1 AS `Name`,
  1 AS `Surname`,
@@ -3719,7 +3719,7 @@ DROP TABLE IF EXISTS `member_shg_view`;
 /*!50001 DROP VIEW IF EXISTS `member_shg_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `member_shg_view` AS SELECT 
+/*!50001 CREATE VIEW `member_shg_view` AS SELECT
  1 AS `member_id`,
  1 AS `surname`,
  1 AS `name`,
@@ -4025,7 +4025,7 @@ DROP TABLE IF EXISTS `membertraining_view`;
 /*!50001 DROP VIEW IF EXISTS `membertraining_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `membertraining_view` AS SELECT 
+/*!50001 CREATE VIEW `membertraining_view` AS SELECT
  1 AS `MemberTraining_ID`,
  1 AS `Status`,
  1 AS `Date_Started`,
@@ -4183,7 +4183,7 @@ DROP TABLE IF EXISTS `monthly_enterprisevisit_view`;
 /*!50001 DROP VIEW IF EXISTS `monthly_enterprisevisit_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `monthly_enterprisevisit_view` AS SELECT 
+/*!50001 CREATE VIEW `monthly_enterprisevisit_view` AS SELECT
  1 AS `MonthlyEnterpriseVisit_ID`,
  1 AS `Enterprise_ID`,
  1 AS `Visit_Date`,
@@ -4313,7 +4313,7 @@ DROP TABLE IF EXISTS `monthly_membervisit_view`;
 /*!50001 DROP VIEW IF EXISTS `monthly_membervisit_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `monthly_membervisit_view` AS SELECT 
+/*!50001 CREATE VIEW `monthly_membervisit_view` AS SELECT
  1 AS `MonthlyMemberVisitID`,
  1 AS `Member_ID`,
  1 AS `Is_Active`,
@@ -4438,7 +4438,7 @@ DROP TABLE IF EXISTS `monthly_shgvisit_view`;
 /*!50001 DROP VIEW IF EXISTS `monthly_shgvisit_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `monthly_shgvisit_view` AS SELECT 
+/*!50001 CREATE VIEW `monthly_shgvisit_view` AS SELECT
  1 AS `MonthlySHGVisit_ID`,
  1 AS `SHG_ID`,
  1 AS `Name`,
@@ -4726,7 +4726,7 @@ DROP TABLE IF EXISTS `persons_quarter_view`;
 /*!50001 DROP VIEW IF EXISTS `persons_quarter_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `persons_quarter_view` AS SELECT 
+/*!50001 CREATE VIEW `persons_quarter_view` AS SELECT
  1 AS `Members_ID`,
  1 AS `FName`,
  1 AS `Surname`,
@@ -4749,7 +4749,7 @@ DROP TABLE IF EXISTS `persons_view`;
 /*!50001 DROP VIEW IF EXISTS `persons_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `persons_view` AS SELECT 
+/*!50001 CREATE VIEW `persons_view` AS SELECT
  1 AS `Members_ID`,
  1 AS `FName`,
  1 AS `Surname`,
@@ -4987,7 +4987,7 @@ DROP TABLE IF EXISTS `quarter_enterprisevisit_view`;
 /*!50001 DROP VIEW IF EXISTS `quarter_enterprisevisit_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `quarter_enterprisevisit_view` AS SELECT 
+/*!50001 CREATE VIEW `quarter_enterprisevisit_view` AS SELECT
  1 AS `QuarterEnterpriseVisit_ID`,
  1 AS `Enterprise_ID`,
  1 AS `Visit_Date`,
@@ -5122,7 +5122,7 @@ DROP TABLE IF EXISTS `quarter_membervisit_view`;
 /*!50001 DROP VIEW IF EXISTS `quarter_membervisit_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `quarter_membervisit_view` AS SELECT 
+/*!50001 CREATE VIEW `quarter_membervisit_view` AS SELECT
  1 AS `QuarterMemberVisitID`,
  1 AS `Member_ID`,
  1 AS `Is_Active`,
@@ -5365,7 +5365,7 @@ DROP TABLE IF EXISTS `rpt_ent_legal`;
 /*!50001 DROP VIEW IF EXISTS `rpt_ent_legal`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `rpt_ent_legal` AS SELECT 
+/*!50001 CREATE VIEW `rpt_ent_legal` AS SELECT
  1 AS `total_Enterprises`,
  1 AS `Number_Cooperative`,
  1 AS `%_Cooperative`*/;
@@ -5578,7 +5578,7 @@ DROP TABLE IF EXISTS `shg_base_view`;
 /*!50001 DROP VIEW IF EXISTS `shg_base_view`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `shg_base_view` AS SELECT 
+/*!50001 CREATE VIEW `shg_base_view` AS SELECT
  1 AS `SHG_ID`,
  1 AS `Name`,
  1 AS `Programme`,
@@ -6027,7 +6027,7 @@ UNLOCK TABLES;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `enterprise_actionplans_sp`(
 IN myActionPlan_ID	int(10),
@@ -6084,7 +6084,7 @@ Target_Date1,
 Target_Date2,
 Comp_Date,
 Status,
-Comments) 
+Comments)
 values(
 myActionPlan_ID,
 myEnterprise_ID,
@@ -6117,7 +6117,7 @@ Target_Date1 = myTarget_Date1,
 Target_Date2 = myTarget_Date2,
 Comp_Date = myComp_Date,
 Status = myStatus,
-Comments = myComments 
+Comments = myComments
 where ActionPlan_ID = myActionPlan_ID;
 end if;
 END ;;
@@ -6134,7 +6134,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Enterprise_Baseline_SP`(
 IN myEnterprise_Base_ID	int(11),
@@ -6263,7 +6263,7 @@ IN myDate_Request_Deactivated	date,
 IN myDate_Deactivated	date,
 IN myDeactivated_Reason	varchar(45),
 IN myIs_Active varchar(1),
-IN myGroup_Owned varchar(1), 
+IN myGroup_Owned varchar(1),
 IN myChallenge varchar(45),
 IN myME_Period varchar(7),
 IN myMonth_Started_HiH int(2),
@@ -6288,7 +6288,7 @@ set myEDF_ID =1;
 if myStatus = 'New' then
 
 set myStatus = 'Pending Approval';
-set myIs_Active = 'N'; 
+set myIs_Active = 'N';
 
 insert into enterprise (Enterprise_ID, Enterprise_Name,
 Year_Established,
@@ -6409,7 +6409,7 @@ Is_Active,
 Group_Owned,
 Challenge,
 Month_Started_HiH,
-Cocacola) 
+Cocacola)
 
 values (myEnterprise_ID,
 myEnterprise_Name,
@@ -6532,7 +6532,7 @@ myGroup_Owned,
 myChallenge,
 myMonth_Started_HiH,
 myCocacola);
-else 
+else
   if myIs_Active = 'N' then
      set myStatus = 'Pending Deactivation';
    end if;
@@ -6672,7 +6672,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Enterprise_Monthly_Visit_SP`(
 IN myEnterprisemonthly_Base_ID	int(11),
@@ -6743,11 +6743,11 @@ declare myEDF_ID integer;
 
 set mySuburb_Village_ID =1;
 -- set myProvince = 0;
-/*select EDF_ID  into myEDF_ID from EDF 
+/*select EDF_ID  into myEDF_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myEDF, ',', 1)) and Name = trim(SUBSTRING_INDEX(myEDF, ',', -1));
 */
 
-/*select Member_ID  into myMember_Rep_ID from Members 
+/*select Member_ID  into myMember_Rep_ID from Members
 where surname = trim(SUBSTRING_INDEX(myMember_Name, ',', 1)) and Name = trim(SUBSTRING_INDEX(myMember_Name, ',', -1));*/
 
 
@@ -6811,9 +6811,9 @@ Assets_Buildings,
 Assets_Water,
 Assets_Machines,
 Assets_Other,
-Assets_Specify) 
+Assets_Specify)
 
-values 
+values
 (myMonthlyEnterpriseVisit_ID,
 myEnterprise_ID,
 myVisit_Date,
@@ -6924,7 +6924,7 @@ GPS_Longitude = myGPS_Longitude,
 Phone = myPhone,
 Fax = myFax,
 Member_Rep_ID  = myMember_Rep_ID,
-Comments = myComments, 
+Comments = myComments,
 Status = myStatus,
 Approver_ID = myApprover_ID,
 Date_Created = myDate_Created,
@@ -6960,7 +6960,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Enterprise_Quarter_Visit_SP`(
 myQuarterEnterpriseVisit_ID	int(11),
@@ -7027,11 +7027,11 @@ declare mySuburb_Village_ID integer;
 set mySuburb_Village_ID =1;
 
 /*
-select EDF_ID  into myEDF_ID from EDF 
+select EDF_ID  into myEDF_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myEDF, ',', 1)) and Name = trim(SUBSTRING_INDEX(myEDF, ',', -1));
 */
 
-/*select Member_ID  into myMember_Rep_ID from Members 
+/*select Member_ID  into myMember_Rep_ID from Members
 where surname = trim(SUBSTRING_INDEX(myMember_Name, ',', 1)) and Name = trim(SUBSTRING_INDEX(myMember_Name, ',', -1));*/
 
 /*insert into test (mytest) values (myEnterprise_ID);*/
@@ -7215,12 +7215,12 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Members_Baseline`(IN myMember_ID int(11), IN myname varchar(20), IN mysurname varchar(20), IN myID varchar(20), 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Members_Baseline`(IN myMember_ID int(11), IN myname varchar(20), IN mysurname varchar(20), IN myID varchar(20),
 IN myrace varchar(20), IN mysex varchar(6), IN myBirthDate date, IN myNationality varchar(20), IN myMaritalStatus varchar(10), IN myLanguage varchar(15),
 IN myChildren int(2), IN myChildrenSchool int(2), IN myPeopleSupported int(2), IN myPeopleHousehold int(2), IN myEmployedHousehold int(2), IN myEducation varchar(60), IN myIncomeBefore varchar(20),
-IN myBank varchar(1), IN myChallenge varchar(100), IN myIsDisabled varchar(1), IN myProvince varchar(15), IN myDistrict varchar(20), IN myMunicipality varchar(20), IN myMainPlace varchar(20), 
+IN myBank varchar(1), IN myChallenge varchar(100), IN myIsDisabled varchar(1), IN myProvince varchar(15), IN myDistrict varchar(20), IN myMunicipality varchar(20), IN myMainPlace varchar(20),
 IN myWard varchar(20), IN myAddress1 varchar(20), IN myAddress2 varchar(20), IN mySuburbVillage varchar(20), IN myCity varchar(20), IN myPostalCode varchar(4), IN myPhone varchar(12), IN myGPS_Latitude varchar(20), IN myGPS_Longitude varchar(20),
 IN myIsActive varchar(1), IN myBelongSHG varchar(1), IN myDateJoinSHG date, IN myDateJoinHIH date, IN mySHG varchar(20), IN mySHG_ID int(10), IN myEnterprise varchar(20),
 IN mySupport_Grant varchar(3), IN mySupport_Pension varchar(3), IN mySupport_Family varchar(3), IN mySupport_Savings varchar(3),
@@ -7261,7 +7261,7 @@ set myDate_Updated = curdate();
 
 /*insert into test (myTest) values (myMember_ID);
 
-select EDF_ID  into myEDF_ID from EDF 
+select EDF_ID  into myEDF_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myEDF, ',', 1)) and Name = trim(SUBSTRING_INDEX(myEDF, ',', -1));
 */
 
@@ -7270,26 +7270,26 @@ begin
   if myIsActive = 'N' and myStatus != 'Draft' then
      set myStatus = 'Pending Deactivation';
    end if;
-update Members set Name = myname, Surname = mysurname, ID_Passport = myID, Race = myrace, Sex = mysex, Birth_Date = myBirthDate, 
-Income_Before_HiH = replace( replace(myIncomeBefore, ',', ''), '"', '' ), 
-Is_Active = myIsActive, SHG_ID = mySHG_ID, 
-Date_Join_SHG = myDateJoinSHG, Date_Join_HIH = myDateJoinHIH, Bank_Account = myBank, Province_ID = myProvince, District_Metro_ID = myDistrict, 
-Municipality_ID = myMunicipality, Main_Place_ID = myMainPlace, 
-Suburb_ID = mySuburb_ID, Phone_Number = myPhone, 
+update Members set Name = myname, Surname = mysurname, ID_Passport = myID, Race = myrace, Sex = mysex, Birth_Date = myBirthDate,
+Income_Before_HiH = replace( replace(myIncomeBefore, ',', ''), '"', '' ),
+Is_Active = myIsActive, SHG_ID = mySHG_ID,
+Date_Join_SHG = myDateJoinSHG, Date_Join_HIH = myDateJoinHIH, Bank_Account = myBank, Province_ID = myProvince, District_Metro_ID = myDistrict,
+Municipality_ID = myMunicipality, Main_Place_ID = myMainPlace,
+Suburb_ID = mySuburb_ID, Phone_Number = myPhone,
 Education_Level = myEducation, Marital_Status = myMaritalStatus, Is_Disabled = myIsDisabled, Nationality = myNationality, Language = myLanguage, Challenge = myChallenge,
-Ward = myWard, Address_Line1 = myAddress1, Address_Line2 = myAddress2, City = myCity, Postal_Code = myPostalCode, GPS_Latitude = myGPS_Latitude, GPS_Longitude = myGPS_Longitude, 
-Children = myChildren, Children_in_School = myChildrenSchool, People_Supported = myPeopleSupported, People_Employed_Household = myEmployedHousehold, People_in_Household = myPeopleHousehold,  
-Belong_SHG = myBelongSHG,  
-Support_Grant = mySupport_Grant, 
-Support_Pension = mySupport_Pension, 
-Support_Family = mySupport_Family, 
-Support_Savings = mySupport_Savings, 
-Support_Other = mySupport_Other, 
+Ward = myWard, Address_Line1 = myAddress1, Address_Line2 = myAddress2, City = myCity, Postal_Code = myPostalCode, GPS_Latitude = myGPS_Latitude, GPS_Longitude = myGPS_Longitude,
+Children = myChildren, Children_in_School = myChildrenSchool, People_Supported = myPeopleSupported, People_Employed_Household = myEmployedHousehold, People_in_Household = myPeopleHousehold,
+Belong_SHG = myBelongSHG,
+Support_Grant = mySupport_Grant,
+Support_Pension = mySupport_Pension,
+Support_Family = mySupport_Family,
+Support_Savings = mySupport_Savings,
+Support_Other = mySupport_Other,
 Support_Specify = mySupport_Specify ,
-Aware_EDF = myAware_EDF, 
-Aware_Social = myAware_Social, 
-Aware_Member = myAware_Member, 
-Aware_Other = myAware_Other, 
+Aware_EDF = myAware_EDF,
+Aware_Social = myAware_Social,
+Aware_Member = myAware_Member,
+Aware_Other = myAware_Other,
 Aware_Specify = myAware_Specify,
 EDF_ID = myEDF,
 Status = myStatus,
@@ -7305,26 +7305,26 @@ begin
 if myStatus = 'New' then
 
 set myStatus = 'Pending Approval';
-set myIsActive = 'Y'; 
+set myIsActive = 'Y';
 end if;
 
-insert into Members (Member_ID, Name, Surname, ID_Passport, Race, Sex, Birth_Date, Income_Before_HiH, Is_Active, SHG_ID, 
-Date_Join_SHG, Date_Join_HIH, Bank_Account, Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Suburb_ID, Phone_Number, 
+insert into Members (Member_ID, Name, Surname, ID_Passport, Race, Sex, Birth_Date, Income_Before_HiH, Is_Active, SHG_ID,
+Date_Join_SHG, Date_Join_HIH, Bank_Account, Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Suburb_ID, Phone_Number,
 Education_Level, Marital_Status, Is_Disabled, Nationality, Language, Challenge,
-Ward, Address_Line1, Address_Line2, City, Postal_Code, GPS_Latitude, GPS_Longitude, 
-Children, Children_in_School, People_Supported, People_Employed_Household, People_in_Household,  
+Ward, Address_Line1, Address_Line2, City, Postal_Code, GPS_Latitude, GPS_Longitude,
+Children, Children_in_School, People_Supported, People_Employed_Household, People_in_Household,
 Belong_SHG,
 Support_Grant, Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify,
 Aware_EDF, Aware_Social, Aware_Member, Aware_Other, Aware_Specify,
-EDF_ID, Status, Deactivated_Reason, Known_As, ID_or_Passport, Date_Created, Cocacola, Form_ID) 
+EDF_ID, Status, Deactivated_Reason, Known_As, ID_or_Passport, Date_Created, Cocacola, Form_ID)
 
-values(myMember_ID, myname, mysurname, myID, myrace, mysex, myBirthDate, 
-replace( replace(myIncomeBefore, ',', ''), '"', '' ), myIsActive, mySHG_ID, 
-myDateJoinSHG, myDateJoinHIH, myBank , myProvince, myDistrict, myMunicipality, myMainPlace, mySuburb_ID, myPhone, 
-myEducation, myMaritalStatus, myIsDisabled, myNationality, myLanguage, myChallenge, 
-myWard, myAddress1, myAddress2, myCity, myPostalCode, myGPS_Latitude, myGPS_Longitude, 
-myChildren, myChildrenSchool, myPeopleSupported, myEmployedHousehold , myPeopleHousehold, 
-myBelongSHG, 
+values(myMember_ID, myname, mysurname, myID, myrace, mysex, myBirthDate,
+replace( replace(myIncomeBefore, ',', ''), '"', '' ), myIsActive, mySHG_ID,
+myDateJoinSHG, myDateJoinHIH, myBank , myProvince, myDistrict, myMunicipality, myMainPlace, mySuburb_ID, myPhone,
+myEducation, myMaritalStatus, myIsDisabled, myNationality, myLanguage, myChallenge,
+myWard, myAddress1, myAddress2, myCity, myPostalCode, myGPS_Latitude, myGPS_Longitude,
+myChildren, myChildrenSchool, myPeopleSupported, myEmployedHousehold , myPeopleHousehold,
+myBelongSHG,
 mySupport_Grant, mySupport_Pension, mySupport_Family, mySupport_Savings, mySupport_Other, mySupport_Specify,
 myAware_EDF, myAware_Social, myAware_Member, myAware_Other, myAware_Specify,
 myEDF, myStatus, myDeactivated_Reason, myKnown_As, myID_or_Passport, myDate_Added, myCocacola, myForm_ID);
@@ -7340,13 +7340,13 @@ set myVisit_Period = month(curdate());
 /*
 insert into monthlymembervisit ( Member_ID, Date_of_Visit, Year, Month, People_Supported, People_Employed_Household,
 Children, Children_In_School, Comments, Marital_Status, People_Household, Challenge,
-Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Suburb_Village_ID, Phone, 
+Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Suburb_Village_ID, Phone,
 Ward, Address1, Address2, City, Postal_Code, GPS_Latitude, GPS_Longitude,
 Support_Grant, Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify,
-EDF_ID) 
-values  (myMember_ID, myVisit_Date, myVisit_Year, myVisit_Period, myPeopleSupported, myEmployedHousehold, 
+EDF_ID)
+values  (myMember_ID, myVisit_Date, myVisit_Year, myVisit_Period, myPeopleSupported, myEmployedHousehold,
 myChildren, myChildrenSchool, "Added from initial baseline update", myMaritalStatus, myPeopleHousehold, myChallenge,
-myProvince, myDistrict, myMunicipality, myMainPlace, mySuburb_ID, myPhone, 
+myProvince, myDistrict, myMunicipality, myMainPlace, mySuburb_ID, myPhone,
 myWard, myAddress1, myAddress2, myCity, myPostalCode, myGPS_Latitude, myGPS_Longitude,
 mySupport_Grant, mySupport_Pension, mySupport_Family, mySupport_Savings, mySupport_Other, mySupport_Specify,
 myEDF);
@@ -7356,13 +7356,13 @@ set myVisit_Period = quarter(curdate());
 
 insert into quartermembervisit (Member_ID,Date_of_Visit, Year, Quarter, People_Supported, People_Employed_Household,
 Children, Children_In_School, Comments, Marital_Status, People_Household, Challenge,
-Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Suburb_Village_ID, Phone, 
+Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Suburb_Village_ID, Phone,
 Ward, Address1, Address2, City, Postal_Code, GPS_Latitude, GPS_Longitude,
 Support_Grant, Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify,
-EDF_ID) 
-values  (myMember_ID, myVisit_Date, myVisit_Year, myVisit_Period, myPeopleSupported, myEmployedHousehold, 
+EDF_ID)
+values  (myMember_ID, myVisit_Date, myVisit_Year, myVisit_Period, myPeopleSupported, myEmployedHousehold,
 myChildren, myChildrenSchool, "Added from initial baseline update", myMaritalStatus, myPeopleHousehold, myChallenge,
-myProvince, myDistrict, myMunicipality, myMainPlace, mySuburb_ID, myPhone, 
+myProvince, myDistrict, myMunicipality, myMainPlace, mySuburb_ID, myPhone,
 myWard, myAddress1, myAddress2, myCity, myPostalCode, myGPS_Latitude, myGPS_Longitude,
 mySupport_Grant, mySupport_Pension, mySupport_Family, mySupport_Savings, mySupport_Other, mySupport_Specify,
 myEDF); */
@@ -7385,7 +7385,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Member_Quarter_Visit_SP`(
 myMember_ID	int(11),
@@ -7441,24 +7441,24 @@ set mySuburb_ID = 1;
 
 
 /*
-select EDF_ID  into myEDF_ID from EDF 
+select EDF_ID  into myEDF_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myEDF, ',', 1)) and Name = trim(SUBSTRING_INDEX(myEDF, ',', -1));
 */
 /*if myQuarterMemberVisitID = 0 then*/
 
 if myStatus = 'New' then
 
-insert into quartermembervisit 
+insert into quartermembervisit
 (QuarterMemberVisitID, Member_ID, Is_Active, Date_of_Visit, Year, Quarter, People_Supported, People_Employed_Household,
 Children, Children_In_School, Comments, Marital_Status, People_Household, Challenge,
 Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Ward, Address1,
 Address2, Suburb_Village_ID, City, Postal_Code, Phone, GPS_Latitude, GPS_Longitude, EDF_ID, Support_Grant,
-Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify) 
-values  
-(myQuarterMemberVisitID, myMember_ID, myIs_Active, myDate_of_Visit, myYear, myQuarter, myPeople_Supported, myPeople_Employed_Household, 
-myChildren, myChildren_in_School, myComments, myMarital_Status, myPeople_Household, myChallenge, 
-myProvince, myDistrict_Metro, myMunicipality, myMain_Place, myWard, myAddress1, 
-myAddress2, mySuburb_ID, myCity, myPostal_Code, myPhone, myGPS_Latitude, myGPS_Longitude, myEDF, mySupport_Grant, 
+Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify)
+values
+(myQuarterMemberVisitID, myMember_ID, myIs_Active, myDate_of_Visit, myYear, myQuarter, myPeople_Supported, myPeople_Employed_Household,
+myChildren, myChildren_in_School, myComments, myMarital_Status, myPeople_Household, myChallenge,
+myProvince, myDistrict_Metro, myMunicipality, myMain_Place, myWard, myAddress1,
+myAddress2, mySuburb_ID, myCity, myPostal_Code, myPhone, myGPS_Latitude, myGPS_Longitude, myEDF, mySupport_Grant,
 mySupport_Pension, mySupport_Family, mySupport_Savings, mySupport_Other, mySupport_Specify);
 
 else
@@ -7487,7 +7487,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Member_Training_SP`(
 myMemberTraining_ID	int(10),
@@ -7508,7 +7508,7 @@ declare myTrainer_ID int;
 -- set myTraining_ID = 1;
 -- set myTrainer_ID = 1;
 
-select EDF_ID  into myTrainer_ID from EDF 
+select EDF_ID  into myTrainer_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myTrainer_Name, ',', 1)) and Name = trim(SUBSTRING_INDEX(myTrainer_Name, ',', -1));
 
 select Training_ID into myTraining_ID from trainings where title = myTitle;
@@ -7523,7 +7523,7 @@ values
 else
 
 update membertraining set
-Status = myStatus, Date_Started = myDate_Started, Date_Completed = myDate_Completed, 
+Status = myStatus, Date_Started = myDate_Started, Date_Completed = myDate_Completed,
 Training_ID = myTraining_ID, Member_ID = myMember_ID, Trainer_ID = myTrainer_ID
 where MemberTraining_ID = myMemberTraining_ID;
 
@@ -7542,7 +7542,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Member_Visits_SP`(
 myMember_ID	int(11),
@@ -7590,24 +7590,24 @@ declare myEDF_ID int;
 
 set mySuburb_ID = 1;
 
-/*select EDF_ID  into myEDF_ID from EDF 
+/*select EDF_ID  into myEDF_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myEDF, ',', 1)) and Name = trim(SUBSTRING_INDEX(myEDF, ',', -1));
 */
 
 if myMonthlyMemberVisitID = 0 then
 
-insert into monthlymembervisit 
+insert into monthlymembervisit
 (Member_ID, Is_Active, Date_of_Visit, Year, Month, People_Supported, People_Employed_Household,
 Children, Children_In_School, Comments, Marital_Status, People_Household, Challenge,
 Province_ID, District_Metro_ID, Municipality_ID, Main_Place_ID, Ward, Address1,
 Address2, Suburb_Village_ID, City, Postal_Code, Phone, GPS_Latitude, GPS_Longitude, EDF_ID, Support_Grant,
-Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify) 
-values  
-(myMember_ID, myIs_Active, myDate_of_Visit, myYear, myMonth, myPeople_Supported, myPeople_Employed_Household, 
-myChildren, myChildren_in_School, myComments, myMarital_Status, myPeople_Household, myChallenge, 
-myProvince, myDistrict_Metro, myMunicipality, myMain_Place, myWard, myAddress1, 
-myAddress2, mySuburb_ID, myCity, myPostal_Code, myPhone, myGPS_Latitude, myGPS_Longitude, myEDF, mySupport_Grant, 
-mySupport_Pension, mySupport_Family, mySupport_Savings, mySupport_Other, mySupport_Specify); 
+Support_Pension, Support_Family, Support_Savings, Support_Other, Support_Specify)
+values
+(myMember_ID, myIs_Active, myDate_of_Visit, myYear, myMonth, myPeople_Supported, myPeople_Employed_Household,
+myChildren, myChildren_in_School, myComments, myMarital_Status, myPeople_Household, myChallenge,
+myProvince, myDistrict_Metro, myMunicipality, myMain_Place, myWard, myAddress1,
+myAddress2, mySuburb_ID, myCity, myPostal_Code, myPhone, myGPS_Latitude, myGPS_Longitude, myEDF, mySupport_Grant,
+mySupport_Pension, mySupport_Family, mySupport_Savings, mySupport_Other, mySupport_Specify);
 
 else
 
@@ -7635,20 +7635,20 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `persons_insert`(IN myname varchar(20), IN mysurname varchar(20), IN myID varchar(20), 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `persons_insert`(IN myname varchar(20), IN mysurname varchar(20), IN myID varchar(20),
 IN myrace varchar(20), IN mysex varchar(6), IN myyear varchar(4), IN myquarter
 varchar(1),
 IN myincome varchar(10), IN myeducation varchar(20), IN mychildren varchar(2))
 BEGIN
 declare mymemberid integer;
 
-insert into persons (FName, Surname, ID_Passport, Race, Sex) 
+insert into persons (FName, Surname, ID_Passport, Race, Sex)
 values(myname, mysurname, myID, myrace, mysex);
 
 select Members_ID into mymemberid from persons where
-FName = myname and surname = mysurname and ID_Passport = myID; 
+FName = myname and surname = mysurname and ID_Passport = myID;
 
 insert into quarterpersons (Members_ID, QYear, QQuarter, QIncome, QEducation, QChildren)
 values(mymemberid, myyear, myquarter, myincome, myeducation, mychildren);
@@ -7666,7 +7666,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `shg_baseline_sp`(
 IN mySHG_ID	int(10),
@@ -7735,7 +7735,7 @@ set mySuburb_ID = 1;
 
 set myDate_Added = curdate();
 /*
-select EDF_ID  into myEDF_ID from EDF 
+select EDF_ID  into myEDF_ID from EDF
 where surname = trim(SUBSTRING_INDEX(myEDF, ',', 1)) and Name = trim(SUBSTRING_INDEX(myEDF, ',', -1));
 
 
@@ -7745,14 +7745,14 @@ insert into test (myTest) values (mySHG_ID);
 if myStatus = 'New' then
 
 set myStatus = 'Pending Approval';
-set myIs_Active = 'N'; 
+set myIs_Active = 'N';
 
-insert into SHG 
+insert into SHG
 (SHG_ID, Name,Programme,GPS_Latitude, GPS_Longitude,Date_Added,EDF_ID,Year_Established,Year_Started_HiH,Money_source,Internal_Lend,
 Repay_Period,Savings,No_of_Loans,Amount_of_Loans,Interest,SHG_Phase,Rotate_Leader,How_Often_Meet,
 Conflict,Keep_Records,Currently_Save,Receive_Salary,HiH_Training,Province_ID,District_Metro_ID,
 Municipality_ID,Main_Place_ID,Ward,Address1,Address2,Village_Suburb_ID,City,Postal_Code,Phone,Fax, Status, Deactivated_Reason, Is_Active, ME_Period, Hours_Per_Month,
-Main_Contact, Comments, Month_Started_HiH) 
+Main_Contact, Comments, Month_Started_HiH)
 values
 (mySHG_ID, myName,myProgramme,myGPS_Latitude, myGPS_Longitude,myDate_Added,myEDF,myYear_Established,myYear_Started_HiH,myMoney_source,myInternal_Lend,
 myRepay_Period,
@@ -7767,7 +7767,7 @@ myME_Period, myHours_Per_Month,
 myMain_Contact, myComments, myMonth_Started_HiH);
 
 /*
-insert into SHG Monthly visit for the initial one 
+insert into SHG Monthly visit for the initial one
 
 select SHG_ID into mySHG_ID from SHG where name = myName and Programme = myProgramme and Date_Added = myDate_Added;
 
@@ -7781,9 +7781,9 @@ Comments, Money_source, Internal_Lend, Repay_Period, SHG_Phase, Rotate_Leader, H
 Keep_Records, Currently_Save, Receive_Salary, HiH_Training, Province_ID, District_Metro_ID, Municipality_ID,
 Main_Place_ID, Ward, Address1, Address2, Village_Suburb_ID, City, Postal_Code, Phone, Fax, GPS_Latitude, GPS_Longitude)
 values(
-mySHG_ID, myEDF, myVisit_Date, myYear, myMonth, 
+mySHG_ID, myEDF, myVisit_Date, myYear, myMonth,
 replace( replace(mySavings, ',', ''), '"', '' ),
-myNo_Of_Loans, 
+myNo_Of_Loans,
 replace( replace(myAmount_of_Loans, ',', ''), '"', '' ),
 replace( replace(myInterest, ',', ''), '"', '' ),
 'Added from initial baseline update', myMoney_source, myInternal_Lend, myRepay_Period, mySHG_Phase, myRotate_Leader, myHow_Often_Meet, myConflict,
@@ -7794,7 +7794,7 @@ else
   if myIs_Active = 'N' then
      set myStatus = 'Pending Deactivation';
    end if;
-update SHG set 
+update SHG set
 Name = myName,
 Programme = myProgramme,
 GPS_Latitude = myGPS_Latitude,
@@ -7833,7 +7833,7 @@ Fax = myFax,
 Status = myStatus,
 Deactivated_Reason = myDeactivated_Reason,
 Is_Active = myIs_Active,
-ME_Period = myME_Period, 
+ME_Period = myME_Period,
 Hours_Per_Month = myHours_Per_Month,
 Main_Contact = myMain_Contact,
 Comments = myComments,
@@ -7855,7 +7855,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SHG_Monthly_Visit_SP`(
 IN myMonthlySHGVisit_ID	int(10),
