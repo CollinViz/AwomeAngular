@@ -1,7 +1,7 @@
-import { Component, OnInit,EventEmitter, Output, Input,TemplateRef  } from '@angular/core';
-import { Router } from '@angular/router';  
+import { Component, OnInit, EventEmitter, Output, Input, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'; 
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { EwepserverService } from '../../ewepserver.service'
 import { Options } from '../../service/question'
 
@@ -22,23 +22,24 @@ export class UserPageComponent implements OnInit {
     { name: 'Programme', prop: 'Programme_Name' },
     { name: 'Reports To Name', prop: 'Reports_To_Name' },
     { name: 'Reports To Surname', prop: 'Reports_To_Surname' },
-    { name: 'Active', prop: 'Active' } ];
+    { name: 'Active', prop: 'Active' }];
   rows: any[] = [];
-  selected:any[] = [];
-  SelectedRowData:any;
-  Province:any[];
-  Countrylist:any[];
-  Titles:any[];
-  Programme:any[];
-  Theme:Options[];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  showEdit:boolean = false;
+  selected: any[] = [];
+  SelectedRowData: any;
+  Province: any[];
+  Countrylist: any[];
+  Titles: any[];
+  Programme: any[];
+  Theme: Options[];
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 }
+  showEdit: boolean = false;
 
-  constructor(private modalService: BsModalService,private router: Router, private EwepserverService: EwepserverService) {
-    
+  constructor(private modalService: BsModalService, private router: Router, private EwepserverService: EwepserverService) {
+
   }
   getUsers() {
-    this.EwepserverService.getViewData("edf_view", "orderby=Name&page=" + this.page.pageNumber).subscribe((customers: any) => {
+    this.EwepserverService.getViewData("edf_view", "orderby=Name&page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size)
+          .subscribe((customers: any) => {
 
       this.rows = customers.records;
       this.page.totalElements = customers.results;
@@ -46,26 +47,27 @@ export class UserPageComponent implements OnInit {
     });
     this.showEdit = false;
   }
-  getLookupData(){
+  getLookupData() {
     this.Province = this.EwepserverService.province;
     this.Countrylist = this.EwepserverService.CountryListStatic;
-    this.Theme = this.EwepserverService.TheamList; 
-    this.EwepserverService.getTableData("titles","").subscribe((TitleDb)=>{
+    this.Theme = this.EwepserverService.TheamList;
+    this.EwepserverService.getTableData("titles", "").subscribe((TitleDb) => {
       this.Titles = TitleDb.records;
-      this.EwepserverService.getTableData("programme","filter=Active,eq,1").subscribe((programdb:any)=>{
+      this.EwepserverService.getTableData("programme", "filter=Active,eq,1").subscribe((programdb: any) => {
         this.Programme = programdb.records;
-      }); });
+      });
+    });
   }
   setPage(event) {
     console.log('setPage', event);
     this.page.pageNumber = event.offset;
     this.getUsers();
   }
-  onActivate(event,template: TemplateRef<any>) {
+  onActivate(event, template: TemplateRef<any>) {
     if (event.type === "click") {
       console.log('Activate Event', this.selected[0].Programme_ID);
-      this.SelectedRowData = Object.assign({}, this.selected[0]);; 
-      this.showEdit= true;
+      this.SelectedRowData = Object.assign({}, this.selected[0]);;
+      this.showEdit = true;
     }
 
   }
@@ -74,30 +76,30 @@ export class UserPageComponent implements OnInit {
     this.getLookupData();
   }
 
-  
-  Save(){
+
+  Save() {
     //this.selected[0] = Object.assign({},this.SelectedRowData);++
-    console.log("Save Data with",this.SelectedRowData.Active);
+    console.log("Save Data with", this.SelectedRowData.Active);
     //this.SelectedRowData.Active = this.SelectedRowData.Active===true?"Y":"N";
-    if(this.SelectedRowData.EDF_ID===0){
-      this.EwepserverService.CreateTableData(this.BaseTable,this.SelectedRowData).subscribe((data:string)=> {
-         
+    if (this.SelectedRowData.EDF_ID === 0) {
+      this.EwepserverService.CreateTableData(this.BaseTable, this.SelectedRowData).subscribe((data: string) => {
+
         this.getUsers();
-        
-        
+
+
       })
-    }else{
-      this.EwepserverService.updateTableData(this.BaseTable,this.SelectedRowData.EDF_ID,this.SelectedRowData).subscribe((data:any)=> {
+    } else {
+      this.EwepserverService.updateTableData(this.BaseTable, this.SelectedRowData.EDF_ID, this.SelectedRowData).subscribe((data: any) => {
         this.getUsers();
       })
     }
-    
+
     this.showEdit = false;
 
   }
-  Add(template: TemplateRef<any>){
+  Add(template: TemplateRef<any>) {
     this.showEdit = true;
-    this.SelectedRowData = {EDF_ID:0,Name:"",Surname:"",Active:"Y",Approver_Y_N:"Y"}; 
+    this.SelectedRowData = { EDF_ID: 0, Name: "", Surname: "", Active: "Y", Approver_Y_N: "Y" };
     //this.modalRef = this.modalService.show(template);
 
   }

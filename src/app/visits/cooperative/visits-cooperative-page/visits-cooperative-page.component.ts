@@ -23,8 +23,8 @@ export class VisitsCooperativePageComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  SearchFilter: string = "";
 
   constructor(private router: Router, private EwepserverService: EwepserverService) {
     this.getPageofCooperative();
@@ -33,15 +33,16 @@ export class VisitsCooperativePageComponent implements OnInit {
   ngOnInit() {
   }
   getPageofCooperative() {
-    
-    this.EwepserverService.getCooperativeList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
-       
+
+    this.EwepserverService.getCooperativeList(Number(this.page.pageNumber) + 1, this.SearchFilter)
+         .subscribe((customers: any) => {
+
       this.rows = [...customers.records];
       this.page.totalElements = customers.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
     });
   }
-  
+
   setPage(event) {
     console.log('setPage', event);
     this.page.pageNumber = event.offset;
@@ -58,11 +59,11 @@ export class VisitsCooperativePageComponent implements OnInit {
     }
 
   }
-  searchClick(SearchString){
-    this.SearchFilter= SearchString;
-    this.page.totalElements=0;
-    this.page.totalPages=0;
-    this.page.pageNumber=0;
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
     this.getPageofCooperative();
   }
 

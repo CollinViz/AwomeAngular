@@ -15,7 +15,7 @@ export class VisitsEnterprisePageComponent implements OnInit {
     { name: 'Enterprise ID', prop: 'Enterprise_ID' },
     { name: 'Enterprise Name', prop: 'Enterprise_Name' },
     { name: 'Year Est', prop: 'Year_Established' },
-   // { name: 'Structure', prop: 'Legal_Structure' },
+    // { name: 'Structure', prop: 'Legal_Structure' },
     { name: 'Female Owners', prop: 'Female_Owners' },
     //{ name: 'Province', prop: 'Province' },
     //{ name: 'EDF', prop: 'EDF' },
@@ -23,8 +23,8 @@ export class VisitsEnterprisePageComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  SearchFilter: string = "";
 
   constructor(private router: Router, private EwepserverService: EwepserverService) {
     this.getPageofEnterprise();
@@ -33,15 +33,15 @@ export class VisitsEnterprisePageComponent implements OnInit {
   ngOnInit() {
   }
   getPageofEnterprise() {
-    
-    this.EwepserverService.getEnterprisList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
-       
+
+    this.EwepserverService.getEnterprisList(Number(this.page.pageNumber) + 1, this.SearchFilter).subscribe((customers: any) => {
+
       this.rows = [...customers.records];
       this.page.totalElements = customers.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
     });
   }
-  
+
   setPage(event) {
     console.log('setPage', event);
     this.page.pageNumber = event.offset;
@@ -58,11 +58,11 @@ export class VisitsEnterprisePageComponent implements OnInit {
     }
 
   }
-  searchClick(SearchString){
-    this.SearchFilter= SearchString;
-    this.page.totalElements=0;
-    this.page.totalPages=0;
-    this.page.pageNumber=0;
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
     this.getPageofEnterprise();
   }
 

@@ -21,7 +21,7 @@ export class EditVisitsEnterpriseEnterpriseComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 }
   SearchFilter:string = "";
 
   enterprise:any={};
@@ -60,7 +60,7 @@ export class EditVisitsEnterpriseEnterpriseComponent implements OnInit {
     this.getVisitorList();
   }
   getVisitorList(){
-    let strOptions="filter=Enterprise_ID,eq,"+this.Enterprise_ID+ "&page=" +this.page.pageNumber;
+    let strOptions="filter=Enterprise_ID,eq,"+this.Enterprise_ID+ "&page=" + ( Number(this.page.pageNumber) + 1) + "," + this.page.size ;
     //this.EwepserverService.getTableData("enterprise_visits_view",strOptions).subscribe(VisitListData=>{
     this.EwepserverService.getViewData("enterprise_visits_view",strOptions).subscribe(VisitListData=>{
       this.rows = [...VisitListData.records];
