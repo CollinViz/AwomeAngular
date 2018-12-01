@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   showError:boolean=false;
   ErrorMessage:string="";
   ShowAllMenu:boolean = false;
+  hideAssociation:boolean = true;
   constructor( private router: Router,
                 private ewepserverService: EwepserverService,
                 private interceptor: ProgressInterceptor) { 
@@ -91,7 +92,12 @@ export class HeaderComponent implements OnInit {
     });
     this.LoginData$.subscribe((User:LogInData)=>{
       console.log("this.LoginData$",User);
-      if(User.LoginOK){         
+      if(User.LoginOK){  
+        if(User.Country_ID==3){
+          this.hideAssociation =false;
+        }else{
+          this.hideAssociation =true;
+        }       
         this.ShowAllMenu = true;
         this.currentCountryID = User.Country_ID;
         this.currentCountry = User.Country_Name;
@@ -102,6 +108,9 @@ export class HeaderComponent implements OnInit {
   changeCountry(newCountry,Index){
     this.currentCountry = newCountry.Country_Name;
     this.currentCountryID = newCountry.Country_ID;
-    this.ewepserverService.setCountryInfo(this.currentCountryID,this.currentCountry);
+    this.ewepserverService.setCountryInfo(this.currentCountryID,this.currentCountry,newCountry.Currency);
+    if(!this.isHome){
+      this.router.navigateByUrl('/loginok/');
+    }
   }
 }

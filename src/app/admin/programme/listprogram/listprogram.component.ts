@@ -1,5 +1,5 @@
-import { Component, OnInit,EventEmitter, Output, Input } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { EwepserverService } from '../../../ewepserver.service'
 
 @Component({
@@ -15,15 +15,17 @@ export class ListprogramComponent implements OnInit {
     { name: 'Active', prop: 'Active' }
   ];
   @Input() rows: any[] = [];
-  @Output() selected:any[] = [];
+  @Output() selected: any[] = [];
   @Output() SelectClick = new EventEmitter<number>();
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
 
   constructor(private router: Router, private EwepserverService: EwepserverService) {
-    
+
   }
   getPrograms() {
-    this.EwepserverService.getTableData(this.BaseTable, "orderby=Programme_Name&page=" + this.page.pageNumber).subscribe((customers: any) => {
+    this.EwepserverService.getTableData(this.BaseTable, 
+      "orderby=Programme_Name&page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size)
+        .subscribe((customers: any) => {
 
       this.rows = [...customers.records];
       this.page.totalElements = customers.results;

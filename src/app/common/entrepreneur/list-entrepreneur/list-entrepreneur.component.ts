@@ -27,7 +27,7 @@ export class ListEntrepreneurComponent implements OnInit {
   }
 
   getPageOfEntrepreneurs() {
-    let strOptions = "page=" + this.page.pageNumber + ","+ this.page.size + "&orderby=surname&" + this.SearchFilter;
+    let strOptions = "page=" + this.page.pageNumber + ","+ this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
     this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
       this.rows = [...myjsondata.records];
       this.page.totalElements = myjsondata.results;

@@ -14,7 +14,7 @@ export class AgeGroupComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.intChart();
+    this.getAgeByGroup();
   }
   getAgeByGroup() {
     this.Ewep.getAgeByGroup(this.SelectedProvince).subscribe(report => {

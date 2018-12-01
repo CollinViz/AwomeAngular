@@ -71,7 +71,7 @@ export class EditBaselineAssociationAssociationComponent implements OnInit,OnCha
     /*association["Expiration_Date"] = this.cutomerFormHlper.getDateValue(this.General.get('Expiration_Date').value);
     association["Birth_Date"] = this.cutomerFormHlper.getDateValue(this.General.get("Birth_Date").value);*/
     association["Date_Established"] = this.cutomerFormHlper.getDateValue(this.Details.get("Date_Established").value);
- 
+    association["Country_ID"] = this.EwepserverService.SelectedCountryID;
     if(this.association.Association_ID){
       association["Association_ID"] =this.association.Association_ID;
     }else{

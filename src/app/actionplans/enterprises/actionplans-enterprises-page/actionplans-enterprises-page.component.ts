@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { EwepserverService } from '../../../ewepserver.service'
 import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
 @Component({
@@ -20,20 +20,21 @@ export class ActionplansEnterprisesPageComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  SearchFilter: string = "";
 
-  constructor(private router: Router, 
-              private EwepserverService: EwepserverService ) { 
+  constructor(private router: Router,
+    private EwepserverService: EwepserverService) {
     this.getPageofEnterprise();
   }
 
   ngOnInit() {
   }
   getPageofEnterprise() {
-    let strOptions="page="+this.page.pageNumber+"&orderby=enterprise_name" + (this.SearchFilter===""?"":"&"+this.SearchFilter);
+    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size + 
+                     "&orderby=enterprise_name" + (this.SearchFilter === "" ? "" : "&" + this.SearchFilter);
     //this.EwepserverService.getEnterprisList(this.page.pageNumber,this.SearchFilter).subscribe((customers: any) => {
-      this.EwepserverService.getViewData("enterprise_actionplans_count_view", strOptions).subscribe((myjsondata_ent: any) => {   
+    this.EwepserverService.getViewData("enterprise_actionplans_count_view", strOptions).subscribe((myjsondata_ent: any) => {
       this.rows = [...myjsondata_ent.records];
       this.page.totalElements = myjsondata_ent.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
@@ -51,11 +52,11 @@ export class ActionplansEnterprisesPageComponent implements OnInit {
     }
 
   }
-  searchClick(SearchString){
-    this.SearchFilter= SearchString;
-    this.page.totalElements=0;
-    this.page.totalPages=0;
-    this.page.pageNumber=0;
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
     this.getPageofEnterprise();
   }
 }

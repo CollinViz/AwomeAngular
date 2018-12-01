@@ -156,6 +156,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
   Save() {
     //console.log("When_Training",this.Finance.get('When_Training').value);
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
+    this.FlatMe["Country_ID"] = this.EwepserverService.SelectedCountryID;
     //Fix Date from the Material Control
     //this.FlatMe.When_Training = this.cutomerFormHlper.getDateValue(this.Finance.get('When_Training').value);
     if (this.cooperative.Cooperative_ID === -1) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { EwepserverService } from '../../../ewepserver.service'
 
 
@@ -10,18 +10,18 @@ import { EwepserverService } from '../../../ewepserver.service'
 export class TrainingEntrepreneursPageComponent implements OnInit {
   columns = [
     { name: 'ID', prop: 'Entrepreneur_ID' },
-    { name: 'Name', prop: 'Name' }, 
-    { name: 'Surname', prop: 'Surname' }, 
-    { name: 'Province', prop: 'Province' } 
+    { name: 'Name', prop: 'Name' },
+    { name: 'Surname', prop: 'Surname' },
+    { name: 'Province', prop: 'Province' }
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
-  IsEditing:boolean = false;
-  EntrepreneurEditItem:any = {};
-  TrainingList:any[] = [];
-  ActiveEDFs:any[] = []
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  SearchFilter: string = "";
+  IsEditing: boolean = false;
+  EntrepreneurEditItem: any = {};
+  TrainingList: any[] = [];
+  ActiveEDFs: any[] = []
   constructor(private EwepserverService: EwepserverService) { }
 
   ngOnInit() {
@@ -30,53 +30,53 @@ export class TrainingEntrepreneursPageComponent implements OnInit {
     this.getTrainersList();
   }
   getPageOfEntrepreneurs() {
-    let strOptions="page="+this.page.pageNumber+"&orderby=surname&"+ this.SearchFilter;
+    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
     this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
-     this.rows = [...myjsondata.records];
-     this.page.totalElements = myjsondata.results;
-     this.page.totalPages = this.page.totalElements / this.page.size;
+      this.rows = [...myjsondata.records];
+      this.page.totalElements = myjsondata.results;
+      this.page.totalPages = this.page.totalElements / this.page.size;
     });
-  } 
-  getTrainingList(){
-    this.EwepserverService.getTableData("trainings","orderby=Title").subscribe(jsonData=>{
+  }
+  getTrainingList() {
+    this.EwepserverService.getTableData("trainings", "orderby=Title").subscribe(jsonData => {
       this.TrainingList = jsonData.records;
     });
   }
-  getTrainersList(){
-    this.EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
+  getTrainersList() {
+    this.EwepserverService.getActiveEDF().subscribe((efflist: any) => {
       this.ActiveEDFs = efflist.records;
     });
   }
- setPage(event) {
-   console.log('setPage', event);
-   this.page.pageNumber = event.offset;
-   this.getPageOfEntrepreneurs();
- }
- onSelect({ selected }) {
-   //console.log('Select Event', selected, this.selected);
- }
+  setPage(event) {
+    console.log('setPage', event);
+    this.page.pageNumber = event.offset;
+    this.getPageOfEntrepreneurs();
+  }
+  onSelect({ selected }) {
+    //console.log('Select Event', selected, this.selected);
+  }
 
- onActivate(event) {
-   if (event.type === "click") {
-     console.log('Activate Event', event, this.selected[0].Entrepreneur_ID);
-     //this.router.navigateByUrl('/enterprise/' + this.selected[0].Enterprise_ID);
-     this.IsEditing = true;
-     this.EntrepreneurEditItem = this.selected[0];
-   }
+  onActivate(event) {
+    if (event.type === "click") {
+      console.log('Activate Event', event, this.selected[0].Entrepreneur_ID);
+      //this.router.navigateByUrl('/enterprise/' + this.selected[0].Enterprise_ID);
+      this.IsEditing = true;
+      this.EntrepreneurEditItem = this.selected[0];
+    }
 
- }
- searchClick(SearchString){
-   this.SearchFilter= SearchString;
-   this.page.totalElements=0;
-   this.page.totalPages=0;
-   this.page.pageNumber=0;
-   this.getPageOfEntrepreneurs();
- }
- NewClick(){
-   this.IsEditing = true;
-   this.EntrepreneurEditItem = {Entrepreneur_ID:-1};
- }
- onReload(){
-  this.IsEditing = false;
- }
+  }
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
+    this.getPageOfEntrepreneurs();
+  }
+  NewClick() {
+    this.IsEditing = true;
+    this.EntrepreneurEditItem = { Entrepreneur_ID: -1 };
+  }
+  onReload() {
+    this.IsEditing = false;
+  }
 }

@@ -12,23 +12,24 @@ export class ActionplansAssociationPageComponent implements OnInit {
   columns = [
     { name: 'ID', prop: 'Association_ID' },
     { name: 'Name', prop: 'Association_Name' },
-    { name: 'Year Est', prop: 'Year_Established' }, 
-    { name: 'Female Members', prop: 'Female_Members' } 
+    { name: 'Year Est', prop: 'Year_Established' },
+    { name: 'Female Members', prop: 'Female_Members' }
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  SearchFilter: string = "";
 
   constructor(private router: Router, private EwepserverService: EwepserverService) {
     this.getPageofCooperative();
   }
 
   getPageofCooperative() {
-    
-    let strOptions="page="+this.page.pageNumber+"&orderby=Association_Name";
-     //this.EwepserverService.getViewData("association", strOptions).subscribe((myjsondata_coop: any) => {
-     this.EwepserverService.getTableData("association", strOptions).subscribe((myjsondata_coop: any) => {
+
+    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size + 
+                     "&orderby=Association_Name";
+    //this.EwepserverService.getViewData("association", strOptions).subscribe((myjsondata_coop: any) => {
+    this.EwepserverService.getTableData("association", strOptions).subscribe((myjsondata_coop: any) => {
       this.rows = [...myjsondata_coop.records];
       this.page.totalElements = myjsondata_coop.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
@@ -56,11 +57,11 @@ export class ActionplansAssociationPageComponent implements OnInit {
     }
 
   }
-  searchClick(SearchString){
-    this.SearchFilter= SearchString;
-    this.page.totalElements=0;
-    this.page.totalPages=0;
-    this.page.pageNumber=0;
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
     this.getPageofCooperative();
   }
 }

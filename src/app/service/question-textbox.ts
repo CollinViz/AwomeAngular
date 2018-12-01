@@ -28,11 +28,11 @@ export class NumbersQuestion extends QuestionBase<string> {
   constructor(options: {} = {} ) { 
     super(options);
     //if(options['required']|| false){
-      this.value = options['value']|| '0';
+      this.value = options['value']|| '';
       if(this.value===''){
-        this.value='0';
+        this.value='';
       } 
-      this.defaultValue=0;
+      this.defaultValue='0';
     //}
     
     this.type = options['type'] || ''; 
@@ -40,7 +40,7 @@ export class NumbersQuestion extends QuestionBase<string> {
     //this.currencySymbol = options['symbol'] || 'R';
     if(this.currency===true){
       this.controlType = "currency";
-      this.defaultValue=0.00;
+      this.defaultValue='0.00';
     }
   }
 }

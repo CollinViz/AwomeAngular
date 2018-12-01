@@ -21,7 +21,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 };
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
   SearchFilter = "";
   // tslint:disable-next-line:no-inferrable-types
   IsEditing: boolean = false;
@@ -29,7 +29,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private EwepserverService: EwepserverService) { }
 
   getPageOfEntrepreneurs() {
-    let strOptions = "page=" + this.page.pageNumber + "&orderby=surname&" + this.SearchFilter;
+    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
     this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
       this.rows = [...myjsondata.records];
       this.page.totalElements = myjsondata.results;

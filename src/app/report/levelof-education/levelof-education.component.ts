@@ -15,28 +15,25 @@ export class LevelofEducationComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.intChart();
+    this.education_level_view();
   }
-  getAgeByGroup() {
-    this.Ewep.getAgeByGroup(this.SelectedProvince).subscribe(report => {
-      this.intChart();
-      report.DataSeries.forEach(element => {
-        this.chart.addSerie(element);
-      });
+  education_level_view() {
+    this.Ewep.education_level_view(this.SelectedProvince).subscribe(report => {
+      this.intChart(report); 
     });
   }
-  intChart() {
+  intChart(report:any) {
     this.chart = new Chart({
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Enterprise age group'
+        text: 'Level of Education'
       },
       xAxis: {
-        categories: ["< 20 Years", "20-29 Years", "30-39 Years", "40-49 Years", "50-59 Years", "60-69 Years", "> 69 Years"]
+        categories: report.NameXrow
       },
-      series: [],
+      series: report.DataSeries,
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -47,7 +44,7 @@ export class LevelofEducationComponent implements OnInit {
   }
   SearchClick(Province: string) {
     this.SelectedProvince = Province;
-    this.getAgeByGroup();
+    this.education_level_view();
   }
 
 }

@@ -15,28 +15,28 @@ export class CreatingmorejobsComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.intChart();
+    this.income_expense_view();
   }
-  getAgeByGroup() {
-    this.Ewep.getAgeByGroup(this.SelectedProvince).subscribe(report => {
-      this.intChart();
+  income_expense_view() {
+    this.Ewep.getincome_expense_view(this.SelectedProvince).subscribe(report => {
+      this.intChart(report);
       report.DataSeries.forEach(element => {
         this.chart.addSerie(element);
       });
     });
   }
-  intChart() {
+  intChart(report) {
     this.chart = new Chart({
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Enterprise age group'
+        text: 'Income Expense'
       },
       xAxis: {
-        categories: ["< 20 Years", "20-29 Years", "30-39 Years", "40-49 Years", "50-59 Years", "60-69 Years", "> 69 Years"]
+        categories: report.NameXrow
       },
-      series: [],
+      series: report.DataSeries,
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -47,7 +47,7 @@ export class CreatingmorejobsComponent implements OnInit {
   }
   SearchClick(Province: string) {
     this.SelectedProvince = Province;
-    this.getAgeByGroup();
+    this.income_expense_view();
   }
 
 }

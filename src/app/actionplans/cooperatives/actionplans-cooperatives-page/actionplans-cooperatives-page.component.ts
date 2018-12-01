@@ -9,7 +9,7 @@ import { EwepserverService } from '../../../ewepserver.service'
 })
 export class ActionplansCooperativesPageComponent implements OnInit {
 
-  
+
   columns = [
     { name: 'ID', prop: 'Cooperative_ID' },
     { name: 'Name', prop: 'Cooperative_Name' },
@@ -22,18 +22,19 @@ export class ActionplansCooperativesPageComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 1 }
-  SearchFilter:string = "";
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  SearchFilter: string = "";
 
   constructor(private router: Router, private EwepserverService: EwepserverService) {
     this.getPageofCooperative();
   }
 
   getPageofCooperative() {
-    
-    let strOptions="page="+this.page.pageNumber+"&orderby=cooperative_name" + (this.SearchFilter===""?"":"&"+this.SearchFilter);
-     //this.EwepserverService.getViewData("cooperative_base_view", strOptions).subscribe((myjsondata_coop: any) => {
-      this.EwepserverService.getViewData("cooperative_actionplans_count_view", strOptions).subscribe((myjsondata_coop: any) => {
+
+    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size + 
+                     "&orderby=cooperative_name" + (this.SearchFilter === "" ? "" : "&" + this.SearchFilter);
+    //this.EwepserverService.getViewData("cooperative_base_view", strOptions).subscribe((myjsondata_coop: any) => {
+    this.EwepserverService.getViewData("cooperative_actionplans_count_view", strOptions).subscribe((myjsondata_coop: any) => {
       this.rows = [...myjsondata_coop.records];
       this.page.totalElements = myjsondata_coop.results;
       this.page.totalPages = this.page.totalElements / this.page.size;
@@ -61,11 +62,11 @@ export class ActionplansCooperativesPageComponent implements OnInit {
     }
 
   }
-  searchClick(SearchString){
-    this.SearchFilter= SearchString;
-    this.page.totalElements=0;
-    this.page.totalPages=0;
-    this.page.pageNumber=0;
+  searchClick(SearchString) {
+    this.SearchFilter = SearchString;
+    this.page.totalElements = 0;
+    this.page.totalPages = 0;
+    this.page.pageNumber = 0;
     this.getPageofCooperative();
   }
 

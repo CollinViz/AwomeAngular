@@ -39,6 +39,19 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
 
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
+  //Grid for connections
+  columnsEnterprise = [
+    { name: 'ID', prop: 'Enterprise_ID' },
+    { name: 'Name', prop: 'Enterprise_Name' } 
+  ];
+  rowsEnterprise: any[] = [];
+  selected = [];
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  columnsCooperative = [
+    { name: 'ID', prop: 'Cooperative_ID' },
+    { name: 'Name', prop: 'Cooperative_Name' } 
+  ];
+  rowsCooperative: any[] = []; 
 
   constructor(private EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
@@ -58,6 +71,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
       //Fix ID
       
       this.MainForm.patchValue(this.entrepreneur);
+      this.loadLinks();
     }
   }
   ngOnInit() {
@@ -84,6 +98,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
 
       this.ID_Passport_text = this.entrepreneur.ID_or_Passport;
     this.isLoading =false;
+    this.loadLinks();
   }
   Save(){
     let entrepreneur = this.cutomerFormHlper.flattenObject(this.MainForm.value);
@@ -91,6 +106,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     entrepreneur["Expiration_Date"] = this.cutomerFormHlper.getDateValue(this.General.get('Expiration_Date').value);
     entrepreneur["Birth_Date"] = this.cutomerFormHlper.getDateValue(this.General.get("Birth_Date").value);
     entrepreneur["Date_Join_Awome"] = this.cutomerFormHlper.getDateValue(this.General.get("Date_Join_Awome").value);
+    entrepreneur["Country_ID"] = this.EwepserverService.SelectedCountryID;
  
     if(this.entrepreneur.Entrepreneur_ID){
       entrepreneur["Entrepreneur_ID"] =this.entrepreneur.Entrepreneur_ID;
@@ -103,7 +119,15 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   Back(){
     this.SaveItem.emit(null);
   }
-
+  loadLinks(){
+    //enterprise_member_view
+    this.EwepserverService.getViewData("enterprise_member_view","filter=Entrepreneur_ID,eq,"+this.entrepreneur.Entrepreneur_ID).subscribe((rowdata: any)=>{
+      this.rowsEnterprise = [...rowdata.records];
+    });
+    this.EwepserverService.getViewData("cooperative_member_view","filter=Entrepreneur_ID,eq,"+this.entrepreneur.Entrepreneur_ID).subscribe((rowdata: any)=>{
+      this.rowsCooperative = [...rowdata.records];
+    });
+  }
   contaceDetailChange(event, Index) {
     console.log(event, Index);
     let d = <DropdownQuestion>this.ContactInfoWithBinding[Index];

@@ -15,28 +15,25 @@ export class MostPopularTrainingComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.intChart();
+    this.popular_training_view();
   }
-  getAgeByGroup() {
-    this.Ewep.getAgeByGroup(this.SelectedProvince).subscribe(report => {
-      this.intChart();
-      report.DataSeries.forEach(element => {
-        this.chart.addSerie(element);
-      });
+  popular_training_view() {
+    this.Ewep.popular_training_view(this.SelectedProvince).subscribe(report => {
+      this.intChart(report); 
     });
   }
-  intChart() {
+  intChart(report) {
     this.chart = new Chart({
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Enterprise age group'
+        text: 'Most PopularTraining'
       },
       xAxis: {
-        categories: ["< 20 Years", "20-29 Years", "30-39 Years", "40-49 Years", "50-59 Years", "60-69 Years", "> 69 Years"]
+        categories: report.NameXrow
       },
-      series: [],
+      series: report.DataSeries,
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -47,6 +44,6 @@ export class MostPopularTrainingComponent implements OnInit {
   }
   SearchClick(Province: string) {
     this.SelectedProvince = Province;
-    this.getAgeByGroup();
+    this.popular_training_view();
   }
 }

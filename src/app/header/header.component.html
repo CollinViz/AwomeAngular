@@ -57,8 +57,8 @@
         <div class="dropdown-menu">
           <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur</a>
           <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise</a>
-          <a class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
-          <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
+          <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -68,8 +68,8 @@
         <div class="dropdown-menu">
 
           <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
-          <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
-          <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
+          <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -78,8 +78,8 @@
           Action Plan</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
-          <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
-          <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
+          <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -97,18 +97,20 @@
         <div class="dropdown-menu" aria-lableledby="navTraining">
             <div class="dropdown-header">Enterprises</div>
           <a class="dropdown-item" [routerLink]="['/report/JobsCreated']">Jobs Created</a>
-          <a class="dropdown-item" [routerLink]="['/report/JobsSustained']">Jobs Sustained</a>
+          <!--<a class="dropdown-item" [routerLink]="['/report/JobsSustained']">Jobs Sustained</a>-->
           <a class="dropdown-item" [routerLink]="['/report/AgeGroup']">Age Group </a>
-          <a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Creating more jobs</a>
-          <a class="dropdown-item" [routerLink]="['/report/CompletingTrainings']">Completing Trainings</a>
-          <a class="dropdown-item" [routerLink]="['/report/AgevsRevenue']">Age vs Revenue</a>
-          <a class="dropdown-item" [routerLink]="['/report/EducationvsRevenue']">Education vs Revenue</a>
-          <a class="dropdown-item" [routerLink]="['/report/LevelofEducation']">Level of Education</a>
-          <a class="dropdown-item" [routerLink]="['/report/Housing']">No of people Housing against surplus</a>
-          <div class="dropdown-header">Trainings</div>
-          <a class="dropdown-item" [routerLink]="['/report/OutstandingTrainings']">Outstanding Trainings</a>
-          <a class="dropdown-item" [routerLink]="['/report/MostPopularTraining']">Most Popular Training</a>
+          <!--<a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Creating more jobs</a>-->
+          <!--<a class="dropdown-item" [routerLink]="['/report/CompletingTrainings']">Completing Trainings</a>-->
+          <a class="dropdown-item" [routerLink]="['/report/AgevsRevenue']">Female Owners Vs Male Owners</a>
+          <a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Income Expense</a>
+          
+          <a class="dropdown-item" [routerLink]="['/report/Housing']">Premise Ownership %</a>
           <a class="dropdown-item" [routerLink]="['/report/OwnerNumberVsEmployeeNumbers']">Owner Number Vs Employee Numbers</a>
+          <div class="dropdown-header">Trainings</div>
+          <!--<a class="dropdown-item" [routerLink]="['/report/OutstandingTrainings']">Outstanding Trainings</a>-->
+          <a class="dropdown-item" [routerLink]="['/report/LevelofEducation']">Level of Education</a>
+          <a class="dropdown-item" [routerLink]="['/report/MostPopularTraining']">Most Popular Training</a>
+          
 
         </div>
       </li>
