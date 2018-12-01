@@ -52,10 +52,10 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
                     </li>
                 </ul>
@@ -71,13 +71,13 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item">.</a>
                     </li>
                 </ul>
@@ -93,13 +93,13 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/actionplans/enterprises']">Enterprise</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/actionplans/cooperatives']">Cooperative</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item" [routerLink]="['/actionplans/association']">Association</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li [hidden]="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="dropdown-item">.</a>
                     </li>
                 </ul>

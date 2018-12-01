@@ -62,11 +62,11 @@ export class EwepserverService {
   constructor(private http: HttpClient) {
     if (isDevMode()) {
 
-      this.baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
+      this.baseURL = 'http://127.0.0.1:81/AwomePHP/api.php/data/';
 
-      this.baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
+      this.baseViewURL = 'http://127.0.0.1:81/AwomePHP/api.php/view/';
 
-      this.CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+      this.CoreViewURL = 'http://127.0.0.1:81/AwomePHP/ajax.php';
     }
     console.log("New Instance created");
     this.SelectedCountryID = 1;

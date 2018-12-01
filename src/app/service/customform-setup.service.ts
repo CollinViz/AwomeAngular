@@ -45,12 +45,12 @@ export class CustomformSetupService {
 			min:1,max:10
 		}),
 		new NumbersQuestion({
-			key: 'Female_Owners', required: true,order: 6,
+			key: 'Female_Owners', required: false ,order: 6,
 			label: 'No of Female Owners', value: enterprise.Female_Owners,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Male_Owners', required: true,order: 7,
+			key: 'Male_Owners', required: false,order: 7,
 			label: 'No of Male Owners', value: enterprise.Male_Owners,
 			min:0,max:20
 		}),
@@ -78,7 +78,7 @@ export class CustomformSetupService {
 			label: 'Contact Person', value: enterprise.Contact_Person,
 		}),
 		new NumbersQuestion({
-			key: 'Year_Started_AWOME', required: true,order: 13,
+			key: 'Year_Started_AWOME', required: false,order: 13,
 			label: 'Year started with AWOME', value: enterprise.Year_Started_AWOME,
 			max:(new Date().getFullYear()),min:2018
 		}),
@@ -108,22 +108,22 @@ export class CustomformSetupService {
   getEnterpriseEmploeesFormFemale(enterprise:any){
 	let questions: QuestionBase<any>[] = [ 
 		new NumbersQuestion({
-			key: 'Female_FT_2500', required: true,order: 133,
+			key: 'Female_FT_2500', required: false,order: 133,
 			label: 'Below R2,500/month', value: enterprise.Female_FT_2500,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Female_FT_3000', required: true,order: 134,
+			key: 'Female_FT_3000', required: false,order: 134,
 			label: 'R2,501-R3,000/month', value: enterprise.Female_FT_3000,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Female_FT_3500', required: true,order: 135,
+			key: 'Female_FT_3500', required: false,order: 135,
 			label: 'R3,001-R3,500/month', value: enterprise.Female_FT_3500,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Female_FT_3500_Plus', required: true,order: 136,
+			key: 'Female_FT_3500_Plus', required: false,order: 136,
 			label: 'Above R3,500/month', value: enterprise.Female_FT_3500_Plus,
 			min:0,max:20
 		})
@@ -136,22 +136,22 @@ export class CustomformSetupService {
   getEnterpriseEmploeesFormMale(enterprise:any){
 	let questions: QuestionBase<any>[] = [
 		new NumbersQuestion({
-			key: 'Male_FT_2500', required: true,order: 137,
+			key: 'Male_FT_2500', required: false,order: 137,
 			label: 'Below R2,500/month', value: enterprise.Male_FT_2500,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Male_FT_3000', required: true,order: 138,
+			key: 'Male_FT_3000', required: false,order: 138,
 			label: 'R2,501-R3,000/month', value: enterprise.Male_FT_3000,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Male_FT_3500', required: true,order: 139,
+			key: 'Male_FT_3500', required: false,order: 139,
 			label: 'R3,001-R3,500/month', value: enterprise.Male_FT_3500,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Male_FT_3500_Plus', required: true,order: 140,
+			key: 'Male_FT_3500_Plus', required: false,order: 140,
 			label: 'Above R3,500/month', value: enterprise.Male_FT_3500_Plus,
 			min:0,max:20
 		})
@@ -161,12 +161,12 @@ export class CustomformSetupService {
   getEnterpriseEmploeesFormFeMalePay(enterprise:any){
 	let questions: QuestionBase<any>[] = [
 		new NumbersQuestion({
-			key: 'Female_PT_160', required: true,order: 141,
+			key: 'Female_PT_160', required: false,order: 141,
 			label: 'Below R160/day', value: enterprise.Female_PT_160,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Female_PT_160_Plus', required: true,order: 142,
+			key: 'Female_PT_160_Plus', required: false,order: 142,
 			label: 'Above R160/day', value: enterprise.Female_PT_160_Plus,
 			min:0,max:20
 		})
@@ -176,12 +176,12 @@ export class CustomformSetupService {
   getEnterpriseEmploeesFormMalePay(enterprise:any){
 	let questions: QuestionBase<any>[] = [
 		new NumbersQuestion({
-			key: 'Male_PT_160', required: true,order: 143,
+			key: 'Male_PT_160', required: false,order: 143,
 			label: 'Below R160/day', value: enterprise.Male_PT_160,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Male_PT_160_Plus', required: true,order: 144,
+			key: 'Male_PT_160_Plus', required: false,order: 144,
 			label: 'Above R160/day', value: enterprise.Male_PT_160_Plus,
 			min:0,max:20
 		})
@@ -191,37 +191,37 @@ export class CustomformSetupService {
   getEnterpriseEmploeesFormAge(enterprise:any){
 	let questions: QuestionBase<any>[] = [
 		new NumbersQuestion({
-			key: 'Age_20', required: true,order: 145,
+			key: 'Age_20', required: false,order: 145,
 			label: '< 20 Years', value: enterprise.Age_20,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Age_29', required: true,order: 146,
+			key: 'Age_29', required: false,order: 146,
 			label: '20-29 Years ', value: enterprise.Age_29,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Age_39', required: true,order: 147,
+			key: 'Age_39', required: false,order: 147,
 			label: '30-39 Years ', value: enterprise.Age_39,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Age_49', required: true,order: 148,
+			key: 'Age_49', required: false,order: 148,
 			label: '40-49 Years', value: enterprise.Age_49,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Age_59', required: true,order: 149,
+			key: 'Age_59', required: false,order: 149,
 			label: '50-59 Years', value: enterprise.Age_59,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Age_69', required: true,order: 150,
+			key: 'Age_69', required: false,order: 150,
 			label: '60-69 Years ', value: enterprise.Age_69,
 			min:0,max:20
 		}),
 		new NumbersQuestion({
-			key: 'Age_69_Plus', required: true,order: 151,
+			key: 'Age_69_Plus', required: false,order: 151,
 			label: '> 69 Years', value: enterprise.Age_69_Plus,
 			min:0,max:20
 		}) 
@@ -284,57 +284,57 @@ export class CustomformSetupService {
 			options:this.ewepServer.MonthDropDown
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Sales', required: true,order: 60,
+			key: 'Avg_Sales', required: false,order: 60,
 			label: 'Avg Monthly sales', value: enterprise.Avg_Sales,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Other_Income', required: true,order: 61,
+			key: 'Avg_Other_Income', required: false,order: 61,
 			label: 'Other Income (e.g. rent)', value: enterprise.Avg_Other_Income,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Expenditure', required: true,order: 62,
+			key: 'Avg_Expenditure', required: false,order: 62,
 			label: 'Avg Monthly Expenses', value: enterprise.Avg_Expenditure,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Indirect_Cost', required: true,order: 63,
+			key: 'Avg_Indirect_Cost', required: false,order: 63,
 			label: 'Avg Monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Member_Salaries', required: true,order: 64,
+			key: 'Member_Salaries', required: false,order: 64,
 			label: 'Owner Salaries', value: enterprise.Member_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Employee_Salaries', required: true,order: 67,
+			key: 'Employee_Salaries', required: false,order: 67,
 			label: 'Employee Salaries', value: enterprise.Employee_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Profit', required: true,order: 68,
+			key: 'Avg_Profit', required: false,order: 68,
 			label: 'Surplus (calculated)', value: enterprise.Avg_Profit,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Profit_Invest', required: true,order: 69,
+			key: 'Profit_Invest', required: false,order: 69,
 			label: 'What was Invested last month', value: enterprise.Profit_Invest,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Avg_Profit_Saved', required: true,order: 70,
+			key: 'Avg_Profit_Saved', required: false,order: 70,
 			label: 'Avg Savings per month', value: enterprise.Avg_Profit_Saved,
 			currency:true
 		}),
 		new NumbersQuestion({
-			key: 'Days_Work', required: true,order: 71,
+			key: 'Days_Work', required: false,order: 71,
 			label: 'Working days/week', value: enterprise.Days_Work,
 			min:1,max:7
 		}),
 		new NumbersQuestion({
-			key: 'Week_Hours_Worked', required: true,order: 80,
+			key: 'Week_Hours_Worked', required: false,order: 80,
 			label: 'Working hours / day', value: enterprise.Week_Hours_Worked,
 			min:1,max:168
 		}),
@@ -525,7 +525,7 @@ export class CustomformSetupService {
 			label: 'City', value: enterprise.City,
 		}),
 		new NumbersQuestion({
-			key: 'PostalCode', required: true,order: 50,
+			key: 'PostalCode', required: false,order: 50,
 			label: 'Postal Code', value: enterprise.PostalCode,
 			max:9999,min:1
 		}),

@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   showError:boolean=false;
   ErrorMessage:string="";
   ShowAllMenu:boolean = false;
+  hideAssociation:boolean = true;
   constructor( private router: Router,
                 private ewepserverService: EwepserverService,
                 private interceptor: ProgressInterceptor) { 
@@ -91,7 +92,10 @@ export class HeaderComponent implements OnInit {
     });
     this.LoginData$.subscribe((User:LogInData)=>{
       console.log("this.LoginData$",User);
-      if(User.LoginOK){         
+      if(User.LoginOK){  
+        if(User.Country_ID==3){
+          this.hideAssociation =true;
+        }       
         this.ShowAllMenu = true;
         this.currentCountryID = User.Country_ID;
         this.currentCountry = User.Country_Name;

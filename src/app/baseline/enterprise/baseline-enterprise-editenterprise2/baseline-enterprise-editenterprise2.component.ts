@@ -197,6 +197,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   Save() {
 
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
+    this.FlatMe["Country_ID"] = this.EwepserverService.SelectedCountryID;
     //Fix Date from the Material Control
 
     if (this.enterprise.Enterprise_ID === -1) {

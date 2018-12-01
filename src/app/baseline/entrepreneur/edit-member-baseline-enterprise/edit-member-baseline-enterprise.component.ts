@@ -39,6 +39,36 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
 
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
+  //Grid for connections
+  columnsEnterprise = [
+    { name: 'ID', prop: 'Entrepreneur_ID' },
+    { name: 'Surname', prop: 'Surname' },
+    { name: 'Name', prop: 'Name' },
+    { name: 'Municipality', prop: 'Municipality' },
+    //{ name: 'EDF', prop: 'EDF' },
+    //{ name: 'Status', prop: 'Status' }
+  ];
+  rowsEnterprise: any[] = [];
+  selected = [];
+  page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
+  columnsCooperative = [
+    { name: 'ID', prop: 'Entrepreneur_ID' },
+    { name: 'Surname', prop: 'Surname' },
+    { name: 'Name', prop: 'Name' },
+    { name: 'Municipality', prop: 'Municipality' },
+    //{ name: 'EDF', prop: 'EDF' },
+    //{ name: 'Status', prop: 'Status' }
+  ];
+  rowsCooperative: any[] = [];
+  columnsAssociation = [
+    { name: 'ID', prop: 'Entrepreneur_ID' },
+    { name: 'Surname', prop: 'Surname' },
+    { name: 'Name', prop: 'Name' },
+    { name: 'Municipality', prop: 'Municipality' },
+    //{ name: 'EDF', prop: 'EDF' },
+    //{ name: 'Status', prop: 'Status' }
+  ];
+  rowsAssociation: any[] = [];
 
   constructor(private EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
@@ -91,6 +121,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     entrepreneur["Expiration_Date"] = this.cutomerFormHlper.getDateValue(this.General.get('Expiration_Date').value);
     entrepreneur["Birth_Date"] = this.cutomerFormHlper.getDateValue(this.General.get("Birth_Date").value);
     entrepreneur["Date_Join_Awome"] = this.cutomerFormHlper.getDateValue(this.General.get("Date_Join_Awome").value);
+    entrepreneur["Country_ID"] = this.EwepserverService.SelectedCountryID;
  
     if(this.entrepreneur.Entrepreneur_ID){
       entrepreneur["Entrepreneur_ID"] =this.entrepreneur.Entrepreneur_ID;
@@ -103,7 +134,9 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   Back(){
     this.SaveItem.emit(null);
   }
-
+  loadLinks(){
+    
+  }
   contaceDetailChange(event, Index) {
     console.log(event, Index);
     let d = <DropdownQuestion>this.ContactInfoWithBinding[Index];

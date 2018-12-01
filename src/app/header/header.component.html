@@ -55,10 +55,10 @@
           role="button" aria-haspopup="true" aria-expanded="false">
           BaseLine Info</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur</a>
+          <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur {{hideAssociation}}</a>
           <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise</a>
-          <a class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
-          <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
+          <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -68,8 +68,8 @@
         <div class="dropdown-menu">
 
           <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
-          <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
-          <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
+          <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -78,8 +78,8 @@
           Action Plan</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
-          <a class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
-          <a class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
+          <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">

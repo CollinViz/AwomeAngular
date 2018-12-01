@@ -15,8 +15,10 @@
 
     <textarea *ngSwitchCase="'memo'" [formControlName]="question.key" [id]="question.key" ngClass="form-control"></textarea>
 
-    <input *ngSwitchCase="'numbers'" (OnChanges)="changenumber($event)" appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type"
-      ngClass="form-control numbersOnly" >
+    <input *ngSwitchCase="'numbers'"   
+            appNumberOnly [formControlName]="question.key" [id]="question.key" [type]="question.type"
+            [placeholder]="question.defaultValue"
+            ngClass="form-control numbersOnly" >
 
     <div class="form-group" *ngSwitchCase="'currency'">
       <div class="input-group mb-3">
@@ -26,7 +28,7 @@
         <input appNumberOnly [formControlName]="question.key" 
                [id]="question.key" [type]="question.type" 
                ngClass="form-control numbersOnly"
-                
+               [placeholder]="question.defaultValue"
                 >
 
       </div>
