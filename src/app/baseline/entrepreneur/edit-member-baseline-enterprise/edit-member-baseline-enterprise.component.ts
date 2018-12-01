@@ -41,34 +41,17 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   ContactInfoWithBinding:QuestionBase<any>[];
   //Grid for connections
   columnsEnterprise = [
-    { name: 'ID', prop: 'Entrepreneur_ID' },
-    { name: 'Surname', prop: 'Surname' },
-    { name: 'Name', prop: 'Name' },
-    { name: 'Municipality', prop: 'Municipality' },
-    //{ name: 'EDF', prop: 'EDF' },
-    //{ name: 'Status', prop: 'Status' }
+    { name: 'ID', prop: 'Enterprise_ID' },
+    { name: 'Name', prop: 'Enterprise_Name' } 
   ];
   rowsEnterprise: any[] = [];
   selected = [];
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
   columnsCooperative = [
-    { name: 'ID', prop: 'Entrepreneur_ID' },
-    { name: 'Surname', prop: 'Surname' },
-    { name: 'Name', prop: 'Name' },
-    { name: 'Municipality', prop: 'Municipality' },
-    //{ name: 'EDF', prop: 'EDF' },
-    //{ name: 'Status', prop: 'Status' }
+    { name: 'ID', prop: 'Cooperative_ID' },
+    { name: 'Name', prop: 'Cooperative_Name' } 
   ];
-  rowsCooperative: any[] = [];
-  columnsAssociation = [
-    { name: 'ID', prop: 'Entrepreneur_ID' },
-    { name: 'Surname', prop: 'Surname' },
-    { name: 'Name', prop: 'Name' },
-    { name: 'Municipality', prop: 'Municipality' },
-    //{ name: 'EDF', prop: 'EDF' },
-    //{ name: 'Status', prop: 'Status' }
-  ];
-  rowsAssociation: any[] = [];
+  rowsCooperative: any[] = []; 
 
   constructor(private EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
@@ -88,6 +71,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
       //Fix ID
       
       this.MainForm.patchValue(this.entrepreneur);
+      this.loadLinks();
     }
   }
   ngOnInit() {
@@ -114,6 +98,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
 
       this.ID_Passport_text = this.entrepreneur.ID_or_Passport;
     this.isLoading =false;
+    this.loadLinks();
   }
   Save(){
     let entrepreneur = this.cutomerFormHlper.flattenObject(this.MainForm.value);
@@ -135,7 +120,13 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     this.SaveItem.emit(null);
   }
   loadLinks(){
-    
+    //enterprise_member_view
+    this.EwepserverService.getViewData("enterprise_member_view","filter=Entrepreneur_ID,eq,"+this.entrepreneur.Entrepreneur_ID).subscribe((rowdata: any)=>{
+      this.rowsEnterprise = [...rowdata.records];
+    });
+    this.EwepserverService.getViewData("cooperative_member_view","filter=Entrepreneur_ID,eq,"+this.entrepreneur.Entrepreneur_ID).subscribe((rowdata: any)=>{
+      this.rowsCooperative = [...rowdata.records];
+    });
   }
   contaceDetailChange(event, Index) {
     console.log(event, Index);

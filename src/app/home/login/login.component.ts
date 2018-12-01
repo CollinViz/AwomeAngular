@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         this.user.Error = Message.message;
       }else{
         this.EwepserverService.setUserLogin(Message,this.user.countrylogin);
-        this.EwepserverService.setCountryInfo(this.user.countrylogin.Country_ID,this.user.countrylogin.Country_Name);
+        //this.EwepserverService.setCountryInfo(this.user.countrylogin.Country_ID,this.user.countrylogin.Country_Name);
         this.loginOK.emit(Message);
       } 
     });

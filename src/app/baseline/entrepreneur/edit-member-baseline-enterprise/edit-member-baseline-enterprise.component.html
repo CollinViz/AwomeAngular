@@ -714,8 +714,8 @@
             <div   class="card-header">Enterprise</div>
             <div class="card-body">
               <ngx-datatable class="bootstrap" [rows]="rowsEnterprise" [columns]="columnsEnterprise" [columnMode]="'force'"
-                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [selected]="selected" [selectionType]="'single'"
-                (activate)="onActivate($event)" [externalPaging]="true">
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"  
+                  [externalPaging]="false">
               </ngx-datatable>
             </div>
             <!--- END Enterprise  -->
@@ -723,20 +723,12 @@
             <div  class="card-header">Cooperative</div>
             <div class="card-body">
               <ngx-datatable class="bootstrap" [rows]="rowsCooperative" [columns]="columnsCooperative" [columnMode]="'force'"
-                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [selected]="selected" [selectionType]="'single'"
-                (activate)="onActivate($event)" [externalPaging]="true">
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
+                  [externalPaging]="false">
               </ngx-datatable>
             </div>
             <!--- END Cooperative  -->
-            <!--- Association  -->
-            <div   class="card-header">Association</div>
-            <div class="card-body">
-              <ngx-datatable class="bootstrap" [rows]="rowsAssociation" [columns]="columnsAssociation" [columnMode]="'force'"
-                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [selected]="selected" [selectionType]="'single'"
-                (activate)="onActivate($event)" [externalPaging]="true">
-              </ngx-datatable>
-            </div>
-            <!--- END Association  -->
+             
           </div>
         </div>
       </div>

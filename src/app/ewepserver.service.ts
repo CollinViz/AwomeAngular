@@ -25,6 +25,7 @@ export class EwepserverService {
 
   SelectedCountryID: number = 1;
   SelectedCurrency: string = "DDDD";
+  SelectedUserInfo:any ={};
   UserLoginObj = new Subject<any>();
   LegalStructure: Options[] = [new Options("Select", "Select"),
   //new Options("Cooperative","Cooperative"),
@@ -72,9 +73,9 @@ export class EwepserverService {
     this.SelectedCountryID = 1;
     this._getCountry();
     // this._getProvinceLoadLocal();
-    this._getdistrictmetroLoadLocal();
-    this._getlocalmunicipalityLoadLocal();
-    this._getMainplace();
+    //this._getdistrictmetroLoadLocal();
+    //this._getlocalmunicipalityLoadLocal();
+    //this._getMainplace();
 
   }
   get country(): Observable<Country[]> {
@@ -98,11 +99,7 @@ export class EwepserverService {
   //get mainPlaces():Observable<MainPlace[]>{
   //  return this.mainPlacesList.asObservable();
   //}
-  setCountryInfo(CountryID: number, CountryName: string) {
-    this.SelectedCountryID = CountryID;
-    //Reload all the cashed data
-    this._getProvinceLoadLocal();
-  }
+  
   getViewData(ViewName: string, Options: string = "") {
     return this.http.get<any>(this.baseViewURL + ViewName + (Options === "" ? "" : "?" + Options), httpOptions).pipe(
       catchError(this.handleError)
@@ -139,6 +136,9 @@ export class EwepserverService {
     this.http.get<any>(this.baseURL + "province?order=Province_Name&filter=Country_ID,eq," + this.SelectedCountryID, httpOptions).subscribe((customers: any) => {
       //console.log(customers.records);
       this.province = <Province[]>customers.records;
+      this._getdistrictmetroLoadLocal();
+      this._getlocalmunicipalityLoadLocal();
+      this._getMainplace();
     });
   }
 
@@ -148,7 +148,8 @@ export class EwepserverService {
       //console.log(customers.records);
       this.CountryListStatic = <Country[]>customers.records;
       this.CountryList.next(<Country[]>customers.records);
-      this._getProvinceLoadLocal();
+      this._getProvinceLoadLocal(); 
+      
     });
   }
   private _getdistrictmetroLoadLocal() {
@@ -180,21 +181,21 @@ export class EwepserverService {
   }
   getEnterprisList(PageNumber: number, FilterOptions: string) {
 
-    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?order=Enterprise_ID&page=" + PageNumber + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
+    return this.http.get<any>(this.baseViewURL + "enterprise_base_view?order=Enterprise_ID&page=" + PageNumber +"&filter=Country_ID,eq,"+this.SelectedCountryID  + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
   getCooperativeList(PageNumber: number, FilterOptions: string) {
 
-    return this.http.get<any>(this.baseViewURL + "cooperative_base_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
+    return this.http.get<any>(this.baseViewURL + "cooperative_base_view?cooperative?order=Cooperative_ID&page=" + PageNumber +"&filter=Country_ID,eq,"+this.SelectedCountryID  + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
 
   getCooperativeVisitList(PageNumber: number, FilterOptions: string) {
 
-    return this.http.get<any>(this.baseViewURL + "cooperative_visits_view?cooperative?order=Cooperative_ID&page=" + PageNumber + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
+    return this.http.get<any>(this.baseViewURL + "cooperative_visits_view?cooperative?order=Cooperative_ID&page=" + PageNumber +"&filter=Country_ID,eq,"+this.SelectedCountryID  + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -219,7 +220,28 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+  setCountryInfo(CountryID: number, CountryName: string,Currency:string) {
+     
+    this.SelectedUserInfo.Country_ID= CountryID;
+    this.SelectedUserInfo.Country_Name= CountryName;
+    this.SelectedUserInfo.Currency= Currency;
+    this.setUserLogin(this.SelectedUserInfo,this.SelectedUserInfo);
+    //Reload all the cashed data
+    this._getProvinceLoadLocal(); 
+  }
   setUserLogin(UserOJB: any, SelectCounter: Country) {
+    //Save local data
+    this.SelectedUserInfo  = { 
+      Name: UserOJB.Name,
+      Surname: UserOJB.Surname, 
+      ThemeName: UserOJB.ThemeName,
+      Country_ID: SelectCounter.Country_ID,
+      Country_Name: SelectCounter.Country_Name,
+      Currency: SelectCounter.Currency
+    };
+    this.SelectedCurrency = SelectCounter.Currency;
+    this.SelectedCountryID = SelectCounter.Country_ID;
+    //Send to others
     this.loginInfomation.next({
       LoginOK: true,
       Username: UserOJB.Name,
@@ -229,7 +251,7 @@ export class EwepserverService {
       Country_Name: SelectCounter.Country_Name,
       Currency: SelectCounter.Currency
     });
-    this.SelectedCurrency = SelectCounter.Currency;
+    
     console.log("Change Currency " + this.SelectedCurrency);
   }
 

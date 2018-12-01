@@ -53,8 +53,7 @@ export class EditTrainingEntrepreneursEntrepreneursComponent implements OnInit, 
     }
   }
   getTraining() {
-    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size +
-                       "&orderby=surname&filter=Entrepreneur_ID,eq," + this.entrepreneur.Entrepreneur_ID;
+    const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&filter=Entrepreneur_ID,eq," + this.entrepreneur.Entrepreneur_ID;
     this.EwepserverService.getViewData("entrepreneur_training_view", strOptions).subscribe(trining => {
       this.rows = [...trining.records];
       this.isLoading = false;

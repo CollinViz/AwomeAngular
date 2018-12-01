@@ -12,7 +12,7 @@ export class WelcomLoginokComponent implements OnInit {
   UserInfo: any;
   currentCountry:string= "";
   currentCountryID:number= 0;
-  hideAssociation:boolean=true;
+  hideAssociation:boolean=false;
   LoginData$:Observable<LogInData>;
   displayedColumns: string[] = ['total', 'female', 'male', 'target'];
   sexTotalData = {
@@ -31,17 +31,27 @@ export class WelcomLoginokComponent implements OnInit {
     //this.EwepserverService.UserLoginObjAnnounced$.subscribe((UserInfo:any)=>{
     //  this.UserInfo = UserInfo;
     //})
+    if(this.Ewep.SelectedCountryID==3){
+      this.hideAssociation =true;
+    }
     this.LoginData$ = this.Ewep.LoginOK;
     this.LoginData$.subscribe((User:LogInData)=>{
-      console.log("this.LoginData$",User);
+      console.log("app-welcom-loginok$",User);
       if(User.LoginOK){         
-        if(User.Country_ID!=3){
+        if(User.Country_ID==3){
           this.hideAssociation =true;
+        }else{
+          this.hideAssociation =false;
         }
         this.currentCountryID = User.Country_ID;
         this.currentCountry = User.Country_Name;
+        this.loadChartData();
       }      
     });
+    this.loadChartData();
+  }
+  loadChartData(){
+
     this.Ewep.listCountOFentrepreneurAndenterprise().subscribe((report: any) => {
 
       this.intchat(report);
@@ -60,7 +70,6 @@ export class WelcomLoginokComponent implements OnInit {
       };
 
     });
-
   }
   intchart2(reportinfo:any){
     this.chart2 = new Chart({

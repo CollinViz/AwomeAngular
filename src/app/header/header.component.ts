@@ -94,6 +94,8 @@ export class HeaderComponent implements OnInit {
       console.log("this.LoginData$",User);
       if(User.LoginOK){  
         if(User.Country_ID==3){
+          this.hideAssociation =false;
+        }else{
           this.hideAssociation =true;
         }       
         this.ShowAllMenu = true;
@@ -106,6 +108,9 @@ export class HeaderComponent implements OnInit {
   changeCountry(newCountry,Index){
     this.currentCountry = newCountry.Country_Name;
     this.currentCountryID = newCountry.Country_ID;
-    this.ewepserverService.setCountryInfo(this.currentCountryID,this.currentCountry);
+    this.ewepserverService.setCountryInfo(this.currentCountryID,this.currentCountry,newCountry.Currency);
+    if(!this.isHome){
+      this.router.navigateByUrl('/loginok/');
+    }
   }
 }
