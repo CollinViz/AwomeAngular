@@ -1,5 +1,5 @@
 import { Component,  AfterViewInit,Input,Output,EventEmitter } from '@angular/core';
-
+import { EwepserverService } from '../../../ewepserver.service'
 @Component({
   selector: 'app-com-list-action-plan',
   templateUrl: './com-list-action-plan.component.html',
@@ -12,7 +12,7 @@ export class ComListActionPlanComponent implements  AfterViewInit {
   @Output() editItemClick = new EventEmitter<number>();
   @Output() deleteItemClick = new EventEmitter<number>();
   intLastItemClick:number=-1;
-  constructor() { } 
+  constructor(public EwepserverService: EwepserverService) { } 
    
   ngAfterViewInit(){
     //this.intLastItemClick =-1;

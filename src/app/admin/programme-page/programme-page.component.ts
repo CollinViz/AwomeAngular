@@ -23,7 +23,7 @@ export class ProgrammePageComponent implements OnInit {
   SelectedRowData: any;
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
 
-  constructor(private modalService: BsModalService, private router: Router, private EwepserverService: EwepserverService) {
+  constructor(private modalService: BsModalService, private router: Router,  public EwepserverService: EwepserverService) {
 
   }
   getPrograms() {

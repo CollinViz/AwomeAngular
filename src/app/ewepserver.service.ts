@@ -26,6 +26,11 @@ export class EwepserverService {
   SelectedCountryID: number = 1;
   SelectedCurrency: string = "DDDD";
   SelectedUserInfo:any ={};
+  SelectedSecurity_Level:string = "View";
+  SelectedUserCanEdit:boolean = false;
+  SelectedUserCanDelete:boolean = false;
+  SelectedUserCanAdd:boolean = false;
+
   UserLoginObj = new Subject<any>();
   LegalStructure: Options[] = [new Options("Select", "Select"),
   //new Options("Cooperative","Cooperative"),
@@ -58,7 +63,7 @@ export class EwepserverService {
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({ UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" });
-  private loginInfomation: BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({ LoginOK: false, Username: "Bobo", FullName: "", Theme: "Default", Country_ID: 1, Country_Name: "", Currency: "R" });
+  private loginInfomation: BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({ LoginOK: false, Username: "Bobo", FullName: "", Theme: "Default", Country_ID: 1, Country_Name: "", Currency: "R",Security_Level:"View" });
   private RoutingStashBox: any = null;
   constructor(private http: HttpClient) {
     if (isDevMode()) {
@@ -233,14 +238,33 @@ export class EwepserverService {
     //Save local data
     this.SelectedUserInfo  = { 
       Name: UserOJB.Name,
+      EDF_ID:UserOJB.EDF_ID,
       Surname: UserOJB.Surname, 
       ThemeName: UserOJB.ThemeName,
       Country_ID: SelectCounter.Country_ID,
       Country_Name: SelectCounter.Country_Name,
-      Currency: SelectCounter.Currency
+      Currency: SelectCounter.Currency,
+      Security_Level:UserOJB.Security_Level
     };
     this.SelectedCurrency = SelectCounter.Currency;
     this.SelectedCountryID = SelectCounter.Country_ID;
+    this.SelectedSecurity_Level = UserOJB.Security_Level;
+    //set security
+    if(this.SelectedSecurity_Level=="Edit"){
+      this.SelectedUserCanAdd=true;
+      this.SelectedUserCanDelete = true;
+      this.SelectedUserCanEdit = true;
+    }
+    if(this.SelectedSecurity_Level=="Admin"){
+      this.SelectedUserCanAdd=true;
+      this.SelectedUserCanDelete = true;
+      this.SelectedUserCanEdit = true;
+    }
+    if(this.SelectedSecurity_Level=="View"){
+      this.SelectedUserCanAdd=false;
+      this.SelectedUserCanDelete = false;
+      this.SelectedUserCanEdit = false;
+    }
     //Send to others
     this.loginInfomation.next({
       LoginOK: true,
@@ -249,7 +273,8 @@ export class EwepserverService {
       Theme: UserOJB.ThemeName,
       Country_ID: SelectCounter.Country_ID,
       Country_Name: SelectCounter.Country_Name,
-      Currency: SelectCounter.Currency
+      Currency: SelectCounter.Currency,
+      Security_Level:UserOJB.Security_Level
     });
     
     console.log("Change Currency " + this.SelectedCurrency);
@@ -263,6 +288,42 @@ export class EwepserverService {
   }
   deleteAllFinanceCooperative(Cooperative_ID: number, Cooperative_Visit_ID: any) {
     let login = { __class: 'FinanceGUI', __call: 'deleteFinanceCooperative', Cooperative_ID: Cooperative_ID, Cooperative_Visit_ID: Cooperative_Visit_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteCooperative(Cooperative_ID: number){
+    let login = { __class: 'DBDeleteGUI', __call: 'deleteCooperative', Cooperative_ID: Cooperative_ID,EDF_ID:this.SelectedUserInfo.EDF_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteEnterprise(Enterprise_ID: number){
+    let login = { __class: 'DBDeleteGUI', __call: 'deleteEnterprise', Enterprise_ID: Enterprise_ID,EDF_ID:this.SelectedUserInfo.EDF_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteEntrepreneur(Entrepreneur_ID: number){
+    let login = { __class: 'DBDeleteGUI', __call: 'deleteEntrepreneur', Entrepreneur_ID: Entrepreneur_ID,EDF_ID:this.SelectedUserInfo.EDF_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteAssociation(Association_ID: number){
+    let login = { __class: 'DBDeleteGUI', __call: 'deleteAssociation', Association_ID: Association_ID,EDF_ID:this.SelectedUserInfo.EDF_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteEnterprise_Visits(enterprise_visit_id: number){
+    let login = { __class: 'DBDeleteGUI', __call: 'deleteEnterprise_Visits', enterprise_visit_id: enterprise_visit_id,EDF_ID:this.SelectedUserInfo.EDF_ID };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteCooperative_Visits(cooperative_visit_id: number){
+    let login = { __class: 'DBDeleteGUI', __call: 'deleteCooperative_Visits', cooperative_visit_id: cooperative_visit_id,EDF_ID:this.SelectedUserInfo.EDF_ID };
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
@@ -452,5 +513,6 @@ export interface LogInData {
   Theme: string,
   Country_ID: number,
   Country_Name: string,
-  Currency: string
+  Currency: string,
+  Security_Level:string
 }

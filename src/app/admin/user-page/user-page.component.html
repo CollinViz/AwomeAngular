@@ -27,7 +27,7 @@
         <div class="col-2">
         </div>
         <div class="col-2">
-          <button type="button"  [ngClass]="{'btn':true,'btn-primary':userForm.form.valid ,'btn-block': true}" [disabled]="!userForm.form.valid" (click)="Save()">Save</button>
+          <button *ngIf="EwepserverService.SelectedUserCanEdit" type="button"  [ngClass]="{'btn':true,'btn-primary':userForm.form.valid ,'btn-block': true}" [disabled]="!userForm.form.valid" (click)="Save()">Save</button>
         </div>
         <div class="col-2">
           <button type="button" class="btn btn-default btn-block" (click)="showEdit=false">Close</button>

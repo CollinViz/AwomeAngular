@@ -34,7 +34,7 @@ export class EditActionplansCooperativesCooperativesComponent implements OnInit 
   showloadingActivity:boolean = false
 
   constructor(private activatedRoute: ActivatedRoute,private router: Router,
-    private EwepserverService: EwepserverService, public dialog: MatDialog,
+     public EwepserverService: EwepserverService, public dialog: MatDialog,
   private formHelper :CustomFromHelperControlService ) { 
          
     }

@@ -30,7 +30,7 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   Cooperative_ID: number = -1;
   blistShow: boolean = true;
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-    private EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService) {
+     public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService) {
     this.activatedRoute.params
       // NOTE: I do not use switchMap here, but subscribe directly
       .subscribe((params: Params) => {

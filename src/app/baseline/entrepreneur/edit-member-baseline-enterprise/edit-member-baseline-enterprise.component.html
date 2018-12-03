@@ -3,8 +3,9 @@
     <div class="col-6">
     </div>
     <div class="col-6">
-      <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
+      <button *ngIf="EwepserverService.SelectedUserCanEdit" (click)="Save()" [ngClass]="{'btn':true,'btn-primary':MainForm.valid  }" [disabled]="!MainForm.valid">Save</button>
       <button (click)="Back()" [ngClass]="{'btn':true,'secondary':true  }">Back</button>
+      <button *ngIf="EwepserverService.SelectedUserCanDelete" (click)="Delete()" [ngClass]="{'btn':true,'btn-danger':true  }">Delete</button>
     </div>
   </div>
   <tabset type="pills" class="bg-info">

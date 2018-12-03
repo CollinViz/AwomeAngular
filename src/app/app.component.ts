@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
   title = 'app';
   cssUrl: string;
    
-  constructor(private ewepserverService: EwepserverService,
+  constructor( public EwepserverService: EwepserverService,
     public sanitizer: DomSanitizer) {}
   ngOnInit() {
     this.cssUrl = "/assets/Default_bootstrap.min.css"
     fnc_messge("Default");
-    this.LoginData$ = this.ewepserverService.LoginOK;
+    this.LoginData$ = this.EwepserverService.LoginOK;
     this.LoginData$.subscribe((User:LogInData)=>{
       if(User.LoginOK){
         this.CurrentTheme = User.Theme;

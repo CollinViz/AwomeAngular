@@ -27,7 +27,8 @@
           </div>
           <div class="col-xs-6 col-md-6">
 
-            <button (click)="Save()" [ngClass]="{'btn':true,'btn-primary':user.valid  }" [disabled]="!user.valid">Save</button>
+            <button *ngIf="EwepserverService.SelectedUserCanEdit" (click)="Save()" [ngClass]="{'btn':true,'btn-primary':user.valid  }" [disabled]="!user.valid">Save</button>
+            <button *ngIf="EwepserverService.SelectedUserCanDelete" (click)="Delete()" [ngClass]="{'btn':true,'btn-danger':true  }">Delete</button>
           </div>
         </div>
         <div class="row">

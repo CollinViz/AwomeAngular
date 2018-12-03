@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   isAdmin:boolean = true; 
   currentCountry:string= "";
   currentCountryID:number= 0;
-   
+  hideAdminSection:boolean =  true;
   countryList$: Observable<Country[]>;
   ErrorInterNet$:Observable<InternetConnection>;
   LoginData$:Observable<LogInData>;
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   ShowAllMenu:boolean = false;
   hideAssociation:boolean = true;
   constructor( private router: Router,
-                private ewepserverService: EwepserverService,
+                 public EwepserverService: EwepserverService,
                 private interceptor: ProgressInterceptor) { 
     this.currentCountry="South Africa";
     this.currentCountryID=1;
@@ -44,9 +44,9 @@ export class HeaderComponent implements OnInit {
     this.isAdmin=false;  
   }
   ngOnInit() {
-    this.countryList$ = this.ewepserverService.country;
+    this.countryList$ = this.EwepserverService.country;
     this.ErrorInterNet$ = this.interceptor.ErrorMessage$;
-    this.LoginData$ = this.ewepserverService.LoginOK;
+    this.LoginData$ = this.EwepserverService.LoginOK;
     this.clearSelect();
     if(!this.router.events){
       return;
@@ -101,6 +101,7 @@ export class HeaderComponent implements OnInit {
         this.ShowAllMenu = true;
         this.currentCountryID = User.Country_ID;
         this.currentCountry = User.Country_Name;
+        this.hideAdminSection = ((User.Security_Level=="Admin")?false:true);
       }      
     });
      
@@ -108,9 +109,9 @@ export class HeaderComponent implements OnInit {
   changeCountry(newCountry,Index){
     this.currentCountry = newCountry.Country_Name;
     this.currentCountryID = newCountry.Country_ID;
-    this.ewepserverService.setCountryInfo(this.currentCountryID,this.currentCountry,newCountry.Currency);
+    this.EwepserverService.setCountryInfo(this.currentCountryID,this.currentCountry,newCountry.Currency);
     if(!this.isHome){
-      this.router.navigateByUrl('/loginok/');
+      this.router.navigate(['/', 'loginok']);
     }
   }
 }

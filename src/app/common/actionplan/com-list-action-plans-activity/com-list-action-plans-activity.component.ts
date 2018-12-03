@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
-
+import { EwepserverService } from '../../../ewepserver.service'
 @Component({
   selector: 'app-com-list-action-plans-activity',
   templateUrl: './com-list-action-plans-activity.component.html',
@@ -10,7 +10,7 @@ export class ComListActionPlansActivityComponent implements OnInit {
   @Input() Index:number=0;
   @Output() deleteItemClick = new EventEmitter<number>();
   @Output() editItemClick = new EventEmitter<number>();
-  constructor() { }
+  constructor(public EwepserverService: EwepserverService) { }
 
   ngOnInit() {
   }

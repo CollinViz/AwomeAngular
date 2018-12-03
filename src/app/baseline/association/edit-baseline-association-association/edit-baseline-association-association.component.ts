@@ -5,7 +5,7 @@ import { Options, QuestionBase,DropdownQuestion} from '../../../service/question
 import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
 import { FormGroupEditAssociation } from './edit-association'
-
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-edit-baseline-association-association',
   templateUrl: './edit-baseline-association-association.component.html',
@@ -15,6 +15,7 @@ export class EditBaselineAssociationAssociationComponent implements OnInit,OnCha
 
   @Input() association:any = {}
   @Output() SaveItem:EventEmitter<any> = new EventEmitter<any>();
+  @Output() DeletedItem:EventEmitter<any> = new EventEmitter<any>();
   MainForm:FormGroup;
   Details:FormGroup;
   Leadership:FormGroup;
@@ -29,9 +30,10 @@ export class EditBaselineAssociationAssociationComponent implements OnInit,OnCha
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
 
-  constructor(private EwepserverService: EwepserverService,
+  constructor( public EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
-              private controlsService:CustomformSetupService) { 
+              private controlsService:CustomformSetupService,
+              public dialog: MatDialog) { 
                 /*this.Language = this.EwepserverService.Language;
                 this.Race = this.EwepserverService.Race;
                 this.Sex = this.EwepserverService.Sex;
@@ -64,6 +66,21 @@ export class EditBaselineAssociationAssociationComponent implements OnInit,OnCha
       Contact:this.Contact
     });
     this.isLoading =false;
+  }
+  Delete(){
+    this.cutomerFormHlper.showConfirmDelete(this.association.Association_Name ).subscribe(result=>{
+      if(result.Result==='Ok'){
+        this.EwepserverService.deleteAssociation(this.association.Association_ID).subscribe((message:any)=>{
+          if(message.OK==="OK"){
+            alert("Association deleted");             
+          }else{
+            alert("Error " + message.message);             
+          }
+          this.DeletedItem.emit(null);
+        });
+      }
+    });
+
   }
   Save(){
     let association = this.cutomerFormHlper.flattenObject(this.MainForm.value);

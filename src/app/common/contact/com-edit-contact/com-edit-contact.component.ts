@@ -18,7 +18,7 @@ export class ComEditContactComponent implements OnInit {
   @Input() ContactInfo: QuestionBase<any>[];
   @Input() ContactInfoWithBinding: QuestionBase<any>[];
 
-  constructor(private EwepserverService: EwepserverService,
+  constructor( public EwepserverService: EwepserverService,
     private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService: CustomformSetupService) {
 

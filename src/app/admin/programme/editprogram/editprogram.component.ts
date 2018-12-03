@@ -12,7 +12,7 @@ export class EditprogramComponent implements OnInit {
   
   BaseTable = "programme";
   @Input() programme : any;
-  constructor(private activatedRoute: ActivatedRoute,private router: Router, private EwepserverService: EwepserverService) { 
+  constructor(private activatedRoute: ActivatedRoute,private router: Router,  public EwepserverService: EwepserverService) { 
 
   }
 

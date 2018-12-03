@@ -5,8 +5,8 @@
   (click)="Click($event,i)">
    {{actionplan.Description}} - {{actionplan.Date_Created}}
    <span class="float-right">
-    <a class="fas fa-trash  btn" (click)="deleteItem($event,i)"></a>
-            <a class="far fa-edit   btn" (click)="editItem($event,i)"></a> &nbsp; &nbsp;
+    <a *ngIf="EwepserverService.SelectedUserCanDelete" class="fas fa-trash  btn" (click)="deleteItem($event,i)"></a>
+            <a *ngIf="EwepserverService.SelectedUserCanEdit" class="far fa-edit   btn" (click)="editItem($event,i)"></a> &nbsp; &nbsp;
    </span>
    
    <br>

@@ -26,7 +26,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   IsEditing: boolean = false;
   EntrepreneurEditItem: any = {};
-  constructor(private activatedRoute: ActivatedRoute, private EwepserverService: EwepserverService) { }
+  constructor(private activatedRoute: ActivatedRoute,  public EwepserverService: EwepserverService) { }
 
   getPageOfEntrepreneurs() {
     const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
@@ -84,6 +84,10 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   NewClick() {
     this.IsEditing = true;
     this.EntrepreneurEditItem = { Entrepreneur_ID: -1, ID_or_Passport: 'ID' };
+  }
+  onDeletedItem(event){
+    this.IsEditing = false;
+    this.getPageOfEntrepreneurs();
   }
   onSaveEntrepreneur(NewOrEditEntrepreneur) {
     if (NewOrEditEntrepreneur === null) {

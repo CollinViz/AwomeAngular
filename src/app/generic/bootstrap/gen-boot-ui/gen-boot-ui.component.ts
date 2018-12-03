@@ -44,7 +44,7 @@ export class GenBootUiComponent implements OnInit {
       }
       
     return this.form.controls[this.question.key].valid; }//this.form.controls[this.question.key].valid; }
-  constructor(private EwepserverService:EwepserverService) { }
+  constructor(public EwepserverService:EwepserverService) { }
 
   ngOnInit() {
     this.CurrencyValue = this.EwepserverService.SelectedCurrency;

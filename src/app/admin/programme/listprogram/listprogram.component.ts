@@ -19,7 +19,7 @@ export class ListprogramComponent implements OnInit {
   @Output() SelectClick = new EventEmitter<number>();
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 };
 
-  constructor(private router: Router, private EwepserverService: EwepserverService) {
+  constructor(private router: Router,  public EwepserverService: EwepserverService) {
 
   }
   getPrograms() {

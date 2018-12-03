@@ -1,6 +1,7 @@
 <div *ngIf="!IsEditing;else editTemplate">
 <app-search-baseline-association-association>
   (SearchClick)="searchClick($event)"
+  (DeletedItem)="DeletedItem($event)"
   (NewClick)="NewClick()"
 </app-search-baseline-association-association>
 <div>

@@ -16,7 +16,7 @@ export class EditenterpriseComponent implements OnInit {
   DistrictMetro =[];
   localMunicipalityAll =[];
   localMunicipality =[];
-  constructor(private activatedRoute: ActivatedRoute,private router: Router,private EwepserverService: EwepserverService) { 
+  constructor(private activatedRoute: ActivatedRoute,private router: Router, public EwepserverService: EwepserverService) { 
     /*EwepserverService.getProvince().subscribe((customers:any)=>{
       console.log(customers.records);
       this.Provinces = customers.records; 

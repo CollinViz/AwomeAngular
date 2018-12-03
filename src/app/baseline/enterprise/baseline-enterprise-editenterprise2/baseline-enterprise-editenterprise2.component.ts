@@ -58,7 +58,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-    private EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
+     public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService: CustomformSetupService,
     private _cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
@@ -193,6 +193,21 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   }
   falter() {
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
+  }
+  Delete(){
+    this.cutomerFormHlper.showConfirmDelete(this.enterprise.Enterprise_Name ).subscribe(result=>{
+      if(result.Result==='Ok'){
+        this.EwepserverService.deleteEnterprise(this.enterprise.Enterprise_ID).subscribe((message:any)=>{
+          if(message.OK==="OK"){
+            alert("Enterprise deleted");             
+          }else{
+            alert("Error " + message.message);             
+          }
+          this.router.navigateByUrl('baseline/enterprise');
+        });
+      }
+    });
+
   }
   Save() {
 

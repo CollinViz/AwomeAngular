@@ -34,7 +34,7 @@ export class UserPageComponent implements OnInit {
   page: any = { size: 20, totalElements: 500, totalPages: 25, pageNumber: 0 }
   showEdit: boolean = false;
 
-  constructor(private modalService: BsModalService, private router: Router, private EwepserverService: EwepserverService) {
+  constructor(private modalService: BsModalService, private router: Router,  public EwepserverService: EwepserverService) {
 
   }
   getUsers() {

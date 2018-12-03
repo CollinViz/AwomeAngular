@@ -18,7 +18,7 @@ export class SearchCoopComponent implements OnInit {
   @Output() filter:string ="";
   @Output() SearchClick = new EventEmitter<string>();
   @Output() NewClick = new EventEmitter<string>();
-  constructor(private EwepserverService: EwepserverService) {
+  constructor( public EwepserverService: EwepserverService) {
 
     /*EwepserverService.getProvince().subscribe((customers:any)=>{
       console.log(customers.records);

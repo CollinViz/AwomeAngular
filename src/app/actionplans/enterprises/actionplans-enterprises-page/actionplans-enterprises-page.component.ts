@@ -24,7 +24,7 @@ export class ActionplansEnterprisesPageComponent implements OnInit {
   SearchFilter: string = "";
 
   constructor(private router: Router,
-    private EwepserverService: EwepserverService) {
+     public EwepserverService: EwepserverService) {
     this.getPageofEnterprise();
   }
 

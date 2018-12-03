@@ -44,7 +44,7 @@ export class EditfrmVisitsEnterpriseEnterpriseComponent implements OnInit,OnChan
                           Approved:false,Reject_Reason:"",Reject_Specify:"",
                           How_Much:0.00,Started_Repay:false,Amount_Issued:0.00,Repay_Amount:0.00};
   constructor(private activatedRoute: ActivatedRoute,private router: Router,
-    private EwepserverService: EwepserverService,private cutomerFormHlper: CustomFromHelperControlService,
+     public EwepserverService: EwepserverService,private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService:CustomformSetupService  ) { }
     // @Output() SelectClick = new EventEmitter<number>();
     ngOnChanges(changes: any){

@@ -20,7 +20,7 @@ export class ListEntrepreneurComponent implements OnInit {
   page: any = { size: 10, totalElements: 500, totalPages: 25, pageNumber: 1 }
   SearchFilter: string = "";
 
-  constructor(private EwepserverService: EwepserverService,
+  constructor( public EwepserverService: EwepserverService,
     public dialogRef: MatDialogRef<ListEntrepreneurComponent> ,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.getPageOfEntrepreneurs();

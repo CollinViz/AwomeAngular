@@ -27,6 +27,7 @@
 <ng-template #editTemplate>
   <!-- Put Edit template in -->
   <app-edit-member-baseline-enterprise [entrepreneur]="EntrepreneurEditItem" 
-  (SaveItem)="onSaveEntrepreneur($event)">
+  (SaveItem)="onSaveEntrepreneur($event)"
+  (DeletedItem)="onDeletedItem($event)">
 </app-edit-member-baseline-enterprise>
 </ng-template>

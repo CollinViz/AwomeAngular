@@ -32,7 +32,7 @@ export class EditTrainingEntrepreneursEntrepreneursComponent implements OnInit, 
   addTraining: FormGroup;
   showEdit: boolean = false;
   bControlLoaded: boolean = false;
-  constructor(private EwepserverService: EwepserverService,
+  constructor( public EwepserverService: EwepserverService,
     private cutomerFormHlper: CustomFromHelperControlService) { }
 
   ngOnInit() {

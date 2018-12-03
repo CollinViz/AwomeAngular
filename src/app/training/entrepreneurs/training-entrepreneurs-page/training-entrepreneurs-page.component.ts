@@ -22,7 +22,7 @@ export class TrainingEntrepreneursPageComponent implements OnInit {
   EntrepreneurEditItem: any = {};
   TrainingList: any[] = [];
   ActiveEDFs: any[] = []
-  constructor(private EwepserverService: EwepserverService) { }
+  constructor( public EwepserverService: EwepserverService) { }
 
   ngOnInit() {
     this.getPageOfEntrepreneurs();

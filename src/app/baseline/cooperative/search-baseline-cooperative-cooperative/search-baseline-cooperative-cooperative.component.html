@@ -110,7 +110,7 @@
         </button>
     </div>
     <div class="card-footer" *ngIf="!hidAdd">
-        <button type="button" class="btn btn-primary" (click)="addClick()">
+        <button *ngIf="EwepserverService.SelectedUserCanAdd" type="button" class="btn btn-primary" (click)="addClick()">
             Add Cooperative
           </button>
       </div>

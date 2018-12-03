@@ -21,7 +21,7 @@ export class SearchBaselineCooperativeCooperativeComponent implements OnInit {
 
   HeadingInfo: string = "Baseline Info";
 
-  constructor(private EwepserverService: EwepserverService) {
+  constructor( public EwepserverService: EwepserverService) {
 
     this.Provinces = this.EwepserverService.province;
 

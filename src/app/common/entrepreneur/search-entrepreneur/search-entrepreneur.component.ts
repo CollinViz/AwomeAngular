@@ -15,7 +15,7 @@ export class SearchEntrepreneurComponent implements OnInit {
   @Output() filter: string = "";
   @Output() SearchClick = new EventEmitter<string>();
   @Output() NewClick = new EventEmitter<string>();
-  constructor(private EwepserverService: EwepserverService) {
+  constructor( public EwepserverService: EwepserverService) {
      
   }
 

@@ -2,8 +2,8 @@
   [class.bg-danger]="isRed(active)" [class.text-white]="(isRed(active) || isComplete(active)|| isThisMonth(active))" [class.bg-success]="isComplete(active)"
   [class.bg-info]="isThisMonth(active)" class="card mb-3" >
   <div class="card-header">{{active.Description}} &nbsp; &nbsp;
-    <a class="fas fa-trash float-right btn" (click)="deleteItem_()"></a>
-    <a class="far fa-edit float-right btn" (click)="editItem_()"></a> &nbsp; &nbsp;
+    <a *ngIf="EwepserverService.SelectedUserCanDelete" class="fas fa-trash float-right btn" (click)="deleteItem_()"></a>
+    <a *ngIf="EwepserverService.SelectedUserCanEdit" class="far fa-edit float-right btn" (click)="editItem_()"></a> &nbsp; &nbsp;
   </div>
   <div class="card-body">
     <p class="card-text">

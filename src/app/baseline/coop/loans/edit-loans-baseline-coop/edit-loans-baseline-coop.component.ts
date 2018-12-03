@@ -13,7 +13,7 @@ export class EditLoansBaselineCoopComponent implements OnInit {
   loanEdit:FormGroup;
   binload:boolean = false;
   CurrencyValue:string = "R";
-  constructor(private EwepserverService:EwepserverService) { }
+  constructor(public EwepserverService:EwepserverService) { }
   ngOnChanges(changes: any){
     console.log(changes);
     if(changes.finance){

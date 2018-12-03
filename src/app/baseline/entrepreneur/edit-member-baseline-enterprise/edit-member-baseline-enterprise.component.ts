@@ -24,6 +24,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   //maxDate = new Date(2020, 0, 1);
   @Input() entrepreneur:any = {}
   @Output() SaveItem:EventEmitter<any> = new EventEmitter<any>();
+  @Output() DeletedItem:EventEmitter<any> = new EventEmitter<any>();
   MainForm:FormGroup;
   General:FormGroup;
   training:FormGroup;
@@ -53,7 +54,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   ];
   rowsCooperative: any[] = []; 
 
-  constructor(private EwepserverService: EwepserverService,
+  constructor( public EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
               private controlsService:CustomformSetupService) { 
                 this.Language = this.EwepserverService.Language;
@@ -115,6 +116,22 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
       entrepreneur["Date_Created"] = this.cutomerFormHlper.getDateValue(new Date());
     }
     this.SaveItem.emit(entrepreneur);
+  }
+  Delete(){
+    this.cutomerFormHlper.showConfirmDelete(this.entrepreneur.Name + " " + this.entrepreneur.Surname).subscribe(result=>{
+      if(result.Result==='Ok'){
+        this.EwepserverService.deleteEntrepreneur(this.entrepreneur.Entrepreneur_ID).subscribe((message:any)=>{
+          if(message.OK==="OK"){
+            alert("Entrepreneur deleted");
+            this.DeletedItem.emit(null);
+          }else{
+            alert("Error " + message.message);
+            this.DeletedItem.emit(null);
+          }
+        });
+      }
+    });
+
   }
   Back(){
     this.SaveItem.emit(null);

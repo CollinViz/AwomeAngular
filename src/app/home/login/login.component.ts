@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   @Output() loginOK = new EventEmitter<any>();
   user:UserLogin =  {Username:"",Password:"",showError:false,Error:"",countrylogin:null};
   countryList$: Observable<Country[]>;
-  constructor(private EwepserverService: EwepserverService) { }
+  constructor(  public EwepserverService: EwepserverService) { }
 
   onClick(){
     if(this.user.countrylogin==null){

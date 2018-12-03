@@ -21,7 +21,7 @@ export class BaselineAssociationPageComponent implements OnInit {
   SearchFilter: string = "";
   IsEditing: boolean = false;
   AssociationEditItem: any = {};
-  constructor(private router: Router, private EwepserverService: EwepserverService) {
+  constructor(private router: Router,  public EwepserverService: EwepserverService) {
     this.getPageOfAssociations();
   }
 
@@ -64,6 +64,10 @@ export class BaselineAssociationPageComponent implements OnInit {
   NewClick() {
     this.IsEditing = true;
     this.AssociationEditItem = { Association_ID: -1 };
+    this.router.navigateByUrl('baseline/association/' + -1);
+  }
+  DeletedItem(event){
+    this.getPageOfAssociations();
   }
   onSaveAssociation(NewOrEditAssociation) {
     if (NewOrEditAssociation === null) {

@@ -91,9 +91,9 @@
             </div>
           </div>
         <div class="col-2">
-            <button  (click)="Save()" [ngClass]="{'btn':true,'btn-primary':addTraining.valid,'btn-md':true  }" [disabled]="!addTraining.valid">Add</button>
-            <button *ngIf="showEdit" (click)="Edit()" [ngClass]="{'btn':true,'btn-primary':addTraining.valid,'btn-md':true  }" [disabled]="!addTraining.valid">Save</button>
-            <button *ngIf="showEdit" (click)="Delete()" [ngClass]="{'btn':true,'btn-warning':true,'btn-md':true  }"  >Delete</button>
+            <button *ngIf="EwepserverService.SelectedUserCanEdit" (click)="Save()" [ngClass]="{'btn':true,'btn-primary':addTraining.valid,'btn-md':true  }" [disabled]="!addTraining.valid">Add</button>
+            <button *ngIf="showEdit && EwepserverService.SelectedUserCanEdit" (click)="Edit()" [ngClass]="{'btn':true,'btn-primary':addTraining.valid,'btn-md':true  }" [disabled]="!addTraining.valid">Save</button>
+            <button *ngIf="showEdit && EwepserverService.SelectedUserCanDelete" (click)="Delete()" [ngClass]="{'btn':true,'btn-warning':true,'btn-md':true  }"  >Delete</button>
             <button (click)="Back()" [ngClass]="{'btn':true,'btn-secondary':true,'btn-md':true  }"  >Back</button>
         </div>
       </div>

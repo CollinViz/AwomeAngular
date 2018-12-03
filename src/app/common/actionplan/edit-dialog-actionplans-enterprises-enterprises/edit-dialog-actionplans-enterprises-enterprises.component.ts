@@ -1,7 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CustomFromHelperControlService } from '../../../service/custom-from-helper-control.service'
-
+import { EwepserverService } from '../../../ewepserver.service'
 
 @Component({
   selector: 'app-edit-dialog-actionplans-enterprises-enterprises',
@@ -11,7 +11,7 @@ import { CustomFromHelperControlService } from '../../../service/custom-from-hel
 export class EditDialogActionplansEnterprisesEnterprisesComponent implements OnInit {
   ActivityEdit:any={};
 
-  constructor(
+  constructor(public EwepserverService: EwepserverService,
     public dialogRef: MatDialogRef<EditDialogActionplansEnterprisesEnterprisesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formHelper :CustomFromHelperControlService) {}
