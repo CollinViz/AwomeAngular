@@ -276,7 +276,7 @@ export class EwepserverService {
       Currency: SelectCounter.Currency,
       Security_Level:UserOJB.Security_Level
     });
-    
+    this._getProvinceLoadLocal();
     console.log("Change Currency " + this.SelectedCurrency);
   }
 

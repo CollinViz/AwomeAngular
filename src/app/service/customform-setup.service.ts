@@ -574,7 +574,7 @@ export class CustomformSetupService {
 			}).map((value)=>new Options(value.LocalMunicipality_ID,value.Name))
 		}),
 		new DropdownQuestion({
-			key:"Main_Place_ID",required:true,order:10,
+			key:"Main_Place_ID",required:false,order:10,
 			label:"Main Place",value:enterprise.Main_Place_ID,
 			options:this.ewepServer.mainPlaces.filter((element)=>{
 				return element.LocalMunicipality_ID == enterprise.Municipality_ID
