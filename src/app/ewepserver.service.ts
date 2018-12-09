@@ -146,15 +146,24 @@ export class EwepserverService {
       this._getMainplace();
     });
   }
+  private _setLanguages(){
+    if(this.SelectedCountryID==1){
+      this.Language= ["English", "Afrikaans", "Ndebele", "Sepedi", "SeSotho", "Swati", "Tsonga", "Tswana", "Venda", "Xhosa", "Zulu"].map((item) => new Options(item, item));
+    }else if(this.SelectedCountryID==2) {
+      this.Language= ["English", "Afrikaans", "Ndebele", "Sepedi", "SeSotho", "Swati", "Tsonga", "Tswana", "Venda", "Xhosa", "Zulu"].map((item) => new Options(item, item));
+    }else if (this.SelectedCountryID==3){
+      this.Language= ["English", "Afrikaans", "German", "Nama/Damara", "Kavango", "Otjiherero", "Khoekhoe", "Oshiwambo", "Kwangali","Setswana", "Silozi", "other"].map((item) => new Options(item, item));
+    }
 
+  }
   private _getCountry() {
     //province
     this.http.get<any>(this.baseURL + "country?order=Country_ID&filter=Active,eq,Y", httpOptions).subscribe((customers: any) => {
       //console.log(customers.records);
       this.CountryListStatic = <Country[]>customers.records;
       this.CountryList.next(<Country[]>customers.records);
-      this._getProvinceLoadLocal(); 
-      
+      //this._getProvinceLoadLocal(); 
+      this._setLanguages();
     });
   }
   private _getdistrictmetroLoadLocal() {
@@ -233,6 +242,7 @@ export class EwepserverService {
     this.setUserLogin(this.SelectedUserInfo,this.SelectedUserInfo);
     //Reload all the cashed data
     this._getProvinceLoadLocal(); 
+    this._setLanguages();
   }
   setUserLogin(UserOJB: any, SelectCounter: Country) {
     //Save local data
@@ -277,6 +287,7 @@ export class EwepserverService {
       Security_Level:UserOJB.Security_Level
     });
     this._getProvinceLoadLocal();
+    this._setLanguages();
     console.log("Change Currency " + this.SelectedCurrency);
   }
 
