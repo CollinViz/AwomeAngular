@@ -87,14 +87,14 @@ export class FormGroupMapVisitsCooperative {
 					 new Options("Co-Tenant","Co-Tenant"),new Options("Government Premises","Government Premises"),
 					 new Options("Home Based","Home Based") ]
 		}),
-		new ToggleQuestion({
-			key: 'Family_Owned',  required: false, order: 13,
-			label: 'Is Business Family owned?', value: cooperative.Family_Owned,
-		}),
-		new ToggleQuestion({
-			key: 'Group_Owned', required: false,order: 14,
-			label: 'Is Business Group owned?', value: cooperative.Group_Owned,
-		}),
+		//new ToggleQuestion({
+		//	key: 'Family_Owned',  required: false, order: 13,
+		//	label: 'Is Business Family owned?', value: cooperative.Family_Owned,
+		//}),
+		//new ToggleQuestion({
+		//	key: 'Group_Owned', required: false,order: 14,
+		//	label: 'Is Business Group owned?', value: cooperative.Group_Owned,
+		//}),
 		new TextboxQuestion({
 			key: 'Contact_Person', required: false,order: 15,
 			label: 'Contact Person', value: cooperative.Contact_Person,
@@ -256,6 +256,12 @@ export class FormGroupMapVisitsCooperative {
 				new CheckBoxOptions("Assets_Buildings","Buildings",cooperative.Assets_Buildings),
 				new CheckBoxOptions("Assets_Water","Water",cooperative.Assets_Water),
 				new CheckBoxOptions("Assets_Machines","Machines",cooperative.Assets_Machines),
+				new CheckBoxOptions("Assets_Car","Car",cooperative.Assets_Car),
+				new CheckBoxOptions("Assets_Truck","Truck",cooperative.Assets_Truck),
+				new CheckBoxOptions("Assets_Van","Van",cooperative.Assets_Van),
+				new CheckBoxOptions("Assets_Bicycle","Bicycle",cooperative.Assets_Bicycle),
+				new CheckBoxOptions("Assets_Motorbike","Motorbike",cooperative.Assets_Motorbike),
+				new CheckBoxOptions("Assets_Trailer","Trailer",cooperative.Assets_Trailer),
 				new CheckBoxOptions("Assets_Other","Other",cooperative.Assets_Other),
 			]
 		}), 
@@ -470,7 +476,10 @@ export class FormGroupMapVisitsCooperative {
 				key: 'Mobile_Phone', required: false,order: 24,
 				label: 'Mobile_Phone', value: cooperative.Mobile_Phone,
 			}),
-			
+			new TextboxQuestion({
+				key: 'Email', required: false,order: 79,
+				label: 'Email', value: cooperative.Email,
+			}),
 			
 			new TextboxQuestion({
 				key: 'Need_Finance', required: false,order: 44,

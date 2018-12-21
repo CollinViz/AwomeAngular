@@ -261,6 +261,12 @@ export class CustomformSetupService {
 				new CheckBoxOptions("Assets_Buildings","Buildings",enterprise.Assets_Buildings),
 				new CheckBoxOptions("Assets_Water","Water",enterprise.Assets_Water),
 				new CheckBoxOptions("Assets_Machines","Machines",enterprise.Assets_Machines),
+				new CheckBoxOptions("Assets_Car","Car",enterprise.Assets_Car),
+				new CheckBoxOptions("Assets_Truck","Truck",enterprise.Assets_Truck),
+				new CheckBoxOptions("Assets_Van","Van",enterprise.Assets_Van),
+				new CheckBoxOptions("Assets_Bicycle","Bicycle",enterprise.Assets_Bicycle),
+				new CheckBoxOptions("Assets_Motorbike","Motorbike",enterprise.Assets_Motorbike),
+				new CheckBoxOptions("Assets_Trailer","Trailer",enterprise.Assets_Trailer),
 				new CheckBoxOptions("Assets_Other","Other",enterprise.Assets_Other),
 			]
 		}), 
@@ -269,11 +275,11 @@ export class CustomformSetupService {
 			key: 'Assets_Specify', required: false,order: 30,
 			label: 'Other Available Assets Specify', value: enterprise.Assets_Specify,
 		}),
-		new DropdownQuestion({
-			key: 'Assets_Transport', required: false,order: 35,
-			label: 'Transportation', value: enterprise.Assets_Transport,
-			options:this.ewepServer.Assets_TransportTypes
-		}),
+		//new DropdownQuestion({
+		//	key: 'Assets_Transport', required: false,order: 35,
+		//	label: 'Transportation', value: enterprise.Assets_Transport,
+		//	options:this.ewepServer.Assets_TransportTypes
+		//}),
 		new ToggleQuestion({
 			key: 'Bank_Account', required: false,order: 40,
 			label: 'Bank Account', value: enterprise.Bank_Account,
@@ -539,6 +545,10 @@ export class CustomformSetupService {
 			label: 'Mobile', value: enterprise.Mobile_Phone,
 			max:10,min:1
 		}),
+		new TextboxQuestion({
+            key: 'Email', required: false,order: 79,
+            label: 'Email', value: enterprise.Email,
+        }),
 		new NumbersQuestion({
 			key: 'GPS_Latitude', required: false,order: 80,
 			label: 'GPS Latitude', value: enterprise.GPS_Latitude,
@@ -654,7 +664,10 @@ export class CustomformSetupService {
 				key: 'Mobile_Phone', required: false,order: 24,
 				label: 'Mobile_Phone', value: enterprise.Mobile_Phone,
 			}),
-			
+			new TextboxQuestion({
+				key: 'Email', required: false,order: 25,
+				label: 'Email', value: enterprise.Email,
+			}),
 			
 			new TextboxQuestion({
 				key: 'Need_Finance', required: false,order: 44,

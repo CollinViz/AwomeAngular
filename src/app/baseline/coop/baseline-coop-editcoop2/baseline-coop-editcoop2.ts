@@ -49,14 +49,14 @@ export class FormGroupBaselineCoopEditcoop2 {
                          new Options("Co-Tenant","Co-Tenant"),new Options("Government Premises","Government Premises"),
                          new Options("Home Based","Home Based") ]
             }),
-            new ToggleQuestion({
-                key: 'Family_Owned',  required: false, order: 10,
-                label: 'Is Business Family owned?', value: enterprise.Family_Owned,
-            }),
-            new ToggleQuestion({
-                key: 'Group_Owned', required: false,order: 11,
-                label: 'Is Business Group owned?', value: enterprise.Group_Owned,
-            }),
+            //new ToggleQuestion({
+            //    key: 'Family_Owned',  required: false, order: 10,
+            //    label: 'Is Business Family owned?', value: enterprise.Family_Owned,
+            //}),
+            //new ToggleQuestion({
+            //    key: 'Group_Owned', required: false,order: 11,
+            //    label: 'Is Business Group owned?', value: enterprise.Group_Owned,
+            //}),
             new TextboxQuestion({
                 key: 'Contact_Person', required: false,order: 12,
                 label: 'Contact Person', value: enterprise.Contact_Person,

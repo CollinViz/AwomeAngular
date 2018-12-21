@@ -198,7 +198,11 @@ export class FormGroupEditAssociation {
             label: 'Mobile_Phone', value: association.Mobile_Phone,
         }),
         new TextboxQuestion({
-            key: 'Country_ID', required: false,order: 79,
+            key: 'Email', required: false,order: 79,
+            label: 'Email', value: association.Email,
+        }),
+        new TextboxQuestion({
+            key: 'Country_ID', required: false,order: 80,
             label: 'Country_ID', value: association.Country_ID,
         })];
         return questions;

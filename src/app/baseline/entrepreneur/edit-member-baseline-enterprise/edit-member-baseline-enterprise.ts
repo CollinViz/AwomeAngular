@@ -99,6 +99,10 @@ export class FormGroupEditMemberBaselineEnterprise {
             label: 'Support_Grant', value: entrepreneur.Support_Grant,
         }),
         new TextboxQuestion({
+            key: 'Support_Any_Grant', required: false, order: 25,
+            label: 'Support_Any_Grant', value: entrepreneur.Support_Any_Grant,
+        }),
+        new TextboxQuestion({
             key: 'Support_Pension', required: false, order: 26,
             label: 'Support_Pension', value: entrepreneur.Support_Pension,
         }),
@@ -109,6 +113,10 @@ export class FormGroupEditMemberBaselineEnterprise {
         new TextboxQuestion({
             key: 'Support_Savings', required: false, order: 28,
             label: 'Support_Savings', value: entrepreneur.Support_Savings,
+        }),
+        new TextboxQuestion({
+            key: 'Support_NA', required: false, order: 28,
+            label: 'Support_NA', value: entrepreneur.Support_NA,
         }),
         new TextboxQuestion({
             key: 'Support_Other', required: false, order: 29,
@@ -272,7 +280,11 @@ export class FormGroupEditMemberBaselineEnterprise {
             label: 'Mobile_Phone', value: entrepreneur.Mobile_Phone,
         }),
         new TextboxQuestion({
-            key: 'Country_ID', required: false,order: 79,
+            key: 'Email', required: false,order: 79,
+            label: 'Email', value: entrepreneur.Email,
+        }),
+        new TextboxQuestion({
+            key: 'Country_ID', required: false,order: 80,
             label: 'Country_ID', value: entrepreneur.Country_ID,
         })];
         return questions;

@@ -259,6 +259,12 @@ export class FormGroupMapVisitsEnterprise {
 				new CheckBoxOptions("Assets_Buildings","Buildings",enterprise.Assets_Buildings),
 				new CheckBoxOptions("Assets_Water","Water",enterprise.Assets_Water),
 				new CheckBoxOptions("Assets_Machines","Machines",enterprise.Assets_Machines),
+				new CheckBoxOptions("Assets_Car","Car",enterprise.Assets_Car),
+				new CheckBoxOptions("Assets_Truck","Truck",enterprise.Assets_Truck),
+				new CheckBoxOptions("Assets_Van","Van",enterprise.Assets_Van),
+				new CheckBoxOptions("Assets_Bicycle","Bicycle",enterprise.Assets_Bicycle),
+				new CheckBoxOptions("Assets_Motorbike","Motorbike",enterprise.Assets_Motorbike),
+				new CheckBoxOptions("Assets_Trailer","Trailer",enterprise.Assets_Trailer),
 				new CheckBoxOptions("Assets_Other","Other",enterprise.Assets_Other),
 			]
 		}), 
@@ -473,7 +479,10 @@ export class FormGroupMapVisitsEnterprise {
 				key: 'Mobile_Phone', required: false,order: 24,
 				label: 'Mobile_Phone', value: enterprise.Mobile_Phone,
 			}),
-			
+			new TextboxQuestion({
+				key: 'Email', required: false,order: 79,
+				label: 'Email', value: enterprise.Email,
+			}),
 			
 			new TextboxQuestion({
 				key: 'Need_Finance', required: false,order: 44,
