@@ -6,7 +6,7 @@
       <div class="card-body" >
           <div class="row">
             <div class="col-8"> 
-              {{cooperative.cooperative_Name}}
+              {{cooperative.Cooperative_Name}}
             </div>
           </div>
           <div class="row">
@@ -44,6 +44,7 @@ class="bootstrap"
 </div>
 <ng-template #EditVisit>
 <div>
-  <app-editfrm-visits-cooperative (backButton)="backtoList($event)" [(cooperative_visit)]="selectedVisit"></app-editfrm-visits-cooperative>
+  <app-editfrm-visits-cooperative (backButton)="backtoList($event)" 
+           [(cooperative_visit)]="selectedVisit"></app-editfrm-visits-cooperative>
 </div>
 </ng-template>

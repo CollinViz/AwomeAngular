@@ -17,7 +17,7 @@ export class ListEntrepreneurComponent implements OnInit {
   ];
   rows: any[] = [];
   selected = [];
-  page: any = { size: 10, totalElements: 500, totalPages: 25, pageNumber: 1 }
+  page: any = { size: 10, totalElements: 500, totalPages: 25, pageNumber: 0 }
   SearchFilter: string = "";
 
   constructor( public EwepserverService: EwepserverService,
@@ -27,7 +27,7 @@ export class ListEntrepreneurComponent implements OnInit {
   }
 
   getPageOfEntrepreneurs() {
-    let strOptions = "page=" + this.page.pageNumber + ","+ this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
+    let strOptions = "page=" + (Number(this.page.pageNumber) + 1) + ","+ this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
     this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
       this.rows = [...myjsondata.records];
       this.page.totalElements = myjsondata.results;

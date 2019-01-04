@@ -31,21 +31,9 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
   blistShow: boolean = true;
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
      public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService) {
-    this.activatedRoute.params
-      // NOTE: I do not use switchMap here, but subscribe directly
-      .subscribe((params: Params) => {
-        console.log(params.Cooperative_ID);
-        //console.log(params.Cooperative_Visit_ID);
-        if (params.Cooperative_ID) {
-          if (params.Cooperative_ID > 0) {
-            this.Cooperative_ID = params.Cooperative_ID;
-            //this.Cooperative_Visit_ID =  params.Cooperative_Visit_ID;
-
-            this.loadCooperateLoad();
-            this.getVisitorList();
-          }
-        }
-      });
+    
+    
+      
   }
   loadCooperateLoad() {
     this.EwepserverService.getCooperativeItem(this.Cooperative_ID).subscribe((customers: any) => {
@@ -54,6 +42,27 @@ export class EditVisitsCooperativeCooperativeComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.cooperative = this.EwepserverService.getRoutingStashBox();
+    if (this.cooperative == null) {
+      this.activatedRoute.params
+        // NOTE: I do not use switchMap here, but subscribe directly
+        .subscribe((params: Params) => {
+          console.log(params.Cooperative_ID);
+          //console.log(params.Cooperative_Visit_ID);
+          if (params.Cooperative_ID) {
+            if (params.Cooperative_ID > 0) {
+              this.Cooperative_ID = params.Cooperative_ID;
+              //this.Cooperative_Visit_ID =  params.Cooperative_Visit_ID;
+  
+              this.loadCooperateLoad();
+              this.getVisitorList();
+            }
+          }
+        });
+    }else{
+      this.Cooperative_ID = this.cooperative.Cooperative_ID;
+      this.OnDataOK();
+    }
   }
 
   OnDataOK() {

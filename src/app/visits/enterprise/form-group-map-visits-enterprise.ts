@@ -301,20 +301,15 @@ export class FormGroupMapVisitsEnterprise {
 			key: 'Avg_Expenditure', required: false,order: 65,
 			label: 'Avg monthly Expenses', value: enterprise.Avg_Expenditure,
 			currency:true
-		}),
-		new NumbersQuestion({
-			key: 'Avg_Indirect_Cost', required: false,order: 153,
-			label: 'Avg monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
-			currency:true
-		}),
+		}), 
 		new NumbersQuestion({
 			key: 'Member_Salaries', required: false,order: 66,
-			label: 'Owner Salaries', value: enterprise.Member_Salaries,
+			label: 'Owner Salaries/month', value: enterprise.Member_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Employee_Salaries', required: false,order: 67,
-			label: 'Employee Salaries', value: enterprise.Employee_Salaries,
+			label: 'Employee Salaries/month', value: enterprise.Employee_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({

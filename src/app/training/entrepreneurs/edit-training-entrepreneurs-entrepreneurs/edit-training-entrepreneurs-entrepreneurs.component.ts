@@ -45,7 +45,7 @@ export class EditTrainingEntrepreneursEntrepreneursComponent implements OnInit, 
     //  return;
     //}
     if (changes.entrepreneur) {
-      this.page.pageNumber = 1;
+      this.page.pageNumber = 0;
       this.isLoading = true;
       this.getTraining();
       //Load Stuff

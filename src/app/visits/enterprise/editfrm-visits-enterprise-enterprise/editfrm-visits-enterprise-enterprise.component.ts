@@ -88,6 +88,7 @@ export class EditfrmVisitsEnterpriseEnterpriseComponent implements OnInit,OnChan
     this.user.addControl("Employees",this.Employees);
     this.user.addControl("Finance",this.Finance);
     this.showloading = false;
+    this.SetOnChangeForFunds();
   }
   Back(){
     this.backButton.emit("");
@@ -103,9 +104,10 @@ export class EditfrmVisitsEnterpriseEnterpriseComponent implements OnInit,OnChan
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     //Fix Date from the Material Control
     this.FlatMe.Visit_Date = this.cutomerFormHlper.getDateValue(this.Finance.get('Visit_Date').value);*/
-   
+    this.FlatMe.Enterprise_ID = this.enterprise_visit.Enterprise_ID;
     if(this.enterprise_visit.Enterprise_Visit_ID===-1){
       delete this.FlatMe.Enterprise_Visit_ID
+      this.FlatMe.Enterprise_ID = this.enterprise_visit.Enterprise_ID;
       this.EwepserverService.CreateTableData("enterprise_visits",this.FlatMe ).subscribe((out)=>{
         //Show Saving
         console.log("Create Done",out);
@@ -183,6 +185,29 @@ export class EditfrmVisitsEnterpriseEnterpriseComponent implements OnInit,OnChan
     console.log(this.FinanceLoans[Index]);
     this.newFinanceLoan = this.FinanceLoans[Index];
     this.FinanceLoans.splice(Index,1);
+  }
+
+  SetOnChangeForFunds() {
+    this.Finance.get('Avg_Other_Income').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Avg_Expenditure').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+     
+    this.Finance.get('Member_Salaries').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Employee_Salaries').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+  }
+  FundsNumberChange(Value) {
+    console.log("Input Value", Value);
+    let Calc = ((Number(this.Finance.get("Avg_Sales").value)) + (Number(this.Finance.get("Avg_Other_Income").value))) -
+      ((Number(this.Finance.get("Avg_Expenditure").value)  +
+        Number(this.Finance.get("Member_Salaries").value) + Number(this.Finance.get("Employee_Salaries").value)));
+    this.Finance.get("Avg_Profit").setValue(Number(Calc)); 
   }
 }
 

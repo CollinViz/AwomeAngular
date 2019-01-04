@@ -68,7 +68,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   ngOnChanges(changes: any) {
     //this.enterprise = this.EwepserverService.getRoutingStashBox();
     //this.enterprise.Avg_Profit.value = 1000;  
-    this.enterprise.Avg_Profit = this.enterprise.Avg_Sales + this.enterprise.Avg_Other_Income - (this.enterprise.Avg_Expenditure + this.enterprise.Avg_Indirect_Cost + this.enterprise.Member_Salaries + this.enterprise.Employee_Salaries);
+    this.enterprise.Avg_Profit = this.enterprise.Avg_Sales + this.enterprise.Avg_Other_Income - (this.enterprise.Avg_Expenditure  + this.enterprise.Member_Salaries + this.enterprise.Employee_Salaries);
   }
   ngOnInit() {
     //get from stash box
@@ -137,8 +137,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
       forceValidate("Details.GS_Other", [{ name: "Details.GS_Specify", UseLengthValidation: true, min: 1, max: 50 }])
       ]);
 
-    //this.enterprise.Avg_Profit = this.enterprise.Avg_Sales + this.enterprise.Avg_Other_Income - (this.enterprise.Avg_Expenditure + this.enterprise.Avg_Indirect_Cost + this.enterprise.Member_Salaries + this.enterprise.Employee_Salaries);
-
+     
     this.GeneralQuestions = this.controlsService.getEnterpriseGenralForm(this.enterprise);
 
     this.General = this.cutomerFormHlper.toFormGroup(this.GeneralQuestions);
@@ -181,9 +180,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.Finance.get('Avg_Expenditure').valueChanges.subscribe(val => {
       this.FundsNumberChange(val);
     });
-    this.Finance.get('Avg_Indirect_Cost').valueChanges.subscribe(val => {
-      this.FundsNumberChange(val);
-    });
+     
     this.Finance.get('Member_Salaries').valueChanges.subscribe(val => {
       this.FundsNumberChange(val);
     });
@@ -232,15 +229,27 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
           this.EwepserverService.CreateTableData("finance", this.FinanceLoans).subscribe((outFin) => {
             console.log("Save Done to fin ", outFin);
             console.log(typeof (outFin));
-            this.router.navigateByUrl('baseline/enterprise');
+            //this.router.navigateByUrl('baseline/enterprise');
           });
         });
-        //this.router.navigateByUrl('/enterprise');
-        //}
-
-        //this.showloading = false;
-        //Move back to list screen
-
+        let newMember = []; 
+        this.EntrepreneursList.forEach((value) => { 
+          let n = {
+            Enterprise_ID: this.enterprise.Enterprise_ID,
+            Entrepreneur_ID: value.Entrepreneur_ID,
+            Contact_Person: '1'
+          };
+          newMember.push(n);
+        });
+        if(newMember.length>0){
+          this.EwepserverService.CreateTableData("enterprise_member", newMember).subscribe((outFin) => {
+            console.log("Save Done to Members ", outFin);
+            console.log(typeof (outFin));
+            this.router.navigateByUrl('baseline/enterprise');
+          });
+        }else{
+          this.router.navigateByUrl('baseline/enterprise');          
+        }
       });
     } else {
       this.EwepserverService.updateTableData("enterprise", this.enterprise.Enterprise_ID, this.FlatMe).subscribe((out) => {
@@ -300,20 +309,37 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if (result.Resulet === 'Save') {
-        this.showloading_Entrepreneurs = true;
-        let n = {
-          Enterprise_ID: this.enterprise.Enterprise_ID,
-          Entrepreneur_ID: result.data.Entrepreneur_ID,
-          Contact_Person: '1'
-        };
-
-        this.EwepserverService.CreateTableData("enterprise_member", n).subscribe((outFin) => {
-          //Load members again
-          this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
-            this.EntrepreneursList = member.records;
-            this.showloading_Entrepreneurs = false;
+        console.log("AddNewEntrepreneur",result.data);
+        if(this.enterprise.Enterprise_ID==-1){
+          let n = {
+            Name:result.data.Name,
+            Surname:result.data.Surname,
+            Sex:result.data.Sex,
+            Race:result.data.Race,
+            City:result.data.City,
+            Enterprise_ID:this.enterprise.Enterprise_ID,
+            Enterprise_Name:"",
+            Enterprise_Member_ID:-1,
+            Contact_Person:"Contact_Person",
+            Entrepreneur_ID:result.data.Entrepreneur_ID
+          }
+          this.EntrepreneursList.push(n);
+        }else{
+          this.showloading_Entrepreneurs = true;
+          let n = {
+            Enterprise_ID: this.enterprise.Enterprise_ID,
+            Entrepreneur_ID: result.data.Entrepreneur_ID,
+            Contact_Person: '1'
+          };
+          
+          this.EwepserverService.CreateTableData("enterprise_member", n).subscribe((outFin) => {
+            //Load members again
+            this.EwepserverService.getViewData("enterprise_member_view", "filter=Enterprise_ID,eq," + this.enterprise.Enterprise_ID).subscribe((member) => {
+              this.EntrepreneursList = member.records;
+              this.showloading_Entrepreneurs = false;
+            });
           });
-        });
+        }
       }
     });
   }
@@ -331,9 +357,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     //Find Entopuner ID and remove from 
     console.log("Delete Click", RowDelete.Enterprise_ID, RowDelete);
     if (RowDelete.Enterprise_Member_ID == -1) {
-      let index = this.EntrepreneursList.findIndex(x => x.Entrepreneur_ID == RowDelete.Entrepreneur_ID);
-      console.log("Next found", index);
-      this.EntrepreneursList.slice(index, 1);
+      this.EntrepreneursList = this.EntrepreneursList.filter(x => x.Entrepreneur_ID != RowDelete.Entrepreneur_ID);
+      // console.log("Next found", index);
+      // this.EntrepreneursList.slice(index, 1);
       this.showloading_Entrepreneurs = false;
     } else {
       let OldValue = this.EntrepreneursList.find(x => x.Enterprise_Member_ID == RowDelete.Enterprise_Member_ID);
@@ -350,12 +376,10 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   }
   FundsNumberChange(Value) {
     console.log("Input Value", Value);
-    let Calc = (Number(this.Finance.get("Avg_Other_Income").value)) -
-      (Number(this.Finance.get("Avg_Expenditure").value) + Number(this.Finance.get("Avg_Indirect_Cost").value) +
-        Number(this.Finance.get("Member_Salaries").value) + Number(this.Finance.get("Employee_Salaries").value));
-    this.Finance.get("Avg_Profit").setValue(Number(Calc));
-
-
+    let Calc = ((Number(this.Finance.get("Avg_Sales").value)) + (Number(this.Finance.get("Avg_Other_Income").value))) -
+      ((Number(this.Finance.get("Avg_Expenditure").value)  +
+        Number(this.Finance.get("Member_Salaries").value) + Number(this.Finance.get("Employee_Salaries").value)));
+    this.Finance.get("Avg_Profit").setValue(Number(Calc)); 
   }
   contaceDetailChange(event, Index) {
     console.log(event, Index);

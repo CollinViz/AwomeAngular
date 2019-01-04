@@ -11,7 +11,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ChartModule } from 'angular-highcharts';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MatRadioModule, MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatProgressBarModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatTableModule, MatDialogModule } from '@angular/material';
+import { MatRadioModule, MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatProgressBarModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatTableModule, MatDialogModule,MatAutocompleteModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressInterceptor } from './service/ProgressInterceptor';
 import { ProgressComponent } from './common/internet/ProgressComponent';
@@ -267,7 +267,7 @@ const interceptor = new ProgressInterceptor();
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatInputModule, MatTableModule,
     MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatNativeDateModule, MatDatepickerModule,
-    NgxDatatableModule, MatDialogModule,
+    NgxDatatableModule, MatDialogModule,MatAutocompleteModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     RouterModule.forRoot([{

@@ -1,11 +1,12 @@
 import { Component, OnInit,Input,Output,EventEmitter,OnChanges } from '@angular/core';
-import { FormControl, FormGroup ,Validators} from '@angular/forms'; 
-import {EwepserverService} from '../../../ewepserver.service' 
+import { FormGroup} from '@angular/forms'; 
+import { EwepserverService} from '../../../ewepserver.service' 
 import { Options, QuestionBase,DropdownQuestion} from '../../../service/question';
 import { CustomFromHelperControlService,forceValidate } from '../../../service/custom-from-helper-control.service'
 import { CustomformSetupService } from '../../../service/customform-setup.service'
-import { FormGroupEditMemberBaselineEnterprise } from './edit-member-baseline-enterprise'
-import { max } from '../../../../../node_modules/rxjs/operators';
+import { FormGroupEditMemberBaselineEnterprise } from './edit-member-baseline-enterprise' 
+import {map, startWith} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 @Component({
   selector: 'app-edit-member-baseline-enterprise',
   templateUrl: './edit-member-baseline-enterprise.component.html',
@@ -37,7 +38,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   EducationLevel:Options[] = [];
   CurrencyValue:string = "R";
   IDorPassport:Options[];
-
+  NationalityList: string[] = [];
+  filteredNationalityList: Observable<string[]>;
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
   //Grid for connections
@@ -53,7 +55,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     { name: 'Name', prop: 'Cooperative_Name' } 
   ];
   rowsCooperative: any[] = []; 
-
+  
   constructor( public EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
               private controlsService:CustomformSetupService) { 
@@ -63,6 +65,9 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
                 this.MaritalStatus = this.EwepserverService.MaritalStatus;
                 this.EducationLevel = this.EwepserverService.EducationLevel;
                 this.IDorPassport = this.EwepserverService.IDorPassport;
+                this.EwepserverService.NationalityList.forEach(x=>{
+                  this.NationalityList.push(x.Nationality);
+                })
               }
   ngOnChanges(changes){
     if(this.isLoading){
@@ -76,6 +81,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     }
   }
   ngOnInit() {
+    
+
     this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.isLoading =true;
     let oFromTemp:FormGroupEditMemberBaselineEnterprise = new FormGroupEditMemberBaselineEnterprise(); 
@@ -100,6 +107,11 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
       this.ID_Passport_text = this.entrepreneur.ID_or_Passport;
     this.isLoading =false;
     this.loadLinks();
+    this.filteredNationalityList = this.General.get('Nationality').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
   }
   Save(){
     let entrepreneur = this.cutomerFormHlper.flattenObject(this.MainForm.value);
@@ -145,6 +157,13 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
       this.rowsCooperative = [...rowdata.records];
     });
   }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.NationalityList.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
   contaceDetailChange(event, Index) {
     console.log(event, Index);
     let d = <DropdownQuestion>this.ContactInfoWithBinding[Index];

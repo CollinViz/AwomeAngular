@@ -23,7 +23,7 @@
               <div class="card border-light mb-3" [formGroup]="General">
                 <!--- General Information Start  -->
   
-                <div class="card-header">General Information</div>
+                <div [appCardHeaderCssFormGroup]="General.valid" class="card-header">General Information</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of GeneralQuestions" [question]="question" [form]="General"></app-gen-boot-ui>
@@ -36,7 +36,7 @@
               <div class="card border-light mb-3">
                 <!--- General Information Start  -->
   
-                <div class="card-header">No of Female Full Time (Employees)</div>
+                <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Female Full Time (Employees)</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of EmployeesFemaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -47,7 +47,7 @@
               <div class="card border-light mb-3">
                 <!--- General Information Start  -->
   
-                <div class="card-header">No of Male Full Time (Employees)</div>
+                <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Male Full Time (Employees)</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of EmployeesMaleQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -58,7 +58,7 @@
               <div class="card border-light mb-3">
                 <!--- General Information Start  -->
   
-                <div class="card-header">No of Female Part Time</div>
+                <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">No of Female Part Time</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of EmployeesFemalePayQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -80,7 +80,7 @@
               <div class="card border-light mb-3">
                 <!--- General Information Start  -->
   
-                <div class="card-header">Number of people in age range</div>
+                <div [appCardHeaderCssFormGroup]="Employees.valid" class="card-header">Number of people in age range</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of EmployeesQuestions" [question]="question" [form]="Employees"></app-gen-boot-ui>
@@ -97,7 +97,7 @@
                 <div class="card border-light mb-3">
                     <!--- Source of Startup Funds  -->
       
-                    <div class="card-header">Assets and Finance</div>
+                    <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Assets and Finance</div>
                     <div class="card-body" >
       
                       <app-gen-boot-ui *ngFor="let question of Funds" [question]="question" [form]="Finance"></app-gen-boot-ui>
@@ -110,7 +110,7 @@
               <div class="card border-light mb-3">
                 <!--- Source of Startup Funds  -->
   
-                <div class="card-header">Access to Markets</div>
+                <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Access to Markets</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of AccessToMarket" [question]="question" [form]="Finance"></app-gen-boot-ui>
@@ -121,7 +121,7 @@
               <div class="card border-light mb-3">
                 <!--- Source of Startup Funds  -->
   
-                <div class="card-header">Access to Technical Skills</div>
+                <div [appCardHeaderCssFormGroup]="Finance.valid" class="card-header">Access to Technical Skills</div>
                 <div class="card-body" >
   
                   <app-gen-boot-ui *ngFor="let question of AccessToTechnicalSkills" [question]="question" [form]="Finance"></app-gen-boot-ui>

@@ -298,20 +298,15 @@ export class FormGroupMapVisitsCooperative {
 			key: 'Avg_Expenditure', required: false,order: 65,
 			label: 'Avg monthly Expenses', value: cooperative.Avg_Expenditure,
 			currency:true
-		}),
-		new NumbersQuestion({
-			key: 'Avg_Indirect_Cost', required: false,order: 153,
-			label: 'Avg monthly Indirect Costs', value: cooperative.Avg_Indirect_Cost,
-			currency:true
-		}),
+		}), 
 		new NumbersQuestion({
 			key: 'Member_Salaries', required: false,order: 66,
-			label: 'Owner Salaries', value: cooperative.Member_Salaries,
+			label: 'Owner Salaries/month', value: cooperative.Member_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Employee_Salaries', required: false,order: 67,
-			label: 'Employee Salaries', value: cooperative.Employee_Salaries,
+			label: 'Employee Salaries/month', value: cooperative.Employee_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({

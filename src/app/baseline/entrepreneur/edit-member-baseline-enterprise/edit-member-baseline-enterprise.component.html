@@ -107,7 +107,16 @@
                   <div class="control-group">
                     <label class="control-label" for="txtNationality">Nationality</label>
                     <div class="controls">
-                      <input formControlName="Nationality" id="txtNationality" type="text" placeholder="" ngClass="form-control">
+                        <mat-form-field style="width: 100%;">
+                          <input formControlName="Nationality" id="txtNationality" type="text" 
+                                placeholder="" ngClass="form-control"
+                                matInput [matAutocomplete]="auto">
+                          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of filteredNationalityList | async" [value]="option">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
                     </div>
                   </div>
                 </div>

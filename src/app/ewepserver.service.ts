@@ -60,6 +60,7 @@ export class EwepserverService {
   localMunicipality: LocalMunicipality[] = [];
   mainPlaces: MainPlace[] = [];
   CountryListStatic: Country[] = [];
+  NationalityList: Nationality[] = [];
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({ UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" });
@@ -144,6 +145,7 @@ export class EwepserverService {
       this._getdistrictmetroLoadLocal();
       this._getlocalmunicipalityLoadLocal();
       this._getMainplace();
+      
     });
   }
   private _setLanguages(){
@@ -164,6 +166,7 @@ export class EwepserverService {
       this.CountryList.next(<Country[]>customers.records);
       //this._getProvinceLoadLocal(); 
       this._setLanguages();
+      this._getNationality();
     });
   }
   private _getdistrictmetroLoadLocal() {
@@ -185,6 +188,13 @@ export class EwepserverService {
     this.http.get<any>(this.baseURL + "mainplace?orderby=LocalMunicipality_ID", httpOptions).subscribe((customers: any) => {
       //console.log(customers.records);
       this.mainPlaces = <MainPlace[]>customers.records;
+    });
+  }
+  private _getNationality() {
+    //province
+    this.http.get<any>(this.baseURL + "nationality?orderby=Nationality", httpOptions).subscribe((customers: any) => {
+      //console.log(customers.records);
+      this.NationalityList = <Nationality[]>customers.records;
     });
   }
   getActiveEDF() {
@@ -526,4 +536,8 @@ export interface LogInData {
   Country_Name: string,
   Currency: string,
   Security_Level:string
+}
+export interface Nationality {
+  Nationality_ID: number;
+  Nationality: string; 
 }

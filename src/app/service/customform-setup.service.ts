@@ -42,7 +42,7 @@ export class CustomformSetupService {
 		new TextboxQuestion({
 			key: 'Registration_Number', required: false,order: 6,
 			label: 'Registration Number', value: enterprise.Registration_Number,
-			min:1,max:10
+			min:1,max:30
 		}),
 		new NumbersQuestion({
 			key: 'Female_Owners', required: false ,order: 6,
@@ -247,7 +247,7 @@ export class CustomformSetupService {
 		}),
 		new TextboxQuestion({
 			key: 'Funds_Specify', required: false,order: 20,
-			label: 'Funds_Specify', value: enterprise.Funds_Specify,
+			label: 'Funds Specify', value: enterprise.Funds_Specify,
 		}),
 		//new CheckBoxQuestion({
 		//	key: 'Assets_Land', required: false,order: 25,
@@ -291,7 +291,7 @@ export class CustomformSetupService {
 		}),
 		new NumbersQuestion({
 			key: 'Avg_Sales', required: false,order: 60,
-			label: 'Avg Monthly sales', value: enterprise.Avg_Sales,
+			label: 'Avg monthly income/sales', value: enterprise.Avg_Sales,
 			currency:true
 		}),
 		new NumbersQuestion({
@@ -303,20 +303,15 @@ export class CustomformSetupService {
 			key: 'Avg_Expenditure', required: false,order: 62,
 			label: 'Avg Monthly Expenses', value: enterprise.Avg_Expenditure,
 			currency:true
-		}),
-		new NumbersQuestion({
-			key: 'Avg_Indirect_Cost', required: false,order: 63,
-			label: 'Avg Monthly Indirect Costs', value: enterprise.Avg_Indirect_Cost,
-			currency:true
-		}),
+		}),		 
 		new NumbersQuestion({
 			key: 'Member_Salaries', required: false,order: 64,
-			label: 'Owner Salaries', value: enterprise.Member_Salaries,
+			label: 'Owner Salaries/month', value: enterprise.Member_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({
 			key: 'Employee_Salaries', required: false,order: 67,
-			label: 'Employee Salaries', value: enterprise.Employee_Salaries,
+			label: 'Employee Salaries/month', value: enterprise.Employee_Salaries,
 			currency:true
 		}),
 		new NumbersQuestion({

@@ -26,7 +26,7 @@ export class FormGroupBaselineCoopEditcoop2 {
             new TextboxQuestion({
                 key: 'Registration_Number', required: false,order: 6,
                 label: 'Registration Number', value: enterprise.Registration_Number,
-                min:1,max:10
+                min:1,max:30
             }),
             new NumbersQuestion({
                 key: 'Female_Owners', required: true,order: 6,

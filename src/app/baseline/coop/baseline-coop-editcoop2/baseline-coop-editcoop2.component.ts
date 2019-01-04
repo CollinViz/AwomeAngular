@@ -148,6 +148,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     this.user.addControl("Finance", this.Finance);
     this.user.addControl("Details", this.Details);
     this.showloading = false;
+    this.SetOnChangeForFunds();
   }
 
   falter() {
@@ -194,11 +195,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
             this.saveMembers();
           });
         });
-        //this.router.navigateByUrl('/cooperative');
-        //}
-
-        //this.showloading = false;
-        //Move back to list screen
+        
 
       });
     } else {
@@ -282,20 +279,37 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if (result.Resulet === 'Save') {
-        this.showloading_Entrepreneurs = true;
-        let n = {
-          Cooperative_ID: this.cooperative.Cooperative_ID,
-          Entrepreneur_ID: result.data.Entrepreneur_ID,
-          Contact_Person: '1'
-        };
+        console.log("AddNewEntrepreneur",result.data);
+        if(this.cooperative.Cooperative_ID==-1){
+          let n = {
+            Name:result.data.Name,
+            Surname:result.data.Surname,
+            Sex:result.data.Sex,
+            Race:result.data.Race,
+            City:result.data.City,
+            Cooperative_ID:this.cooperative.Cooperative_ID,
+            Cooperative_Name:"",
+            Cooperative_Member_ID:-1,
+            Contact_Person:"Contact_Person",
+            Entrepreneur_ID:result.data.Entrepreneur_ID
+          }
+          this.EntrepreneursList.push(n);
+        }else{
+          this.showloading_Entrepreneurs = true;
+          let n = {
+            Cooperative_ID: this.cooperative.Cooperative_ID,
+            Entrepreneur_ID: result.data.Entrepreneur_ID,
+            Contact_Person: '1'
+          };
 
-        this.EwepserverService.CreateTableData("cooperative_member", n).subscribe((outFin) => {
-          //Load members again
-          this.EwepserverService.getViewData("cooperative_member_view", "filter=Cooperative_ID,eq," + this.cooperative.Cooperative_ID).subscribe((member) => {
-            this.EntrepreneursList = member.records;
-            this.showloading_Entrepreneurs = false;
+          this.EwepserverService.CreateTableData("cooperative_member", n).subscribe((outFin) => {
+            //Load members again
+            this.EwepserverService.getViewData("cooperative_member_view", "filter=Cooperative_ID,eq," + this.cooperative.Cooperative_ID).subscribe((member) => {
+              this.EntrepreneursList = member.records;
+              this.showloading_Entrepreneurs = false;
+            });
           });
-        });
+        }
       }
     });
   }
@@ -313,9 +327,8 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     //Find Entopuner ID and remove from 
     console.log("Delete Click", RowDelete.Cooperative_ID, RowDelete);
     if (RowDelete.Cooperative_ID == -1) {
-      let index = this.EntrepreneursList.findIndex(x => x.Entrepreneur_ID == RowDelete.Entrepreneur_ID);
-      console.log("Next found", index);
-      this.EntrepreneursList.slice(index, 1);
+      this.EntrepreneursList = this.EntrepreneursList.filter(x => x.Entrepreneur_ID != RowDelete.Entrepreneur_ID);
+       
       this.showloading_Entrepreneurs = false;
     } else {
       let OldValue = this.EntrepreneursList.find(x => x.Cooperative_Member_ID == RowDelete.Cooperative_Member_ID);
@@ -329,6 +342,28 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
     }
 
+  }
+  SetOnChangeForFunds() {
+    this.Finance.get('Avg_Other_Income').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Avg_Expenditure').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+     
+    this.Finance.get('Member_Salaries').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+    this.Finance.get('Employee_Salaries').valueChanges.subscribe(val => {
+      this.FundsNumberChange(val);
+    });
+  }
+  FundsNumberChange(Value) {
+    console.log("Input Value", Value);
+    let Calc = ((Number(this.Finance.get("Avg_Sales").value)) + (Number(this.Finance.get("Avg_Other_Income").value))) -
+      ((Number(this.Finance.get("Avg_Expenditure").value)  +
+        Number(this.Finance.get("Member_Salaries").value) + Number(this.Finance.get("Employee_Salaries").value)));
+    this.Finance.get("Avg_Profit").setValue(Number(Calc)); 
   }
   contaceDetailChange(event, Index) {
     console.log(event, Index);
