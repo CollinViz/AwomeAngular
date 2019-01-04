@@ -64,7 +64,7 @@ export class FormGroupMapVisitsCooperative {
 			label: 'Registered', value: cooperative.Registered_Y_N,
 		}),
 		new TextboxQuestion({
-			key: 'Registration_Number', required: false,order: 10,
+			key: 'Registration_Number', required: true,order: 10,
 			label: 'Registration_Number', value: cooperative.Registration_Number,
 			max:50
 		}),

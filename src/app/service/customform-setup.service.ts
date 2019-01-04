@@ -40,7 +40,7 @@ export class CustomformSetupService {
 			label: 'Registered', value: enterprise.Registered_Y_N,
 		}),
 		new TextboxQuestion({
-			key: 'Registration_Number', required: false,order: 6,
+			key: 'Registration_Number', required: true,order: 6,
 			label: 'Registration Number', value: enterprise.Registration_Number,
 			min:1,max:30
 		}),

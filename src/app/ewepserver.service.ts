@@ -238,6 +238,33 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+  checkEntrepreneur(ID_Passport: string,Entrepreneur_ID:number) {
+    let strWhere = "filter=ID_Passport,eq," + ID_Passport + "&filter=Country_ID,eq,"+this.SelectedCountryID
+    if(Entrepreneur_ID!=-1){
+      strWhere+="&filter=Entrepreneur_ID,neq," + Entrepreneur_ID
+    }
+    return this.http.get<any>(this.baseURL + "entrepreneur?" + strWhere, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  checkEnterprise(Registration_Number: string,Enterprise_ID: number) {
+    let strWhere = "filter=Registration_Number,eq," + Registration_Number + "&filter=Country_ID,eq,"+this.SelectedCountryID
+    if(Enterprise_ID!=-1){
+      strWhere+="&filter=Enterprise_ID,neq," + Enterprise_ID
+    }
+    return this.http.get<any>(this.baseURL + "enterprise?"+ strWhere, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  checkCooperative(Registration_Number: string,Cooperative_ID:number) {
+    let strWhere = "filter=Registration_Number,eq," + Registration_Number + "&filter=Country_ID,eq,"+this.SelectedCountryID
+    if(Cooperative_ID!=-1){
+      strWhere+="&filter=Cooperative_ID,neq," + Cooperative_ID
+    }
+    return this.http.get<any>(this.baseURL + "cooperative?" + strWhere, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
   checkLogin(UserName: string, Password: string) {
     let login = { __class: 'LoginGUI', __call: 'checkLogin', UserName: UserName, Password: Password };
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
@@ -458,6 +485,7 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
+   
   addToRoutingStashBox(Data: any) {
     this.RoutingStashBox = Data;
   }

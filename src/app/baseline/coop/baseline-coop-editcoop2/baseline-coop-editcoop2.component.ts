@@ -169,8 +169,23 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     });
 
   }
-  Save() {
+  Save() { 
     //console.log("When_Training",this.Finance.get('When_Training').value);
+    this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value); 
+ 
+    this.EwepserverService.checkCooperative(this.FlatMe["Registration_Number"],this.cooperative.Cooperative_ID).subscribe((message:any)=>{
+       
+      if(message.records.length>0){        
+        alert("Duplicate Registration Number" );
+      }else{
+        this.CanSave();
+      }
+    });
+    
+    //this.showloading = true;
+
+  }
+  CanSave(){
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     this.FlatMe["Country_ID"] = this.EwepserverService.SelectedCountryID;
     //Fix Date from the Material Control
@@ -226,8 +241,6 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
       });
     }
-    //this.showloading = true;
-
   }
   saveMembers() {
     //Find all new one

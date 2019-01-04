@@ -206,8 +206,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     });
 
   }
-  Save() {
-
+  CanSave(){
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     this.FlatMe["Country_ID"] = this.EwepserverService.SelectedCountryID;
     //Fix Date from the Material Control
@@ -278,6 +277,21 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
       });
     }
+  }
+  Save() {
+
+    this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
+    this.EwepserverService.checkEnterprise(this.FlatMe["Registration_Number"],this.enterprise.Enterprise_ID).subscribe((message:any)=>{
+       
+      if(message.records.length>0){        
+        alert("Duplicate Registration Number" );
+      }else{
+        this.CanSave();
+      }
+    });
+
+
+    
     //this.showloading = true;
 
   }

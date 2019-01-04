@@ -120,14 +120,23 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     entrepreneur["Birth_Date"] = this.cutomerFormHlper.getDateValue(this.General.get("Birth_Date").value);
     entrepreneur["Date_Join_Awome"] = this.cutomerFormHlper.getDateValue(this.General.get("Date_Join_Awome").value);
     entrepreneur["Country_ID"] = this.EwepserverService.SelectedCountryID;
- 
     if(this.entrepreneur.Entrepreneur_ID){
       entrepreneur["Entrepreneur_ID"] =this.entrepreneur.Entrepreneur_ID;
     }else{
       entrepreneur["Entrepreneur_ID"] =-1;
       entrepreneur["Date_Created"] = this.cutomerFormHlper.getDateValue(new Date());
     }
-    this.SaveItem.emit(entrepreneur);
+    //Test if ID number is unique
+    this.EwepserverService.checkEntrepreneur(entrepreneur["ID_Passport"],entrepreneur["Entrepreneur_ID"]).subscribe((message:any)=>{
+       
+      if(message.records.length>0){        
+        alert("Duplicate " + this.ID_Passport_text)
+      }else{
+        
+        this.SaveItem.emit(entrepreneur);
+      }
+    });
+    
   }
   Delete(){
     this.cutomerFormHlper.showConfirmDelete(this.entrepreneur.Name + " " + this.entrepreneur.Surname).subscribe(result=>{
