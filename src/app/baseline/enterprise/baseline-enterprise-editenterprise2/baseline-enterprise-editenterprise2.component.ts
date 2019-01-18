@@ -281,14 +281,14 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   Save() {
 
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
-    this.EwepserverService.checkEnterprise(this.FlatMe["Registration_Number"],this.enterprise.Enterprise_ID).subscribe((message:any)=>{
+    this.CanSave();
+    // this.EwepserverService.checkEnterprise(this.FlatMe["Registration_Number"],this.enterprise.Enterprise_ID).subscribe((message:any)=>{
        
-      if(message.records.length>0){        
-        alert("Duplicate Registration Number" );
-      }else{
-        this.CanSave();
-      }
-    });
+    //   if(message.records.length>0){        
+    //     alert("Duplicate Registration Number" );
+    //   }else{
+    //   }
+    // });
 
 
     

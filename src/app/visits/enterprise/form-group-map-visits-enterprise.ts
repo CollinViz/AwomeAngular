@@ -65,7 +65,7 @@ export class FormGroupMapVisitsEnterprise {
 			label: 'Registered', value: enterprise.Registered_Y_N,
 		}),
 		new TextboxQuestion({
-			key: 'Registration_Number', required: true,order: 10,
+			key: 'Registration_Number', required: false,order: 10,
 			label: 'Registration_Number', value: enterprise.Registration_Number,
 			max:50
 		}),
