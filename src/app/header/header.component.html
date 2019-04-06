@@ -48,11 +48,11 @@
     -->
     <ul class="nav nav-pills">
       <li class="nav-item  ">
-        <a [ngClass]="{'nav-link':true,'active':isHome}" [routerLink]="['/loginok/']">Home <span
+        <a [ngClass]="{'nav-link':true,'active':isHome ,'text-secondary':true }" [routerLink]="['/loginok/']">Home <span
             class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isBaseLine}" data-toggle="dropdown" href="#"
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isBaseLine ,'text-secondary':true }" data-toggle="dropdown" href="#"
           role="button" aria-haspopup="true" aria-expanded="false">
           BaseLine Info</a>
         <div class="dropdown-menu">
@@ -63,7 +63,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isVisits}" id="navVisits" data-toggle="dropdown"
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isVisits ,'text-secondary':true }" id="navVisits" data-toggle="dropdown"
           href="#" role="button" aria-haspopup="true" aria-expanded="false">
           Visits</a>
         <div class="dropdown-menu">
@@ -74,7 +74,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan}" id="navAction"
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan ,'text-secondary':true }" id="navAction"
           data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           Action Plan</a>
         <div class="dropdown-menu">
@@ -85,7 +85,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining"
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining,'text-secondary':true }" id="navTraining"
           data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           Training</a>
         <div class="dropdown-menu">
@@ -93,7 +93,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navTraining" data-toggle="dropdown" role="button" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle text-secondary" id="navTraining" data-toggle="dropdown" role="button" aria-haspopup="true"
           aria-expanded="false" href="#">
           Reports</a>
         <div class="dropdown-menu" aria-lableledby="navTraining">
@@ -119,20 +119,20 @@
         </div>
       </li>
       <li class="nav-item">
-        <a [hidden]="hideAdminSection" [ngClass]="{'nav-link':true,'active':isAdmin}"
+        <a [hidden]="hideAdminSection" [ngClass]="{'nav-link':true,'active':isAdmin ,'text-secondary':true }"
           [routerLink]="['/admin']">Settings</a>
       </li>
       <li class="nav-item dropdown navbar-right">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#"
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true ,'text-secondary':true }" id="navTraining" data-toggle="dropdown" href="#"
           role="button" aria-haspopup="true" aria-expanded="false">
           Current country: {{currentCountry}} </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index"
+          <a class="dropdown-item text-secondary" *ngFor="let co of countryList$ | async as Country;let i=index"
             (click)="changeCountry(co,i)">{{co.Country_Name}}</a>
         </div>
       </li>
       <li class="nav-item navbar-right">
-        <a class="nav-link" href="#">Log Out</a>
+        <a class="nav-link text-secondary" href="#">Log Out</a>
       </li>
     </ul>
 

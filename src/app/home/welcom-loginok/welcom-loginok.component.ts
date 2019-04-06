@@ -40,6 +40,8 @@ export class WelcomLoginokComponent implements OnInit {
     this.LoginData$.subscribe((User: LogInData) => {
       console.log("app-welcom-loginok$", User);
       if (User.LoginOK) {
+        this.bg_Namibia = false;
+          this.bg_SA = false;
         if (User.Country_ID == 3) {
           this.hideAssociation = true;
           this.bg_Namibia = true;
