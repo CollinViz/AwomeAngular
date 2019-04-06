@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">AWOME</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
-    aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -48,7 +48,8 @@
     -->
     <ul class="nav nav-pills">
       <li class="nav-item  ">
-        <a [ngClass]="{'nav-link':true,'active':isHome}" [routerLink]="['/loginok/']">Home <span class="sr-only">(current)</span></a>
+        <a [ngClass]="{'nav-link':true,'active':isHome}" [routerLink]="['/loginok/']">Home <span
+            class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isBaseLine}" data-toggle="dropdown" href="#"
@@ -73,18 +74,19 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan}" id="navAction" data-toggle="dropdown"
-          href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isActionPlan}" id="navAction"
+          data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           Action Plan</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" [routerLink]="['actionplans/enterprises']">Enterprise</a>
-          <a [hidden]="!hideAssociation" class="dropdown-item" [routerLink]="['actionplans/cooperatives']">Cooperative</a>
+          <a [hidden]="!hideAssociation" class="dropdown-item"
+            [routerLink]="['actionplans/cooperatives']">Cooperative</a>
           <a [hidden]="hideAssociation" class="dropdown-item" [routerLink]="['actionplans/association']">Association</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining" data-toggle="dropdown"
-          href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true,'active':isTraining}" id="navTraining"
+          data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           Training</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" [routerLink]="['training/entrepreneurs']">Entrepreneurs</a>
@@ -95,7 +97,8 @@
           aria-expanded="false" href="#">
           Reports</a>
         <div class="dropdown-menu" aria-lableledby="navTraining">
-            <div class="dropdown-header">Enterprises</div>
+          <a class="dropdown-item" [routerLink]="['/report/dashboard']">Dashboard</a>
+          <div class="dropdown-header">Enterprises</div>
           <a class="dropdown-item" [routerLink]="['/report/JobsCreated']">Jobs Created</a>
           <!--<a class="dropdown-item" [routerLink]="['/report/JobsSustained']">Jobs Sustained</a>-->
           <a class="dropdown-item" [routerLink]="['/report/AgeGroup']">Age Group </a>
@@ -103,26 +106,29 @@
           <!--<a class="dropdown-item" [routerLink]="['/report/CompletingTrainings']">Completing Trainings</a>-->
           <a class="dropdown-item" [routerLink]="['/report/AgevsRevenue']">Female Owners Vs Male Owners</a>
           <a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Income Expense</a>
-          
+
           <a class="dropdown-item" [routerLink]="['/report/Housing']">Premise Ownership %</a>
-          <a class="dropdown-item" [routerLink]="['/report/OwnerNumberVsEmployeeNumbers']">Owner Number Vs Employee Numbers</a>
+          <a class="dropdown-item" [routerLink]="['/report/OwnerNumberVsEmployeeNumbers']">Owner Number Vs Employee
+            Numbers</a>
           <div class="dropdown-header">Trainings</div>
           <!--<a class="dropdown-item" [routerLink]="['/report/OutstandingTrainings']">Outstanding Trainings</a>-->
           <a class="dropdown-item" [routerLink]="['/report/LevelofEducation']">Level of Education</a>
           <a class="dropdown-item" [routerLink]="['/report/MostPopularTraining']">Most Popular Training</a>
-          
+
 
         </div>
       </li>
       <li class="nav-item">
-        <a [hidden]="hideAdminSection" [ngClass]="{'nav-link':true,'active':isAdmin}" [routerLink]="['/admin']">Settings</a>
+        <a [hidden]="hideAdminSection" [ngClass]="{'nav-link':true,'active':isAdmin}"
+          [routerLink]="['/admin']">Settings</a>
       </li>
       <li class="nav-item dropdown navbar-right">
-        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#" role="button"
-          aria-haspopup="true" aria-expanded="false">
+        <a [ngClass]="{'nav-link':true, 'dropdown-toggle':true}" id="navTraining" data-toggle="dropdown" href="#"
+          role="button" aria-haspopup="true" aria-expanded="false">
           Current country: {{currentCountry}} </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index" (click)="changeCountry(co,i)">{{co.Country_Name}}</a>
+          <a class="dropdown-item" *ngFor="let co of countryList$ | async as Country;let i=index"
+            (click)="changeCountry(co,i)">{{co.Country_Name}}</a>
         </div>
       </li>
       <li class="nav-item navbar-right">

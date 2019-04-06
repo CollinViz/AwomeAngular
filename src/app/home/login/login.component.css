@@ -24,15 +24,23 @@
 }
 
 input[type="text"] {
+  margin-left: 5px;
+  margin-right: 10px;
   margin-bottom: 0px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  font-size: 16px;
+  height: 80px;
 }
 
 input[type="password"] {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+  height: 80px;
+  margin-left: 5px;
+  margin-right: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  font-size: 16px;
 }
 
 .colorgraph {
@@ -44,4 +52,24 @@ input[type="password"] {
   background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.bgLogin {
+  /* The image used */
+  background-image: url("../../../assets/Photo_Login.png");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+			background-size:  cover;
+      background-color: #999;
+      margin: 0;
+       
+}
+.jumbotron{
+  height: 65vh;
 }

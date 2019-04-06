@@ -116,7 +116,8 @@ import { HousingComponent } from './report/housing/housing.component';
 import { OutstandingTrainingsComponent } from './report/outstanding-trainings/outstanding-trainings.component';
 import { MostPopularTrainingComponent } from './report/most-popular-training/most-popular-training.component';
 import { OwnerNumberVsEmployeeNumbersComponent } from './report/owner-number-vs-employee-numbers/owner-number-vs-employee-numbers.component';
-import { SearchByProvinceComponent } from './report/search-by-province/search-by-province.component'
+import { SearchByProvinceComponent } from './report/search-by-province/search-by-province.component';
+import { DashboardComponent } from './report/dashboard/dashboard.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -248,7 +249,9 @@ const interceptor = new ProgressInterceptor();
 
     OwnerNumberVsEmployeeNumbersComponent,
 
-    SearchByProvinceComponent
+    SearchByProvinceComponent,
+
+    DashboardComponent
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
@@ -391,6 +394,10 @@ const interceptor = new ProgressInterceptor();
     {
       path: 'workshops/entrepreneurs',
       component: WorkshopsEntrepreneursPageComponent
+    },
+    {
+      path: 'report/dashboard',
+      component: DashboardComponent
     },
     {
       path: 'report/AgeGroup',

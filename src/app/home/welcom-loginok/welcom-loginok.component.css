@@ -1,1 +1,29 @@
  
+  .jumbotron{
+    height: 100vh;
+  }
+
+  .bg_Namibia {
+    /* The image used */
+    background-image: url("../../../assets/Photo_Namibia.png");
+  
+    /* Full height */
+     
+  
+    /* Center and scale the image nicely */
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .bg_SA {
+    /* The image used */
+    background-image: url("../../../assets/Photo_SouthAfrica.png");
+  
+    /* Full height */
+     
+  
+    /* Center and scale the image nicely */
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

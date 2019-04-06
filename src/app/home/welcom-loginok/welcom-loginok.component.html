@@ -1,109 +1,74 @@
 
-<div class="jumbotron">
-    <h1 class="display-3">Welcome to AWOME</h1>
-    <p class="lead">Acceleration of Women-Owned Micro-Enterprises</p>
+<div [ngClass]="{'jumbotron':true,'bg_Namibia':bg_Namibia,'bg_SA':bg_SA}">
+    <h1 class="display-3"> </h1>
+    <p class="lead"> </p>
 </div>
 <div class="row">
-    <div class="col-1">
-
-    </div>
-    <div class="col-4">
-        <div [chart]="chart"></div>
-    </div>
-    <div class="col-2">
-        <h3>Entrepreneurs</h3>
-        <table  class="table table-striped table-bordered table-condensed table-hover">
-            <thead>
-                <tr>
-                    <th>Total</th>
-                    <th>Female</th>
-                    <th>Male</th>
-                    <th>Target</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>{{sexTotalData.total}}</td>
-                        <td>{{sexTotalData.female}}</td>
-                        <td>{{sexTotalData.male}}</td>
-                        <td>{{sexTotalData.target}}</td>
-                    </tr>
-                </tbody>
-        </table>
-    </div>  
-    <div class="col-4">
-        <div [chart]="chart2"></div>
-    </div>
-    <div class="col-1">
-
-    </div>
-</div>
-<div class="row">
-    <div class="col-4">
-        <div class="card text-white bg-info mb-3">
-            <!--- Base line Start  -->
-
-            <div class="card-header">Base line</div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur </a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise </a>
-                    </li>
-                    <li *ngIf="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
-                        <a   class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
-                    </li>
-                    <li *ngIf="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
-                    </li>
-                </ul>
+        <div class="col-4">
+            <div class="card text-white bg-info mb-3">
+                <!--- Base line Start  -->
+    
+                <div class="card-header">Base line</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/baseline/entrepreneur']">Entrepreneur </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/baseline/enterprise']">Enterprise </a>
+                        </li>
+                        <li *ngIf="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
+                            <a   class="dropdown-item" [routerLink]="['/baseline/cooperative']">Cooperative</a>
+                        </li>
+                        <li *ngIf="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/baseline/association']">Association</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--- Base line end  -->
             </div>
-            <!--- Base line end  -->
         </div>
-    </div>
-    <div class="col-4">
-        <div class="card bg-light mb-3">
-            <div class="card-header">Visits</div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
-                    </li>
-                    <li *ngIf="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
-                    </li>
-                    <li *ngIf="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
-                    </li>
-                    <li   class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item">.</a>
-                    </li>
-                </ul>
+        <div class="col-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header">Visits</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/visits/enterprise']">Enterprise</a>
+                        </li>
+                        <li *ngIf="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/visits/cooperative']">Cooperative</a>
+                        </li>
+                        <li *ngIf="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/visits/association']">Association</a>
+                        </li>
+                        <li   class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item">.</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Action Plan</div>
+                <div class="card-body">
+                    <ul class="list-group">
+    
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/actionplans/enterprises']">Enterprise</a>
+                        </li>
+                        <li *ngIf="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/actionplans/cooperatives']">Cooperative</a>
+                        </li>
+                        <li *ngIf="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item" [routerLink]="['/actionplans/association']">Association</a>
+                        </li>
+                        <li   class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="dropdown-item">.</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="card text-white bg-success mb-3">
-            <div class="card-header">Action Plan</div>
-            <div class="card-body">
-                <ul class="list-group">
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/actionplans/enterprises']">Enterprise</a>
-                    </li>
-                    <li *ngIf="!hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/actionplans/cooperatives']">Cooperative</a>
-                    </li>
-                    <li *ngIf="hideAssociation" class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item" [routerLink]="['/actionplans/association']">Association</a>
-                    </li>
-                    <li   class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="dropdown-item">.</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>

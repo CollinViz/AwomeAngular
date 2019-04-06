@@ -1,29 +1,45 @@
 
- 
-<div class = "container">
-	<div class="wrapper">
-			 
-		<form  #login="ngForm"  class="form-signin">       
-		    <h3 class="form-signin-heading"> <pre> </pre>Please Sign In</h3>
-			  <hr class="colorgraph"><br>
-			  
-			  <input [(ngModel)]="user.Username" type="text" class="form-control" name="Username" placeholder="Username" required autofocus="" />
-			  <input [(ngModel)]="user.Password" type="password" class="form-control" name="Password" placeholder="Password" required/>     		  
-			   
-				<mat-form-field ngClass="form-control">
-				  <mat-select id="txtLanguage" [(value)]="user.countrylogin">
-					<mat-option *ngFor="let lan of countryList$ | async as Country;let i=index" [value]="lan" >{{lan.Country_Name}} </mat-option>
-				  </mat-select>
-				</mat-form-field>
-			   
-			  <button (click)="onClick()" [ngClass]="{'btn':true ,'btn-lg':true, 'btn-primary':login.form.valid ,'btn-block':true}" [disabled]="!login.form.valid" name="Submit" value="Login"  >Login</button>  			
-			  <div class="row" *ngIf="user.showError">
-					<div class="alert alert-dismissible alert-danger">
+<div class=" ">
+		<div class="jumbotron bgLogin">
+				<h1 class="display-3">Login</h1>
+				<p class="lead">Acceleration of Women-Owned Micro-Enterprises</p>
+				<hr class="my-4">
+				<p></p>
+				
+			</div>
+
+			<div class = "container">
+					<div class="">
 							 
-							<strong>Error with login</strong> {{user.Error}}
-						  </div>
-			  </div>
-		</form>			
-	</div>
-</div>
- 
+						<form  #login="ngForm"  class="form-inline">       
+								 
+								<div class="form-group">
+									<label for="Username">User name:</label>
+									<input [(ngModel)]="user.Username" type="text" class="form-control" name="Username" placeholder="Username" required autofocus="" />
+										
+								</div>
+								<div class="form-group">
+									<label for="password">Password:</label> 
+									<input [(ngModel)]="user.Password" type="password" class="form-control" name="Password" placeholder="Password" required/>     		  
+								</div>
+								<div class="form-group">
+										<label for="Country">Country:</label> 
+									<mat-form-field ngClass="form-control">
+										<mat-select id="txtLanguage" [(value)]="user.countrylogin">
+										<mat-option *ngFor="let lan of countryList$ | async as Country;let i=index" [value]="lan" >{{lan.Country_Name}} </mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div> 
+								 
+									<button (click)="onClick()" [ngClass]="{'btn':true ,'btn-lg':true, 'btn-primary':login.form.valid ,'btn-block':true}" [disabled]="!login.form.valid" name="Submit" value="Login"  >Login</button>  			
+									<div   *ngIf="user.showError">
+										<div class="alert alert-dismissible alert-danger">
+												 
+												<strong>Error with login</strong> {{user.Error}}
+												</div>
+									</div>
+								 
+						</form>			
+					</div>
+				</div>
+</div> 
