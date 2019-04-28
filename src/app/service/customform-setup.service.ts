@@ -26,7 +26,7 @@ export class CustomformSetupService {
 		new NumbersQuestion({
 			key: 'Year_Established', required: true,order: 3,
 			label: 'Year Established', value: enterprise.Year_Established,
-			max:(new Date().getFullYear()),min:1988
+			max:(new Date().getFullYear()),min:1980
 		}), 
 		
 		new DropdownQuestion({

@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
         type: 'column'
       },
       title: {
-        text: 'Base Line'
+        text: 'Baseline'
       },
       xAxis: {
         categories: reportinfo.NameXrow
