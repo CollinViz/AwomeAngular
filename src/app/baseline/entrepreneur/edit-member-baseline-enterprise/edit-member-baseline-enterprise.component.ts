@@ -23,7 +23,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   ID_Passport_text="IDaaa";
   //maxDate1 = new Date(maxDate().getDateValue - 1);
   //maxDate = new Date(2020, 0, 1);
-  @Input() entrepreneur:any = {}
+  @Input() entrepreneur:any = {};
   @Output() SaveItem:EventEmitter<any> = new EventEmitter<any>();
   @Output() DeletedItem:EventEmitter<any> = new EventEmitter<any>();
   MainForm:FormGroup;
@@ -42,6 +42,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   filteredNationalityList: Observable<string[]>;
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
+  ActiveEDFs =[];
+  
   //Grid for connections
   columnsEnterprise = [
     { name: 'ID', prop: 'Enterprise_ID' },
@@ -65,6 +67,10 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
                 this.MaritalStatus = this.EwepserverService.MaritalStatus;
                 this.EducationLevel = this.EwepserverService.EducationLevel;
                 this.IDorPassport = this.EwepserverService.IDorPassport;
+                this.ActiveEDFs = this.EwepserverService.ActiveEDFs;
+                //EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
+                //  this.ActiveEDFs = efflist.records;
+               // });
                 this.EwepserverService.NationalityList.forEach(x=>{
                   this.NationalityList.push(x.Nationality);
                 })
@@ -82,7 +88,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   }
   ngOnInit() {
     
-
+    console.log("logging something",this.ActiveEDFs[3]);
+console.log('edf id: ', this.entrepreneur.Responsible_Trainer);
     this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.isLoading =true;
     let oFromTemp:FormGroupEditMemberBaselineEnterprise = new FormGroupEditMemberBaselineEnterprise(); 
@@ -91,6 +98,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
 
     this.ContactInfo = this.controlsService.getContactInfoNonBinding(this.entrepreneur);
     this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding(this.entrepreneur);
+
+     
 
     this.Contact = this.cutomerFormHlper.toFormGroup(this.ContactInfo,this.ContactInfoWithBinding);
 //Bank_Account

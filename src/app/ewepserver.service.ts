@@ -61,6 +61,7 @@ export class EwepserverService {
   mainPlaces: MainPlace[] = [];
   CountryListStatic: Country[] = [];
   NationalityList: Nationality[] = [];
+  ActiveEDFs:any =[];
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({ UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" });

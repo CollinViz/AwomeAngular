@@ -18,8 +18,9 @@ export class SearchBaselineEntrepreneurEntrepreneurComponent implements OnInit {
   @Output() NewClick = new EventEmitter<string>();
   constructor(public EwepserverService:EwepserverService) { 
     EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
+      this.EwepserverService.ActiveEDFs = efflist.records;
       this.ActiveEDFs = efflist.records;
-    });
+   });
   }
 
   ngOnInit() {

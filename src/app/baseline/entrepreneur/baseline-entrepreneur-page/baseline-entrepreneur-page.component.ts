@@ -26,6 +26,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   IsEditing: boolean = false;
   EntrepreneurEditItem: any = {};
+  ActiveEDFs = [];
   constructor(private activatedRoute: ActivatedRoute,  public EwepserverService: EwepserverService) { }
 
   getPageOfEntrepreneurs() {
@@ -55,6 +56,13 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
         }
       });
 
+      this.EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
+        this.ActiveEDFs = efflist.records;
+        this.EwepserverService.ActiveEDFs = efflist.records;
+        console.log('1st Check EDFs', this.ActiveEDFs.length);
+      });
+      console.log('2nd Check EDFs', this.ActiveEDFs.length);
+
   }
   setPage(event) {
     console.log('setPage', event);
@@ -68,7 +76,14 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   onActivate(event) {
     if (event.type === "click") {
       console.log('Activate Event', event, this.selected[0].Entrepreneur_ID);
+      
+      //this.EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
+      //  this.ActiveEDFs = efflist.records;
+      //  console.log('1st Check EDFs', this.ActiveEDFs.length);
+     // });
+    //  console.log('2nd Check EDFs', this.ActiveEDFs.length);
       //this.router.navigateByUrl('/enterprise/' + this.selected[0].Enterprise_ID);
+      
       this.IsEditing = true;
       this.EntrepreneurEditItem = this.selected[0];
     }
