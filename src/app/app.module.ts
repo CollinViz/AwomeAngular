@@ -117,7 +117,9 @@ import { OutstandingTrainingsComponent } from './report/outstanding-trainings/ou
 import { MostPopularTrainingComponent } from './report/most-popular-training/most-popular-training.component';
 import { OwnerNumberVsEmployeeNumbersComponent } from './report/owner-number-vs-employee-numbers/owner-number-vs-employee-numbers.component';
 import { SearchByProvinceComponent } from './report/search-by-province/search-by-province.component';
-import { DashboardComponent } from './report/dashboard/dashboard.component'
+import { DashboardComponent } from './report/dashboard/dashboard.component';
+import { NgbdCarouselConfig } from './carousel/carousel-config/carousel-config.component';
+import { SearchTrainingComponent } from './training/entrepreneurs/entrepreneur-training-search/search-training/search-training.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -251,7 +253,11 @@ const interceptor = new ProgressInterceptor();
 
     SearchByProvinceComponent,
 
-    DashboardComponent
+    DashboardComponent,
+
+    NgbdCarouselConfig,
+
+    SearchTrainingComponent
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,

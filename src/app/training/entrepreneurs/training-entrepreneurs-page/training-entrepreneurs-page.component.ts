@@ -12,7 +12,12 @@ export class TrainingEntrepreneursPageComponent implements OnInit {
     { name: 'ID', prop: 'Entrepreneur_ID' },
     { name: 'Name', prop: 'Name' },
     { name: 'Surname', prop: 'Surname' },
-    { name: 'Province', prop: 'Province' }
+    { name: 'Planning for Business', prop: 'Planning_for_Business' },
+    { name: 'Record Keeping', prop: 'Record_Keeping' },
+    { name: 'Marketing', prop: 'Marketing' },
+    { name: 'Costing', prop: 'Costing' },
+    { name: 'People and Productivity', prop: 'People_and_Productivity' },
+    { name: 'Buying and Stock Control', prop: 'Buying_and_Stock_Control' }
   ];
   rows: any[] = [];
   selected = [];
@@ -31,7 +36,8 @@ export class TrainingEntrepreneursPageComponent implements OnInit {
   }
   getPageOfEntrepreneurs() {
     const strOptions = "page=" + (Number(this.page.pageNumber) + 1) + "," + this.page.size +"&filter=Country_ID,eq,"+this.EwepserverService.SelectedCountryID +  "&orderby=surname&" + this.SearchFilter;
-    this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
+    //this.EwepserverService.getViewData("entrepreneur_view", strOptions).subscribe((myjsondata: any) => {
+    this.EwepserverService.getViewData("entrepreneur_training_pivot_view", strOptions).subscribe((myjsondata: any) => {  
       this.rows = [...myjsondata.records];
       this.page.totalElements = myjsondata.results;
       this.page.totalPages = this.page.totalElements / this.page.size;

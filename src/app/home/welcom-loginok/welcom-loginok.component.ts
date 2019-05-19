@@ -3,12 +3,14 @@ import { LogInData, EwepserverService } from '../../ewepserver.service';
 import { Chart } from 'angular-highcharts';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-welcom-loginok',
   templateUrl: './welcom-loginok.component.html',
   styleUrls: ['./welcom-loginok.component.css']
 })
 export class WelcomLoginokComponent implements OnInit {
+  
   UserInfo: any;
   currentCountry: string = "";
   currentCountryID: number = 0;

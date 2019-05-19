@@ -43,6 +43,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   ContactInfo:QuestionBase<any>[];
   ContactInfoWithBinding:QuestionBase<any>[];
   ActiveEDFs =[];
+  ActiveTrainers =[];
   
   //Grid for connections
   columnsEnterprise = [
@@ -68,6 +69,7 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
                 this.EducationLevel = this.EwepserverService.EducationLevel;
                 this.IDorPassport = this.EwepserverService.IDorPassport;
                 this.ActiveEDFs = this.EwepserverService.ActiveEDFs;
+                //this.ActiveTrainers = this.EwepserverService.ActiveTrainers;
                 //EwepserverService.getActiveEDF().subscribe((efflist:any)=>{
                 //  this.ActiveEDFs = efflist.records;
                // });
@@ -88,8 +90,8 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
   }
   ngOnInit() {
     
-    console.log("logging something",this.ActiveEDFs[3]);
-console.log('edf id: ', this.entrepreneur.Responsible_Trainer);
+    //console.log("logging something",this.ActiveTrainers[3]);
+//console.log('edf id: ', this.entrepreneur.Responsible_Trainer);
     this.CurrencyValue = this.EwepserverService.SelectedCurrency;
     this.isLoading =true;
     let oFromTemp:FormGroupEditMemberBaselineEnterprise = new FormGroupEditMemberBaselineEnterprise(); 

@@ -34,11 +34,18 @@ export class DashboardComponent implements OnInit {
       this.intchat(report);
 
     });
-    this.Ewep.getTraining("").subscribe((report: any) => {
+    //this.Ewep.getTraining("").subscribe((report: any) => {
+
+    //  this.intchart2(report);
+
+    //});
+
+    this.Ewep.getSectors("").subscribe((report: any) => {
 
       this.intchart2(report);
 
     });
+
     this.Ewep.getSexCount().subscribe((report: any) => {
 
       this.sexTotalData = {
@@ -54,7 +61,7 @@ export class DashboardComponent implements OnInit {
         type: 'column'
       },
       title: {
-        text: 'Training'
+        text: 'Sectors'
       },
       xAxis: {
         categories: reportinfo.NameXrow

@@ -11,6 +11,7 @@ export class SearchBaselineEntrepreneurEntrepreneurComponent implements OnInit {
   HeadingInfo:string = "Baseline Info";
   Provinces:Province[] = [];
   ActiveEDFs =[];
+  //ActiveTrainers =[];
   @Input() Heading?:string="";
   @Input() hidAdd?:boolean=false;
   @Output() filter:string ="";
@@ -21,6 +22,11 @@ export class SearchBaselineEntrepreneurEntrepreneurComponent implements OnInit {
       this.EwepserverService.ActiveEDFs = efflist.records;
       this.ActiveEDFs = efflist.records;
    });
+
+   //EwepserverService.getActiveTrainer().subscribe((trainerlist:any)=>{
+    //this.EwepserverService.ActiveTrainers = trainerlist.records;
+    //this.ActiveTrainers = trainerlist.records;
+ //});
   }
 
   ngOnInit() {

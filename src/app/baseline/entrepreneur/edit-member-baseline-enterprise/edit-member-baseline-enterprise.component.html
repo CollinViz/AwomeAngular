@@ -422,11 +422,11 @@
 
                 <div class="col-6">
                   <div class="control-group">
-                      <label class="control-label" for="txtResponsible_Trainer">Responsible Trainer {{entrepreneur.Responsible_Trainer}} {{General.get('Responsible_Trainer').value}} {{ActiveEDFs|json}}</label>
+                      <label class="control-label" for="txtResponsible_Trainer">Responsible Trainer</label>
                       <div class="controls">
                         <mat-form-field ngClass="form-control">
                           <mat-select id="txtResponsible_Trainer" formControlName="Responsible_Trainer">
-                            <mat-option *ngFor="let edf of ActiveEDFs" [value]="edf.EDF_ID">{{edf.EDF_ID}} - {{edf.Name}} {{edf.Surname}}</mat-option>
+                            <mat-option *ngFor="let trainer of ActiveEDFs" [value]="trainer.EDF_ID">{{trainer.EDF_ID}} - {{trainer.Name}} {{trainer.Surname}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                         

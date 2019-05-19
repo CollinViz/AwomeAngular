@@ -62,6 +62,7 @@ export class EwepserverService {
   CountryListStatic: Country[] = [];
   NationalityList: Nationality[] = [];
   ActiveEDFs:any =[];
+  ActiveTrainers:any =[];
   //country:Country[] = [];
   private CountryList: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({ UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" });
@@ -173,7 +174,7 @@ export class EwepserverService {
   private _getdistrictmetroLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "districtmetro?order=Province_ID", httpOptions).subscribe((customers: any) => {
-      //console.log(customers.records);
+      console.log("district: ",customers.records);
       this.districtMetro = <DistrictMetro[]>customers.records;
     });
   }
@@ -199,11 +200,19 @@ export class EwepserverService {
     });
   }
   getActiveEDF() {
-    return this.http.get<any>(this.baseURL + "edf?filter=Active,eq,Y", httpOptions).pipe(
+    return this.http.get<any>(this.baseURL + "edf?filter=Active,eq,Y" + "&filter=Title_ID,eq,11", httpOptions).pipe(
       catchError(this.handleError)
     );
 
   }
+
+  getActiveTrainer() {
+    return this.http.get<any>(this.baseURL + "edf?filter=Active,eq,Y" + "&filter=Title_ID,eq,11", httpOptions).pipe(
+      catchError(this.handleError)
+    );
+
+  }
+
   getEnterprisList(PageNumber: number, FilterOptions: string) {
 
     return this.http.get<any>(this.baseViewURL + "enterprise_base_view?order=Enterprise_ID&page=" + PageNumber +"&filter=Country_ID,eq,"+this.SelectedCountryID  + (FilterOptions === "" ? "" : "&" + FilterOptions), httpOptions).pipe(
@@ -409,6 +418,16 @@ export class EwepserverService {
   getTraining(ProvinceSearch: string) {
     let login = {
       __class: 'ReportsGUI', __call: 'training',
+      Country_ID: this.SelectedCountryID,
+      Province: ProvinceSearch
+    };
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getSectors(ProvinceSearch: string) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'sectors',
       Country_ID: this.SelectedCountryID,
       Province: ProvinceSearch
     };

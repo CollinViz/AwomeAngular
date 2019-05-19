@@ -27,6 +27,7 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
   IsEditing: boolean = false;
   EntrepreneurEditItem: any = {};
   ActiveEDFs = [];
+  ActiveTrainers = [];
   constructor(private activatedRoute: ActivatedRoute,  public EwepserverService: EwepserverService) { }
 
   getPageOfEntrepreneurs() {
@@ -62,6 +63,12 @@ export class BaselineEntrepreneurPageComponent implements OnInit {
         console.log('1st Check EDFs', this.ActiveEDFs.length);
       });
       console.log('2nd Check EDFs', this.ActiveEDFs.length);
+
+      //this.EwepserverService.getActiveTrainer().subscribe((trainerlist:any)=>{
+       // this.ActiveTrainers = trainerlist.records;
+       // this.EwepserverService.ActiveTrainers = trainerlist.records;
+       // console.log('1st Check Trainers', this.ActiveTrainers.length);
+      //});
 
   }
   setPage(event) {
