@@ -12,8 +12,10 @@ export class NgbdCarouselConfig implements OnInit {
   @ViewChild('carousel') carousel: any;
 
   constructor(config: NgbCarouselConfig) { 
-    config.interval = 1000;
+    config.interval = 5000;
     config.keyboard = false;
+    
+    
   }
 
   ngOnInit() {

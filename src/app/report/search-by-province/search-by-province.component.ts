@@ -12,6 +12,7 @@ export class SearchByProvinceComponent implements OnInit {
 
   search = { Name: "", Year_Established: "", Province: "Select", Legal_Structure: "Select", HiHRep: "Select", Sector: "Select" };
   Provinces = [];
+  EducationLevel = [];
   CountryID;
   ActiveEDFs = [];
   @Output() SearchClick = new EventEmitter<string>();
@@ -28,7 +29,7 @@ export class SearchByProvinceComponent implements OnInit {
   else{
     this.Provinces = this.Ewep.districtMetro;
   }
-    
+  this.EducationLevel = this.Ewep.EducationLevel;  
 console.log("the country is: ", this.CountryID);
     Ewep.getActiveEDF().subscribe((efflist: any) => {
       this.ActiveEDFs = efflist.records;

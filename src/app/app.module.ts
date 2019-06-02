@@ -119,7 +119,10 @@ import { OwnerNumberVsEmployeeNumbersComponent } from './report/owner-number-vs-
 import { SearchByProvinceComponent } from './report/search-by-province/search-by-province.component';
 import { DashboardComponent } from './report/dashboard/dashboard.component';
 import { NgbdCarouselConfig } from './carousel/carousel-config/carousel-config.component';
-import { SearchTrainingComponent } from './training/entrepreneurs/entrepreneur-training-search/search-training/search-training.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchTrainingComponent } from './training/entrepreneurs/entrepreneur-training-search/search-training/search-training.component';
+import { ReportEntrepreneurSearchComponent } from './report/report-entrepreneur-search/report-entrepreneur-search.component';
+import { ReportEnterpriseSearchComponent } from './report/report-enterprise-search/report-enterprise-search.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -257,7 +260,11 @@ const interceptor = new ProgressInterceptor();
 
     NgbdCarouselConfig,
 
-    SearchTrainingComponent
+    SearchTrainingComponent,
+
+    ReportEntrepreneurSearchComponent,
+
+    ReportEnterpriseSearchComponent
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
@@ -270,6 +277,7 @@ const interceptor = new ProgressInterceptor();
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
+    NgbModule.forRoot(), 
     ChartModule ,
     FormsModule,
     ReactiveFormsModule,

@@ -15,13 +15,63 @@
           </div>
         </div>
       </div>
+
       <div class="col-xs-4 col-md-4">
+        <div class="control-group">
+          <label class="control-label" for="txtEducation_Level">Level of Education (select one oooooooooooooo)</label>
+          <div class="controls">
+            <mat-form-field >
+              <mat-select id="txtEducation_Level" formControlName="Education_Level">
+                <mat-option *ngFor="let lan of EducationLevel" [value]="lan.Key">{{lan.Value}} </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
+
+    <!--  <div class="col-xs-4 col-md-4">
+      </div>-->
       <div class="col-xs-4 col-md-4">
         <button (click)="searchClickint()" type="button" class="btn btn-primary">
           Search
         </button>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div class="control-group">
+          <label class="control-label" for="txtEducation_Level">Level of Education (select one)</label>
+          <div class="controls">
+            <mat-form-field>
+              <mat-select id="txtEducation_Level" formControlName="Education_Level">
+                <mat-option *ngFor="let lan of EducationLevel" [value]="lan.Key">{{lan.Value}} </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="control-group">
+            <label class="control-label" for="txtSector">Sector</label>
+            <div class="controls">
+            <mat-form-field>
+                <mat-select [(ngModel)]="search.Sector" name="txtSector">
+                  <mat-option value="Select">Select</mat-option> 
+                  <mat-option value="Sec_Agri">Agriculture</mat-option>
+                  <mat-option value="Sec_Manu">Manufacturing</mat-option>
+                  <mat-option value="Sec_Retail">Retail</mat-option>
+                  <mat-option value="Sec_Minerals">Minerals</mat-option>
+                  <mat-option value="Sec_Arts">Arts</mat-option>
+                  <mat-option value="Sec_General">General</mat-option>
+                  <mat-option value="Sec_Other">Other</mat-option> 
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+    </div>
+      
     </div>
   </div>
 </div>
