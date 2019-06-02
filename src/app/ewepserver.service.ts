@@ -68,6 +68,8 @@ export class EwepserverService {
   private showInternetError: BehaviorSubject<InternetConnection> = new BehaviorSubject<InternetConnection>({ UsingInternet: false, progress: 0, StopInternet: false, ErrorMessage: "", DebugErrorMessage: "", HTTPStatus: "" });
   private loginInfomation: BehaviorSubject<LogInData> = new BehaviorSubject<LogInData>({ LoginOK: false, Username: "Bobo", FullName: "", Theme: "Default", Country_ID: 1, Country_Name: "", Currency: "R",Security_Level:"View" });
   private RoutingStashBox: any = null;
+  private ActiveEDFsList: BehaviorSubject<EDF[]> = new BehaviorSubject<EDF[]>([]);
+  private ActiveTrainersList: BehaviorSubject<EDF[]> = new BehaviorSubject<EDF[]>([]);
   constructor(private http: HttpClient) {
     if (isDevMode()) {
 
@@ -80,6 +82,7 @@ export class EwepserverService {
     console.log("New Instance created");
     this.SelectedCountryID = 1;
     this._getCountry();
+    this._getEDF();
     // this._getProvinceLoadLocal();
     //this._getdistrictmetroLoadLocal();
     //this._getlocalmunicipalityLoadLocal();
@@ -94,6 +97,12 @@ export class EwepserverService {
   }
   get LoginOK(): Observable<LogInData> {
     return this.loginInfomation.asObservable();
+  }
+  get EDF(): Observable<EDF[]> {
+    return this.ActiveEDFsList.asObservable();
+  }
+  get Trainers(): Observable<EDF[]> {
+    return this.ActiveTrainersList.asObservable();
   }
   //get province():Observable<Province[]> {
   //  return this.provinceList.asObservable();
@@ -169,6 +178,18 @@ export class EwepserverService {
       //this._getProvinceLoadLocal(); 
       this._setLanguages();
       this._getNationality();
+    });
+  }
+  private _getEDF() {
+    this.getActiveEDF().subscribe((customers: any) => {
+      this.ActiveEDFs = <EDF[]>customers.records;
+      this.ActiveEDFsList.next(<EDF[]>customers.records);
+    });
+    //province
+    this.getActiveTrainer().subscribe((customers: any) => { 
+      this.ActiveTrainers = <EDF[]>customers.records;
+      this.ActiveTrainersList.next(<EDF[]>customers.records);
+       
     });
   }
   private _getdistrictmetroLoadLocal() {
@@ -588,4 +609,25 @@ export interface LogInData {
 export interface Nationality {
   Nationality_ID: number;
   Nationality: string; 
+}
+export interface EDF {
+  EDF_ID: number;
+  Name: string; 
+  Surname: string; 
+  Phone: string; 
+  Reports_To_ID: number; 
+  UserName: string; 
+  Password: string; 
+  Gender: string; 
+  Province_ID: number; 
+  Programme_ID: number; 
+  Title_ID: number; 
+  Approver_Y_N: string; 
+  Email: string; 
+  Security_Level: string; 
+  Organization: string; 
+  Password_Update_Date: string; 
+  Active: string; 
+  Country_ID: string; 
+  ThemeName: string;  
 }

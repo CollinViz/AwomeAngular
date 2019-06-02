@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EwepserverService } from '../../ewepserver.service';
 import { Chart } from 'angular-highcharts';
-
+//const Excel = require('exceljs/modern.nodejs');
+import {Report2Excel} from '../exportExcel'
 @Component({
   selector: 'app-jobs-created',
   templateUrl: './jobs-created.component.html',
@@ -11,7 +12,7 @@ export class JobsCreatedComponent implements OnInit {
 
   SelectedProvince: string = "";
   chart: Chart;
-
+  reportData:any={};
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
@@ -20,7 +21,7 @@ export class JobsCreatedComponent implements OnInit {
   jobs_created_view() {
     this.Ewep.jobs_created_view(this.SelectedProvince).subscribe(report => {
       this.intChart(report);
-       
+      this.reportData =  report;
     });
   }
   intChart(report:any) {
@@ -47,5 +48,8 @@ export class JobsCreatedComponent implements OnInit {
     this.SelectedProvince = Province;
     this.jobs_created_view();
   }
-
+  exportExcel(){
+    let ex = new Report2Excel()
+    ex.createExcel(this.reportData.NameXrow,this.reportData.DataSeries);
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EwepserverService } from '../../ewepserver.service';
 import { Chart } from 'angular-highcharts';
-
+import {Report2Excel} from '../exportExcel'
 @Component({
   selector: 'app-creatingmorejobs',
   templateUrl: './creatingmorejobs.component.html',
@@ -11,7 +11,7 @@ export class CreatingmorejobsComponent implements OnInit {
 
   SelectedProvince: string = "";
   chart: Chart;
-
+  reportData:any={};
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
@@ -20,9 +20,10 @@ export class CreatingmorejobsComponent implements OnInit {
   income_expense_view() {
     this.Ewep.getincome_expense_view(this.SelectedProvince).subscribe(report => {
       this.intChart(report);
-      report.DataSeries.forEach(element => {
-        this.chart.addSerie(element);
-      });
+      // report.DataSeries.forEach(element => {
+      //   this.chart.addSerie(element);
+      // });
+      this.reportData =  report;
     });
   }
   intChart(report) {
@@ -49,5 +50,8 @@ export class CreatingmorejobsComponent implements OnInit {
     this.SelectedProvince = Province;
     this.income_expense_view();
   }
-
+  exportExcel(){
+    let ex = new Report2Excel()
+    ex.createExcel(this.reportData.NameXrow,this.reportData.DataSeries);
+  }
 }
