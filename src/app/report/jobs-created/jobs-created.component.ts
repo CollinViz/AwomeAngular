@@ -16,10 +16,10 @@ export class JobsCreatedComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.jobs_created_view();
+    //this.jobs_created_view();
   }
-  jobs_created_view() {
-    this.Ewep.jobs_created_view(this.SelectedProvince).subscribe(report => {
+  jobs_created_view(SearchObject:any) {
+    this.Ewep.jobs_created_view(SearchObject).subscribe(report => {
       this.intChart(report);
       this.reportData =  report;
     });
@@ -30,7 +30,7 @@ export class JobsCreatedComponent implements OnInit {
         type: 'column'
       },
       title: {
-        text: 'Jobs Created'
+        text: 'Number of Employees'
       },
       xAxis: {
         categories: report.NameXrow
@@ -44,9 +44,9 @@ export class JobsCreatedComponent implements OnInit {
       },
     });
   }
-  SearchClick(Province: string) {
-    this.SelectedProvince = Province;
-    this.jobs_created_view();
+  SearchClick(SearchObj:any) {
+    //this.SelectedProvince = Province;
+    this.jobs_created_view(SearchObj);
   }
   exportExcel(){
     let ex = new Report2Excel()

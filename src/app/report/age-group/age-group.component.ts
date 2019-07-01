@@ -8,16 +8,16 @@ import { Chart } from 'angular-highcharts';
   styles: []
 })
 export class AgeGroupComponent implements OnInit {
-  SelectedProvince: string = "";
+  
   chart: Chart;
 
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.getAgeByGroup();
+    //this.getAgeByGroup();
   }
-  getAgeByGroup() {
-    this.Ewep.getAgeByGroup(this.SelectedProvince).subscribe(report => {
+  getAgeByGroup(SearchObject:any) {
+    this.Ewep.getAgeByGroup(SearchObject).subscribe(report => {
       this.intChart();
       report.DataSeries.forEach(element => {
         this.chart.addSerie(element);
@@ -44,8 +44,8 @@ export class AgeGroupComponent implements OnInit {
       },
     });
   }
-  SearchClick(Province: string) {
-    this.SelectedProvince = Province;
-    this.getAgeByGroup();
+  SearchClick(SearchObj:any) {
+    
+    this.getAgeByGroup(SearchObj);
   }
 }

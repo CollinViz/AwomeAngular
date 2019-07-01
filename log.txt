@@ -1,0 +1,112 @@
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T20:23:32.191Z[39m[22m[0m
+[0mHash: [1m[37m1ede26d0643d868ad7d3[39m[22m[0m
+[0mTime: [1m[37m15470[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T20:47:14.896Z[39m[22m[0m
+[0mHash: [1m[37m710f341dc7b2c12fa676[39m[22m[0m
+[0mTime: [1m[37m15515[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T20:52:59.030Z[39m[22m[0m
+[0mHash: [1m[37m710f341dc7b2c12fa676[39m[22m[0m
+[0mTime: [1m[37m15620[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T21:00:18.699Z[39m[22m[0m
+[0mHash: [1m[37ma64e252f73c93cc31f2f[39m[22m[0m
+[0mTime: [1m[37m15279[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T21:04:13.037Z[39m[22m[0m
+[0mHash: [1m[37mb90d5981d55ea0e2112f[39m[22m[0m
+[0mTime: [1m[37m151619[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.2f4a59095805af02bd79.js[39m[22m (polyfills) 59.6 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.6c2408b536de1514caf4.js[39m[22m (main) 3.34 MB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T21:06:07.908Z[39m[22m[0m
+[0mHash: [1m[37m710f341dc7b2c12fa676[39m[22m[0m
+[0mTime: [1m[37m39398[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T21:26:10.713Z[39m[22m[0m
+[0mHash: [1m[37mac29a8dc97f7df5790e0[39m[22m[0m
+[0mTime: [1m[37m23879[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T21:30:33.312Z[39m[22m[0m
+[0mHash: [1m[37m710f341dc7b2c12fa676[39m[22m[0m
+[0mTime: [1m[37m25076[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+Your global Angular CLI version (6.1.1) is greater than your local
+version (6.0.8). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+
+[0mDate: [1m[37m2019-07-01T21:36:20.332Z[39m[22m[0m
+[0mHash: [1m[37m710f341dc7b2c12fa676[39m[22m[0m
+[0mTime: [1m[37m15393[39m[22mms[0m
+[0mchunk {[1m[33m0[39m[22m} [1m[32mruntime.a66f828dca56eeb90e02.js[39m[22m (runtime) 1.05 kB [1m[33m[entry][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m1[39m[22m} [1m[32mstyles.6c60900eace92a0ca7dd.css[39m[22m (styles) 76.7 kB [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m2[39m[22m} [1m[32mpolyfills.cdf87a8e5b31fe8a11f1.js[39m[22m (polyfills) 130 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m
+[0mchunk {[1m[33m3[39m[22m} [1m[32mmain.a2bc6cab25d0aa41c17a.js[39m[22m (main) 128 bytes [1m[33m[initial][39m[22m[1m[32m [rendered][39m[22m[0m

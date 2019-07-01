@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EwepserverService } from '../../ewepserver.service';
 import { Chart } from 'angular-highcharts';
-
+import {Report2Excel} from '../exportExcel'
 @Component({
   selector: 'app-agevs-revenue',
   templateUrl: './agevs-revenue.component.html',
@@ -11,14 +11,15 @@ export class AgevsRevenueComponent implements OnInit {
 
   SelectedProvince: string = "";
   chart: Chart;
+  reportData:any={};
 
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.female_male_view();
+    //this.female_male_view();
   }
-  female_male_view() {
-    this.Ewep.female_male_view(this.SelectedProvince).subscribe(report => {
+  female_male_view(SearchObject:any) {
+    this.Ewep.female_male_view(SearchObject).subscribe(report => {
       this.intChart(report); 
     });
   }
@@ -32,8 +33,10 @@ export class AgevsRevenueComponent implements OnInit {
       },
       xAxis: {
         categories: report.NameXrow
+        //categories: report.DataSeries
       },
       series: report.DataSeries,
+      //series: report.NameXrow,
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -42,8 +45,12 @@ export class AgevsRevenueComponent implements OnInit {
       },
     });
   }
-  SearchClick(Province: string) {
-    this.SelectedProvince = Province;
-    this.female_male_view();
+  SearchClick(SearchObj:any) {
+    //this.SelectedProvince = Province;
+    this.female_male_view(SearchObj);
+  }
+  exportExcel(){
+    let ex = new Report2Excel()
+    ex.createExcel(this.reportData.NameXrow,this.reportData.DataSeries);
   }
 }

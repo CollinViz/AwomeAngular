@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EwepserverService } from '../../ewepserver.service';
 import { Chart } from 'angular-highcharts';
-
+import {Report2Excel} from '../exportExcel'
 @Component({
   selector: 'app-housing',
   templateUrl: './housing.component.html',
@@ -11,14 +11,15 @@ export class HousingComponent implements OnInit {
 
   SelectedProvince: string = "";
   chart: Chart;
+  reportData:any={};
 
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.premise_ownership_view();
+    //this.premise_ownership_view();
   }
-  premise_ownership_view() {
-    this.Ewep.getpremise_ownership_view(this.SelectedProvince).subscribe(report => {
+  premise_ownership_view(SearchObject:any) {
+    this.Ewep.getpremise_ownership_view(SearchObject).subscribe(report => {
       this.intChart(report); 
     });
   }
@@ -28,7 +29,7 @@ export class HousingComponent implements OnInit {
         type: 'column'
       },
       title: {
-        text: 'Premise Ownership %'
+        text: 'Premise Ownership'
       },
       xAxis: {
         categories: report.NameXrow
@@ -42,8 +43,12 @@ export class HousingComponent implements OnInit {
       },
     });
   }
-  SearchClick(Province: string) {
-    this.SelectedProvince = Province;
-    this.premise_ownership_view();
+  SearchClick(SearchObj:any) {
+    //this.SelectedProvince = Province;
+    this.premise_ownership_view(SearchObj);
+  }
+  exportExcel(){
+    let ex = new Report2Excel()
+    ex.createExcel(this.reportData.NameXrow,this.reportData.DataSeries);
   }
 }

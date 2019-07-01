@@ -98,23 +98,43 @@
           Reports</a>
         <div class="dropdown-menu" aria-lableledby="navTraining">
           <a class="dropdown-item" [routerLink]="['/report/dashboard']">Dashboard</a>
+          
+          <div class="dropdown-header">Entrepreneurs</div>
+          <ul>
+          
+          <a class="dropdown-item" [routerLink]="['/report/EntrepreneurIncome']">Entrepreneur Income</a>
+          <a class="dropdown-item" [routerLink]="['/report/BasicDemographic']">Basic Demographic</a>
+          <a class="dropdown-item" [routerLink]="['/report/SupportReceived']">Additional Support Received</a>
+          <a class="dropdown-item" [routerLink]="['/report/Technology']">Access to Technology</a>
+          <a class="dropdown-item" [routerLink]="['/report/LevelofEducation']">Level of Education</a>
+          <a class="dropdown-item" [routerLink]="['/report/Challenges']">Challenges</a>
+          </ul>
+          
           <div class="dropdown-header">Enterprises</div>
-          <a class="dropdown-item" [routerLink]="['/report/JobsCreated']">Jobs Created</a>
+          <ul>
+          <a class="dropdown-item" [routerLink]="['/report/JobsCreated']">No of Employees</a>
           <!--<a class="dropdown-item" [routerLink]="['/report/JobsSustained']">Jobs Sustained</a>-->
           <a class="dropdown-item" [routerLink]="['/report/AgeGroup']">Age Group </a>
           <!--<a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Creating more jobs</a>-->
           <!--<a class="dropdown-item" [routerLink]="['/report/CompletingTrainings']">Completing Trainings</a>-->
           <a class="dropdown-item" [routerLink]="['/report/AgevsRevenue']">Female Owners Vs Male Owners</a>
           <a class="dropdown-item" [routerLink]="['/report/Creatingmorejobs']">Income Expense</a>
-
+          <a class="dropdown-item" [routerLink]="['/report/EnterpriseRegister']">Registration Status</a>
           <a class="dropdown-item" [routerLink]="['/report/Housing']">Premise Ownership %</a>
           <a class="dropdown-item" [routerLink]="['/report/OwnerNumberVsEmployeeNumbers']">Owner Number Vs Employee
             Numbers</a>
+          <a class="dropdown-item" [routerLink]="['/report/EnterpriseStartupFunds']">Startup Funds</a>
+          <a class="dropdown-item" [routerLink]="['/report/EnterpriseAssets']">Assets</a>
+          <a class="dropdown-item" [routerLink]="['/report/EnterpriseSectors']">Sectors</a>
+          <a class="dropdown-item" [routerLink]="['/report/EnterpriseCount']">Number of Enterprises</a>
+          <a class="dropdown-item" [routerLink]="['/report/EnterpriseLoans']">Number of Loans</a>
+          </ul>  
           <div class="dropdown-header">Trainings</div>
+          <ul>
           <!--<a class="dropdown-item" [routerLink]="['/report/OutstandingTrainings']">Outstanding Trainings</a>-->
-          <a class="dropdown-item" [routerLink]="['/report/LevelofEducation']">Level of Education</a>
+          
           <a class="dropdown-item" [routerLink]="['/report/MostPopularTraining']">Most Popular Training</a>
-
+          </ul>
 
         </div>
       </li>

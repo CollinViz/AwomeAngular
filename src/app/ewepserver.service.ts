@@ -55,6 +55,19 @@ export class EwepserverService {
   Assets_TransportTypes: Options[] = ["None", "Car", "Truck", "Van", "Bicycle", "Trailer", "Motorbike"].map((item) => new Options(item, item));
   TheamList: Options[] = ["Default", "Solar", "Slate", "Yeti"].map((item) => new Options(item, item));
   IDorPassport: Options[] = ["ID", "Passport"].map((item) => new Options(item, item));
+  Age: Options[] = ["Below 20", "20-29", "30-39", "40-49", "50-59", "60-69", "Over 69"].map((item) => new Options(item, item));
+  NoOfChildren: Options[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Over 10"].map((item) => new Options(item, item));
+  NoofPeopleHousehold: Options[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Over 10"].map((item) => new Options(item, item));
+  NoOfPeopleSupported: Options[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Over 10"].map((item) => new Options(item, item));
+
+  //Sectors: Options[] = ["Agriculture", "Manufacturing", "Retail", "Mining", "Arts n Crafts", "General Servives", "Other"].map((item) => new Options(item, item));
+  //SubSectors: Options[] = ["1", "2", "3", "4", "5", "6", "Over 6"].map((item) => new Options(item, item));
+  sectors: Sectors[] = [];
+  subSectors: SubSectors[] = [];
+  Wages: Options[] = ["Below R160/d", "Over R160/d", "Below R2,500", "R2,501-R3,000", "R3,001-R3,500", "Over R3,500"].map((item) => new Options(item, item));
+  Income: Options[] = ["R0-R3,000", "R3,001-R6,000", "R6,001-R9,000", "R9,001-R12,000", "R12,001-R15,000", "R15,001-R18,000", "R18,001-R21,000", "Over R21,000"].map((item) => new Options(item, item));
+  YearsOperating: Options[] = ["0-3", "4-6", "7-9", "10-12", "13-15", "Over 15"].map((item) => new Options(item, item));
+
   province: Province[] = [];
   districtMetro: DistrictMetro[] = [];
   localMunicipality: LocalMunicipality[] = [];
@@ -73,11 +86,11 @@ export class EwepserverService {
   constructor(private http: HttpClient) {
     if (isDevMode()) {
 
-      this.baseURL = 'http://127.0.0.1:81/AwomePHP/api.php/data/';
+      this.baseURL = 'http://localhost:81/AwomePHP/api.php/data/';
 
-      this.baseViewURL = 'http://127.0.0.1:81/AwomePHP/api.php/view/';
+      this.baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
 
-      this.CoreViewURL = 'http://127.0.0.1:81/AwomePHP/ajax.php';
+      this.CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
     }
     console.log("New Instance created");
     this.SelectedCountryID = 1;
@@ -159,6 +172,17 @@ export class EwepserverService {
       
     });
   }
+
+  private _getSectorsLoadLocal() {
+    //province
+    this.http.get<any>(this.baseURL + "sectors?order=Name", httpOptions).subscribe((customers: any) => {
+      console.log("ewep sector records: ", customers.records);
+      this.sectors = <Sectors[]>customers.records;
+      this._getSubSectorLoadLocal();
+      
+      
+    });
+  }
   private _setLanguages(){
     if(this.SelectedCountryID==1){
       this.Language= ["English", "Afrikaans", "Ndebele", "Sepedi", "SeSotho", "Swati", "Tsonga", "Tswana", "Venda", "Xhosa", "Zulu"].map((item) => new Options(item, item));
@@ -199,6 +223,15 @@ export class EwepserverService {
       this.districtMetro = <DistrictMetro[]>customers.records;
     });
   }
+
+  private _getSubSectorLoadLocal() {
+    //province
+    this.http.get<any>(this.baseURL + "subsector?order=Sectors_ID", httpOptions).subscribe((customers: any) => {
+      console.log("sub-sector: ",customers.records);
+      this.subSectors = <SubSectors[]>customers.records;
+    });
+  }
+
   private _getlocalmunicipalityLoadLocal() {
     //province
     this.http.get<any>(this.baseURL + "localmunicipality?order=DistrictMetro_ID", httpOptions).subscribe((customers: any) => {
@@ -311,6 +344,7 @@ export class EwepserverService {
     //Reload all the cashed data
     this._getProvinceLoadLocal(); 
     this._setLanguages();
+    this._getSectorsLoadLocal();
   }
   setUserLogin(UserOJB: any, SelectCounter: Country) {
     //Save local data
@@ -356,6 +390,7 @@ export class EwepserverService {
     });
     this._getProvinceLoadLocal();
     this._setLanguages();
+    this._getSectorsLoadLocal();
     console.log("Change Currency " + this.SelectedCurrency);
   }
 
@@ -426,12 +461,17 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-  getAgeByGroup(ProvinceSearch: string) {
+  //getAgeByGroup(ProvinceSearch: string, AgeSearch: string, RaceSearch: string, SexSearch: string) {
+    getAgeByGroup(SearchObject:any) {
     let login = {
       __class: 'ReportsGUI', __call: 'getAgeByGroup',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch,
+      //Age: AgeSearch,
+      //Race: RaceSearch,
+      //Sex: SexSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
@@ -446,36 +486,29 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-  getSectors(ProvinceSearch: string) {
+  getSectors(SearchObject:any) {
     let login = {
       __class: 'ReportsGUI', __call: 'sectors',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  jobs_created_view(ProvinceSearch: string) {
+  jobs_created_view(SearchObject:any) {
     let login = {
       __class: 'ReportsGUI', __call: 'jobs_created_view',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  education_level_view(ProvinceSearch: string) {
-    let login = {
-      __class: 'ReportsGUI', __call: 'education_level_view',
-      Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
-    };
-    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
-      catchError(this.handleError)
-    );
-  }
+  
   popular_training_view(ProvinceSearch: string) {
     let login = {
       __class: 'ReportsGUI', __call: 'popular_training_view',
@@ -486,47 +519,215 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-  owners_employees_view(ProvinceSearch: string){
+  owners_employees_view(SearchObject:any){
     let login = {
       __class: 'ReportsGUI', __call: 'owners_employees_view',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  female_male_view(ProvinceSearch: string){
+  female_male_view(SearchObject:any){
     let login = {
       __class: 'ReportsGUI', __call: 'female_male_view',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  getincome_expense_view(ProvinceSearch: string){
+  getincome_expense_view(SearchObject:any){
     let login = {
       __class: 'ReportsGUI', __call: 'income_expense_view',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-  getpremise_ownership_view(ProvinceSearch: string){
+  getpremise_ownership_view(SearchObject:any){
     let login = {
       __class: 'ReportsGUI', __call: 'premise_ownership_view',
       Country_ID: this.SelectedCountryID,
-      Province: ProvinceSearch
+      //Province: ProvinceSearch
     };
+    login =  Object.assign({}, login, SearchObject)
     return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-   
+
+  assets_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'assets_view',
+      Country_ID: this.SelectedCountryID,
+      //Province: ProvinceSearch
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  registration_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'registration_view',
+      Country_ID: this.SelectedCountryID,
+      //Province: ProvinceSearch
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  startup_funds_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'startup_funds_view',
+      Country_ID: this.SelectedCountryID,
+      //Province: ProvinceSearch
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  sectors_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'sectors_view',
+      Country_ID: this.SelectedCountryID,
+      //Province: ProvinceSearch
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  loans_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'loans_view',
+      Country_ID: this.SelectedCountryID,
+      //Province: ProvinceSearch
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  entrepreneur_income_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'entrepreneur_income_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  education_level_view(SearchObject:any) {
+    let login = {
+      __class: 'ReportsGUI', __call: 'education_level_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  support_received_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'support_received_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  technology_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'technology_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  challenges_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'challenges_view',
+      Country_ID: this.SelectedCountryID
+    };
+    login =  Object.assign({}, login, SearchObject)
+    //console.log('Search Age ', AgeSearch);
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  race_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'race_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  sex_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'sex_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  marital_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'marital_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  age_view(SearchObject:any){
+    let login = {
+      __class: 'ReportsGUI', __call: 'age_view',
+      Country_ID: this.SelectedCountryID,
+      
+    };
+    login =  Object.assign({}, login, SearchObject)
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
   addToRoutingStashBox(Data: any) {
     this.RoutingStashBox = Data;
   }
@@ -630,4 +831,15 @@ export interface EDF {
   Active: string; 
   Country_ID: string; 
   ThemeName: string;  
+}
+
+export interface Sectors {
+  Sectors_ID: number;
+  Name: string; 
+}
+
+export interface SubSectors {
+  SubSector_ID: number;
+  Name: string; 
+  Sectors_ID: number;
 }

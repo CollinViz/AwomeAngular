@@ -15,10 +15,10 @@ export class CreatingmorejobsComponent implements OnInit {
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.income_expense_view();
+    //this.income_expense_view();
   }
-  income_expense_view() {
-    this.Ewep.getincome_expense_view(this.SelectedProvince).subscribe(report => {
+  income_expense_view(SearchObject:any) {
+    this.Ewep.getincome_expense_view(SearchObject).subscribe(report => {
       this.intChart(report);
       // report.DataSeries.forEach(element => {
       //   this.chart.addSerie(element);
@@ -28,6 +28,7 @@ export class CreatingmorejobsComponent implements OnInit {
   }
   intChart(report) {
     this.chart = new Chart({
+      
       chart: {
         type: 'column'
       },
@@ -36,8 +37,14 @@ export class CreatingmorejobsComponent implements OnInit {
       },
       xAxis: {
         categories: report.NameXrow
+        //categories: report.DataSeries
       },
       series: report.DataSeries,
+      
+      //series: report.NameXrow,
+      data: {
+        switchRowsAndColumns: true
+      },
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -46,9 +53,9 @@ export class CreatingmorejobsComponent implements OnInit {
       },
     });
   }
-  SearchClick(Province: string) {
-    this.SelectedProvince = Province;
-    this.income_expense_view();
+  SearchClick(SearchObj:any) {
+    //this.SelectedProvince = Province;
+    this.income_expense_view(SearchObj);
   }
   exportExcel(){
     let ex = new Report2Excel()

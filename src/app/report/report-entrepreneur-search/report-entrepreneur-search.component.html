@@ -1,3 +1,169 @@
-<p>
-  report-entrepreneur-search works!
-</p>
+<div class="card bg-primary text-white">Search - {{Heading}}</div>
+<div class="row">
+  <div class="col-3">
+    <!-- <div [appCardCssFormGroup]="Contact.valid" Class="card mb-3">-->
+
+
+    <!--<div [formGroup]="Contact" class="card-header">Address</div>
+    <div class="card-header">Address</div>-->
+
+    <div class="card-body">
+      <div class="control-group">
+        <label class="control-label"> Province</label>
+        <mat-select [(ngModel)]="search.Province" (selectionChange)="contaceDetailChange($event, 0)"
+          ngClass="form-control">
+          <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let opt of ContactInfoWithBinding[0].options" [value]="opt.Key">{{opt.Value}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="control-group">
+        <label class="control-label"> District Metro</label>
+        <mat-select [(ngModel)]="search.DistrictMetro" (selectionChange)="contaceDetailChange($event, 1)"
+          ngClass="form-control">
+          <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let opt of ContactInfoWithBinding[1].options" [value]="opt.Key">{{opt.Value}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="control-group">
+        <label class="control-label"> Municipality</label>
+        <mat-select [(ngModel)]="search.Municipality" (selectionChange)="contaceDetailChange($event, 2)"
+          ngClass="form-control">
+          <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let opt of ContactInfoWithBinding[2].options" [value]="opt.Key">{{opt.Value}}
+          </mat-option>
+        </mat-select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-3">
+      <div class="card-body">
+    <div class="control-group">
+      <label class="control-label" for="txtRace">Race</label>
+      <div class="controls">
+        <mat-select [(ngModel)]="search.Race" name="txtRace" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let opt of Race" [value]="opt.Key">{{opt.Value}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="control-group">
+      <label class="control-label" for="txtSex">Sex</label>
+      <div class="controls">
+        <mat-select [(ngModel)]="search.Sex" name="txtSex" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let opt of Sex" [value]="opt.Key">{{opt.Value}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="control-group">
+      <label class="control-label" for="txtAge">Age</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.Age" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let lan of Age" [value]="lan.Key">{{lan.Value}} </mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-3">
+      <div class="card-body">
+    <div class="control-group">
+      <label class="control-label" for="txtEducation_Level">Level of Education (select one)</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.EducationLevel" id="txtEducation_Level" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let lan of EducationLevel" [value]="lan.Key">{{lan.Value}} </mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="control-group">
+      <label class="control-label" for="txtMarital_Status">Marital Status</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.MaritalStatus" id="txtMarital_Status" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let lan of MaritalStatus" [value]="lan.Key">{{lan.Value}} </mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="control-group">
+      <label class="control-label" for="txtHiHRep">Responsible Trainer</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.Trainer" name="txtHiHRep" ngClass="form-control">
+          <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let edf of ActiveEDFs" [value]="edf.EDF_ID">{{edf.Name}} {{edf.Surname}}</mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-2">
+      <div class="card-body">
+    <div class="control-group">
+      <label class="control-label" for="txtNoOfChildren">No of Children</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.NoOfChildren" id="txtNoOfChildren" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let lan of NoOfChildren" [value]="lan.Key">{{lan.Value}} </mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="control-group">
+      <label class="control-label" for="txtNoOfPeopleHousehold">Number of People Household</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.NoOfPeopleHousehold" id="txtNoOfPeopleHousehold" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let lan of NoOfPeopleHousehold" [value]="lan.Key">{{lan.Value}} </mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="control-group">
+      <label class="control-label" for="txtNoOfPeopleSupported">Number of People Supported</label>
+      <div class="controls">
+
+        <mat-select [(ngModel)]="search.NoOfPeopleSupported" id="txtNoOfPeopleSupported" ngClass="form-control">
+            <mat-option value="Select">Select</mat-option>
+          <mat-option *ngFor="let lan of NoOfPeopleSupported" [value]="lan.Key">{{lan.Value}} </mat-option>
+        </mat-select>
+
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="col1">
+    <br><br><br><br><br><br><br>
+    <button (click)="searchClickint()" type="button" class="btn btn-primary">
+      Search
+    </button>
+  </div>
+</div>
+<!--</div>-->
+<br>
+<pgs-progress-bar></pgs-progress-bar>
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>-->
+
+<br>

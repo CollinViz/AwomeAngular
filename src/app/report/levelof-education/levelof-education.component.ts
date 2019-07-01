@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EwepserverService } from '../../ewepserver.service';
 import { Chart } from 'angular-highcharts';
+import {Report2Excel} from '../exportExcel'
 
 @Component({
   selector: 'app-levelof-education',
@@ -11,14 +12,15 @@ export class LevelofEducationComponent implements OnInit {
 
   SelectedProvince: string = "";
   chart: Chart;
+  reportData:any={};
 
   constructor(private Ewep: EwepserverService) { }
 
   ngOnInit() {
-    this.education_level_view();
+    //this.education_level_view();
   }
-  education_level_view() {
-    this.Ewep.education_level_view(this.SelectedProvince).subscribe(report => {
+  education_level_view(SearchObject:any) {
+    this.Ewep.education_level_view(SearchObject).subscribe(report => {
       this.intChart(report); 
     });
   }
@@ -42,9 +44,12 @@ export class LevelofEducationComponent implements OnInit {
       },
     });
   }
-  SearchClick(Province: string) {
-    this.SelectedProvince = Province;
-    this.education_level_view();
+  SearchClick(SearchObj:any) {
+    //this.SelectedProvince = Province;
+    this.education_level_view(SearchObj);
   }
-
+  exportExcel(){
+    let ex = new Report2Excel()
+    ex.createExcel(this.reportData.NameXrow,this.reportData.DataSeries);
+  }
 }

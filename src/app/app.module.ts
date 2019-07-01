@@ -122,7 +122,18 @@ import { NgbdCarouselConfig } from './carousel/carousel-config/carousel-config.c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchTrainingComponent } from './training/entrepreneurs/entrepreneur-training-search/search-training/search-training.component';
 import { ReportEntrepreneurSearchComponent } from './report/report-entrepreneur-search/report-entrepreneur-search.component';
-import { ReportEnterpriseSearchComponent } from './report/report-enterprise-search/report-enterprise-search.component'
+import { ReportEnterpriseSearchComponent } from './report/report-enterprise-search/report-enterprise-search.component';
+import { EnterpriseRegisterComponent } from './report/enterprise-register/enterprise-register.component';
+import { StartupFundsComponent } from './report/startup-funds/startup-funds.component';
+import { AssetsComponent } from './report/assets/assets.component';
+import { SectorsComponent } from './report/sectors/sectors.component';
+import { EnterpriseCountComponent } from './report/enterprise-count/enterprise-count.component';
+import { EnterpriseLoansComponent } from './report/enterprise-loans/enterprise-loans.component';
+import { EntrepreneurIncomeComponent } from './report/entrepreneur-income/entrepreneur-income.component';
+import { EntrepreneurDemographicComponent } from './report/entrepreneur-demographic/entrepreneur-demographic.component';
+import { EntrepreneurSupportComponent } from './report/entrepreneur-support/entrepreneur-support.component';
+import { EntrepreneurTechnologyComponent } from './report/entrepreneur-technology/entrepreneur-technology.component';
+import { EntrepreneurChallengesComponent } from './report/entrepreneur-challenges/entrepreneur-challenges.component'
 
 
 const interceptor = new ProgressInterceptor();
@@ -264,7 +275,29 @@ const interceptor = new ProgressInterceptor();
 
     ReportEntrepreneurSearchComponent,
 
-    ReportEnterpriseSearchComponent
+    ReportEnterpriseSearchComponent,
+
+    EnterpriseRegisterComponent,
+
+    StartupFundsComponent,
+
+    AssetsComponent,
+
+    SectorsComponent,
+
+    EnterpriseCountComponent,
+
+    EnterpriseLoansComponent,
+
+    EntrepreneurIncomeComponent,
+
+    EntrepreneurDemographicComponent,
+
+    EntrepreneurSupportComponent,
+
+    EntrepreneurTechnologyComponent,
+
+    EntrepreneurChallengesComponent
 
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
@@ -418,6 +451,26 @@ const interceptor = new ProgressInterceptor();
       component: AgeGroupComponent
     },
     {
+      path: 'report/EntrepreneurIncome',
+      component: EntrepreneurIncomeComponent
+    },
+    {
+      path: 'report/BasicDemographic',
+      component: EntrepreneurDemographicComponent
+    },
+    {
+      path: 'report/SupportReceived',
+      component: EntrepreneurSupportComponent
+    },
+    {
+      path: 'report/Technology',
+      component: EntrepreneurTechnologyComponent
+    },
+    {
+      path: 'report/Challenges',
+      component: EntrepreneurChallengesComponent
+    },
+    {
       path: 'report/JobsCreated',
       component: JobsCreatedComponent
     },
@@ -428,6 +481,31 @@ const interceptor = new ProgressInterceptor();
     {
       path: 'report/Creatingmorejobs',
       component: CreatingmorejobsComponent
+    },
+    {
+      path: 'report/EnterpriseRegister',
+      component: EnterpriseRegisterComponent
+    },
+    
+    {
+      path: 'report/EnterpriseStartupFunds',
+      component: StartupFundsComponent
+    },
+    {
+      path: 'report/EnterpriseAssets',
+      component: AssetsComponent
+    },
+    {
+      path: 'report/EnterpriseSectors',
+      component: SectorsComponent
+    },
+    {
+      path: 'report/EnterpriseCount',
+      component: EnterpriseCountComponent
+    },
+    {
+      path: 'report/EnterpriseLoans',
+      component: EnterpriseLoansComponent
     },
     {
       path: 'report/CompletingTrainings',

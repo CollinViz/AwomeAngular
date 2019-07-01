@@ -1,8 +1,8 @@
-<app-search-by-province 
+<app-report-enterprise-search 
 Heading="Female Owners Vs Male Owners" 
 (SearchClick)="SearchClick($event)">
 
-</app-search-by-province>
+</app-report-enterprise-search>
 <div class="row">
   <div class="col-2">
 
@@ -12,6 +12,6 @@ Heading="Female Owners Vs Male Owners"
   </div>
 
   <div class="col-2">
-
+    <button (click)="exportExcel()">Excel</button>
   </div>
 </div>

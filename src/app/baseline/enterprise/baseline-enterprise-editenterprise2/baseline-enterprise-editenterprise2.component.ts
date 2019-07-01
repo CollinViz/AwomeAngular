@@ -2,11 +2,15 @@ import { ChangeDetectorRef, Component, OnInit, OnChanges, Pipe, PipeTransform, T
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EwepserverService } from '../../../ewepserver.service'
-import { QuestionBase } from '../../../service/question-base';
-import { DropdownQuestion } from '../../../service/question-dropdown';
+//import { QuestionBase } from '../../../service/question-base';
+//import { DropdownQuestion } from '../../../service/question-dropdown';
+
+import { Options, QuestionBase,DropdownQuestion} from '../../../service/question';
+import { CustomformSetupService } from '../../../service/customform-setup.service';
+
 import { CustomFromHelperControlService, forceValidate } from '../../../service/custom-from-helper-control.service'
-import { CustomformSetupService } from '../../../service/customform-setup.service'
-import { Options } from '../../../service/question-helper';
+//import { CustomformSetupService } from '../../../service/customform-setup.service'
+//import { Options } from '../../../service/question-helper';
 import { TextboxQuestion, NumbersQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 import { MatDialog } from '@angular/material';

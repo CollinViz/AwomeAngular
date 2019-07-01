@@ -391,10 +391,12 @@ export class CustomformSetupService {
   getGoodsAndService(enterprise:any){
 	let questions: QuestionBase<any>[] = [ 
 		new RadioQuestion({
-			key: 'Goods_services', required: false,order: 9,
-			label: 'Goods or Services', value: enterprise.Goods_services,
+			key: 'Good_services', required: false,order: 9,
+			label: 'Goods or Services', value: enterprise.Good_services,
 			options:[
-				new Options("Goods","Goods"),new Options("Services","Services")
+				new Options("Goods","Goods"),
+				new Options("Services","Services"),
+				new Options("Both","Both")
 			]
 		}), 
 		new CheckBoxQuestion({
@@ -587,7 +589,39 @@ export class CustomformSetupService {
 		}),
 	];
 	return questions.sort((a, b) => a.order - b.order);
-  }
+	}
+	
+	getSectorInfoBinding(sector:any){
+		let questions: QuestionBase<any>[] = [ 
+			new DropdownQuestion({
+				key:"Sectors_ID",required:true,order:10,
+				label:"Sector",value:sector.Province_ID,
+				options:this.ewepServer.sectors.map((value) =>new Options(value.Sectors_ID,value.Name))
+			}),
+			new DropdownQuestion({
+				key:"SubSector_ID",required:true,order:10,
+				label:"Sub-Sector",value:sector.SubSector_ID,
+				options:this.ewepServer.subSectors.filter((element)=>{
+						return element.Sectors_ID==sector.Sectors_ID;
+				}).map((value)=> new Options(value.SubSector_ID,value.Name))
+			}),
+			/*new DropdownQuestion({
+				key:"Municipality_ID",required:true,order:10,
+				label:"Local Municipality",value:enterprise.Municipality_ID,
+				options:this.ewepServer.localMunicipality.filter((element)=>{
+						return element.DistrictMetro_ID==enterprise.District_Metro_ID;
+				}).map((value)=>new Options(value.LocalMunicipality_ID,value.Name))
+			}),
+			new DropdownQuestion({
+				key:"Main_Place_ID",required:false,order:10,
+				label:"Main Place",value:enterprise.Main_Place_ID,
+				options:this.ewepServer.mainPlaces.filter((element)=>{
+					return element.LocalMunicipality_ID == enterprise.Municipality_ID
+				}).map((value)=>new Options(value.MainPlace_ID,value.Name))
+			}),*/
+		];
+		return questions.sort((a, b) => a.order - b.order);
+		}
   ///---------------------------------------------------------------------------------------------------------------
   //
   //----------------------------------------------------------------------------------------------------------------

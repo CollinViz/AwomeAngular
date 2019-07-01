@@ -1,0 +1,17 @@
+<app-report-enterprise-search 
+Heading="Enterprise Loans" 
+(SearchClick)="SearchClick($event)">
+
+</app-report-enterprise-search>
+<div class="row">
+  <div class="col-2">
+
+  </div>
+  <div class="col-8">
+    <div [chart]="chart"></div>
+  </div>
+
+  <div class="col-2">
+    <button (click)="exportExcel()">Excel</button>
+  </div>
+</div>
