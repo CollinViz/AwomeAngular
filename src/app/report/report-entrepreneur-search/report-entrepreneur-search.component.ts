@@ -37,7 +37,7 @@ export class ReportEntrepreneurSearchComponent implements OnInit {
   @Input() ProvinceLabel?: string = "";
   Contact: FormGroup;
   HeadingInfo: string = "Report";
-  ContactInfoWithBinding:QuestionBase<any>[];
+  ContactInfoWithBinding:DropdownQuestion[];
   Race:Options[];
   Sex:Options[];
   MaritalStatus:Options[];
@@ -83,7 +83,7 @@ export class ReportEntrepreneurSearchComponent implements OnInit {
       this.ProvinceLabel = "Region";
     }
 
-    this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding(-1);
+    this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding2(-1);
     this.Contact = this.cutomerFormHlper.toFormGroup(this.ContactInfoWithBinding);
   }
   searchClickint() {

@@ -31,8 +31,8 @@ export class ReportEnterpriseSearchComponent implements OnInit {
   Contact: FormGroup;
   SectorsForm: FormGroup;
   HeadingInfo: string = "Report";
-  ContactInfoWithBinding:QuestionBase<any>[];
-  SectorInfoWithBinding:QuestionBase<any>[];
+  ContactInfoWithBinding:DropdownQuestion[];
+  SectorInfoWithBinding:DropdownQuestion[];
   Wages:Options[];
   Sex:Options[];
   Income:Options[];
@@ -83,10 +83,10 @@ export class ReportEnterpriseSearchComponent implements OnInit {
       this.ProvinceLabel = "Region";
     }
 
-    this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding(-1);
+    this.ContactInfoWithBinding = this.controlsService.getContactInfoBinding2(-1);
     this.Contact = this.cutomerFormHlper.toFormGroup(this.ContactInfoWithBinding);
 
-    this.SectorInfoWithBinding = this.controlsService.getSectorInfoBinding(0);
+    this.SectorInfoWithBinding = this.controlsService.getSectorInfoBinding2(0);
     this.SectorsForm = this.cutomerFormHlper.toFormGroup(this.SectorInfoWithBinding);
   }
   searchClickint() {
