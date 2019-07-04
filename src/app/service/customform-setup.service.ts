@@ -392,7 +392,7 @@ export class CustomformSetupService {
 	let questions: QuestionBase<any>[] = [ 
 		new RadioQuestion({
 			key: 'Good_services', required: false,order: 9,
-			label: 'Goods or Services', value: enterprise.Good_services,
+			label: 'Goods or Services', value: enterprise.good_services,
 			options:[
 				new Options("Goods","Goods"),
 				new Options("Services","Services"),
