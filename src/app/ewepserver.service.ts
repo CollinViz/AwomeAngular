@@ -22,6 +22,8 @@ export class EwepserverService {
   baseURL: string = 'api.php/data/';
   baseViewURL: string = 'api.php/view/';
   CoreViewURL: string = 'ajax.php';
+  UploadURL: string = 'upload.php';
+  DownloadURL: string = '/upload/';
 
   SelectedCountryID: number = 1;
   SelectedCurrency: string = "DDDD";
@@ -91,6 +93,8 @@ export class EwepserverService {
       this.baseViewURL = 'http://localhost:81/AwomePHP/api.php/view/';
 
       this.CoreViewURL = 'http://localhost:81/AwomePHP/ajax.php';
+      this.UploadURL = 'http://localhost:81/AwomePHP/upload.php';
+      this.DownloadURL = 'http://localhost:81/AwomePHP/upload/';
     }
     console.log("New Instance created");
     this.SelectedCountryID = 1;
@@ -101,6 +105,12 @@ export class EwepserverService {
     //this._getlocalmunicipalityLoadLocal();
     //this._getMainplace();
 
+  }
+  getUploadPath(ID:number):string {
+    return this.UploadURL+"?ID=" + ID;
+  }
+  getDownloadPath(ID:number):string {
+    return this.DownloadURL+ID+"/";
   }
   get country(): Observable<Country[]> {
     return this.CountryList.asObservable();
@@ -733,6 +743,26 @@ export class EwepserverService {
   }
   getRoutingStashBox() {
     return this.RoutingStashBox;
+  }
+
+  filesUploaded(ID:number){
+    let login = {
+      __class: 'FileSystem', __call: 'listFile',
+      ID: ID, 
+    }; 
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  filesDelete(ID:number,FileName:string){
+    let login = {
+      __class: 'FileSystem', __call: 'deleteFile',
+      FileName: FileName, 
+      ID: ID
+    }; 
+    return this.http.post<any>(this.CoreViewURL, login, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

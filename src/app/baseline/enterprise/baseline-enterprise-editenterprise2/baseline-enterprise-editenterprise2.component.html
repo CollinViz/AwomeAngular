@@ -244,6 +244,37 @@
           </ng-template>
         </div>
       </tab>
+      <tab heading="Documents" class="mt-2" *ngIf="showFileUpload;" >
+        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" class="btn btn-primary" />
+
+        <button type="button" class="btn btn-success btn-s" 
+          (click)="uploader.uploadAll()" 
+          [disabled]="!uploader.getNotUploadedItems().length" >
+              Upload a Document
+        </button>
+        <div *ngIf="uploader.progress>0;">
+          Queue progress:
+          <div class="progress"  >
+              <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+          </div>
+      </div>
+        <div> 
+          <table class="table table-hover ">
+            <thead>
+              <tr> 
+                <th scope="col">File Name</th> 
+                <th scope="col">Action</th> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table w-100" *ngFor="let row of FileList;let i=index"  >
+                <th scope="row" ><a href="{{getUrlPath(row)}}" target="_blank">{{row}}</a></th>  
+                <td scope="row" ><button type="button" class="btn btn-danger" (click)="deleteFile(row)"  >Delete</button> </td>  
+              </tr> 
+            </tbody>
+          </table> 
+        </div> 
+      </tab>
     </tabset>
   </form>
 </ng-template>

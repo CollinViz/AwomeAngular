@@ -11,6 +11,7 @@ import { TextboxQuestion, NumbersQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 import { MatDialog } from '@angular/material';
 import { ListEntrepreneurComponent } from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
+import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 
 @Component({
   selector: 'app-baseline-enterprise-editenterprise2',
@@ -40,6 +41,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   showEntrepreneursList: boolean = true;
 
   showloading: boolean = true;
+  showFileUpload: boolean = false;
   showloading_Entrepreneurs: boolean = false;
   FinanceLoans: any[] = [];
   FinanceLoans2: any[] = [];
@@ -56,6 +58,9 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   Finance: FormGroup;
   Details: FormGroup;
 
+  //File upload
+  uploader: FileUploader;
+  FileList:any[];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
      public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
@@ -71,6 +76,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
     this.enterprise.Avg_Profit = this.enterprise.Avg_Sales + this.enterprise.Avg_Other_Income - (this.enterprise.Avg_Expenditure  + this.enterprise.Member_Salaries + this.enterprise.Employee_Salaries);
   }
   ngOnInit() {
+    
     //get from stash box
     this.enterprise = this.EwepserverService.getRoutingStashBox();
     if (this.enterprise == null) {
@@ -98,6 +104,17 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
             this.EwepserverService.getTableData("finance", "filter=Enterprise_ID,eq," + params.Enterprise_ID).subscribe((finance: any) => {
               this.FinanceLoans = finance.records;
             });
+            this.showFileUpload = true;
+            this.uploader = new FileUploader({url: this.EwepserverService.getUploadPath(params.Enterprise_ID), itemAlias: 'document'});
+            this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+            this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+                console.log('FileUpload:uploaded:', item, status, response);
+                this.loadFilesSaved(params.Enterprise_ID);
+                //alert('File uploaded successfully');
+                this.uploader.clearQueue();
+                this.uploader.progress=0;
+            };
+            this.loadFilesSaved(params.Enterprise_ID);
           } else {
             //Add New 
             console.log("Add new");
@@ -108,8 +125,23 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
         }
       });
 
+      
 
-
+  }
+  loadFilesSaved(ID:number){
+    this.EwepserverService.filesUploaded(ID).subscribe((FilesUpload) => {
+      console.log(FilesUpload);
+      this.FileList = FilesUpload;
+    });
+  }
+  deleteFile(FileName:string){
+    this.EwepserverService.filesDelete(this.enterprise.Enterprise_ID,FileName).subscribe((FilesUpload) => {
+      console.log(FilesUpload);
+      this.FileList = FilesUpload;
+    });
+  }
+  getUrlPath(FileName){
+    return this.EwepserverService.getDownloadPath(this.enterprise.Enterprise_ID)+encodeURI(FileName);
   }
   OnDataOK() {
 

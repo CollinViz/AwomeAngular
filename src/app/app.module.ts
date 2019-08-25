@@ -9,6 +9,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { ChartModule } from 'angular-highcharts';
+//File Upload 
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatRadioModule, MatButtonModule, MatProgressSpinnerModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatProgressBarModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatTableModule, MatDialogModule,MatAutocompleteModule } from '@angular/material';
@@ -139,7 +141,7 @@ import { EntrepreneurChallengesComponent } from './report/entrepreneur-challenge
 const interceptor = new ProgressInterceptor();
 
 @NgModule({
-  declarations: [
+  declarations: [    
     AppComponent,
     HeaderComponent,
     LoginComponent,
@@ -298,7 +300,7 @@ const interceptor = new ProgressInterceptor();
     EntrepreneurTechnologyComponent,
 
     EntrepreneurChallengesComponent
-
+    
   ],
   entryComponents: [EditDialogActionplansEnterprisesEnterprisesComponent,
     EditDialogActionplansEnterprisesComponent,
@@ -313,6 +315,7 @@ const interceptor = new ProgressInterceptor();
     NgbModule.forRoot(), 
     ChartModule ,
     FormsModule,
+    FileUploadModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatSelectModule, MatSlideToggleModule, MatInputModule, MatTableModule,
