@@ -16,7 +16,7 @@ export class SearchBaselineAssociationAssociationComponent implements OnInit {
   @Output() filter:string ="";
   @Output() SearchClick = new EventEmitter<string>();
   @Output() NewClick = new EventEmitter<string>();
-  constructor() { }
+  constructor(public EwepserverService: EwepserverService) { }
 
   ngOnInit() {
     if(this.Heading){

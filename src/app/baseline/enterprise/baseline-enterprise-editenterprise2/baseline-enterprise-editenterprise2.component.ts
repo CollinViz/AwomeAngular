@@ -11,7 +11,7 @@ import { TextboxQuestion, NumbersQuestion } from '../../../service/question';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 import { MatDialog } from '@angular/material';
 import { ListEntrepreneurComponent } from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component'
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 @Component({
   selector: 'app-baseline-enterprise-editenterprise2',
@@ -61,7 +61,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
   //File upload
   uploader: FileUploader;
   FileList:any[];
-
+  folderPrefix:string = "enterprise_";
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
      public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService: CustomformSetupService,
@@ -105,7 +105,7 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
               this.FinanceLoans = finance.records;
             });
             this.showFileUpload = true;
-            this.uploader = new FileUploader({url: this.EwepserverService.getUploadPath(params.Enterprise_ID), itemAlias: 'document'});
+            this.uploader = new FileUploader({url: this.EwepserverService.getUploadPath(this.folderPrefix+params.Enterprise_ID), itemAlias: 'document'});
             this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
             this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
                 console.log('FileUpload:uploaded:', item, status, response);
@@ -129,19 +129,19 @@ export class BaselineEnterpriseEditenterprise2Component implements OnInit {
 
   }
   loadFilesSaved(ID:number){
-    this.EwepserverService.filesUploaded(ID).subscribe((FilesUpload) => {
+    this.EwepserverService.filesUploaded(this.folderPrefix+ID).subscribe((FilesUpload) => {
       console.log(FilesUpload);
       this.FileList = FilesUpload;
     });
   }
   deleteFile(FileName:string){
-    this.EwepserverService.filesDelete(this.enterprise.Enterprise_ID,FileName).subscribe((FilesUpload) => {
+    this.EwepserverService.filesDelete(this.folderPrefix+this.enterprise.Enterprise_ID,FileName).subscribe((FilesUpload) => {
       console.log(FilesUpload);
       this.FileList = FilesUpload;
     });
   }
   getUrlPath(FileName){
-    return this.EwepserverService.getDownloadPath(this.enterprise.Enterprise_ID)+encodeURI(FileName);
+    return this.EwepserverService.getDownloadPath(this.folderPrefix+this.enterprise.Enterprise_ID,FileName);
   }
   OnDataOK() {
 

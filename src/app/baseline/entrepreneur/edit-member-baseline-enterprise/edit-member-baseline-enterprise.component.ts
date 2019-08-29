@@ -7,6 +7,8 @@ import { CustomformSetupService } from '../../../service/customform-setup.servic
 import { FormGroupEditMemberBaselineEnterprise } from './edit-member-baseline-enterprise' 
 import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
 @Component({
   selector: 'app-edit-member-baseline-enterprise',
   templateUrl: './edit-member-baseline-enterprise.component.html',
@@ -58,7 +60,12 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     { name: 'Name', prop: 'Cooperative_Name' } 
   ];
   rowsCooperative: any[] = []; 
-  
+  //File upload
+  showFileUpload: boolean = false;
+  uploader: FileUploader;
+  FileList:any[];
+  folderPrefix:string = "entrepreneur_";
+
   constructor( public EwepserverService: EwepserverService,
               private cutomerFormHlper: CustomFromHelperControlService,
               private controlsService:CustomformSetupService) { 
@@ -176,8 +183,33 @@ export class EditMemberBaselineEnterpriseComponent implements OnInit,OnChanges {
     this.EwepserverService.getViewData("cooperative_member_view","filter=Entrepreneur_ID,eq,"+this.entrepreneur.Entrepreneur_ID).subscribe((rowdata: any)=>{
       this.rowsCooperative = [...rowdata.records];
     });
+    this.showFileUpload = true;
+            this.uploader = new FileUploader({url: this.EwepserverService.getUploadPath(this.folderPrefix+this.entrepreneur.Entrepreneur_ID), itemAlias: 'document'});
+            this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+            this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+                console.log('FileUpload:uploaded:', item, status, response);
+                this.loadFilesSaved(this.entrepreneur.Entrepreneur_ID);
+                //alert('File uploaded successfully');
+                this.uploader.clearQueue();
+                this.uploader.progress=0;
+            };
+            this.loadFilesSaved(this.entrepreneur.Entrepreneur_ID);
   }
-
+  loadFilesSaved(ID:number){
+    this.EwepserverService.filesUploaded(this.folderPrefix+ID).subscribe((FilesUpload) => {
+      console.log(FilesUpload);
+      this.FileList = FilesUpload;
+    });
+  }
+  deleteFile(FileName:string){
+    this.EwepserverService.filesDelete(this.folderPrefix+this.entrepreneur.Entrepreneur_ID,FileName).subscribe((FilesUpload) => {
+      console.log(FilesUpload);
+      this.FileList = FilesUpload;
+    });
+  }
+  getUrlPath(FileName){
+    return this.EwepserverService.getDownloadPath(this.folderPrefix+this.entrepreneur.Entrepreneur_ID,FileName);
+  }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 

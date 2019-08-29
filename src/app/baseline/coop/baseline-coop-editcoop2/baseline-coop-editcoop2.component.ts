@@ -11,6 +11,7 @@ import { FormGroupBaselineCoopEditcoop2 } from './baseline-coop-editcoop2';
 // /import { ValueTransformer } from '../../../../../node_modules/@angular/compiler/src/util';
 import { MatDialog } from '@angular/material';
 import { ListEntrepreneurComponent } from '../../../common/entrepreneur/list-entrepreneur/list-entrepreneur.component';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 @Component({
   selector: 'app-baseline-coop-editcoop2',
@@ -49,6 +50,12 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     Approved: false, Reject_Reason: "", Started_Repay: false,
     How_Much: 0.00, Amount_Issued: 0.00, Repay_Amount: 0.00
   };
+  //File upload
+  showFileUpload: boolean = false;
+  uploader: FileUploader;
+  FileList:any[];
+  folderPrefix:string = "cooperative_";
+
   //Form Group stuff
   user: FormGroup;
   General: FormGroup;
@@ -58,7 +65,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-     public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
+    public EwepserverService: EwepserverService, private cutomerFormHlper: CustomFromHelperControlService,
     private controlsService: CustomformSetupService,
     private _cdr: ChangeDetectorRef,
     public dialog: MatDialog,
@@ -95,7 +102,17 @@ export class BaselineCoopEditcoop2Component implements OnInit {
                 this.FinanceLoans = finance.records;
                 this.OnDataOK();
               });
-
+            this.showFileUpload = true;
+            this.uploader = new FileUploader({ url: this.EwepserverService.getUploadPath(this.folderPrefix + params.Cooperative_ID), itemAlias: 'document' });
+            this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+            this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+              console.log('FileUpload:uploaded:', item, status, response);
+              this.loadFilesSaved(params.Cooperative_ID);
+              //alert('File uploaded successfully');
+              this.uploader.clearQueue();
+              this.uploader.progress = 0;
+            };
+            this.loadFilesSaved(params.Cooperative_ID);
             //});
           } else {
             //Add New 
@@ -109,6 +126,21 @@ export class BaselineCoopEditcoop2Component implements OnInit {
 
 
 
+  }
+  loadFilesSaved(ID: number) {
+    this.EwepserverService.filesUploaded(this.folderPrefix + ID).subscribe((FilesUpload) => {
+      console.log(FilesUpload);
+      this.FileList = FilesUpload;
+    });
+  }
+  deleteFile(FileName: string) {
+    this.EwepserverService.filesDelete(this.folderPrefix + this.cooperative.Cooperative_ID, FileName).subscribe((FilesUpload) => {
+      console.log(FilesUpload);
+      this.FileList = FilesUpload;
+    });
+  }
+  getUrlPath(FileName) {
+    return this.EwepserverService.getDownloadPath(this.folderPrefix + this.cooperative.Cooperative_ID, FileName);
   }
   OnDataOK() {
 
@@ -154,14 +186,14 @@ export class BaselineCoopEditcoop2Component implements OnInit {
   falter() {
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
   }
-  Delete(){
-    this.cutomerFormHlper.showConfirmDelete(this.cooperative.Cooperative_Name ).subscribe(result=>{
-      if(result.Result==='Ok'){
-        this.EwepserverService.deleteCooperative(this.cooperative.Cooperative_ID).subscribe((message:any)=>{
-          if(message.OK==="OK"){
-            alert("Cooperative deleted");             
-          }else{
-            alert("Error " + message.message);             
+  Delete() {
+    this.cutomerFormHlper.showConfirmDelete(this.cooperative.Cooperative_Name).subscribe(result => {
+      if (result.Result === 'Ok') {
+        this.EwepserverService.deleteCooperative(this.cooperative.Cooperative_ID).subscribe((message: any) => {
+          if (message.OK === "OK") {
+            alert("Cooperative deleted");
+          } else {
+            alert("Error " + message.message);
           }
           this.router.navigateByUrl('baseline/cooperative');
         });
@@ -169,23 +201,23 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     });
 
   }
-  Save() { 
+  Save() {
     //console.log("When_Training",this.Finance.get('When_Training').value);
-    this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value); 
- 
+    this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
+
     this.CanSave();
     // this.EwepserverService.checkCooperative(this.FlatMe["Registration_Number"],this.cooperative.Cooperative_ID).subscribe((message:any)=>{
-       
+
     //   if(message.records.length>0){        
     //     alert("Duplicate Registration Number" );
     //   }else{
     //   }
     // });
-    
+
     //this.showloading = true;
 
   }
-  CanSave(){
+  CanSave() {
     this.FlatMe = this.cutomerFormHlper.flattenObject(this.user.value);
     this.FlatMe["Country_ID"] = this.EwepserverService.SelectedCountryID;
     //Fix Date from the Material Control
@@ -210,7 +242,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
             this.saveMembers();
           });
         });
-        
+
 
       });
     } else {
@@ -292,22 +324,22 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if (result.Resulet === 'Save') {
-        console.log("AddNewEntrepreneur",result.data);
-        if(this.cooperative.Cooperative_ID==-1){
+        console.log("AddNewEntrepreneur", result.data);
+        if (this.cooperative.Cooperative_ID == -1) {
           let n = {
-            Name:result.data.Name,
-            Surname:result.data.Surname,
-            Sex:result.data.Sex,
-            Race:result.data.Race,
-            City:result.data.City,
-            Cooperative_ID:this.cooperative.Cooperative_ID,
-            Cooperative_Name:"",
-            Cooperative_Member_ID:-1,
-            Contact_Person:"Contact_Person",
-            Entrepreneur_ID:result.data.Entrepreneur_ID
+            Name: result.data.Name,
+            Surname: result.data.Surname,
+            Sex: result.data.Sex,
+            Race: result.data.Race,
+            City: result.data.City,
+            Cooperative_ID: this.cooperative.Cooperative_ID,
+            Cooperative_Name: "",
+            Cooperative_Member_ID: -1,
+            Contact_Person: "Contact_Person",
+            Entrepreneur_ID: result.data.Entrepreneur_ID
           }
           this.EntrepreneursList.push(n);
-        }else{
+        } else {
           this.showloading_Entrepreneurs = true;
           let n = {
             Cooperative_ID: this.cooperative.Cooperative_ID,
@@ -341,7 +373,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     console.log("Delete Click", RowDelete.Cooperative_ID, RowDelete);
     if (RowDelete.Cooperative_ID == -1) {
       this.EntrepreneursList = this.EntrepreneursList.filter(x => x.Entrepreneur_ID != RowDelete.Entrepreneur_ID);
-       
+
       this.showloading_Entrepreneurs = false;
     } else {
       let OldValue = this.EntrepreneursList.find(x => x.Cooperative_Member_ID == RowDelete.Cooperative_Member_ID);
@@ -363,7 +395,7 @@ export class BaselineCoopEditcoop2Component implements OnInit {
     this.Finance.get('Avg_Expenditure').valueChanges.subscribe(val => {
       this.FundsNumberChange(val);
     });
-     
+
     this.Finance.get('Member_Salaries').valueChanges.subscribe(val => {
       this.FundsNumberChange(val);
     });
@@ -374,9 +406,9 @@ export class BaselineCoopEditcoop2Component implements OnInit {
   FundsNumberChange(Value) {
     console.log("Input Value", Value);
     let Calc = ((Number(this.Finance.get("Avg_Sales").value)) + (Number(this.Finance.get("Avg_Other_Income").value))) -
-      ((Number(this.Finance.get("Avg_Expenditure").value)  +
+      ((Number(this.Finance.get("Avg_Expenditure").value) +
         Number(this.Finance.get("Member_Salaries").value) + Number(this.Finance.get("Employee_Salaries").value)));
-    this.Finance.get("Avg_Profit").setValue(Number(Calc)); 
+    this.Finance.get("Avg_Profit").setValue(Number(Calc));
   }
   contaceDetailChange(event, Index) {
     console.log(event, Index);

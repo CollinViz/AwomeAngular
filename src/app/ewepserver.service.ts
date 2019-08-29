@@ -106,11 +106,11 @@ export class EwepserverService {
     //this._getMainplace();
 
   }
-  getUploadPath(ID:number):string {
-    return this.UploadURL+"?ID=" + ID;
+  getUploadPath(ID:string):string {
+    return this.UploadURL+"?ID=" +  encodeURI(ID);
   }
-  getDownloadPath(ID:number):string {
-    return this.DownloadURL+ID+"/";
+  getDownloadPath(ID:string,FileName:string):string {
+    return this.DownloadURL+ID+"/"+encodeURI(FileName);
   }
   get country(): Observable<Country[]> {
     return this.CountryList.asObservable();
@@ -745,7 +745,7 @@ export class EwepserverService {
     return this.RoutingStashBox;
   }
 
-  filesUploaded(ID:number){
+  filesUploaded(ID:string){
     let login = {
       __class: 'FileSystem', __call: 'listFile',
       ID: ID, 
@@ -754,7 +754,7 @@ export class EwepserverService {
       catchError(this.handleError)
     );
   }
-  filesDelete(ID:number,FileName:string){
+  filesDelete(ID:string,FileName:string){
     let login = {
       __class: 'FileSystem', __call: 'deleteFile',
       FileName: FileName, 
